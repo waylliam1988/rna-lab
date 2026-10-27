@@ -1,0 +1,101 @@
+{
+  "audit": "clean-release-cif-metadata-audit-v1",
+  "created_at_utc": "2026-10-27T22:22:04.281635+00:00",
+  "scope": "Read-only local mmCIF source, primary-citation, selected-chain/entity mapping, and construct-related metadata coverage. Aggregate counts only; no row-level source values are emitted.",
+  "clean_release_records": 141,
+  "local_source_verification": {
+    "records_with_local_source": 141,
+    "source_resolution_methods": {
+      "receipt_path": 129,
+      "unique_source_member_basename": 12
+    },
+    "unique_local_source_files": 140,
+    "stored_bytes_read": 109252641,
+    "decompressed_cif_bytes_read": 495096752,
+    "download_receipt_sha256_matches": 141,
+    "record_cif_sha256_matches": 141
+  },
+  "citation_coverage": {
+    "records_with_any_citation_row": 141,
+    "records_with_primary_citation_row": 141,
+    "records_with_primary_title": 141,
+    "records_with_primary_doi": 135,
+    "records_with_primary_pubmed_id": 134,
+    "distinct_primary_doi_count": 104,
+    "distinct_primary_pubmed_id_count": 103,
+    "records_with_any_primary_study_key": 135,
+    "distinct_primary_study_keys": 207,
+    "records_linked_to_another_record_by_primary_study": 48,
+    "linked_study_group_count": 17
+  },
+  "alternative_structure_entry_study_coverage": {
+    "distinct_related_structure_entries": 180,
+    "related_entry_local_source_verification": {
+      "distinct_related_entries": 180,
+      "entries_with_local_sources": 180,
+      "entries_with_recorded_source_hash_match": 180,
+      "local_source_receipt_collections": {
+        "coordinate_source_report": 158,
+        "raw_experimental_cif_receipt": 22
+      },
+      "entries_missing_local_sources": 0
+    },
+    "related_entries_with_primary_study_key": 170,
+    "records_with_primary_study_key_for_every_related_entry": 133,
+    "records_with_at_least_one_related_entry_missing_primary_study_key": 8,
+    "records_linked_to_another_record_by_related_primary_study": 50,
+    "distinct_related_primary_study_keys": 231
+  },
+  "selected_chain_entity_crosswalk": {
+    "entry_id_matches_record": 141,
+    "label_chain_maps_to_record_entity": 141,
+    "label_author_chain_mapping_matches": 141,
+    "selected_entity_row_present": 141,
+    "canonical_entity_sequence_present": 141,
+    "canonical_entity_sequence_exactly_matches_record": 141
+  },
+  "selected_entity_construct_related_metadata": {
+    "entity_source_method_known": 141,
+    "entity_description_known": 141,
+    "entity_mutation_known": 13,
+    "entity_fragment_known": 20,
+    "entity_genetic_source_row_present": 16,
+    "entity_natural_source_row_present": 19,
+    "entity_synthetic_source_row_present": 0,
+    "entity_sequence_reference_present": 141,
+    "entity_reference_alignment_present": 141,
+    "clean_json_records_with_explicit_construct_provenance": 0
+  },
+  "relationship_to_existing_candidate_audit": {
+    "prior_candidate_audit_sha256": "8f7c4f717d8262117db482e4390efba26b0f223da81d255c3e34ef5690569814",
+    "prior_new_independent_test_eligible_records": 0,
+    "new_independent_test_established": false,
+    "training_admission_changed": false
+  },
+  "decisions": {
+    "citation_use": "Primary DOI/PubMed values may support PDB-entry study links; they do not establish construct ancestry, assay independence, or assessment blindness.",
+    "construct_use": "Entity source, description, mutation, fragment, polymer sequence, and reference fields are supporting metadata only; this audit does not establish parent-construct lineage or independent constructs.",
+    "record_mapping": "Chain/entity/sequence matches confirm which mmCIF entity underlies each clean-release record; they do not prove that different entities are biologically independent.",
+    "admission": "No training or evaluation eligibility is added; existing quarantine and frozen split decisions remain unchanged."
+  },
+  "limitations": [
+    "Citation coverage is metadata presence, not manual verification against the article or a study-level independence review.",
+    "Entity source and polymer reference annotations can describe expression source or sequence similarity without documenting the full construct parent, engineered changes, or biological replicate.",
+    "Exact entity-sequence and chain crosswalks do not replace family/remote-homology review.",
+    "No model prediction, historical test score, or test-set outcome was read; no data, labels, or split assignments were modified.",
+    "The report contains aggregate counts and input fingerprints only; row-level identifiers, sequence, citation values, and URLs are not emitted."
+  ],
+  "input_fingerprints": {
+    "clean_release_pairs_sha256": "ab4617d4b0f2e025cc2a8cfda38b1a7c1d3610121f4e95005ecc7ac23262d99f",
+    "clean_release_summary_sha256": "d8b19a1b5ab3717f696cc7e28a35300f73a598d48bce1208806b7f741d1dc080",
+    "clean_release_validation_sha256": "ab3695532547237b2b337bcee18f6251f0e32df3c3f012adc697aa07b2b37951",
+    "coordinate_source_verification_sha256": "4ff2a18602a783420298f154e3a929723134f55a6724bfb138993f15df232d42",
+    "experimental_acquisition_report_sha256": "5f952cf063f8c6b0ac310327dafe33f47cf0d4ec823aaa3ff9d592fd40097bcf",
+    "raw_artifacts_manifest_sha256": "d6a8c68a02093580963abcf8e00d8d773911c2bdaf89fc2706b99fab67f25e63",
+    "raw_artifacts_summary_sha256": "3a3a97dce288c332909503e97c756bb73d54b6c49ae6f1b601d27c3508813b9f",
+    "prior_candidate_audit_sha256": "8f7c4f717d8262117db482e4390efba26b0f223da81d255c3e34ef5690569814"
+  },
+  "test_predictions_read": false,
+  "training_started": false,
+  "source_data_modified": false
+}
