@@ -1,6 +1,14 @@
 # 本地环境
 
-数据清洗阶段新增Gemmi/Barnaba/MDTraj等依赖，见requirements-data.txt；NumPy现固定为2.2.6以兼容Barnaba API。Windows原生运行时采用验证微软签名的项目本地DLL（.runtime/vc），可通过scripts/prepare_native_runtime.ps1复现，不修改系统文件。完整已安装版本以requirements-lock.txt为准。
+数据清洗阶段新增Gemmi/Barnaba/MDTraj等依赖，见requirements-data.txt；NumPy现固定为2.2.6以兼容Barnaba API。完整Python包版本以requirements-lock.txt为准。早期使用的已验证微软签名项目本地DLL（.runtime/vc）保留作兼容回退。
+
+## 系统VC++运行库已补齐（2026-10-27）
+
+按用户明确要求，从[微软官方v14 x64入口](https://aka.ms/vc14/vc_redist.x64.exe)下载并验证Microsoft Corporation有效数字签名后，安装Microsoft Visual C++ Redistributable x64 **14.51.36247.0**。安装退出码0，无需重启；系统注册表Installed=1，System32中的vcruntime140/msvcp140/vcruntime140_1版本均为14.51.36247.0。
+
+全新Python进程直接导入torch、Gemmi、MDTraj和SciPy已不再出现运行库缺失提示；三张RTX 2080 Ti重新通过真实CUDA前向、反向、优化器及Ghost/RWKV四步反向检查。Python3.12.8、PyTorch2.7.1+cu128保持原配置。安装器和日志在本地.runtime/installers，安装审计与环境实测在data/reports；不提交二进制安装包，也不重跑已揭盲模型评估。
+
+该提示来自PyTorch尝试载入三个原生DLL时的预检查。此前项目本地DLL支持实际训练，因此提示没有导致已完成实验失败；本次补齐了系统级依赖。下方首次环境搭建记录中的预检查警告属于历史状态。
 
 ## 目标与位置
 
