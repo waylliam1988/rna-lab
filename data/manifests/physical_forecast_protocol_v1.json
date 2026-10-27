@@ -1,0 +1,82 @@
+{
+  "task": "teacher_forced_next_physical_observation",
+  "source": "three_d_isolated_v1",
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "training_update_checkpoints": [
+    100,
+    250,
+    500
+  ],
+  "training_rollout_lengths": [
+    4,
+    8
+  ],
+  "evaluation_history_lengths": [
+    4,
+    8,
+    16
+  ],
+  "batch_size": 8,
+  "optimizer": "AdamW",
+  "lr": 0.001,
+  "weight_decay": 0.0001,
+  "gradient_clip": 1.0,
+  "original_ghost_dims": [
+    256,
+    512,
+    8
+  ],
+  "perception_adapter": "new Linear(18,256)+LayerNorm",
+  "trajectory_length": 32,
+  "initial_position_noise_nm": 0.02,
+  "episodes_per_sequence": 4,
+  "physics_temperature": 0.0,
+  "physics_dt": 0.05,
+  "contact_prior": "sequence_canonical_0.1_abs_sep_ge4",
+  "target": "original log1p Rg/force, contact densities, normalized asinh energy",
+  "baselines": [
+    "persistence",
+    "same_trained_model_reset_each_step"
+  ],
+  "selection": "No hyperparameter selection; report all frozen checkpoints/seeds, validation only",
+  "new_test_available": false,
+  "limits": [
+    "All transitions are synthetic auxiliary labels from restored analytical physics, not experimental trajectories.",
+    "Known current 3D state is input; not a sequence-to-fold benchmark.",
+    "Validation has five sequences/five groups; no independent test conclusion.",
+    "No 1D pretraining or old learned weights; no full original GVP/policy/metric restoration.",
+    "Teacher forcing checks state estimation/forecasting, not learned free-running folding."
+  ],
+  "data_fingerprints": {
+    "train": {
+      "source_sha256": "ee353dd0c6b3860ba6c4dfa335b1105e060a272137c53473e24d70e582396a92",
+      "array_sha256": "685e49768e97960916e19635343d6a468acf6ecf0be2c287db6a1a470fb98cc4",
+      "file_sha256": "b74d99493134ad488247018ff97f9ca43cae99a6a194388b2edba79fe04770ab",
+      "metadata_sha256": "4968fa4b285330dac290846a099fa85aa1c54da658920e8c2b7414a43ab3af72"
+    },
+    "validation": {
+      "source_sha256": "3e28f123e9b6fd0752eb7f9408af108a5a37c9a4e43156b5a42ee83497faab18",
+      "array_sha256": "babec3fae71c91b5dcbad803f133d4a6789e718801830f8fef49f19f86d02416",
+      "file_sha256": "2863a731f3fb49aad432e91603a5ce9f72ff1e6c7c3ec4ca999da586276115b8",
+      "metadata_sha256": "866cc28d82fc5dbf2a4e5ede41cdf66d6b6429d8f05ccb6efe14811efaae84e5"
+    }
+  },
+  "counts": {
+    "train": {
+      "sequences": 35,
+      "episodes": 140,
+      "transitions": 4480
+    },
+    "validation": {
+      "sequences": 5,
+      "episodes": 20,
+      "transitions": 640
+    }
+  },
+  "common_terminal_evaluation_state": 16,
+  "rollout_exposure_control": "r8@250 versus r4@500, batch8, 16000 observed states each"
+}
