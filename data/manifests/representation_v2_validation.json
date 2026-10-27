@@ -1,0 +1,17 @@
+{
+  "unit_tests_passed": 76,
+  "independently_reloaded_checkpoints": 24,
+  "J_gate_enabled": false,
+  "physics_or_prediction_targets_changed": false,
+  "new_independent_test": false,
+  "development_validation_groups": 5,
+  "consistent_geometry_gain_condition": "mlp, static_density_indices1and2_removed",
+  "universal_geometry_gain_claimed": false,
+  "artifact_sha256": {
+    "data/manifests/representation_v2_protocol.json": "e9a2816ee4e054d984175c59d5fef3ca7e52ef67156ba493cec528d67be95c0a",
+    "data/manifests/representation_v2_static_verification.json": "eb0e656a86317d2f6e29724cd1570c2d970f9b2fd792b2a53ea713fd3fbd6bd3",
+    "data/manifests/representation_v2_geometry_verification.json": "194ff053550a338c4965c31b192eeda48e881ddd1b12843a684f51af8f1aef92",
+    "data/manifests/representation_v2_geometry_summary.json": "f7e53f7378ea0222205c2e61e082cd8dd9ace0eea694f45c1db7fcdc44264d55",
+    "data/manifests/representation_v2_geometry_data.json": "35d06a50187460b18cbe715b200024ef99a75e68e05c025b2cfdd750f58e808c"
+  }
+}
