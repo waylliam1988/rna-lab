@@ -1,6 +1,7 @@
 """Freeze the single-factor BCE vs BCE+competition protocol before training."""
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -33,7 +34,11 @@ def state_sha256(state) -> str:
 
 
 def main() -> None:
-    output = ROOT / "data/manifests/data_first_loss_protocol_v1.json"
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--version", choices=["v2"], default="v2")
+    args = parser.parse_args()
+    version = args.version
+    output = ROOT / f"data/manifests/data_first_loss_protocol_{version}.json"
     if output.exists():
         raise FileExistsError("Protocol already exists; create a new version instead of overwriting")
     coverage_path = ROOT / "data/manifests/data_first_loss_coverage_v1.json"
@@ -70,7 +75,9 @@ def main() -> None:
     }
     validation_group_count = coverage["splits"]["validation"]["groups"]
     protocol = {
-        "protocol": "data-first-pair-loss-v1",
+        "protocol": f"data-first-pair-loss-{version}",
+        "version": version,
+        "supersedes": "data-first-pair-loss-v1; v1 stopped after a validation-only shape error before any result was written. No v1 checkpoint or metric is reused.",
         "status": "frozen_before_training",
         "coverage_audit_sha256": sha256(coverage_path),
         "dataset": "data/experimental/joint_split_v2",

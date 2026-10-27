@@ -198,7 +198,9 @@ batch竞争损失 = mean(有适用端点的RNA竞争损失)
 
 ### 8.3 固定对照和记录
 
-约定待生成`data/manifests/data_first_loss_protocol_v1.json`，运行目录`runs/data_first_loss_v1/<bce|bce_competition>/seed<seed>/`，汇总`docs/DATA_FIRST_LOSS_RESULTS_V1.md`。当前这些只是约定路径。
+v1协议 `data/manifests/data_first_loss_protocol_v1.json` 已冻结；其`bce/seed42`完成550次训练更新后，在验证评价时因变长批次矩阵尺寸错误失败。checkpoint和日志保留于`runs/data_first_loss_v1/bce/seed42/`，没有正式结果，也没有重试或运行其余条件。该v1结果状态是技术失败，不能用于损失选择。
+
+已修复共享`evaluate`并添加变长批次契约测试。为保留冻结协议不可变性，修复后通过`data/manifests/data_first_loss_protocol_v2.json`建立新协议；v2运行目录为`runs/data_first_loss_v2/<bce|bce_competition>/seed<seed>/`，独立重载核验及汇总分别写到`data/manifests/data_first_loss_verification_v2.json`和`data/manifests/data_first_loss_summary_v2.json`。v2沿用相同数据、损失、预算、种子、阈值和门槛，不复用v1 checkpoint或指标；所有6次从配对随机初始化重新运行。每版协议与运行源码分别保存指纹。
 
 - 归档数据主线结果后，预声明唯一训练流程：仅实验训练，或固定的辅助训练后微调；两损失条件完全相同，不挑最有利的数据子集。不混用旧BCE检查点直接比较新训练。
 - 两条件均从相同种子随机初始state_dict重新训练，三个种子42/43/44、相同采样序列与阶段边界；辅助流程若存在，须明确竞争项在哪些阶段启用，并固定两阶段数据语义。

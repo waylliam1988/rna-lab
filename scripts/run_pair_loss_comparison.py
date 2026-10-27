@@ -96,9 +96,13 @@ def main() -> None:
     parser.add_argument("--condition", choices=["bce", "bce_competition"], required=True)
     parser.add_argument("--seed", choices=[42, 43, 44], type=int, required=True)
     parser.add_argument("--device", choices=["cuda:0"], default="cuda:0")
+    parser.add_argument("--protocol", default="data/manifests/data_first_loss_protocol_v2.json")
     args = parser.parse_args()
 
-    protocol_path = ROOT / "data/manifests/data_first_loss_protocol_v1.json"
+    protocol_path = ROOT / args.protocol
+    version = protocol_path.stem.removeprefix("data_first_loss_protocol_")
+    if not version.startswith("v"):
+        raise ValueError("Protocol filename must include an explicit version")
     protocol = json.loads(protocol_path.read_text(encoding="utf-8"))
     protocol_hash = sha256(protocol_path)
     for relative_path, expected_hash in protocol["source_sha256"].items():
@@ -136,7 +140,7 @@ def main() -> None:
     if len(validation_data) != protocol["split_counts"]["validation"] or len(validation_groups) != protocol["split_groups"]["validation"]:
         raise ValueError("Validation records or groups differ from the frozen protocol")
 
-    output = ROOT / "runs/data_first_loss_v1" / args.condition / f"seed{args.seed}"
+    output = ROOT / "runs" / f"data_first_loss_{version}" / args.condition / f"seed{args.seed}"
     output.mkdir(parents=True, exist_ok=False)
     ACTIVE_RUN = (args.condition, args.seed, protocol_hash)
     append_progress(

@@ -1,5 +1,6 @@
 """Summarize the six frozen runs and apply the predeclared development gate."""
 import hashlib
+import argparse
 import json
 from datetime import datetime, timezone
 from pathlib import Path
@@ -17,16 +18,22 @@ def sha256(path: Path) -> str:
 
 
 def main() -> None:
-    protocol_path = ROOT / "data/manifests/data_first_loss_protocol_v1.json"
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--protocol", default="data/manifests/data_first_loss_protocol_v2.json")
+    args = parser.parse_args()
+    protocol_path = ROOT / args.protocol
+    version = protocol_path.stem.removeprefix("data_first_loss_protocol_")
+    if not version.startswith("v"):
+        raise ValueError("Protocol filename must include an explicit version")
     protocol = json.loads(protocol_path.read_text(encoding="utf-8"))
-    verification = json.loads((ROOT / "data/manifests/data_first_loss_verification_v1.json").read_text(encoding="utf-8"))
+    verification = json.loads((ROOT / f"data/manifests/data_first_loss_verification_{version}.json").read_text(encoding="utf-8"))
     if not verification.get("all_checks_passed") or verification.get("reloaded_checkpoints") != 6:
         raise ValueError("Independent checkpoint verification must pass before summarizing")
     results = {}
     for condition in protocol["conditions"]:
         results[condition] = []
         for seed in protocol["seeds"]:
-            result_path = ROOT / "runs/data_first_loss_v1" / condition / f"seed{seed}" / "result.json"
+            result_path = ROOT / "runs" / f"data_first_loss_{version}" / condition / f"seed{seed}" / "result.json"
             result = json.loads(result_path.read_text(encoding="utf-8"))
             if result["test_accessed"] or result["updates"] != protocol["optimizer_updates"]:
                 raise ValueError(f"Run violates frozen protocol: {condition}/{seed}")
@@ -71,7 +78,7 @@ def main() -> None:
         and not severe_group_regressions
     )
     result = {
-        "summary": "data-first-loss-results-v1",
+        "summary": f"data-first-loss-results-{version}",
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "protocol_sha256": sha256(protocol_path),
         "data_sha256": protocol["data_sha256"],
@@ -109,7 +116,7 @@ def main() -> None:
         "test_accessed": False,
         "limits": ["Only 10 validation RNAs in seven groups; no independent test was available.", "A passed development gate is an engineering continuation rule, not statistical evidence of broad generalization."],
     }
-    path = ROOT / "data/manifests/data_first_loss_summary_v1.json"
+    path = ROOT / f"data/manifests/data_first_loss_summary_{version}.json"
     with path.open("w", encoding="utf-8", newline="\n") as f:
         f.write(json.dumps(result, ensure_ascii=True, indent=2) + "\n")
     print(json.dumps({k: v for k, v in result.items() if k != "per_group_delta_competition_minus_bce"}, indent=2))

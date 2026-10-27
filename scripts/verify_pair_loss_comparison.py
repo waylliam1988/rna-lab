@@ -1,5 +1,6 @@
 """Independently reload all frozen loss-comparison checkpoints on validation."""
 import hashlib
+import argparse
 import json
 from pathlib import Path
 import statistics
@@ -44,7 +45,13 @@ def group_macro_conflict_rate(details, rows):
 
 
 def main() -> None:
-    protocol_path = ROOT / "data/manifests/data_first_loss_protocol_v1.json"
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--protocol", default="data/manifests/data_first_loss_protocol_v2.json")
+    args = parser.parse_args()
+    protocol_path = ROOT / args.protocol
+    version = protocol_path.stem.removeprefix("data_first_loss_protocol_")
+    if not version.startswith("v"):
+        raise ValueError("Protocol filename must include an explicit version")
     protocol = json.loads(protocol_path.read_text(encoding="utf-8"))
     protocol_hash = sha256(protocol_path)
     for relative_path, expected_hash in protocol["source_sha256"].items():
@@ -61,7 +68,7 @@ def main() -> None:
     checks = []
     for condition in protocol["conditions"]:
         for seed in protocol["seeds"]:
-            directory = ROOT / "runs/data_first_loss_v1" / condition / f"seed{seed}"
+            directory = ROOT / "runs" / f"data_first_loss_{version}" / condition / f"seed{seed}"
             result = json.loads((directory / "result.json").read_text(encoding="utf-8"))
             checkpoint_path = directory / "checkpoint.pt"
             if sha256(checkpoint_path) != result["checkpoint_sha256"]:
@@ -109,14 +116,14 @@ def main() -> None:
             del model
             torch.cuda.empty_cache()
     output = {
-        "verification": "pair-loss-comparison-v1",
+        "verification": f"pair-loss-comparison-{version}",
         "protocol_sha256": protocol_hash,
         "all_checks_passed": True,
         "reloaded_checkpoints": len(checks),
         "checks": checks,
         "test_accessed": False,
     }
-    path = ROOT / "data/manifests/data_first_loss_verification_v1.json"
+    path = ROOT / f"data/manifests/data_first_loss_verification_{version}.json"
     with path.open("w", encoding="utf-8", newline="\n") as f:
         f.write(json.dumps(output, ensure_ascii=True, indent=2) + "\n")
     print(json.dumps({k: v for k, v in output.items() if k != "checks"}, indent=2))
