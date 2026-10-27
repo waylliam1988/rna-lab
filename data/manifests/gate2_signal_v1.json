@@ -1,0 +1,382 @@
+{
+  "anchor": 16,
+  "horizons": [
+    1,
+    4,
+    8,
+    16
+  ],
+  "normalization": "training pool only; macro channel std floor1e-4",
+  "scale": [
+    0.0740920385617503,
+    0.002547658274101798,
+    0.0044181568108870636,
+    0.057240641973695786,
+    0.019729389106120196
+  ],
+  "source_sha256": {
+    "train": "b74d99493134ad488247018ff97f9ca43cae99a6a194388b2edba79fe04770ab",
+    "validation": "2863a731f3fb49aad432e91603a5ce9f72ff1e6c7c3ec4ca999da586276115b8"
+  },
+  "script_sha256": "b544a757d2c162c22b626b350f0b1a8a872b573fcd22ed8b52d311548d2ffad0",
+  "splits": {
+    "train": [
+      {
+        "horizon": 1,
+        "delta_abs_mean_by_channel": [
+          0.0023437351280482825,
+          0.0,
+          0.0,
+          0.005505690841312892,
+          0.0009613256177140606
+        ],
+        "delta_rms_by_channel": [
+          0.002375740523479131,
+          0.0,
+          0.0,
+          0.006078414309285349,
+          0.000991543125186742
+        ],
+        "persistence_mse_by_channel": [
+          5.644143034900896e-06,
+          0.0,
+          0.0,
+          3.694712051532489e-05,
+          9.83157769105091e-07
+        ],
+        "linear_mse_by_channel": [
+          8.064025646365173e-09,
+          0.0,
+          0.0,
+          1.3999113937466247e-05,
+          2.45439605488163e-09
+        ],
+        "persistence_dynamic_mse": 1.4524807106443626e-05,
+        "linear_dynamic_mse": 4.6698774530558316e-06,
+        "standardized_persistence_mse": 0.004943452719339815,
+        "standardized_linear_mse": 0.00142678924600073,
+        "linear_standardized_skill": 0.7113779928714937,
+        "linear_raw_skill": 0.6784895373251367,
+        "fraction_changes_above_float32_heuristic": [
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "horizon": 4,
+        "delta_abs_mean_by_channel": [
+          0.009818825725781462,
+          0.0,
+          0.0,
+          0.01971287265016908,
+          0.00399794185327159
+        ],
+        "delta_rms_by_channel": [
+          0.009948615509685966,
+          0.0,
+          0.0,
+          0.023184955821842327,
+          0.004160387733704348
+        ],
+        "persistence_mse_by_channel": [
+          9.897495055956416e-05,
+          0.0,
+          0.0,
+          0.0005375421764607804,
+          1.7308826094757597e-05
+        ],
+        "linear_mse_by_channel": [
+          6.632659389978092e-07,
+          0.0,
+          0.0,
+          0.0005644509020254378,
+          2.41315642891749e-07
+        ],
+        "persistence_dynamic_mse": 0.0002179419843717007,
+        "linear_dynamic_mse": 0.00018845182786910914,
+        "standardized_persistence_mse": 0.0755190050609539,
+        "standardized_linear_mse": 0.05767125303545473,
+        "linear_standardized_skill": 0.23633457579444606,
+        "linear_raw_skill": 0.13531195738906376,
+        "fraction_changes_above_float32_heuristic": [
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "horizon": 8,
+        "delta_abs_mean_by_channel": [
+          0.02050941539191367,
+          0.0,
+          0.0,
+          0.030799469441959347,
+          0.00826622580163299
+        ],
+        "delta_rms_by_channel": [
+          0.020768210570946053,
+          0.0,
+          0.0,
+          0.033588797523017466,
+          0.008704453431777151
+        ],
+        "persistence_mse_by_channel": [
+          0.00043131857031915543,
+          0.0,
+          0.0,
+          0.0011282073190422644,
+          7.576750954597703e-05
+        ],
+        "linear_mse_by_channel": [
+          6.449170472417129e-06,
+          0.0,
+          0.0,
+          0.0012730618296010105,
+          2.6734891628116725e-06
+        ],
+        "persistence_dynamic_mse": 0.0005450977996357989,
+        "linear_dynamic_mse": 0.00042739482974541316,
+        "standardized_persistence_mse": 0.2058514337178677,
+        "standardized_linear_mse": 0.13219579606489779,
+        "linear_standardized_skill": 0.3578096898461227,
+        "linear_raw_skill": 0.21593000369663518,
+        "fraction_changes_above_float32_heuristic": [
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "horizon": 16,
+        "delta_abs_mean_by_channel": [
+          0.04244385800765737,
+          0.0,
+          0.0,
+          0.09489109444014125,
+          0.0179026905107238
+        ],
+        "delta_rms_by_channel": [
+          0.042949036476040814,
+          0.0,
+          0.0,
+          0.10199617297020727,
+          0.01919477801174208
+        ],
+        "persistence_mse_by_channel": [
+          0.0018446197342202842,
+          0.0,
+          0.0,
+          0.010403219300568442,
+          0.00036843950292005714
+        ],
+        "linear_mse_by_channel": [
+          4.577601132849295e-05,
+          0.0,
+          0.0,
+          0.0034344317836143942,
+          3.181300672265579e-05
+        ],
+        "persistence_dynamic_mse": 0.004205426179236261,
+        "linear_dynamic_mse": 0.001170673600555181,
+        "standardized_persistence_mse": 1.4858895700963821,
+        "standardized_linear_mse": 0.37942402902177674,
+        "linear_standardized_skill": 0.7446485683339406,
+        "linear_raw_skill": 0.7216278325523278,
+        "fraction_changes_above_float32_heuristic": [
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          1.0
+        ]
+      }
+    ],
+    "validation": [
+      {
+        "horizon": 1,
+        "delta_abs_mean_by_channel": [
+          0.0018988275580320347,
+          0.0,
+          0.0,
+          0.007161377100057448,
+          0.001339351013302803
+        ],
+        "delta_rms_by_channel": [
+          0.0019914712421253743,
+          0.0,
+          0.0,
+          0.009286540488768522,
+          0.0015512223400899197
+        ],
+        "persistence_mse_by_channel": [
+          3.965957708212381e-06,
+          0.0,
+          0.0,
+          8.62398342495371e-05,
+          2.4062907483940466e-06
+        ],
+        "linear_mse_by_channel": [
+          5.420410013178771e-09,
+          0.0,
+          0.0,
+          1.9115473688099147e-05,
+          1.5821927784598345e-08
+        ],
+        "persistence_dynamic_mse": 3.087069423538118e-05,
+        "linear_dynamic_mse": 6.378905341965641e-06,
+        "standardized_persistence_mse": 0.011075039677027885,
+        "standardized_linear_mse": 0.0019585881115097158,
+        "linear_standardized_skill": 0.8231529485558172,
+        "linear_raw_skill": 0.7933669617751997,
+        "fraction_changes_above_float32_heuristic": [
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "horizon": 4,
+        "delta_abs_mean_by_channel": [
+          0.007955485454419303,
+          0.0,
+          0.0,
+          0.028419281456826605,
+          0.005860443785786628
+        ],
+        "delta_rms_by_channel": [
+          0.00833508988849849,
+          0.0,
+          0.0,
+          0.03471692654365707,
+          0.006963460696623526
+        ],
+        "persistence_mse_by_channel": [
+          6.947372344934977e-05,
+          0.0,
+          0.0,
+          0.001205264988637681,
+          4.848978487342059e-05
+        ],
+        "linear_mse_by_channel": [
+          4.5231131260031337e-07,
+          0.0,
+          0.0,
+          0.0005941661364826236,
+          1.720772718008523e-06
+        ],
+        "persistence_dynamic_mse": 0.0004410761656534838,
+        "linear_dynamic_mse": 0.00019877974017107748,
+        "standardized_persistence_mse": 0.16836017963709748,
+        "standardized_linear_mse": 0.06194845226016401,
+        "linear_standardized_skill": 0.6320480745880963,
+        "linear_raw_skill": 0.5493301256109089,
+        "fraction_changes_above_float32_heuristic": [
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "horizon": 8,
+        "delta_abs_mean_by_channel": [
+          0.016638275580526225,
+          0.0,
+          0.0,
+          0.04284347695224766,
+          0.012907223030924796
+        ],
+        "delta_rms_by_channel": [
+          0.017413451465721114,
+          0.0,
+          0.0,
+          0.058436712115274826,
+          0.015951170921805837
+        ],
+        "persistence_mse_by_channel": [
+          0.0003032282919490248,
+          0.0,
+          0.0,
+          0.0034148493228435073,
+          0.000254439853776664
+        ],
+        "linear_mse_by_channel": [
+          4.505756780018472e-06,
+          0.0,
+          0.0,
+          0.0015018374758066606,
+          2.321248986882629e-05
+        ],
+        "persistence_dynamic_mse": 0.0013241724895230655,
+        "linear_dynamic_mse": 0.0005098519074851685,
+        "standardized_persistence_mse": 0.5837110267213,
+        "standardized_linear_mse": 0.17294082723260307,
+        "linear_standardized_skill": 0.7037218429742363,
+        "linear_raw_skill": 0.6149656396586183,
+        "fraction_changes_above_float32_heuristic": [
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "horizon": 16,
+        "delta_abs_mean_by_channel": [
+          0.03451850862584644,
+          0.0,
+          0.0,
+          0.08890329165620892,
+          0.02924924995750189
+        ],
+        "delta_rms_by_channel": [
+          0.036100083354965104,
+          0.0,
+          0.0,
+          0.10081213386015297,
+          0.0385633961095843
+        ],
+        "persistence_mse_by_channel": [
+          0.0013032160182354284,
+          0.0,
+          0.0,
+          0.010163086333437401,
+          0.0014871355195047015
+        ],
+        "linear_mse_by_channel": [
+          3.278800194547366e-05,
+          0.0,
+          0.0,
+          0.006247916289500647,
+          0.00028427309260545887
+        ],
+        "persistence_dynamic_mse": 0.004317812623725843,
+        "linear_dynamic_mse": 0.0021883257946838596,
+        "standardized_persistence_mse": 2.3865810521859956,
+        "standardized_linear_mse": 0.8810590947966491,
+        "linear_standardized_skill": 0.630827918461164,
+        "linear_raw_skill": 0.4931864845965567,
+        "fraction_changes_above_float32_heuristic": [
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  "new_test_evaluated": false,
+  "constant_contact_channels_verified": true
+}
