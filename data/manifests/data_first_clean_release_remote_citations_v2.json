@@ -1,0 +1,59 @@
+{
+  "audit": "clean-release-official-remote-primary-citation-review-v2",
+  "created_at_utc": "2026-10-27T22:50:15.211535+00:00",
+  "scope": "Re-parse of the immutable local RCSB responses from v1; no network requests were repeated. Primary article fields are kept separate from PDB entry database DOI fields.",
+  "query_summary": {
+    "source": "RCSB Data API core entry endpoint; local saved response re-analysis",
+    "entries_queried": 10,
+    "response_state_counts": {
+      "entry_identity_verified": 10
+    },
+    "entry_identity_verified": 10,
+    "primary_citation_object_present": 10,
+    "primary_citation_row_present": 10,
+    "primary_title_present": 10,
+    "primary_doi_present": 0,
+    "primary_pubmed_id_present": 0,
+    "usable_primary_study_key_present": 0,
+    "database_2_doi_present_not_treated_as_primary": 10,
+    "response_sha256_matches": 10,
+    "response_bytes_total": 156242
+  },
+  "record_coverage": {
+    "records_with_all_related_primary_study_keys_before_lookup": 133,
+    "records_with_all_related_primary_study_keys_after_lookup": 133,
+    "records_newly_complete_from_api_metadata": 0,
+    "records_still_missing_at_least_one_related_primary_study_key": 8
+  },
+  "decision": {
+    "database_2_DOI_promoted_to_primary_citation": false,
+    "training_candidate_admission": 0,
+    "new_independent_test_admission": 0,
+    "metadata_lookup_proves_construct_ancestry": false,
+    "metadata_lookup_proves_family_independence": false,
+    "data_or_label_modified": false,
+    "test_predictions_or_scores_read": false
+  },
+  "local_only_detail": {
+    "ledger_path": "data\\manifests\\data_first_clean_release_citation_review_v2.jsonl",
+    "ledger_rows": 10,
+    "ledger_sha256": "67e99f80b2d6b3a9a77c9af452e4e4b487bbe273cb2a990a7bca234843b8f0b9",
+    "raw_response_directory": "data\\raw\\primary_citation_review_v1",
+    "raw_response_count": 10
+  },
+  "input_fingerprints": {
+    "clean_release_pairs_sha256": "ab4617d4b0f2e025cc2a8cfda38b1a7c1d3610121f4e95005ecc7ac23262d99f",
+    "prior_cif_metadata_audit_sha256": "f078332088975b02d3116d8aa7e502d586d09f968d7593b27f49aebc20c1c4e1",
+    "prior_remote_citation_report_sha256": "787aa4f6990f4c8db0188f7a9d40fa6ca3e7cf7ce746a7b7cf30ce0e1e4bc401",
+    "prior_remote_citation_detail_sha256": "6d88dec65f89d7cb6f5fc54e7022a9b0833b93fed118848182f49033ecbcf59f"
+  },
+  "limitations": [
+    "RCSB primary citation titles have no DOI/PubMed key in these saved responses; the separate database_2 DOI values identify PDB entry records and are not used as article citations.",
+    "A citation title or entry DOI does not establish construct-parent lineage, experimental independence, or assessment blindness.",
+    "Remote homology and family relationships remain unresolved unless supported by a separate audited relation source.",
+    "This re-analysis only read local copies; no network, model prediction, historical test score, training, label change, or split change occurred."
+  ],
+  "test_predictions_read": false,
+  "training_started": false,
+  "network_requests_repeated": false
+}

@@ -17,6 +17,9 @@ data/manifests/data_first_admission_v1.jsonl
 data/manifests/data_first_profile_relations_v1.jsonl
 data/manifests/data_first_history_relations_v1.jsonl
 data/manifests/data_first_clean_release_citation_review_v1.jsonl
+data/manifests/data_first_clean_release_citation_review_v2.jsonl
+data/manifests/data_first_clean_release_remote_citations_v1.json
+data/manifests/data_first_clean_release_crossref_review_v1.jsonl
 .pytest_cache/
 .env
 .env.*
