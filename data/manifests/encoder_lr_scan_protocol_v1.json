@@ -1,0 +1,57 @@
+{
+  "encoders": [
+    "transformer",
+    "egnn_seed",
+    "rwkv_lite"
+  ],
+  "widths": {
+    "cnn": 113,
+    "rwkv_lite": 175,
+    "transformer": 431,
+    "egnn_seed": 117
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "variants": [
+    {
+      "name": "lr1e-4",
+      "lr": 0.0001,
+      "warmup": false
+    },
+    {
+      "name": "lr1e-3",
+      "lr": 0.001,
+      "warmup": false
+    },
+    {
+      "name": "lr3e-3",
+      "lr": 0.003,
+      "warmup": false
+    },
+    {
+      "name": "lr1e-3_warmup",
+      "lr": 0.001,
+      "warmup": true
+    }
+  ],
+  "warmup_fraction": 0.1,
+  "warmup_description": "linear first55 of550 optimizer updates, first LR=base/55 then constant; no further search",
+  "epochs": 25,
+  "batch_size": 4,
+  "weight_decay": 0.01,
+  "gradient_clip": 1.0,
+  "training_file": "data/experimental/joint_split_v2/train.jsonl",
+  "training_sha256": "4168f00f61d9a3330db33b45308fe247c6ba15fd1c50ce4b868559b78f3ffcb9",
+  "model_source_sha256": "2e214d1ea10950c2ef89590fd12360cdc18dbe5a5579065c84f4625319990e9f",
+  "egnn_audit_sha256": "b6454cf65a34c93327baf9c2b808082c822d1450fe8a86190846ba1390aa7429",
+  "evaluation": "training pool only, fixed final epoch25; log epochs1/5/10/15/20/25; no validation/test access or selection",
+  "primary_metric": "per-RNA macro train F1 with existing decoder/threshold0.5",
+  "cnn_baseline": "read prior CNN checkpoints, evaluate training only, no CNN lr search",
+  "stop_rule": "If each of the three encoders has every completed final-epoch run below0.8, stop tuning and report insufficient fitting. Failures reported separately, not assigned invented F1.",
+  "acceptance_gate": "Only reopen validation comparison after every encoder has a single variant with all3 seeds final train F1>=0.9, including saved CNN baseline. This is necessary training-comparability evidence, not sufficient proof of causal architecture generalization.",
+  "bounded_scope": "Run these36 training jobs only; no additional LR/depth/LayerNorm/warmup searches. If strict stop not triggered but acceptance gate closed, still stop this requested scan and report mixed thresholds.",
+  "parameter_changes": "lr and specified warmup only; all encoder, geometry, loss and data definitions unchanged."
+}
