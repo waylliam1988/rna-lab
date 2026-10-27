@@ -1,0 +1,69 @@
+{
+  "encoders": [
+    "cnn",
+    "rwkv_lite",
+    "transformer",
+    "egnn_seed"
+  ],
+  "widths": {
+    "cnn": 113,
+    "rwkv_lite": 175,
+    "transformer": 431,
+    "egnn_seed": 117
+  },
+  "parameters": {
+    "cnn": 150019,
+    "rwkv_lite": 150015,
+    "transformer": 149887,
+    "egnn_seed": 149065
+  },
+  "hidden": 64,
+  "depth": 2,
+  "parameter_target": 150000,
+  "dataset": "data/experimental/joint_split_v2",
+  "data_sha256": {
+    "train": "4168f00f61d9a3330db33b45308fe247c6ba15fd1c50ce4b868559b78f3ffcb9",
+    "validation": "794e1cd6692eccfbad1212fa8e4246c2698eaede8fb686f8a502e52908451a71"
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "epochs": 25,
+  "batch_size": 4,
+  "lr": 0.001,
+  "weight_decay": 0.01,
+  "gradient_clip": 1.0,
+  "checkpoint": "last epoch25 only, no validation selection",
+  "dropout": 0.0,
+  "precision": "float32 eager, no autocast/compile",
+  "head": "common symmetric query-dot-product plus log-distance bias",
+  "position": "same sinusoidal features and same synthetic coords projection for all",
+  "rwkv": "Nezha RWKVCellLite, cap=None, two bidirectional blocks, chunk32 prefix recurrence, time_decay clamped[-12,0], no pretrained weights",
+  "egnn": "two dense equivariant graph blocks with synthetic positions(cos i,sin i,i/128), all valid off-diagonal edges, invariant radial readout; no experimental coordinates",
+  "speed_benchmark": {
+    "device": "cuda:0, after all training jobs exit",
+    "batch_size": 1,
+    "lengths": [
+      64,
+      128,
+      256,
+      512
+    ],
+    "warmup": 5,
+    "repeats": 20,
+    "training": "full forward+balanced loss+backward+clip+AdamW step",
+    "inference": "GPU network plus separately end-to-end CPU greedy decode",
+    "memory": "PyTorch peak allocated and peak reserved, includes model/input and optimizer in training"
+  },
+  "limits": [
+    "88 training and10 development validation RNAs/7 validation groups; old test is exposed and not loaded.",
+    "Small custom implementations, fixed short training budget, no architecture-wide or SOTA claim.",
+    "RWKV-Lite is not full published RWKV or optimized official fused CUDA kernels.",
+    "EGNN seed coordinates encode sequence position, not known/predicted RNA3D; no 3D-refinement conclusion.",
+    "Parameter counts match within1%, context/receptive fields and FLOPs differ.",
+    "Shared NxN pairing head remains quadratic even for a linear-recurrent encoder.",
+    "Benchmark synthetic shapes are for performance only, not prediction-quality evaluation."
+  ]
+}
