@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-28",
+  "scope": "Read-only inventory of a source index, not a label-quality or independence audit",
+  "input_path": "data/comparative/source_index_NOT_APPROVED.jsonl",
+  "input_sha256": "935db6770cbf73fb78cb9a7df60c3b32d9907fd914f1256bfddbeeef98426e95",
+  "index_generator": "scripts/index_comparative_candidates.py",
+  "rows": 101649,
+  "by_source": {
+    "CRW": 55600,
+    "RFAM": 43273,
+    "RNP": 466,
+    "SPR": 623,
+    "SRP": 959,
+    "tmRNA": 728
+  },
+  "null_metadata_fields": {
+    "validation_technique": 101649,
+    "publication": 101649,
+    "contains_model_predictions": 101649
+  },
+  "approved_auxiliary_rows": 0,
+  "reason": "Index generator intentionally leaves validation/publication/model-prediction fields unknown; zero approvals must not be interpreted as all labels having failed review.",
+  "family_selection_performed": false,
+  "individual_label_review_performed": false,
+  "downloads_performed": false,
+  "training_started": false,
+  "admission_changed": false
+}

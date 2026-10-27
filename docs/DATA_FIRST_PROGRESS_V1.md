@@ -135,3 +135,8 @@ failure_reason / next_action:
 ## 有限数据来源可行性复核（2026-10-28）
 
 按用户“能否获得足够辅助与评估数据”的追问，复核本地隔离/候选聚合报告与作者/官方网页；发现既有20条所谓comparative试点实际是reported-PDB候选，不能外推比较分析池不可行。Archive-NoFam作者报告89链/47结构差异组，Rfam官方允许但不保证非预测共识来源，二者仅列待审路径。见[可行性记录](DATA_FEASIBILITY_REVIEW_V1.md)。未获取数据归档、读取模型预测、审核具体新记录、训练或放行；“足够”须经标签和跨池关系审核及组级评估精度规划，当前新增准入仍为0。
+
+
+## 真正比较来源的入口盘点与试点计划（2026-10-28）
+
+只读检查data/comparative/source_index_NOT_APPROVED.jsonl及生成器：101649条非PDB候选来自6个来源，validation_technique/publication/contains_model_predictions全部为空，生成器有意保留未知，不是逐条判伪。聚合指纹见data/manifests/comparative_metadata_inventory_v1.json；具体下一步见[COMPARATIVE_PILOT_PLAN_V1.md](COMPARATIVE_PILOT_PLAN_V1.md)。已核对Rfam官方家族构建说明，bpRNA帮助页本次超时。尚未选出可准入家族、下载比对、映射标签、训练或评价；批准状态保持0。接下来最多3个Rfam家族、每族最多5条代表作来源/隔离/标签映射试点，名单和抽样规则需另行记录，不把这个规模当正式效果样本量。
