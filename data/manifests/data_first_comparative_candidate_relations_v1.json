@@ -1,0 +1,184 @@
+{
+  "audit": "comparative-candidate-exact-relations-v1",
+  "created_at_utc": "2026-10-27T20:23:25.269560+00:00",
+  "scope": "Read-only source reconstruction, exact sequence crosswalk, and raw pair-set comparison. No candidate is admitted.",
+  "candidate_source": {
+    "path": "data/experimental/bprna_pdb_candidates_NOT_GOLD.jsonl",
+    "sha256": "d96db987c0b1fcf8d296f0e5f629cba477fafdd713271ddd2c992d4cf95cb4fb",
+    "record_count": 669,
+    "unique_id_count": 669,
+    "unique_sequence_count": 477,
+    "repeated_sequence_hash_count": 87,
+    "duplicate_sequence_records_beyond_first": 192,
+    "sequences_with_different_candidate_pair_sets": 48,
+    "sequence_length": {
+      "min": 6,
+      "median": 31,
+      "max": 2904
+    },
+    "sequence_alphabet_record_counts": {
+      "canonical_ACGU": 641,
+      "contains_non_ACGU": 28
+    },
+    "sequence_alphabet_unique_counts": {
+      "canonical_ACGU": 452,
+      "contains_non_ACGU": 25
+    },
+    "source_status_counts": {
+      "provenance_verified": {
+        "false": 669
+      },
+      "quality_verified": {
+        "false": 669
+      },
+      "auxiliary_training_approved": {
+        "false": 669
+      }
+    },
+    "candidate_pair_annotations_are_approved_truth": false,
+    "eligible_training_records": 0,
+    "eligible_new_test_records": 0
+  },
+  "source_archive_reconstruction": {
+    "local_archive_sha256": "14e2824f50072c8c8bfe99ed06e19d92f72a79112c6cbdd5e08d8fa51dbf96d0",
+    "local_archive_bytes": 151325401,
+    "archive_member_count": 102319,
+    "candidate_members_reconstructed": 669,
+    "upstream_url_and_download_time_receipt_available": false,
+    "biological_pdb_chain_provenance_verified": false
+  },
+  "joint_split_v2": {
+    "manifest_sha256": "9e2ae4fd32bab3a288997c0d761ede1a423864d2fd0974c5745239f1dfbad92c",
+    "validation_report_sha256": "30784a93d06c60ad968448fc82a0e6836a13ecea9e9d93c46442e1fad68c5da9",
+    "assignments_sha256": "10f0a5fa4ca89171be2dc1b6d545654464d229d4f69408420923de777991bf78",
+    "exact_1d_assignment_record_counts": {
+      "no_exact_assignment": 565,
+      "quarantine": 56,
+      "train": 41,
+      "validation": 7
+    },
+    "exact_1d_assignment_unique_sequence_counts": {
+      "no_exact_assignment": 422,
+      "quarantine": 24,
+      "train": 28,
+      "validation": 3
+    },
+    "exact_paired_record_counts": {
+      "train": 41,
+      "validation": 7
+    },
+    "exact_paired_unique_sequence_counts": {
+      "train": 28,
+      "validation": 3
+    },
+    "raw_pair_set_comparison_to_joint_pairs": {
+      "train:different_pair_set": 41,
+      "validation:different_pair_set": 7
+    },
+    "candidate_training_allowed": false
+  },
+  "historical_crosswalk": {
+    "legacy_processed:train": {
+      "historical_records": 9172,
+      "candidate_record_exact_aliases": 0,
+      "candidate_unique_sequence_exact_aliases": 0,
+      "candidate_pair_set_comparison": {},
+      "historical_evaluation_split": false,
+      "candidate_training_allowed": false
+    },
+    "legacy_processed:validation": {
+      "historical_records": 1148,
+      "candidate_record_exact_aliases": 0,
+      "candidate_unique_sequence_exact_aliases": 0,
+      "candidate_pair_set_comparison": {},
+      "historical_evaluation_split": false,
+      "candidate_training_allowed": false
+    },
+    "legacy_processed:test": {
+      "historical_records": 1137,
+      "candidate_record_exact_aliases": 0,
+      "candidate_unique_sequence_exact_aliases": 0,
+      "candidate_pair_set_comparison": {},
+      "historical_evaluation_split": true,
+      "candidate_training_allowed": false
+    },
+    "legacy_processed:test_external": {
+      "historical_records": 5137,
+      "candidate_record_exact_aliases": 0,
+      "candidate_unique_sequence_exact_aliases": 0,
+      "candidate_pair_set_comparison": {},
+      "historical_evaluation_split": true,
+      "candidate_training_allowed": false
+    },
+    "legacy_processed:archiveII": {
+      "historical_records": 1981,
+      "candidate_record_exact_aliases": 15,
+      "candidate_unique_sequence_exact_aliases": 6,
+      "candidate_pair_set_comparison": {
+        "different_pair_set": 15
+      },
+      "historical_evaluation_split": false,
+      "candidate_training_allowed": false
+    },
+    "paired_v0_2:train": {
+      "historical_records": 49,
+      "candidate_record_exact_aliases": 43,
+      "candidate_unique_sequence_exact_aliases": 35,
+      "candidate_pair_set_comparison": {
+        "different_pair_set": 43
+      },
+      "historical_evaluation_split": false,
+      "candidate_training_allowed": false
+    },
+    "paired_v0_2:validation": {
+      "historical_records": 6,
+      "candidate_record_exact_aliases": 13,
+      "candidate_unique_sequence_exact_aliases": 4,
+      "candidate_pair_set_comparison": {
+        "different_pair_set": 13
+      },
+      "historical_evaluation_split": false,
+      "candidate_training_allowed": false
+    },
+    "paired_v0_2:test": {
+      "historical_records": 6,
+      "candidate_record_exact_aliases": 5,
+      "candidate_unique_sequence_exact_aliases": 4,
+      "candidate_pair_set_comparison": {
+        "different_pair_set": 5
+      },
+      "historical_evaluation_split": true,
+      "candidate_training_allowed": false
+    }
+  },
+  "decisions": {
+    "source_eligibility": "retain all records as unapproved candidates until publication, original PDB/chain, method, coverage, extraction policy, and mapping are independently reviewed per record",
+    "exact_sequence_aliases": "do not count exact aliases to current or historical records as new independent evidence",
+    "pair_set_comparison": "descriptive only; a match does not validate provenance or labels and a difference does not resolve whether BPSEQ semantics or current masks are correct",
+    "new_independent_test": "not established by this audit"
+  },
+  "limitations": [
+    "The source archive and each listed member reproduce the parsed local candidate data, but no upstream URL/download-time receipt was found in the local asset inventory.",
+    "The archive member name does not establish an original PDB entry, biological chain, experimental method, coordinate coverage, or annotation procedure.",
+    "Exact hashes detect aliases only; this audit performs no alignment-based homology, family, study, or construct-ancestry review.",
+    "Raw pair-set equality is not an admission decision and does not compare full observation masks or experimental label scope.",
+    "All candidates remain ineligible for training and evaluation; no model predictions were opened and no training was started."
+  ],
+  "input_fingerprints": {
+    "experimental_sources_audit_sha256": "b9e76952c8fa020dc7436819c85ff99e75e4406c0720992a53e9566765a2f537",
+    "local_asset_inventory_sha256": "c46d6225b171f5adbed59092aabb8e95bb8af10a5235e28f7042a7672bccbfc9",
+    "joint_split_validation_sha256": "30784a93d06c60ad968448fc82a0e6836a13ecea9e9d93c46442e1fad68c5da9",
+    "historical_source_sha256": {
+      "legacy_processed:train": "49af159356f952490e09acce66aa6c9d5f155528aea21d74c92521815fbf2cba",
+      "legacy_processed:validation": "ae4fed8fd77f4e8ed70055660edccc63e957e3c9acf0b4f237d4f2aa23d357be",
+      "legacy_processed:test": "65d92c392f9daacafab71bdfef0819cdb1882f1932b14ebebee7197377994fbe",
+      "legacy_processed:test_external": "15026a0fd60f4b827cfc2f4bb6c95a26dd5a5c3632b49afcb7a88a22f0cc3c0e",
+      "legacy_processed:archiveII": "05fa6e6c72d5f4c2682b24ad0d294e446aaa30227175bb6e679f40e2a6329c95",
+      "paired_v0_2:train": "819d27282923b28118ab0d8f08d128048f2ff2838fb9e82b240d2d7cd023ba2b",
+      "paired_v0_2:validation": "aba3ef41bf0b711b5c969b57ca38769a3b3318b181c9341892e48dbdf09467aa",
+      "paired_v0_2:test": "665567893d1633f614016dec614f77bb7d5e012cb656869541c75fd9eff19fd0"
+    }
+  },
+  "training_started": false,
+  "test_predictions_read": false
+}

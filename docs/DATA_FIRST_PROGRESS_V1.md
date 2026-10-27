@@ -15,8 +15,8 @@
 | D0 | 总路线与数据/损失/记录细则 | 完成 | [路线图](DATA_FIRST_ROADMAP_V1.md)、[执行细则](DATA_FIRST_EXECUTION_V1.md)；本次已核对模型、损失、mask与旧runner源码 | 文档方案，不表示实现完成 |
 | S0-1 | 冻结CNN源码、构造参数、原权重指纹 | 完成 | `data/manifests/data_first_baseline_v1.json`，含源码/协议/数据/三种子检查点SHA256及重载证据 | 不重训；后续实验沿用该参照 |
 | S0-2 | 数据版本与政策对应、实验登记模板 | 完成 | 冻结清单的历史边界、joint_split_v2计数和`docs/DATA_FIRST_AUDIT_V1.md` | 旧61条仅历史；clean_release_v1仍待联合审计 |
-| S1-1 | 1D/2D/辅助/历史评估联合关系表 | 部分完成（profile/历史精确序列关系已补；辅助源关系待补） | 本地`data/manifests/data_first_relations_v1.jsonl`，214002条；profile/历史聚合结果见`data/manifests/data_first_profile_history_audit_v1.json`；逐记录审计表在本地ignored文件；106条split源记录与annotation_review逐条标签匹配 | 辅助池关系、同源/构建体/研究关系仍待补；精确序列哈希不替代这些审核 |
-| S1-2 | 隔离决定与新开发/测试候选 | 部分完成 | 本地`data/manifests/data_first_admission_v1.jsonl`及`docs/DATA_FIRST_AUDIT_V1.md`；clean_release 74条同序列仅71条标签完全相同，3条标签不一致隔离；全体clean_release不作训练输入 | 需补clean_release母本/构建体和新独立评估候选审核 |
+| S1-1 | 1D/2D/辅助/历史评估联合关系表 | 部分完成（profile/历史/比较候选精确序列关系已补；生物学来源关系待补） | 本地`data/manifests/data_first_relations_v1.jsonl`，214002条；profile/历史聚合结果见`data/manifests/data_first_profile_history_audit_v1.json`，比较候选聚合结果见`data/manifests/data_first_comparative_candidate_relations_v1.json`；逐记录审计表在本地ignored文件；106条split源记录与annotation_review逐条标签匹配 | 辅助池的原研究、比对、同源/构建体/研究关系仍待逐条补齐；精确序列哈希不替代这些审核 |
+| S1-2 | 隔离决定与新开发/测试候选 | 部分完成 | 本地`data/manifests/data_first_admission_v1.jsonl`及`docs/DATA_FIRST_AUDIT_V1.md`；clean_release 74条同序列仅71条标签完全相同，3条标签不一致隔离；全体clean_release不作训练输入；比较候选669条仍0条可用于新测试 | 需补clean_release母本/构建体和新独立评估候选审核；候选精确别名不计为新独立组 |
 | S2-1 | 待审直接实验2D分层复核 | 完成（不可自动准入） | `data/manifests/joint_quarantine_audit_v1.json`、[审计说明](JOINT_QUARANTINE_AUDIT_V1.md)；70条全部保留隔离 | 新版本需补同源/母本/构建体/primary-study证据；不改当前冻结划分 |
 | S2-2 | 一个比较辅助来源的有限试点 | 完成（不可准入） | `data/manifests/data_first_comparative_pilot_v1.json`；固定前20条候选，20/20缺来源与质量核验 | 停止扩大该来源；补齐原始PDB/链、方法/覆盖、映射和隔离证据后另立版本 |
 | S3-1 | 辅助配对级mask入口与评价准入 | 未开始 | 待实现与契约检查 | 旧collate不能直接承载positive_only/部分标签；旧evaluate尚未排除无候选监督RNA，须新增准入清单与组级分母检查 |
@@ -55,6 +55,7 @@
 | 2026-10-28 | S1 比较候选审计首次运行失败与输入契约修正 | 全池审计在发布报告前发现28/669条候选含`N/X/P/I`非ACGU字符（其余641条ACGU-only）；原候选索引保留这些字符，不能静默替换；工具改为记录字母表分层并继续做原始序列/边集核验，新增契约测试 | 首次运行仅因过严字母表断言失败，未写出报告、未改候选或压缩包；非ACGU记录继续不具训练/评估资格，不能把BPSEQ边集当真值 | 回归通过后重新执行全池只读审计，并记录非ACGU数量与限制 |
 | 2026-10-28 | S1 比较候选修正后测试命令失败与纠正 | 定向命令`python -m unittest tests/test_comparative_candidate_relations.py -v`未按文件路径发现测试；改用`python -m unittest discover -s tests -p test_comparative_candidate_relations.py -v` | 首次失败发生在导入发现阶段，没有执行测试；代码/数据未改动，随后按正确发现器调用重跑 | 保留失败记录并完成定向及全套回归后再提交修正 |
 | 2026-10-28 | S1 比较候选审计输入契约修正验收 | 定向4项测试、全套105项测试、Python编译与`git diff --check`全部通过；在报告发布前校验joint_split_v2冻结文件指纹/1D计数、压缩包条目数及候选数据与原始BPSEQ重建一致 | 28条非ACGU记录被显式分层，不改写序列；仍未执行完整关系审计、训练或模型评价 | 提交/推送工具修正后执行全池只读审计 |
+| 2026-10-28 | S1 比较候选全池精确关系审计执行 | 只读运行`scripts/audit_comparative_candidate_relations.py`；聚合报告`data/manifests/data_first_comparative_candidate_relations_v1.json`（SHA256 `c79f1d42dc7b09dce12923daf6a359c39841326cb95720d3ca763e4bdc07b935`）；候选源SHA256 `d96db987c0b1fcf8d296f0e5f629cba477fafdd713271ddd2c992d4cf95cb4fb`；本地ZIP SHA256 `14e2824f50072c8c8bfe99ed06e19d92f72a79112c6cbdd5e08d8fa51dbf96d0` | 669/669候选成员成功重建，477条唯一序列；28条记录（25条唯一序列）含非ACGU；重复序列记录192条，48条序列含不同候选边集；所有669条来源/质量/辅助准入标记均false。与joint 1D精确别名记录为train 41、validation 7、quarantine 56、未映射565；与当前paired记录精确序列别名为train 41、validation 7，边集均不同。历史archiveII/paired_v0_2 train/validation/test候选别名分别为15/43/13/5条，均边集不同；test/test_external未发现候选别名。候选训练和新测试资格均为0；未读预测、未训练、未改标签/划分 | 该来源仍停止扩大并隔离；下一步只能补原始PDB/链、URL/下载收据、文献、方法/覆盖、提取策略、比对映射及同源/研究/构建体证据，另立版本后再审 |
 
 每次追加：日期/任务ID/实际动作/产物路径与哈希或检查命令/通过或失败/限制/下一步。技术失败不删行。文档检查不能写成模型测试通过。
 
