@@ -1,0 +1,18 @@
+{
+  "version": "input-representation-v2",
+  "base_observation_dimensions": 18,
+  "static_context_indices": [1, 2, 12, 13],
+  "dynamic_observation_indices": [0, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 16, 17],
+  "ablated_static_indices": [1, 2],
+  "static_context_retained_in_all_conditions": [12, 13],
+  "added_dynamic_contact_indices": [18, 19],
+  "added_dynamic_contact_names": ["geometry_contact_mean", "geometry_contact_std"],
+  "prediction_target_indices": [0, 3, 4],
+  "momentum_summary_dimensions": 8,
+  "action_condition_dimensions": 1,
+  "forecast_horizon_dimensions": 1,
+  "fixed_model_input_dimensions": 30,
+  "J_energy_gate_restored": false,
+  "classification": "Dependency-based, not a guarantee every dynamic component varies on every trajectory.",
+  "no_effect_interpretation": "No detected conditional contribution within this data and budget; not proof of universal irrelevance."
+}
