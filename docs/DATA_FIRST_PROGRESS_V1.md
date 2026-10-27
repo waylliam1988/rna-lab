@@ -89,6 +89,7 @@
 | 2026-10-28 | P0默认CNN训练评价推理链路smoke | 使用`train_baseline.py`默认CNN、joint_split_v2、manifest哈希门禁和GPU短训练；随后调用`evaluate.py` validation与`predict.py`，另用旧PairBaseline checkpoint做工厂兼容推理 | 默认CNN smoke成功，150019参数配置、manifest/划分指纹和threshold写入checkpoint；validation重载成功，predict成功；旧checkpoint兼容推理成功。显式`--model-kind pair_baseline`回退smoke也成功；尝试`evaluate --split test`被CLI拒绝。所有smoke未读取test，不作效果结论 | 提交并推送生产入口完善；后续只在独立协议下运行正式科学实验 |
 | 2026-10-28 | P0静态入口检查命令失败与纠正 | 首次用PowerShell正则搜索旧数据默认路径时发生正则转义解析错误；未读取或修改项目文件 | 改用`Select-String -SimpleMatch`重跑通过，`train_baseline.py`、`evaluate.py`、`predict.py`均无`paired_v0_2`默认路径；这是检查命令失败，不是代码失败 | 与生产入口修复一起提交并推送；保留本行失败记录 |
 | 2026-10-28 | 数据主线与续接文档同步 | 核对后发现`NEXT_STEPS.md`仍称S6-L未冻结/未训练，数据审计报告仍称损失无效果证据；同步更正为v2 gate不通过、BCE默认不变、生产入口P0完成，并把下一步回到S1-1来源独立性证据缺口 | 保留原v1技术失败；补充v2可复核结果和限制，不修改数据准入、分割或实验结论；7个相关Markdown文件本地链接目标均存在，`git diff --check`通过 | 提交并推送总览同步；仍无新测试、辅助标签准入或A/B/C资格 |
+| 2026-10-28 | S1-1字段级证据缺口盘点 | 首次盘点假定clean_release文件名为`paired.jsonl`，路径不存在；按目录清单和审计脚本改用真实`paired_deduplicated.jsonl`，并核对`annotation_review_v1/paired.jsonl`字段名和记录数 | 首次失败仅是路径假设错误，没有读入数据内容。更正后确认clean_release 141条、annotation_review 176条均有PDB/source receipt/evidence/quality字段；配对JSONL本身没有citation、construct、study或homology字段。既有聚合审计另确认clean_release 141条构建体来源显式字段为0、缺primary citation 8条；不能凭清洗记录本身核实生物学独立性，不降低准入门槛 | 需要原始PDB/CIF引用及构建体/研究/同源证据；本地清洗字段不足以消除39组隔离缺口。继续只汇总字段完整性，不输出或推送第三方行级标识 |
 每次追加：日期/任务ID/实际动作/产物路径与哈希或检查命令/通过或失败/限制/下一步。技术失败不删行。文档检查不能写成模型测试通过。
 
 本次文档核验：PowerShell检查6个变更文档的本地Markdown链接，缺失0项；`git diff --check`通过。首次Python链接检查因当前终端找不到python命令未执行，随后使用PowerShell完成同项检查。未运行模型测试。
