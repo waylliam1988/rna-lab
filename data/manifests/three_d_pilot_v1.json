@@ -1,0 +1,18 @@
+{
+  "candidate_structures": 147,
+  "retained_static_structures": 147,
+  "unique_sequences": 86,
+  "source_sha256": "2281fd19cf93fff15608af0ba286cdeb3977ca9081ba56c5c75e5d61a35af9cb",
+  "output_sha256": "0c1272bad39c8e42b829fef87c7de42a8629d6142533239cf2efd61c85c5776c",
+  "errors": [],
+  "coordinate_units": "Angstrom",
+  "folding_trajectory_labels": false,
+  "training_split_ready": false,
+  "model_trained": false,
+  "limitations": [
+    "Static experimental anchor observations only, not time-ordered states or thermodynamic occupancies.",
+    "Additional anchor and broad continuity screening; not full backbone/all-atom geometry or density validation.",
+    "Conformers/constructs must stay in the same homology/study group before any 3D training.",
+    "Old Nezha physics-unit/force/thermostat contracts must be audited before adapting these coordinates."
+  ]
+}

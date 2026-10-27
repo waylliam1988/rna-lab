@@ -23,4 +23,4 @@ prediction_head 是未定义监督目标的通用预测头；默认 5 维用于�
 
 tests/test_core.py 检查：RWKV/控制原语提取一致性、旧 Cortex 与新核心在相同权重/输入/状态下的输出一致性、逐步状态、重置隔离、长展开有限值及梯度。旧 Cortex 仅通过测试隔离执行类定义，不导入旧项目。
 
-这些测试通过只证明迁移和数值接口正确，不证明 RNA 预测收益。核心目前未接入静态基线；下一步先实现普通迭代更新器，再逐项接入 Ghost/RWKV。
+这些测试通过只证明迁移和数值接口正确，不证明 RNA 预测收益。现已完成普通迭代、RWKV、Ghost及组合的2D适配实验；它们是新建的配对矩阵更新器，不等于原Nezha完整物理折叠系统。完整迁移边界和3D预审见 [NEZHA_FIDELITY_AND_3D_PLAN.md](NEZHA_FIDELITY_AND_3D_PLAN.md)。
