@@ -46,6 +46,11 @@ def pair_metrics(predicted, truth):
             'f1': 2 * tp / (len(p) + len(t)) if p or t else 1.0}
 
 
+def observable_pairs(pairs, mask):
+    """Ignore unknown endpoints after prediction; never label them negative."""
+    return [list(pair) for pair in pairs if mask[pair[0]] and mask[pair[1]]]
+
+
 def greedy_decode(scores, sequence, threshold=0.5, min_separation=4):
     candidates = [(float(scores[i][j]), i, j) for i in range(len(sequence))
                   for j in range(i + min_separation, len(sequence))

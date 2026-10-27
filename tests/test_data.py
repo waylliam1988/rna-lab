@@ -3,7 +3,7 @@ import sys
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))
-from rna2d.data import parse_bpseq, pair_metrics, crossing_pairs, greedy_decode
+from rna2d.data import parse_bpseq, pair_metrics, crossing_pairs, greedy_decode, observable_pairs
 
 
 class DataContractTests(unittest.TestCase):
@@ -20,6 +20,13 @@ class DataContractTests(unittest.TestCase):
         self.assertEqual((m['tp'], m['fp'], m['fn'], m['f1']), (1, 1, 1, 0.5))
         self.assertEqual(pair_metrics([], [])['f1'], 1.0)
         self.assertEqual(pair_metrics([], [[0, 4]])['f1'], 0.0)
+
+    def test_unknown_endpoints_are_not_counted_as_false_positives(self):
+        pred = [[0, 5], [1, 4]]
+        mask = [True, True, True, True, False, True]
+        assessed = observable_pairs(pred, mask)
+        self.assertEqual(assessed, [[0, 5]])
+        self.assertEqual(pair_metrics(assessed, [[0, 5]])['fp'], 0)
 
     def test_crossing_not_nested(self):
         self.assertEqual(crossing_pairs([[0, 5], [2, 7], [3, 4]]), {(0, 5), (2, 7)})

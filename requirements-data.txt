@@ -1,0 +1,6 @@
+numpy==2.2.6
+gemmi==0.7.5
+barnaba==0.1.9
+mdtraj==1.11.2
+scipy==1.18.1
+scikit-learn==1.9.1

@@ -1,5 +1,7 @@
 # 数据协议 v0.1
 
+这是早期混合基准的历史协议；新的实验坐标清洗、配对标注与划分遵循CLEANING_PROTOCOL_V1.md，当前结果见DATASET_V0_2_REPORT.md。
+
 ## 来源
 
 本轮从 MXfold2 官方 v0.1.0 release 获取作者重新打包的三个基准。官方仓库明确提供这些训练/评估数据：https://github.com/mxfold/mxfold2/releases/tag/v0.1.0 。数据的原始来源、适用许可及再分发限制需进一步逐库核查；本地下载不代表获得重新发布授权。

@@ -23,7 +23,7 @@ def main():
     p.add_argument('--limit', type=int, help='Smoke test only: first N samples per split')
     p.add_argument('--max-batches', type=int, help='Smoke test only: truncate each epoch')
     p.add_argument('--output', type=Path, default=ROOT / 'runs/baseline')
-    p.add_argument('--data-dir', type=Path, default=ROOT / 'data/experimental/paired',
+    p.add_argument('--data-dir', type=Path, default=ROOT / 'data/experimental/paired_v0_2',
                    help='Strict experimental paired dataset with train.jsonl and validation.jsonl')
     args = p.parse_args()
     if args.epochs < 1 or args.batch_size < 1 or args.hidden < 1 or args.lr <= 0:

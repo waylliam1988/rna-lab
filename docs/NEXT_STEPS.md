@@ -1,5 +1,7 @@
 # 下一次从这里继续
 
+最新入口：DATASET_V0_2_REPORT.md。本地全量坐标审计及61条保守配对数据已完成；当前优先扩展多链/复合物背景、修饰和独立注释验证，以及实验留出样本量。不要把49/6/6的小版本当正式架构竞赛基准。辅助比较数据仍须溯源审查。
+
 最新优先事项：遵循 EXPERIMENTAL_DATA_AUDIT.md 和 data/experimental/POLICY.json。旧bpRNA训练集未获准作为严格实验标签；先完成实验坐标来源的配对提取与残基质量审核，再进行模型训练。RMDB实测反应性与配对任务分开，不使用模型补全值。
 
 1. 阅读 data/reports/environment.json 和 smoke_test.json，确认环境与训练链路。

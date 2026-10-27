@@ -20,5 +20,7 @@ if (!(Test-Path -LiteralPath $rnaPython)) {
 if ($LASTEXITCODE -ne 0) { throw 'Dependency installation failed' }
 & $rnaPython -m pip check
 if ($LASTEXITCODE -ne 0) { throw 'Dependency validation failed' }
+& $rnaPython -m pip install -r (Join-Path $rnaRoot 'requirements-data.txt')
+if ($LASTEXITCODE -ne 0) { throw 'Data dependency installation failed' }
 & $rnaPython (Join-Path $PSScriptRoot 'check_environment.py')
 if ($LASTEXITCODE -ne 0) { throw 'CUDA runtime verification failed' }

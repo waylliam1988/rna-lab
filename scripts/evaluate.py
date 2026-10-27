@@ -18,7 +18,7 @@ def main():
     p.add_argument('--device', default='auto')
     p.add_argument('--batch-size', type=int, default=4)
     p.add_argument('--limit', type=int, help='Smoke test only')
-    p.add_argument('--data-dir', type=Path, default=ROOT / 'data/experimental/paired')
+    p.add_argument('--data-dir', type=Path, default=ROOT / 'data/experimental/paired_v0_2')
     args = p.parse_args()
     device = select_device(args.device)
     checkpoint = torch.load(args.checkpoint, map_location=device, weights_only=True)

@@ -4,7 +4,7 @@ import random
 from pathlib import Path
 import torch
 from torch.utils.data import Dataset
-from .data import CANONICAL, crossing_pairs, greedy_decode, pair_metrics
+from .data import CANONICAL, crossing_pairs, greedy_decode, pair_metrics, observable_pairs
 
 
 def seed_all(seed):
@@ -58,14 +58,19 @@ def evaluate(model, loader, device, threshold=0.5):
         scores = model(tokens.to(device)).sigmoid().cpu().tolist()
         for matrix, r in zip(scores, rows):
             pred = greedy_decode(matrix, r['sequence'], threshold)
-            metrics = pair_metrics(pred, r['pairs'])
-            cross = pair_metrics(crossing_pairs(pred), crossing_pairs(r['pairs']))
+            assessed_pred = observable_pairs(pred, r['observed_mask'])
+            truth = observable_pairs(r['pairs'], r['observed_mask'])
+            metrics = pair_metrics(assessed_pred, truth)
+            cross = pair_metrics(crossing_pairs(assessed_pred), crossing_pairs(truth))
             details.append({'id': r['id'], 'length': len(r['sequence']), **metrics,
-                            'crossing': cross, 'predicted_pairs': pred,
-                            'true_crossing_pairs': len(crossing_pairs(r['pairs']))})
+                            'crossing': cross, 'predicted_pairs': pred, 'evaluated_predicted_pairs': assessed_pred,
+                            'evaluated_position_fraction': sum(r['observed_mask']) / len(r['observed_mask']),
+                            'true_crossing_pairs': len(crossing_pairs(truth))})
             tp += metrics['tp']; fp += metrics['fp']; fn += metrics['fn']
     cross_rows = [r for r in details if r['true_crossing_pairs']]
     summary = {'samples': len(details), 'threshold': threshold,
+               'evaluation_scope': 'observable label positions only; decode first, then mask unknown endpoints',
+               'mean_evaluated_position_fraction': sum(r['evaluated_position_fraction'] for r in details) / len(details),
                'macro_f1': sum(r['f1'] for r in details) / len(details),
                'macro_precision': sum(r['precision'] for r in details) / len(details),
                'macro_recall': sum(r['recall'] for r in details) / len(details),

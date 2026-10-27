@@ -1,5 +1,7 @@
 # 本地环境
 
+数据清洗阶段新增Gemmi/Barnaba/MDTraj等依赖，见requirements-data.txt；NumPy现固定为2.2.6以兼容Barnaba API。Windows原生运行时采用验证微软签名的项目本地DLL（.runtime/vc），可通过scripts/prepare_native_runtime.ps1复现，不修改系统文件。完整已安装版本以requirements-lock.txt为准。
+
 ## 目标与位置
 
 - Python 3.12.8：`.runtime/python3128/python.exe`

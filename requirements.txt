@@ -1,1 +1,2 @@
 -r requirements-cuda.txt
+-r requirements-data.txt

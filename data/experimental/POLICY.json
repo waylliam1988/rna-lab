@@ -1,7 +1,11 @@
 {
   "policy": "experimental-gold-with-reviewed-comparative-auxiliary-v2",
   "date": "2026-10-27",
-  "pair_training_ready": false,
+  "pair_training_ready": true,
+  "paired_dataset_path": "data/experimental/paired_v0_2",
+  "paired_dataset_scope": "61 unmodified single-RNA sequences, strict canonical geometry annotation and masked labels; 49/6/6 samples across 7/4/4 groups",
+  "benchmark_ready": false,
+  "intended_use": "Small pipeline validation only; expand data and annotation validation before scientific architecture comparison",
   "comparative_auxiliary_training_ready": false,
   "comparative_auxiliary_policy": {
     "status": "separate auxiliary pool; not gold and not automatically approved",
