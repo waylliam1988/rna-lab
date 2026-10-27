@@ -1,0 +1,597 @@
+{
+  "device": "NVIDIA GeForce RTX 2080 Ti",
+  "torch_version": "2.7.1+cu128",
+  "precision": "float32 eager, no autocast/compile",
+  "protocol_sha256": "807d89597ebb9063446483973731901bfa2a36a702fdfdbede1ac75f723c7a29",
+  "weights_sha256": {
+    "cnn": "b7a7204c0ac363118fccd7cde319b2526e8cd31fbe7ca3024eb06c52045336bd",
+    "rwkv_lite": "99ee326979c98ca94209c5c64fd977f4e554f26d1e096b0482c837f42ec737eb",
+    "transformer": "4d9c6eee25c2dd7d1e2d43b4dcf8509de6cbfa1967a7acdbce8d6f18eb71b55c",
+    "egnn_seed": "2324fa0f9b30d7795dc28e10b148c4d9628eea993cbe706561d0f5cd97557bae"
+  },
+  "benchmark_source_sha256": "ff705b16fc9c9fdb01f38d53e62f4df4f2503462f59750024f49c61478e6c79f",
+  "cases": [
+    {
+      "encoder": "cnn",
+      "length": 64,
+      "batch": 1,
+      "mode": "inference",
+      "network": {
+        "median_ms": 2.3138500037021004,
+        "mean_ms": 2.3095050008123508,
+        "min_ms": 2.230799997050781,
+        "max_ms": 2.388600005360786
+      },
+      "network_plus_cpu_decode": {
+        "median_ms": 2.9654999998456333,
+        "mean_ms": 2.98629000026267,
+        "min_ms": 2.9034999970463105,
+        "max_ms": 3.162299995892681
+      },
+      "peak_allocated_MiB": 32.7138671875,
+      "peak_reserved_MiB": 34.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "cnn",
+      "length": 64,
+      "batch": 1,
+      "mode": "training",
+      "step": {
+        "median_ms": 9.52520000282675,
+        "mean_ms": 9.558140000081039,
+        "min_ms": 9.203900001011789,
+        "max_ms": 9.97540000389563
+      },
+      "peak_allocated_MiB": 67.2939453125,
+      "peak_reserved_MiB": 68.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "cnn",
+      "length": 128,
+      "batch": 1,
+      "mode": "inference",
+      "network": {
+        "median_ms": 2.3042000029818155,
+        "mean_ms": 2.3018749998300336,
+        "min_ms": 2.1991999965393916,
+        "max_ms": 2.417099996819161
+      },
+      "network_plus_cpu_decode": {
+        "median_ms": 4.990350000298349,
+        "mean_ms": 5.011219999141758,
+        "min_ms": 4.885599999397527,
+        "max_ms": 5.296600000292528
+      },
+      "peak_allocated_MiB": 65.03173828125,
+      "peak_reserved_MiB": 66.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "cnn",
+      "length": 128,
+      "batch": 1,
+      "mode": "training",
+      "step": {
+        "median_ms": 9.816900001169415,
+        "mean_ms": 9.88140499975998,
+        "min_ms": 9.567799999786075,
+        "max_ms": 10.34580000123242
+      },
+      "peak_allocated_MiB": 67.474609375,
+      "peak_reserved_MiB": 68.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "cnn",
+      "length": 256,
+      "batch": 1,
+      "mode": "inference",
+      "network": {
+        "median_ms": 2.3011999983282294,
+        "mean_ms": 2.3121599999285536,
+        "min_ms": 2.2199000013642944,
+        "max_ms": 2.4269000059575774
+      },
+      "network_plus_cpu_decode": {
+        "median_ms": 13.93350000216742,
+        "mean_ms": 13.883995001015137,
+        "min_ms": 13.49560000380734,
+        "max_ms": 14.278500006184913
+      },
+      "peak_allocated_MiB": 66.26806640625,
+      "peak_reserved_MiB": 68.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "cnn",
+      "length": 256,
+      "batch": 1,
+      "mode": "training",
+      "step": {
+        "median_ms": 9.680400002253009,
+        "mean_ms": 9.701869999116752,
+        "min_ms": 9.50590000138618,
+        "max_ms": 9.912499997881241
+      },
+      "peak_allocated_MiB": 74.50732421875,
+      "peak_reserved_MiB": 92.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "cnn",
+      "length": 512,
+      "batch": 1,
+      "mode": "inference",
+      "network": {
+        "median_ms": 2.2793499992985744,
+        "mean_ms": 2.2903400007635355,
+        "min_ms": 2.242100003059022,
+        "max_ms": 2.379600002313964
+      },
+      "network_plus_cpu_decode": {
+        "median_ms": 56.17969999730121,
+        "mean_ms": 56.36630999943009,
+        "min_ms": 54.52520000108052,
+        "max_ms": 58.10209999617655
+      },
+      "peak_allocated_MiB": 71.08447265625,
+      "peak_reserved_MiB": 90.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "cnn",
+      "length": 512,
+      "batch": 1,
+      "mode": "training",
+      "step": {
+        "median_ms": 9.750749999511754,
+        "mean_ms": 9.80344499948842,
+        "min_ms": 9.584799998265225,
+        "max_ms": 10.241599993605632
+      },
+      "peak_allocated_MiB": 82.869140625,
+      "peak_reserved_MiB": 94.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "rwkv_lite",
+      "length": 64,
+      "batch": 1,
+      "mode": "inference",
+      "network": {
+        "median_ms": 10.62275000003865,
+        "mean_ms": 10.633790000429144,
+        "min_ms": 10.400300001492724,
+        "max_ms": 10.931099997833371
+      },
+      "network_plus_cpu_decode": {
+        "median_ms": 11.062350000429433,
+        "mean_ms": 11.071145000096294,
+        "min_ms": 10.852400002477225,
+        "max_ms": 11.366800004907418
+      },
+      "peak_allocated_MiB": 65.77294921875,
+      "peak_reserved_MiB": 66.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "rwkv_lite",
+      "length": 64,
+      "batch": 1,
+      "mode": "training",
+      "step": {
+        "median_ms": 47.19920000206912,
+        "mean_ms": 47.24305499912589,
+        "min_ms": 46.42839999723947,
+        "max_ms": 48.183399994741194
+      },
+      "peak_allocated_MiB": 68.38330078125,
+      "peak_reserved_MiB": 70.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "rwkv_lite",
+      "length": 128,
+      "batch": 1,
+      "mode": "inference",
+      "network": {
+        "median_ms": 15.139349998207763,
+        "mean_ms": 15.187605000755866,
+        "min_ms": 14.812900000833906,
+        "max_ms": 15.989300001820084
+      },
+      "network_plus_cpu_decode": {
+        "median_ms": 17.37985000363551,
+        "mean_ms": 17.476874999556458,
+        "min_ms": 17.059199999494012,
+        "max_ms": 17.960500001208857
+      },
+      "peak_allocated_MiB": 66.00048828125,
+      "peak_reserved_MiB": 68.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "rwkv_lite",
+      "length": 128,
+      "batch": 1,
+      "mode": "training",
+      "step": {
+        "median_ms": 76.41849999708938,
+        "mean_ms": 76.2478500004363,
+        "min_ms": 75.34489999670768,
+        "max_ms": 76.86710000416497
+      },
+      "peak_allocated_MiB": 70.03515625,
+      "peak_reserved_MiB": 72.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "rwkv_lite",
+      "length": 256,
+      "batch": 1,
+      "mode": "inference",
+      "network": {
+        "median_ms": 24.71615000104066,
+        "mean_ms": 24.74254499975359,
+        "min_ms": 24.188100003811996,
+        "max_ms": 25.522500000079162
+      },
+      "network_plus_cpu_decode": {
+        "median_ms": 33.862199998111464,
+        "mean_ms": 33.91519500037248,
+        "min_ms": 33.37389999796869,
+        "max_ms": 34.78029999678256
+      },
+      "peak_allocated_MiB": 66.57421875,
+      "peak_reserved_MiB": 68.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "rwkv_lite",
+      "length": 256,
+      "batch": 1,
+      "mode": "training",
+      "step": {
+        "median_ms": 134.24515000224346,
+        "mean_ms": 134.3020100001013,
+        "min_ms": 132.95790000120178,
+        "max_ms": 135.3744000007282
+      },
+      "peak_allocated_MiB": 75.884765625,
+      "peak_reserved_MiB": 96.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "rwkv_lite",
+      "length": 512,
+      "batch": 1,
+      "mode": "inference",
+      "network": {
+        "median_ms": 43.50889999841456,
+        "mean_ms": 43.471140000474406,
+        "min_ms": 41.88590000558179,
+        "max_ms": 44.41700000461424
+      },
+      "network_plus_cpu_decode": {
+        "median_ms": 92.31609999915236,
+        "mean_ms": 92.14664999963134,
+        "min_ms": 89.66589999909047,
+        "max_ms": 93.98150000197347
+      },
+      "peak_allocated_MiB": 71.09033203125,
+      "peak_reserved_MiB": 90.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "rwkv_lite",
+      "length": 512,
+      "batch": 1,
+      "mode": "training",
+      "step": {
+        "median_ms": 250.1254999988305,
+        "mean_ms": 249.82308000035118,
+        "min_ms": 245.32919999910519,
+        "max_ms": 252.1658000041498
+      },
+      "peak_allocated_MiB": 93.6669921875,
+      "peak_reserved_MiB": 106.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "transformer",
+      "length": 64,
+      "batch": 1,
+      "mode": "inference",
+      "network": {
+        "median_ms": 2.906700003222795,
+        "mean_ms": 2.908940000634175,
+        "min_ms": 2.7706999971996993,
+        "max_ms": 3.013100002135616
+      },
+      "network_plus_cpu_decode": {
+        "median_ms": 3.4428000035404693,
+        "mean_ms": 3.4691550012212247,
+        "min_ms": 3.3289000057266094,
+        "max_ms": 3.6551000011968426
+      },
+      "peak_allocated_MiB": 65.81591796875,
+      "peak_reserved_MiB": 66.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "transformer",
+      "length": 64,
+      "batch": 1,
+      "mode": "training",
+      "step": {
+        "median_ms": 12.217949999467237,
+        "mean_ms": 12.252054999407846,
+        "min_ms": 11.990299994067755,
+        "max_ms": 12.82060000085039
+      },
+      "peak_allocated_MiB": 67.50048828125,
+      "peak_reserved_MiB": 68.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "transformer",
+      "length": 128,
+      "batch": 1,
+      "mode": "inference",
+      "network": {
+        "median_ms": 2.921850002167048,
+        "mean_ms": 2.934994999668561,
+        "min_ms": 2.8310000052442774,
+        "max_ms": 3.05359999765642
+      },
+      "network_plus_cpu_decode": {
+        "median_ms": 5.03970000136178,
+        "mean_ms": 5.0394000001688255,
+        "min_ms": 4.950300004566088,
+        "max_ms": 5.15340000129072
+      },
+      "peak_allocated_MiB": 66.09033203125,
+      "peak_reserved_MiB": 68.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "transformer",
+      "length": 128,
+      "batch": 1,
+      "mode": "training",
+      "step": {
+        "median_ms": 12.258700000529643,
+        "mean_ms": 12.29942999962077,
+        "min_ms": 12.087900002370588,
+        "max_ms": 12.560099996335339
+      },
+      "peak_allocated_MiB": 68.294921875,
+      "peak_reserved_MiB": 70.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "transformer",
+      "length": 256,
+      "batch": 1,
+      "mode": "inference",
+      "network": {
+        "median_ms": 2.9298000008566305,
+        "mean_ms": 2.9421400013234233,
+        "min_ms": 2.8182000023662113,
+        "max_ms": 3.0610000030719675
+      },
+      "network_plus_cpu_decode": {
+        "median_ms": 12.129600003390806,
+        "mean_ms": 12.145350000355393,
+        "min_ms": 11.752900005376432,
+        "max_ms": 12.619199995242525
+      },
+      "peak_allocated_MiB": 67.2763671875,
+      "peak_reserved_MiB": 68.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "transformer",
+      "length": 256,
+      "batch": 1,
+      "mode": "training",
+      "step": {
+        "median_ms": 12.501149998570327,
+        "mean_ms": 12.610085000051185,
+        "min_ms": 12.05869999830611,
+        "max_ms": 13.421499999822117
+      },
+      "peak_allocated_MiB": 72.4853515625,
+      "peak_reserved_MiB": 94.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "transformer",
+      "length": 512,
+      "batch": 1,
+      "mode": "inference",
+      "network": {
+        "median_ms": 3.782600000704406,
+        "mean_ms": 3.7827650005056057,
+        "min_ms": 3.7038000009488314,
+        "max_ms": 3.8817999957245775
+      },
+      "network_plus_cpu_decode": {
+        "median_ms": 50.64294999829144,
+        "mean_ms": 50.75987999989593,
+        "min_ms": 49.738699999579694,
+        "max_ms": 52.58519999915734
+      },
+      "peak_allocated_MiB": 74.59765625,
+      "peak_reserved_MiB": 90.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "transformer",
+      "length": 512,
+      "batch": 1,
+      "mode": "training",
+      "step": {
+        "median_ms": 12.143600000854349,
+        "mean_ms": 12.223940001422307,
+        "min_ms": 11.873100003867876,
+        "max_ms": 12.613200000487268
+      },
+      "peak_allocated_MiB": 86.88671875,
+      "peak_reserved_MiB": 100.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "egnn_seed",
+      "length": 64,
+      "batch": 1,
+      "mode": "inference",
+      "network": {
+        "median_ms": 4.867899995588232,
+        "mean_ms": 4.874740000013844,
+        "min_ms": 4.796200002601836,
+        "max_ms": 5.023999998229556
+      },
+      "network_plus_cpu_decode": {
+        "median_ms": 5.437950003397418,
+        "mean_ms": 5.463300001429161,
+        "min_ms": 5.273900002066512,
+        "max_ms": 5.822300001455005
+      },
+      "peak_allocated_MiB": 72.28955078125,
+      "peak_reserved_MiB": 86.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "egnn_seed",
+      "length": 64,
+      "batch": 1,
+      "mode": "training",
+      "step": {
+        "median_ms": 16.67220000308589,
+        "mean_ms": 16.767125000114902,
+        "min_ms": 16.385399998398498,
+        "max_ms": 18.10239999758778
+      },
+      "peak_allocated_MiB": 94.14306640625,
+      "peak_reserved_MiB": 108.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "egnn_seed",
+      "length": 128,
+      "batch": 1,
+      "mode": "inference",
+      "network": {
+        "median_ms": 7.751150002150098,
+        "mean_ms": 7.762874999752967,
+        "min_ms": 7.672299994737841,
+        "max_ms": 7.976599998073652
+      },
+      "network_plus_cpu_decode": {
+        "median_ms": 7.097699995938456,
+        "mean_ms": 7.11298499845725,
+        "min_ms": 7.03839999914635,
+        "max_ms": 7.28240000171354
+      },
+      "peak_allocated_MiB": 95.3310546875,
+      "peak_reserved_MiB": 108.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "egnn_seed",
+      "length": 128,
+      "batch": 1,
+      "mode": "training",
+      "step": {
+        "median_ms": 16.84890000251471,
+        "mean_ms": 16.867934999027057,
+        "min_ms": 16.65299999876879,
+        "max_ms": 17.111799999838695
+      },
+      "peak_allocated_MiB": 178.5107421875,
+      "peak_reserved_MiB": 230.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "egnn_seed",
+      "length": 256,
+      "batch": 1,
+      "mode": "inference",
+      "network": {
+        "median_ms": 6.180299998959526,
+        "mean_ms": 6.166549999761628,
+        "min_ms": 6.065000001399312,
+        "max_ms": 6.1990999965928495
+      },
+      "network_plus_cpu_decode": {
+        "median_ms": 15.60839999729069,
+        "mean_ms": 15.600464999079122,
+        "min_ms": 15.309900001739152,
+        "max_ms": 15.948399995977525
+      },
+      "peak_allocated_MiB": 189.6494140625,
+      "peak_reserved_MiB": 194.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "egnn_seed",
+      "length": 256,
+      "batch": 1,
+      "mode": "training",
+      "step": {
+        "median_ms": 18.123950001609046,
+        "mean_ms": 18.179600000803475,
+        "min_ms": 17.926300002727658,
+        "max_ms": 18.82840000325814
+      },
+      "peak_allocated_MiB": 525.26025390625,
+      "peak_reserved_MiB": 568.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "egnn_seed",
+      "length": 512,
+      "batch": 1,
+      "mode": "inference",
+      "network": {
+        "median_ms": 17.533749996800907,
+        "mean_ms": 17.52972999966005,
+        "min_ms": 17.441500000131782,
+        "max_ms": 17.641400001593865
+      },
+      "network_plus_cpu_decode": {
+        "median_ms": 65.38370000271243,
+        "mean_ms": 65.5899049990694,
+        "min_ms": 63.88409999635769,
+        "max_ms": 68.85169999441132
+      },
+      "peak_allocated_MiB": 558.4736328125,
+      "peak_reserved_MiB": 576.0,
+      "status": "ok"
+    },
+    {
+      "encoder": "egnn_seed",
+      "length": 512,
+      "batch": 1,
+      "mode": "training",
+      "step": {
+        "median_ms": 44.65895000248565,
+        "mean_ms": 44.775880001543555,
+        "min_ms": 44.512100001156796,
+        "max_ms": 45.51940000237664
+      },
+      "peak_allocated_MiB": 1875.54150390625,
+      "peak_reserved_MiB": 2042.0,
+      "status": "ok"
+    }
+  ],
+  "limits": [
+    "PyTorch allocation excludes CUDA driver/context memory.",
+    "Wall timings include dispatch and synchronization; median of20 warmed repeats.",
+    "Synthetic shapes for performance only; accuracy measured separately.",
+    "Same GPU sequential run, but external unrelated system activity is not controlled."
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "encoders": [
+    {
+      "encoder": "cnn",
+      "parameters": 150019,
+      "quality": {
+        "macro_f1": {
+          "mean": 0.4332128746188873,
+          "seed_std": 0.0418621628079879
+        },
+        "macro_precision": {
+          "mean": 0.545189540733019,
+          "seed_std": 0.030656012631462125
+        },
+        "macro_recall": {
+          "mean": 0.4054265342500637,
+          "seed_std": 0.04130495950899342
+        },
+        "micro_f1": {
+          "mean": 0.47502789837876175,
+          "seed_std": 0.013480033969386355
+        },
+        "group_macro_f1": {
+          "mean": 0.49521243356556094,
+          "seed_std": 0.016081866038289237
+        }
+      },
+      "all_reloads_verified": true,
+      "training_seconds": [
+        11.912397799998871,
+        14.078776000002108,
+        12.068581600004109
+      ],
+      "observed_training_peak_MiB": [
+        88.947265625,
+        88.947265625,
+        88.947265625
+      ]
+    },
+    {
+      "encoder": "rwkv_lite",
+      "parameters": 150015,
+      "quality": {
+        "macro_f1": {
+          "mean": 0.059824247008956326,
+          "seed_std": 0.012172840752831423
+        },
+        "macro_precision": {
+          "mean": 0.06459614115960866,
+          "seed_std": 0.008943411456639669
+        },
+        "macro_recall": {
+          "mean": 0.07158496732026144,
+          "seed_std": 0.024832774042918896
+        },
+        "micro_f1": {
+          "mean": 0.06128334153478208,
+          "seed_std": 0.007790743398543278
+        },
+        "group_macro_f1": {
+          "mean": 0.06217548583221342,
+          "seed_std": 0.005295785937909424
+        }
+      },
+      "all_reloads_verified": true,
+      "training_seconds": [
+        46.75003989999823,
+        46.80967249999958,
+        49.691654299997026
+      ],
+      "observed_training_peak_MiB": [
+        125.03173828125,
+        125.03173828125,
+        125.03173828125
+      ]
+    },
+    {
+      "encoder": "transformer",
+      "parameters": 149887,
+      "quality": {
+        "macro_f1": {
+          "mean": 0.10329676176402477,
+          "seed_std": 0.013149920500694733
+        },
+        "macro_precision": {
+          "mean": 0.14003277424330055,
+          "seed_std": 0.031167675633481433
+        },
+        "macro_recall": {
+          "mean": 0.08976544153014741,
+          "seed_std": 0.004711034469077914
+        },
+        "micro_f1": {
+          "mean": 0.10713634397844925,
+          "seed_std": 0.010266741858922141
+        },
+        "group_macro_f1": {
+          "mean": 0.13787061635326098,
+          "seed_std": 0.020272236221454947
+        }
+      },
+      "all_reloads_verified": true,
+      "training_seconds": [
+        12.72201170000335,
+        12.999100600005477,
+        13.614579799999774
+      ],
+      "observed_training_peak_MiB": [
+        102.912109375,
+        102.912109375,
+        102.912109375
+      ]
+    },
+    {
+      "encoder": "egnn_seed",
+      "parameters": 149065,
+      "quality": {
+        "macro_f1": {
+          "mean": 0.0662991889040378,
+          "seed_std": 0.01320463256964448
+        },
+        "macro_precision": {
+          "mean": 0.07403215303215303,
+          "seed_std": 0.014223053471569313
+        },
+        "macro_recall": {
+          "mean": 0.07608154372860255,
+          "seed_std": 0.015194797498645921
+        },
+        "micro_f1": {
+          "mean": 0.06718598832268201,
+          "seed_std": 0.016439910203035618
+        },
+        "group_macro_f1": {
+          "mean": 0.0801204859829213,
+          "seed_std": 0.017169031412704205
+        }
+      },
+      "all_reloads_verified": true,
+      "training_seconds": [
+        17.518281499993464,
+        17.804408000003605,
+        17.848069899999246
+      ],
+      "observed_training_peak_MiB": [
+        4860.9287109375,
+        4862.265625,
+        4862.265625
+      ]
+    }
+  ],
+  "resource_file": "encoder_resource_benchmark_isolated_v2.json",
+  "resource_sha256": "1d1985b07303b5e1854160e7cf8caca10d3afc002f56c9976c36377b3736d14c",
+  "prediction_result_sha256": {
+    "42": "9814624c6c4abe935ab3ec4d905f54dd47a0147ced62bea47b2ba9623186e7e8",
+    "43": "00c45776c82a323aa96906074ad940f68328cbcd83c624cb335b357ab641bd42",
+    "44": "af7c801aeb4ebeb22decf78bc60492786336de2d4c26d6e74739560e97e7e559"
+  },
+  "test_evaluated": false
+}

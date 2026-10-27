@@ -1,0 +1,13 @@
+{
+  "seed": 987,
+  "updates": 300,
+  "lr": 0.001,
+  "weight_decay": 0.01,
+  "gradient_clip": 1.0,
+  "selection": "shortest training RNA, ID tie-break, no validation",
+  "id": "2DR8_A",
+  "length": 33,
+  "pass_threshold_balanced_loss": 0.05,
+  "checkpoint_selection": "fixed update300, no best-step selection",
+  "effect_on_main_comparison": "none; fresh models only for one-RNA fit"
+}

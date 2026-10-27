@@ -1,0 +1,8 @@
+{
+  "reason": "Initial same-process sweep showed persistent CUDA library workspace carryover: early inference case had32MiB baseline and later cases about64MiB. This biases small-model absolute memory comparisons.",
+  "correction": "Rerun all32 encoder/length/mode cases in fresh subprocesses using the identical timing/loss fixture, warmup5/repeats20, sameGPU and checkpoints.",
+  "original_results_preserved": "encoder_resource_benchmark_v1.json",
+  "corrected_results": "encoder_resource_benchmark_isolated_v2.json",
+  "prediction_training_or_selection_changed": false,
+  "scope": "Resource measurement correction only, not retuning prediction models."
+}

@@ -1,0 +1,18 @@
+{
+  "unit_tests_passed": 80,
+  "independently_reloaded_prediction_checkpoints": 12,
+  "single_RNA_fit_controls_passed": 4,
+  "formal_isolated_resource_cases": 32,
+  "training_RNAs": 88,
+  "development_validation_RNAs": 10,
+  "new_independent_test": false,
+  "EGNN_uses_experimental_coordinates": false,
+  "full_official_RWKV_implementation": false,
+  "artifact_sha256": {
+    "data/manifests/encoder_comparison_protocol_v1.json": "807d89597ebb9063446483973731901bfa2a36a702fdfdbede1ac75f723c7a29",
+    "data/manifests/encoder_comparison_summary_v1.json": "b784f119fd8a5ffca2c3291c53875f84bf4ac975f5712084e9d94c4076d38694",
+    "data/manifests/encoder_resource_benchmark_isolated_v2.json": "1d1985b07303b5e1854160e7cf8caca10d3afc002f56c9976c36377b3736d14c",
+    "data/manifests/encoder_comparison_verification_v1.json": "f9c82166c2c387081ff0a1906665227fde108a79c84cc810ccf6b6dd3d16dfd0",
+    "data/manifests/encoder_fit_audit_v1.json": "11e6e85acf0efefe28b615b07a8ba38af7365fdba52467ab7208e01571f85f66"
+  }
+}

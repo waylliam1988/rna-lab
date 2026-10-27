@@ -1,0 +1,155 @@
+{
+  "results": [
+    {
+      "encoder": "cnn",
+      "main_seed42_training_metrics": {
+        "samples": 88,
+        "threshold": 0.5,
+        "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+        "mean_evaluated_position_fraction": 0.6673802040408534,
+        "macro_f1": 0.9902092426179284,
+        "macro_precision": 0.9958364004416637,
+        "macro_recall": 0.9852477328726766,
+        "micro_f1": 0.971169420149012,
+        "crossing_macro_f1_on_positive_samples": 0.9666947681878094,
+        "crossing_positive_samples": 23,
+        "length_bins": {
+          "0-64": {
+            "samples": 29,
+            "macro_f1": 0.9986206896551725
+          },
+          "65-128": {
+            "samples": 56,
+            "macro_f1": 0.9942221510307121
+          },
+          "129-256": {
+            "samples": 2,
+            "macro_f1": 0.9424150177574835
+          },
+          "257-512": {
+            "samples": 1,
+            "macro_f1": 0.6171428571428571
+          }
+        }
+      },
+      "single_RNA_initial_loss": 0.9283096194267273,
+      "single_RNA_final_loss": 4.228355919622118e-06,
+      "single_RNA_f1": 1.0,
+      "single_RNA_loss_threshold_passed": true
+    },
+    {
+      "encoder": "rwkv_lite",
+      "main_seed42_training_metrics": {
+        "samples": 88,
+        "threshold": 0.5,
+        "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+        "mean_evaluated_position_fraction": 0.6673802040408534,
+        "macro_f1": 0.7099519736885165,
+        "macro_precision": 0.7585726247085828,
+        "macro_recall": 0.6727466337959134,
+        "micro_f1": 0.6439972241498959,
+        "crossing_macro_f1_on_positive_samples": 0.3594238979586236,
+        "crossing_positive_samples": 23,
+        "length_bins": {
+          "0-64": {
+            "samples": 29,
+            "macro_f1": 0.8843179686064859
+          },
+          "65-128": {
+            "samples": 56,
+            "macro_f1": 0.6447261538724872
+          },
+          "129-256": {
+            "samples": 2,
+            "macro_f1": 0.33169398907103825
+          },
+          "257-512": {
+            "samples": 1,
+            "macro_f1": 0.0625
+          }
+        }
+      },
+      "single_RNA_initial_loss": 0.9644601941108704,
+      "single_RNA_final_loss": 0.00011156826803926378,
+      "single_RNA_f1": 1.0,
+      "single_RNA_loss_threshold_passed": true
+    },
+    {
+      "encoder": "transformer",
+      "main_seed42_training_metrics": {
+        "samples": 88,
+        "threshold": 0.5,
+        "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+        "mean_evaluated_position_fraction": 0.6673802040408534,
+        "macro_f1": 0.6665890419495046,
+        "macro_precision": 0.7199207540092555,
+        "macro_recall": 0.6258124063010793,
+        "micro_f1": 0.5950470875479595,
+        "crossing_macro_f1_on_positive_samples": 0.31611238371628125,
+        "crossing_positive_samples": 23,
+        "length_bins": {
+          "0-64": {
+            "samples": 29,
+            "macro_f1": 0.8566589242817668
+          },
+          "65-128": {
+            "samples": 56,
+            "macro_f1": 0.5950709279979655
+          },
+          "129-256": {
+            "samples": 2,
+            "macro_f1": 0.2173076923076923
+          },
+          "257-512": {
+            "samples": 1,
+            "macro_f1": 0.05813953488372093
+          }
+        }
+      },
+      "single_RNA_initial_loss": 1.0386016368865967,
+      "single_RNA_final_loss": 2.285895425302442e-05,
+      "single_RNA_f1": 1.0,
+      "single_RNA_loss_threshold_passed": true
+    },
+    {
+      "encoder": "egnn_seed",
+      "main_seed42_training_metrics": {
+        "samples": 88,
+        "threshold": 0.5,
+        "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+        "mean_evaluated_position_fraction": 0.6673802040408534,
+        "macro_f1": 0.46031119201713727,
+        "macro_precision": 0.5082579443661447,
+        "macro_recall": 0.4266306171441645,
+        "micro_f1": 0.40694789081885857,
+        "crossing_macro_f1_on_positive_samples": 0.08237516783344825,
+        "crossing_positive_samples": 23,
+        "length_bins": {
+          "0-64": {
+            "samples": 29,
+            "macro_f1": 0.6966646882190077
+          },
+          "65-128": {
+            "samples": 56,
+            "macro_f1": 0.35453557004983516
+          },
+          "129-256": {
+            "samples": 2,
+            "macro_f1": 0.1940026075619296
+          },
+          "257-512": {
+            "samples": 1,
+            "macro_f1": 0.062111801242236024
+          }
+        }
+      },
+      "single_RNA_initial_loss": 0.9381355047225952,
+      "single_RNA_final_loss": 3.098385423072614e-05,
+      "single_RNA_f1": 1.0,
+      "single_RNA_loss_threshold_passed": true
+    }
+  ],
+  "main_checkpoints_modified": false,
+  "test_evaluated": false,
+  "source_sha256": "4bb37842f83806e86c104ad104f14f9369df56aa7dc4d00916a1a9630dde7459"
+}

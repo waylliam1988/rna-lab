@@ -17,6 +17,8 @@ class SequenceEncoderTests(unittest.TestCase):
         self.assertTrue(torch.allclose(a,b,atol=2e-5,rtol=2e-4))
         a.square().sum().backward();b.square().sum().backward()
         self.assertTrue(torch.allclose(x.grad,xx.grad,atol=2e-4,rtol=2e-3))
+        for (name,p),(_,q) in zip(cell.named_parameters(),other.named_parameters()):
+            self.assertTrue(torch.allclose(p.grad,q.grad,atol=2e-4,rtol=2e-3),name)
 
     def test_padding_symmetry_and_gradients_for_all_encoders(self):
         tokens=torch.tensor([[0,1,2,3,0,1,2,3],[0,1,2,3,4,4,4,4]])
