@@ -1,0 +1,72 @@
+{
+  "splits": {
+    "train": {
+      "cases": 210,
+      "unique_anchors": 70,
+      "shape": [
+        210,
+        8,
+        2
+      ],
+      "npz_sha256": "64974e722c811b494affb30df01367b14cf60608832b0d5f99139768012db971",
+      "base_npz_sha256": "03bc1c7676040cd2d5561bf7b95bd05e46fdf8c15442c58dfc7de415434f66b5",
+      "base_metadata_sha256": "890c11140ba37702a056da0de2fbec6eeceeaefd7a733a32a30bce9a95f34c3f",
+      "base_anchor_sha256": "6614e3a821941883dd71d7cf786436e4ad213f569e7836533d555fd8d4ffe8f0",
+      "max_original_observation_difference": 0.0,
+      "max_replayed_anchor_difference": 0.0,
+      "min": [
+        0.00038944403058849275,
+        0.00041233672527596354
+      ],
+      "max": [
+        0.0014378913911059499,
+        0.0022062105126678944
+      ],
+      "max_temporal_range": [
+        0.000206518336199224,
+        0.00016650580801069736
+      ],
+      "fraction_cases_with_temporal_range_gt1e_8": [
+        1.0,
+        1.0
+      ]
+    },
+    "validation": {
+      "cases": 30,
+      "unique_anchors": 10,
+      "shape": [
+        30,
+        8,
+        2
+      ],
+      "npz_sha256": "e02483f911dafcb670797d486801d6e6c376fc7c8b486559967beabd587115ad",
+      "base_npz_sha256": "f1bcabc173c4e859d9b0831c2b652fd847c8cb88bb4941f456595b931f2c87b2",
+      "base_metadata_sha256": "1e1ffd9b653862ae3e667a3e4a0b811798b06fd3519458a69f33a451d05163dc",
+      "base_anchor_sha256": "66e4e9e322f791b89f68f08b3db8a4385f01952c985abe19bbf16d2c29dc27d1",
+      "max_original_observation_difference": 0.0,
+      "max_replayed_anchor_difference": 0.0,
+      "min": [
+        0.00040563198854215443,
+        0.0005359026254154742
+      ],
+      "max": [
+        0.0014514595968648791,
+        0.0016361831221729517
+      ],
+      "max_temporal_range": [
+        0.00015745381824672222,
+        9.342143312096596e-05
+      ],
+      "fraction_cases_with_temporal_range_gt1e_8": [
+        1.0,
+        1.0
+      ]
+    }
+  },
+  "protocol_sha256": "e9a2816ee4e054d984175c59d5fef3ca7e52ef67156ba493cec528d67be95c0a",
+  "prediction_targets_changed": false,
+  "physics_changed": false,
+  "J_gate_enabled": false,
+  "script_sha256": "06d79771eba10a1672c846214e7f140664105a2dcffe7fe75c22ea4b4b159046",
+  "geometry_feature_source_sha256": "25b4dcc6e26861b54c5db95daa6aa06d6d0854152c1427066443f46152bfb63d"
+}
