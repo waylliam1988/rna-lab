@@ -1,0 +1,32 @@
+{
+  "protocol": "joint-isolation-v1",
+  "paired_source_sha256": "ab4617d4b0f2e025cc2a8cfda38b1a7c1d3610121f4e95005ecc7ac23262d99f",
+  "splits": {
+    "train": 59,
+    "validation": 8,
+    "test": 7
+  },
+  "groups": {
+    "train": 2,
+    "validation": 5,
+    "test": 4
+  },
+  "quarantined_2d": 67,
+  "joint_1d_assignments": {
+    "quarantine": 213505,
+    "train": 59,
+    "test": 7,
+    "validation": 8
+  },
+  "validation_passed": true,
+  "training_ready": true,
+  "one_d_pretraining_enabled": false,
+  "seed": 42,
+  "identity_min": 0.8,
+  "shorter_aligned_coverage_min": 0.8,
+  "limitations": [
+    "Known RNA3DB components plus specified local similarity and primary-citation controls; not proof of absence of remote undiscovered homology.",
+    "All unanchored probing constructs remain quarantined; no 1D pretraining is performed.",
+    "Contextual-chain labels are evaluated separately from claims about isolated RNA; small sample sizes remain exploratory."
+  ]
+}
