@@ -9,15 +9,15 @@
 
 GhostDynamics 的样本状态由调用方传入/返回；`state=None` 明确重置。模块内只保留训练诊断的 running_activity，不缓存用于下一样本预测的隐状态。默认保留完整梯度，截断必须显式调用 detach_state。
 
-prediction_head 是未定义监督目标的通用预测头；默认 5 维用于核对旧头的数值迁移，不再声称代表 Rg/力/能量，也不能仅凭这个头称为世界模型。后续按 2D 状态设计目标后修改 prediction_dim 并训练。
+prediction_head 是未定义监督目标的通用预测头；默认 5 维用于核对旧头的数值迁移，不再声称代表 Rg/力/能量，也不能仅凭这个头称为世界模型。后续2D适配器已按算法状态定义辅助目标，物理支线另行恢复原宏观观测监督；两种任务不能混称。
 
-## 暂未迁入主线
+## 初版core迁移未包含的部分（历史边界）
 
 - 旧 Ghost 外层 USBLink/ProtocolSpec 总线、目标投影、旧检查点兼容逻辑。
 - BioSystem、3D 力场、Flow/GNO、旧训练器、复杂损失与课程配置。
 - 旧权重：没有隐式加载；只保留代码参考和 SHA256。
 
-这些不代表被永久放弃。先验证独立动力学和显式状态，再决定总线等机制是否必要。
+后续已在独立的src/rna2d/physics支线恢复原Ghost/NeuralCortex/USBLink/ProtocolSpec、RNA解析力场、积分器及观测/反馈；见[物理接口](PHYSICAL_INTERFACE_V1.md)。这不改变初版core的迁移范围，也不意味着完整BioSystem、GVP感知、策略/安全门、Flow/GNO、自适应质量、旧训练器或旧权重均已恢复。J能量门控按用户要求仍关闭。
 
 ## 验证
 

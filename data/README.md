@@ -19,4 +19,4 @@
 ./run.ps1 scripts/screen_probing_samples.py
 ```
 
-最新获取与清洗范围见 `docs/CLEAN_RELEASE_V1_REPORT.md`、`docs/FINE_CLEANING_PROTOCOL_V2.md`。原始数据、排除原因和待审证据保留；新清洗池没有自动获得训练/验证/测试划分。探测反应性不等于精确配对标签。
+最新获取与清洗范围见 `docs/CLEAN_RELEASE_V1_REPORT.md`、`docs/FINE_CLEANING_PROTOCOL_V2.md`。原始数据、排除原因和待审证据保留；全池没有自动获得训练资格；后续joint_split_v2已对176条扩展2D候选放行88/10/8子集，70条2D与213473条1D继续隔离，1D预训练关闭。旧8条测试已揭盲，后续不得用于调参。见[逐项验证](../docs/STAGED_VALIDATION.md)。探测反应性不等于精确配对标签。

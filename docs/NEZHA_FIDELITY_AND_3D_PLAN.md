@@ -1,5 +1,7 @@
 # Nezha迁移边界与3D预审（2026-10-27）
 
+**进度更新：本页保留迁移核查和3D预审时的边界。其后已完成原物理接口恢复、35/5静态3D隔离、模拟预算/展开诊断和三关检查，见[PHYSICAL_VALIDATION_V1.md](PHYSICAL_VALIDATION_V1.md)、[GATES_VALIDATION_V1.md](GATES_VALIDATION_V1.md)。下方“未隔离/未迁入”指当时阶段；完整BioSystem与旧权重仍未恢复。**
+
 ## 本次代码核查
 
 原项目只读，未修改。将原项目、legacy_reference快照和新核心按AST定位类正文核对：RWKVCellLite与ContinuousControlLayer均逐字一致。tests/test_core.py与tests/test_ghost_adapter.py验证受控相同配置/权重/输入下的数值一致性。

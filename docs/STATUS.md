@@ -1,12 +1,14 @@
 # 当前状态（2026-10-27）
 
+当前CNN工程选择、具体实现版本及局限见[基线决策](BASELINE_DECISION_V1.md)。文档同步审计见[DOCUMENTATION_AUDIT_V1.md](DOCUMENTATION_AUDIT_V1.md)。
+
 ## 训练拟合验收（本轮最终结论）
 
 EGNN几何审计与有限lr扫描已完成：坐标/距离进入网络，padding对齐、坐标更新与梯度通过；输入是序列位置种子，不是实验几何。按冻结协议完成3编码器×4变体×3种子、25epoch，仅评估88条训练RNA。Transformer/EGNN-seed/RWKV-Lite最终训练F1最高为0.7434/0.6438/0.7650，原CNN三个种子为0.9723–0.9902。全部低于0.8的止损条件触发，停止调优；0.9拟合验收门槛未通过，不进行新的验证集比较，不宣称CNN泛化更好或架构优劣。
 
 见[几何审计](EGNN_GEOMETRY_AUDIT_V1.md)、[冻结协议](ENCODER_LR_SCAN_PROTOCOL_V1.md)与[完整扫描](ENCODER_LR_SCAN_RESULTS_V1.md)。36个扫描检查点独立重载复算、82项测试通过。审计完成后先提交推送，再冻结扫描协议并运行；完整预测留在本地，公开指标及指纹。J门控仍关闭，原Nezha项目未修改。后续可继续用CNN作工程基线，但下一项应先补独立隔离数据和冻结评估任务；本轮不追加调参。下方旧比较表只作历史记录。
 
-## 序列编码器比较（最新）
+## 原序列编码器比较（有限lr扫描之前）
 
 CNN/BiRWKV-Lite/Transformer/EGNN-seed同任务、同配对头、约150k参数、25epoch、3种子完成。开发逐RNA宏F1均值0.4332/0.0598/0.1033/0.0663；仅88训练/10开发验证，未读取旧测试。全部模型能单RNA拟合至F1=1，当前差距包含优化适配与小样本迁移，不能作为家族上限。正式速度/显存用同GPU、各案例独立进程重测，初版工作区继承偏差已记录。80项测试、12最终权重重载复算通过。见[比较结论](ENCODER_COMPARISON_FINDINGS_V1.md)及[全部指标](ENCODER_COMPARISON_RESULTS_V1.md)。
 
@@ -24,21 +26,21 @@ CNN/BiRWKV-Lite/Transformer/EGNN-seed同任务、同配对头、约150k参数、
 
 按用户新授权恢复原Ghost/物理观测/反馈定义并完成6项契约检查，使用原256/512/8核心；完整编码器/策略/训练器尚未全部恢复。静态3D联合隔离后训练35条序列、开发验证5条，无新独立测试。固定4步展开的三种子100/250/500次更新已完成，9个检查点重载复算通过，累计63项测试。验证误差改善不单调，尚未超过持久性；当前只支持模拟下一观测诊断。详见[物理接口](PHYSICAL_INTERFACE_V1.md)、[3D隔离](THREE_D_ISOLATION_V1.md)、[冻结协议](PHYSICAL_FORECAST_PROTOCOL_V1.md)、[训练时长结果](PHYSICAL_FORECAST_RESULTS_R4_V1.md)。下方为历史，不应据其中“暂不做3D/尚未训练”等描述覆盖本段。
 
-## 逐项验证已完成
+## 历史：首轮逐项验证已完成
 
-联合隔离、注释复核扩展、简单基线、普通分步、RWKV和Ghost/完整组合均已依次验证并逐项提交推送。扩展池176条，隔离后88/10/8；未核验1D库不参与预训练。50项测试通过。固定预算三种子及一次统一揭盲测试未支持复杂模型稳定增益，状态预测未胜过持久性。最新结论以 [EXPERIMENT_RESULTS_V1.md](EXPERIMENT_RESULTS_V1.md) 和 [STAGED_VALIDATION.md](STAGED_VALIDATION.md) 为准，以下为历史记录。
+联合隔离、注释复核扩展、简单基线、普通分步、RWKV和Ghost/完整组合均已依次验证并逐项提交推送。扩展池176条，隔离后88/10/8；未核验1D库不参与预训练。50项测试通过。固定预算三种子及一次统一揭盲测试未支持复杂模型稳定增益，状态预测未胜过持久性。该首轮结论以 [EXPERIMENT_RESULTS_V1.md](EXPERIMENT_RESULTS_V1.md) 和 [STAGED_VALIDATION.md](STAGED_VALIDATION.md) 为准，以下为历史记录。
 
 ## 扩充数据精细清洗发布
 
-最新状态与精确计数以 [CLEAN_RELEASE_V1_REPORT.md](CLEAN_RELEASE_V1_REPORT.md) 和 `data/manifests/clean_release_v1.json` 为准。新池分开实验关联1D序列、实测探测profile和双工具共识2D标签；待审核来源隔离。尚未开始新池训练，下一步先做联合泄漏隔离与基线。下方内容保留为旧版本历史，不代表扩充池的当前数量。
+最新状态与精确计数以 [CLEAN_RELEASE_V1_REPORT.md](CLEAN_RELEASE_V1_REPORT.md) 和 `data/manifests/clean_release_v1.json` 为准。新池分开实验关联1D序列、实测探测profile和双工具共识2D标签；待审核来源隔离。发布当时尚未训练；后续已完成扩展子集联合隔离和基线实验，全池仍未批准训练。下方内容保留为旧版本历史，不代表扩充池的当前数量。
 
-## 最新清洗结果（优先于下方历史状态）
+## 历史：paired_v0_2清洗结果
 
 本地9564个mmCIF文件已全量审计、0解析错误；25778条RNA链中7229条链/2079条不同序列通过坐标初筛。最终保守配对数据paired_v0_2含61条不同序列，按完整同源组配平为49/6/6；契约及已声明的同源/相似性隔离检查通过。实验注释和掩码已保存，比较分析辅助索引101649条仍未批准训练。
 
 这不是完整泛化基准，验证/测试各仅6条。详见DATASET_V0_2_REPORT.md和CLEANING_PROTOCOL_V1.md。尚未启动正式训练。
 
-## 最新数据策略（优先于下方历史烟测记录）
+## 历史：首次实验来源审核
 
 补充：可靠比较序列分析可作为独立辅助池，逐条审核后再通过消融实验判断收益；不进入直接实验金标准池，不自动批准现有十万条记录。见COMPARATIVE_DATA.md。当前辅助池同样尚未就绪。
 
@@ -61,7 +63,7 @@ CNN/BiRWKV-Lite/Transformer/EGNN-seed同任务、同配对头、约150k参数、
 - 正式环境下 13 项单元/契约测试通过，pip check 通过。
 - GPU 0 上完成 32 样本、2 epoch 的训练、最佳权重保存与独立重载评估；这只是链路测试，尚无可用预测精度。
 
-## 当前限制
+## 历史：初版烟测时的限制
 
 - Ghost/RWKV 核心暂未与 2D 配对模型耦合，分步配对更新器尚未实现。
 - 训练数据没有交叉配对标签；当前不能证明假结学习能力。
@@ -71,4 +73,4 @@ CNN/BiRWKV-Lite/Transformer/EGNN-seed同任务、同配对头、约150k参数、
 
 详细记录：data/reports/environment.json、data/reports/smoke_test.json、runs/smoke_gpu/。
 
-Windows 的 PyTorch 导入仍打印 VC++ runtime 预检查提示；未修改第三方代码或屏蔽提示。此次三张 GPU 的实际计算和保存/重载均已通过，不据此提示推断 CUDA 不可用。后续若要编译原生扩展，再单独核查编译工具链。
+首次环境搭建时Windows的PyTorch导入曾打印 VC++ runtime 预检查提示；未修改第三方代码或屏蔽提示。此次三张 GPU 的实际计算和保存/重载均已通过，不据此提示推断 CUDA 不可用。之后已安装系统VC++ x64 14.51.36247.0，缺失提示已消失，见[环境说明](ENVIRONMENT.md)。编译原生扩展仍需另查编译工具链。

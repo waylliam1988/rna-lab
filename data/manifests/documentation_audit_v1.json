@@ -1,0 +1,31 @@
+{
+  "scope": "Documentation and report text only; no new model experiments",
+  "markdown_files_checked": 20,
+  "local_links_checked": 121,
+  "missing_links": [],
+  "experiment_protocols_modified": false,
+  "training_performed": false,
+  "files_sha256": {
+    "README.md": "ff42e4757e1f4bf033604e9a20fc2965f1f95eb119f1e583fc639b98dfc4d9c7",
+    "data/README.md": "1affd63155ac633f48dc0ac797d8b71e9af2df5fc93f8a352b0cb9317a45c1d5",
+    "docs/CLEAN_RELEASE_V1_REPORT.md": "41029fd1499d77b613eadbb42aa5094e1a74e0d464ab4c581d0d47b05d379173",
+    "docs/CONTACT_CHANNEL_AUDIT_V1.md": "20f3ee68c8d787b91beb6cef349f7e6c4e7b2dca38ebe27ce75c5dc49f5bc2df",
+    "docs/DATASET_V0_2_REPORT.md": "1da1c21a9f559058b8312af376c0dae0dcdcd59a6a8809fd2dd47fb22274535a",
+    "docs/DATA_PROTOCOL.md": "10d276d7912762273a1230f92353019aa318516a430e7606e2298b9720d39fa8",
+    "docs/DISCUSSION.md": "e2627b73a3a1ce1b7f64e04509cbea39e8385436a94b5bab16bb72000bfa5c13",
+    "docs/ENCODER_COMPARISON_FINDINGS_V1.md": "e9ac45348f47e1c7264180e1a804087da85e9cea81e096480f16d0715ecc64c8",
+    "docs/ENCODER_COMPARISON_RESULTS_V1.md": "5639708acbc53b7b3abd7ead066a266d1d1ca4c9bccf024138224ec8555a4930",
+    "docs/ENVIRONMENT.md": "db39d9dc20f7c68c53d6f25a358aef3ece2a561ca3c7a0af4043f2bf79025e29",
+    "docs/EXPERIMENT_RESULTS_V1.md": "d2bcf2a29f665fd4661f128abdbc636b3fcb4e235027065b01e565bcd5b8b082",
+    "docs/MIGRATION.md": "76f924ccbbc0f8b6c026d84a407cd7f50263216660461f140798236a1892626c",
+    "docs/NEXT_STEPS.md": "91233f0b3181af3c88830d54de4e38f0d208ee0700e8f0f3a20555f157ff4fb6",
+    "docs/NEZHA_FIDELITY_AND_3D_PLAN.md": "58aa989fd5f9bf6a461fafa02828bcb81513f7a0de1d3c0907b7913cdb536b30",
+    "docs/PHYSICAL_INTERFACE_V1.md": "f62c2592677b0fb5db4104a2be98bdff43bb59f74279209ecca2938b1ceec953",
+    "docs/ROADMAP.md": "4aa215e51a6436527fc2e1831787be72b245710334f5beb6cd62f67b6d27d58f",
+    "docs/STAGED_VALIDATION.md": "6b990ecdfde7fc442bee3ef72abdd22e7f624198ad951f7c32c2717303dc76c1",
+    "docs/STATUS.md": "4f019c525e378b83577de26ad98fb8231db729a90804649da53c041a03fbf0ff",
+    "scripts/report_encoder_comparison.py": "ab64b2f3c04d90ba8db0bd54da090bcefdaf0945d5d87a8fa819d8cac3cca223",
+    "docs/BASELINE_DECISION_V1.md": "0648899a375dc60a2575839773902b1649a654258f6fd8545493e946fb6a3d17",
+    "docs/DOCUMENTATION_AUDIT_V1.md": "ab833d826ca3d4d50c4af3ac2d4850af2896aa77d1afa86fc5c3a23d3e4654fb"
+  }
+}

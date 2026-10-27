@@ -46,4 +46,4 @@ Set-Location 'D:\RNA flod'
 
 环境检查结果：`data/reports/environment.json`。短训练结果：`runs/smoke_gpu/`。短训练只证明数据→训练→保存→评估→预测链路接通，不能作为模型精度或泛化结论。
 
-本轮实测：3 张卡全部通过基线前向/反向/优化器和 Ghost/RWKV 多步反向；13 项测试通过；pip check 无冲突；GPU 0 完成 32 条样本的 2 epoch 链路验证。PyTorch 导入仍有 VC++ runtime 预检查提示，未屏蔽；实际 CUDA 运算已通过。首次加载 CUDA DLL 明显慢于后续启动。
+首次环境搭建实测（历史，当前状态见上方系统VC++安装记录）：3 张卡全部通过基线前向/反向/优化器和 Ghost/RWKV 多步反向；13 项测试通过；pip check 无冲突；GPU 0 完成 32 条样本的 2 epoch 链路验证。当时PyTorch导入曾有VC++ runtime预检查提示，未屏蔽；后续系统运行库安装后提示消失。实际CUDA运算已通过。首次加载 CUDA DLL 明显慢于后续启动。

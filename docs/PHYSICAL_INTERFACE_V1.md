@@ -1,5 +1,7 @@
 # 原物理接口恢复与验证
 
+**阶段进度：下方“下一阶段接入3D”已完成，见[THREE_D_ISOLATION_V1.md](THREE_D_ISOLATION_V1.md)。随后三关与输入v2验证也已完成，见[当前状态](STATUS.md)；本页接口单位、恢复范围和物理解释限制继续有效。**
+
 2026-10-27，阶段一。旧项目只读；恢复脚本scripts/restore_nezha_physics.py按AST选择定义，输出到src/rna2d/physics。来源文件SHA256、53项以上实际配置及逐文件输出哈希记录在data/manifests/nezha_physics_restoration_v1.json。
 
 恢复范围：完整Ghost/NeuralCortex/USBLink/ProtocolSpec，原RWKV与连续控制类，解析RNA力场、几何不变量、方向投影，Nose–Hoover/噪声积分器，原宏观观测及下一状态smooth-L1反馈。原Ghost配置为256/512/8，默认温度0、dt0.05、gamma0.35。未加载旧检查点。

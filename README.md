@@ -16,7 +16,7 @@
 
 **配对监督只用通过审核的直接实验证据。** 扩充获取、官方来源复核及精细清洗见[本轮发布报告](docs/CLEAN_RELEASE_V1_REPORT.md)和[精细清洗协议](docs/FINE_CLEANING_PROTOCOL_V2.md)。实测反应性与精确配对标签分开计数，未知/未核验记录隔离，不用模型预测或补全值充数。
 
-新清洗池位于 `data/experimental/clean_release_v1`，尚未完成联合同源/研究/构建体隔离，不自动用于训练。原61条、49/6/6划分的[链路验证版本](docs/DATASET_V0_2_REPORT.md)保留，默认训练路径不变；此前旧基准烟测不代表严格实验数据下的效果。
+新清洗池位于 `data/experimental/clean_release_v1`，全池不自动用于训练。后续扩展2D池176条已有 `joint_split_v2` 的88/10/8隔离子集；70条2D和213473条1D继续隔离，1D预训练关闭。旧8条测试已揭盲，不再用于调参。原61条、49/6/6划分的[链路验证版本](docs/DATASET_V0_2_REPORT.md)保留，默认训练路径不变；此前旧基准烟测不代表严格实验数据下的效果。
 
 可靠的比较序列分析可以作为**独立辅助监督池**，经过逐条溯源、比对映射与同源性审核后，再用实验留出集验证收益；不把它改名为实验真值。详见[比较分析数据策略](docs/COMPARATIVE_DATA.md)。模型预测结构和模型补全值仍排除。
 
@@ -46,17 +46,19 @@
 ./run.ps1 scripts/check_environment.py
 ./run.ps1 scripts/train_baseline.py --epochs 5 --batch-size 4 --device cuda:0
 ./run.ps1 scripts/evaluate.py --checkpoint runs/baseline/best.pt --split validation
-# 仅在方案冻结后查看测试集；测试结果不得用于调参
-./run.ps1 scripts/evaluate.py --checkpoint runs/baseline/best.pt --split test
+# 此入口仅为早期小模型示例，不是约150k比较版复现命令
+# 旧测试已揭盲，不再用于后续方案验收；新盲测需另行冻结
 ```
 
 `run.ps1` 固定调用项目的 Python 3.12.8 环境；不修改全局 PATH。选择 GPU 可用 `--device cuda:0` / `cuda:1` / `cuda:2`。初版训练是单卡，不自动合并三张卡的显存。
 
 ## 必须理解的边界
 
-扩充池完成的是**精确序列去重和证据/质量审核**，新池尚无同源隔离后的训练/验证/测试划分。原61条版本只在已声明的RNA3DB分量与80%全局相似性范围内做了隔离。历史 `data/processed` 基准来源混合，不属于新实验池。长度、配对类型、背景与掩码范围会改变评估分布，不能直接与论文全量成绩比较。
+扩充全池完成的是**精确序列去重和证据/质量审核**；仅joint_split_v2中已放行子集完成声明范围的联合同源/研究/构建体隔离，不代表全量1D均可训练。原61条版本只在已声明的RNA3DB分量与80%全局相似性范围内做了隔离。历史 `data/processed` 基准来源混合，不属于新实验池。长度、配对类型、背景与掩码范围会改变评估分布，不能直接与论文全量成绩比较。
 
 基线只预测 AU/GC/GU、一碱基至多一配对的任务；含其他配对的样本完整保存在标准化记录中，但从基线集合排除，不静默改成未配对。贪心解码支持交叉边，但不保证最优，也不代表已经解决假结预测。未经校准的 sigmoid 输出称为分数。
+
+当前CNN版本选择及限制见[基线决策](docs/BASELINE_DECISION_V1.md)。约150k比较版与默认train_baseline.py的早期小模型不同，不混用指标。
 
 阅读顺序：[讨论与纠错](docs/DISCUSSION.md) → [研究路线](docs/ROADMAP.md) → [数据协议](docs/DATA_PROTOCOL.md) → `data/reports/prepare_report.json`。
 

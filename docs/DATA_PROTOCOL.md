@@ -1,5 +1,7 @@
 # 数据协议 v0.1
 
+**现行入口：本页是早期混合基准协议。精细清洗见[FINE_CLEANING_PROTOCOL_V2.md](FINE_CLEANING_PROTOCOL_V2.md)，已放行子集及测试使用约束见[STAGED_VALIDATION.md](STAGED_VALIDATION.md)。旧数据与冻结协议均保留，不自动批准未核验基准。**
+
 这是早期混合基准的历史协议；新的实验坐标清洗、配对标注与划分遵循CLEANING_PROTOCOL_V1.md，当前结果见DATASET_V0_2_REPORT.md。
 
 ## 来源
