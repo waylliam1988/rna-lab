@@ -1,0 +1,30 @@
+{
+  "policy": "experimental-gold-with-reviewed-comparative-auxiliary-v2",
+  "date": "2026-10-27",
+  "pair_training_ready": false,
+  "comparative_auxiliary_training_ready": false,
+  "comparative_auxiliary_policy": {
+    "status": "separate auxiliary pool; not gold and not automatically approved",
+    "purpose": "Optional representation learning or auxiliary pairing supervision, evaluated by ablation on held-out direct experiments",
+    "required": ["traceable original source and publication", "verified alignment-to-sequence mapping", "family and homology grouping", "quality review", "explicit exclusion of predicted validation records"],
+    "prohibited": ["promoting all comparative records solely based on database name", "using model-predicted or model-imputed labels", "mixing gold and auxiliary labels without provenance", "training or tuning on experimental test homologs"]
+  },
+  "approved_pair_label_classes": ["experimental_coordinate_annotation", "direct_experimental_pair_measurement"],
+  "required_flags": {
+    "provenance_verified": true,
+    "quality_verified": true,
+    "contains_model_predictions": false
+  },
+  "excluded_from_pair_truth": [
+    "RNAfold and other thermodynamic model predictions",
+    "AI model predictions including high-confidence predictions",
+    "RNAcentral R2DT template-fitted diagrams",
+    "comparative sequence labels without direct per-molecule experimental support",
+    "SHAPE/DMS reactivity converted into a presumed unique pairing diagram",
+    "unknown label provenance"
+  ],
+  "probing_policy": "Retain original measured positions only. Never fill NaNs or use model-imputed positions as measured truth.",
+  "sequence_policy": "Biological or designed-and-measured sequences must retain provenance; one-dimensional sequence data do not imply experimental two-dimensional labels.",
+  "quality_policy": "Resolution filters are preliminary. Require residue coverage, annotation provenance and chain/context checks before gold admission. NMR requires separate restraint/ensemble review.",
+  "archive_policy": "Preserve raw and legacy benchmark files; exclusion means do not use as approved training data, not destructive deletion."
+}

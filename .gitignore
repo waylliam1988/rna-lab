@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.venv/
+.venv3128/
+.runtime/
+data/raw/
+data/processed/
+data/reports/
+data/experimental/*
+!data/experimental/POLICY.json
+data/comparative/
+runs/
+.pytest_cache/
+.env
+.env.*
+*.pem
+*.key
