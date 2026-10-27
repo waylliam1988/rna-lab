@@ -1,5 +1,11 @@
 # 下一次从这里继续
 
+损失研究已列入[路线阶段6D](DATA_FIRST_ROADMAP_V1.md)：首轮数据A/B/C固定BCE，数据主线归档后再固定数据比较BCE与BCE＋伙伴竞争。公式、检查、6次运行和停止条件见[执行细则第8节](DATA_FIRST_EXECUTION_V1.md#8-独立的配对损失对照待实现)，当前尚未实现或训练，不改变眼下基线冻结优先级。
+
+当前可执行细则见[数据/损失/运行说明](DATA_FIRST_EXECUTION_V1.md)，实际做到哪里见[进度台账](DATA_FIRST_PROGRESS_V1.md)。当前下一步是本轮CNN基线冻结与数据版本核对；新联合审计、辅助入口和正式训练尚未执行。每完成小步骤或遇到阻塞，更新台账并记录续接动作。
+
+下一轮按[数据优先详细路线图](DATA_FIRST_ROADMAP_V1.md)推进：先冻结CNN参照和联合评估隔离边界，再审核比较分析辅助池试点；准入与链路通过后，另行冻结A/B/C预算对照协议。本轮编码器调优保持停止，不自动启动训练。
+
 当前CNN工程选择、具体实现版本及局限见[基线决策](BASELINE_DECISION_V1.md)。文档同步审计见[DOCUMENTATION_AUDIT_V1.md](DOCUMENTATION_AUDIT_V1.md)。
 
 ## 训练拟合验收（本轮最终结论）

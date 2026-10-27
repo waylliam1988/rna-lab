@@ -1,5 +1,9 @@
 # 当前状态（2026-10-27）
 
+## 数据优先新工作包（当前）
+
+已补[执行细则](DATA_FIRST_EXECUTION_V1.md)与[逐项进度台账](DATA_FIRST_PROGRESS_V1.md)：明确2D/1D用途、现有配对BCE、候选序列/反应性任务、A/B/C细则及运行记录。本轮仅完成文档设计，未完成新的基线指纹清单/联合隔离/辅助准入或启动新训练。当前下一步为基线冻结与数据版本核对；下方历史实验完成状态保留。
+
 当前CNN工程选择、具体实现版本及局限见[基线决策](BASELINE_DECISION_V1.md)。文档同步审计见[DOCUMENTATION_AUDIT_V1.md](DOCUMENTATION_AUDIT_V1.md)。
 
 ## 训练拟合验收（本轮最终结论）
