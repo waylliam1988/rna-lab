@@ -140,3 +140,8 @@ failure_reason / next_action:
 ## 真正比较来源的入口盘点与试点计划（2026-10-28）
 
 只读检查data/comparative/source_index_NOT_APPROVED.jsonl及生成器：101649条非PDB候选来自6个来源，validation_technique/publication/contains_model_predictions全部为空，生成器有意保留未知，不是逐条判伪。聚合指纹见data/manifests/comparative_metadata_inventory_v1.json；具体下一步见[COMPARATIVE_PILOT_PLAN_V1.md](COMPARATIVE_PILOT_PLAN_V1.md)。已核对Rfam官方家族构建说明，bpRNA帮助页本次超时。尚未选出可准入家族、下载比对、映射标签、训练或评价；批准状态保持0。接下来最多3个Rfam家族、每族最多5条代表作来源/隔离/标签映射试点，名单和抽样规则需另行记录，不把这个规模当正式效果样本量。
+
+
+## Rfam试点第1项：来源审核完成（2026-10-28）
+
+固定RF00001/RF00005/RF00010，官方15.1 SEED与元数据已留存收据；两族比较/结构文献来源有支持，tRNA当前SEED谱系仍待核，三个家族都没有获训练准入。2次Europe PMC全文XML请求HTTP500保留；改从官方原刊可索引正文/PubMed核对，不声称读过失败材料。5项Stockholm契约通过；见[第1项报告](RFAM_PILOT_STAGE1_V1.md)。下一项为隔离关系，尚未挑代表或训练。

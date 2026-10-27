@@ -1,0 +1,11 @@
+{
+  "families": [
+    "RF00001",
+    "RF00005",
+    "RF00010"
+  ],
+  "selection_rule": "Fixed three classical, literature-linked RNA families (5S rRNA, tRNA, bacterial RNase P class A) to test comparative-source provenance. Chosen before retrieving labels or checking overlaps, not chosen on model performance; overlap may block all three. No replacements within this pilot.",
+  "representatives_per_eligible_family_max": 5,
+  "network_size_limit_bytes_per_artifact": 5000000,
+  "training_allowed": false
+}

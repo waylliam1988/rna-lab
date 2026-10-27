@@ -1,0 +1,123 @@
+{
+  "stage": "1_source_review",
+  "selection_sha256": "e477f4cca783d2f91bd58199b8605784710f12fac523570eeab49860052a2e67",
+  "receipts_sha256": "2ab602291a8a03a76364e8e31317be6185ac4898c63934363b0440a04f6d3b17",
+  "families": [
+    {
+      "family": "RF00001",
+      "name": "5S_rRNA",
+      "clan": {
+        "acc": "CL00113",
+        "id": "5S_rRNA"
+      },
+      "release": {
+        "date": "2026-01-16",
+        "number": "15.1"
+      },
+      "seed_count": 712,
+      "alignment_columns": 230,
+      "seed_source": [
+        "Szymanski et al, 5S ribosomal database, PMID:11752286"
+      ],
+      "structure_source": [
+        "Published; PMID:11283358"
+      ],
+      "seed_sha256": "18f91da6b0d9a668caf3d50849db437584140923e5477f7b21ed59453100f77c",
+      "metadata_sha256": "cdc4900f16558786daed748435ee464eeacef52129ca08a677db447a4c394cc1",
+      "review": {
+        "provenance_supported": true,
+        "scope": "Published structure plus database alignment source; individual current consensus edges not independently certified.",
+        "evidence_urls": [
+          "https://pubmed.ncbi.nlm.nih.gov/11283358/",
+          "https://pubmed.ncbi.nlm.nih.gov/11752286/",
+          "https://academic.oup.com/nar/article/30/1/176/1332647"
+        ],
+        "evidence_location": "Rfam SE/SS/RM, database paper Figure 1 aligned secondary structure and Figure 2 crystallographic interactions; cited structure paper abstract.",
+        "remaining": "Current curator changes and edge-level scope still require mapping review."
+      },
+      "model_prediction_status": "not_marked_predicted_at_source; current_edge_level_exclusion_not_certified",
+      "auxiliary_training_approved": false
+    },
+    {
+      "family": "RF00005",
+      "name": "tRNA",
+      "clan": {
+        "acc": "CL00001",
+        "id": "tRNA"
+      },
+      "release": {
+        "date": "2026-01-16",
+        "number": "15.1"
+      },
+      "seed_count": 954,
+      "alignment_columns": 118,
+      "seed_source": [
+        "Eddy SR"
+      ],
+      "structure_source": [
+        "Published; PMID:8256282"
+      ],
+      "seed_sha256": "d1a66517066e6d4fbad3bd382934406df3018ff9bdaf72f22732f4c9740c9505",
+      "metadata_sha256": "32608392c2d7a3d598cd01e48384cb153d1428da4fd49eff18a1eec0100ed279",
+      "review": {
+        "provenance_supported": false,
+        "scope": "Rfam SS cites a 1993 tRNA review; SE is curator attribution, not an independently reproduced current alignment lineage.",
+        "evidence_urls": [
+          "https://pubmed.ncbi.nlm.nih.gov/8256282/"
+        ],
+        "evidence_location": "Rfam SE/SS; cited PubMed publication type Review.",
+        "remaining": "Review is real literature but does not by itself audit the current SEED consensus; retain source uncertainty."
+      },
+      "model_prediction_status": "not_marked_predicted_at_source; current_edge_level_exclusion_not_certified",
+      "auxiliary_training_approved": false
+    },
+    {
+      "family": "RF00010",
+      "name": "RNaseP_bact_a",
+      "clan": {
+        "acc": "CL00002",
+        "id": "RNaseP"
+      },
+      "release": {
+        "date": "2026-01-16",
+        "number": "15.1"
+      },
+      "seed_count": 458,
+      "alignment_columns": 996,
+      "seed_source": [
+        "Brown JW, The Ribonuclease P Database, PMID:9847214"
+      ],
+      "structure_source": [
+        "Published; PMID:9847214"
+      ],
+      "seed_sha256": "56235308ef218684b42df411e69fa6b43ed60155ede7869a0880b5818ab255f9",
+      "metadata_sha256": "d6a10998d92effe1d8e3cfc813560489493543ac29d492a10f912ca64d57eeae",
+      "review": {
+        "provenance_supported": true,
+        "scope": "Published comparative database source supports alignment/secondary-structure provenance, not per-molecule experimental truth.",
+        "evidence_urls": [
+          "https://academic.oup.com/nar/article/27/1/314/1239359"
+        ],
+        "evidence_location": "Database paper Introduction (Book of P comparative information), Description (sequence alignments and secondary structures).",
+        "remaining": "Current sequence-to-consensus mapping and reliable negative-label scope remain unverified."
+      },
+      "model_prediction_status": "not_marked_predicted_at_source; current_edge_level_exclusion_not_certified",
+      "auxiliary_training_approved": false
+    }
+  ],
+  "provenance_supported_families": 2,
+  "admitted_families": 0,
+  "failed_fulltext_downloads": [
+    {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC99124/fullTextXML",
+      "error": "500 Server Error:  for url: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC99124/fullTextXML"
+    },
+    {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC148169/fullTextXML",
+      "error": "500 Server Error:  for url: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC148169/fullTextXML"
+    }
+  ],
+  "literature_review_method": "Official publisher indexed body / PubMed metadata and figures, plus cached official Rfam metadata; failed Europe PMC fullTextXML attempts retained, not claimed as read.",
+  "limits": "Published is not automatic label approval. No representative sequences chosen, no labels generated, no model predictions or training.",
+  "source_script_sha256": "01e0d60df94f9f9f484cdefbff88761f2f80c90d1cddcbd9a6133d3683e9c6d9"
+}
