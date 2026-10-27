@@ -6,6 +6,8 @@
 
 当前没有新独立测试候选通过门禁：比较候选的来源/质量标记全部未核验；clean_release的67条非精确序列候选存在当前split连接或缺少构建体/同源证据，且有2条精确重叠历史`paired_v0_2:test`。新增的[CIF元数据审计](../data/manifests/data_first_clean_release_cif_metadata_audit_v1.json)已确认141条来源文件、180个关联结构条目均能从本地收据回连且哈希匹配；链/实体/规范序列映射完整，133/141条记录的全部关联条目有主研究键，8条仍缺至少一个。实体描述和来源方法不能证明母本构建体或独立性，训练/测试准入仍为0。数据审计聚合证据见[首轮数据审计](DATA_FIRST_AUDIT_V1.md)。下一步只在现有材料内逐条人工审核剩余主研究键、构建体祖先与家族/同源关系；对无法解决的记录保持隔离，不增加下载量或降低门槛。旧test已揭盲，不能调参；没有足够新独立组时保持无新盲测。A/B/C继续不启动，直到辅助监督通过准入且链路门禁完成。
 
+2026-10-28已完成10条缺主研究键结构entry的Crossref题名交叉核对，结果见[聚合报告](../data/manifests/data_first_clean_release_crossref_review_v2.json)。只有待人工核对的题名/作者候选，严格题名、年份和首作者一致项为0；候选未写入关系图，8条记录的研究键缺口与准入状态不变。按用户要求，本阶段提交推送后暂停；恢复工作时仍从原文、构建体祖先及家族/同源证据核对继续。
+
 生产入口已默认使用150k `SequencePairModel` CNN、`joint_split_v2`及manifest指纹门禁；旧`PairBaseline`保留显式回退和checkpoint兼容。训练checkpoint按validation group-macro F1选择；通用评价仅开放validation并核对训练/验证数据指纹。
 
 当前CNN工程选择、具体实现版本及局限见[基线决策](BASELINE_DECISION_V1.md)。文档同步审计见[DOCUMENTATION_AUDIT_V1.md](DOCUMENTATION_AUDIT_V1.md)。

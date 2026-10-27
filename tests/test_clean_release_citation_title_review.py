@@ -30,6 +30,8 @@ class CleanReleaseCitationTitleReviewTests(unittest.TestCase):
         matches = crossref_matches(article, response)
         self.assertEqual(len(matches), 2)
         self.assertTrue(matches[0]["strict_title_year_author_match"])
+        self.assertTrue(matches[1]["year_conflict"])
+        self.assertFalse(matches[1]["title_author_candidate_without_year_conflict"])
         self.assertFalse(matches[1]["strict_title_year_author_match"])
         self.assertEqual(normalize_title("RNA — A Study"), "rna a study")
 
@@ -43,6 +45,9 @@ class CleanReleaseCitationTitleReviewTests(unittest.TestCase):
         }]}}
         matches = crossref_matches(article, response)
         self.assertEqual(len(matches), 1)
+        self.assertFalse(matches[0]["years_comparable"])
+        self.assertFalse(matches[0]["year_conflict"])
+        self.assertTrue(matches[0]["title_author_candidate_without_year_conflict"])
         self.assertFalse(matches[0]["strict_title_year_author_match"])
 
 

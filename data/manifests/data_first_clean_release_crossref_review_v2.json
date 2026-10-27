@@ -1,0 +1,59 @@
+{
+  "audit": "clean-release-crossref-primary-citation-title-review-v2",
+  "created_at_utc": "2026-10-27T23:11:33.646138+00:00",
+  "scope": "Aggregate re-analysis of the saved 10 RCSB and Crossref responses. No network request was repeated; candidate DOI metadata remains unverified and local.",
+  "query_summary": {
+    "source": "Crossref REST API works search; local response re-analysis",
+    "entries_checked": 10,
+    "response_state_counts": {
+      "received": 10
+    },
+    "responses_with_sha256_verified": 10,
+    "entries_with_exact_title_match": 5,
+    "exact_title_matches_total": 6,
+    "entries_with_title_author_candidate_without_year_conflict": 4,
+    "title_author_candidate_count": 5,
+    "candidate_with_source_year_unknown_count": 5,
+    "candidate_with_year_match_count": 0,
+    "year_conflict_count": 0,
+    "matching_first_author_count": 5,
+    "entries_with_strict_title_year_author_match": 0,
+    "strict_title_year_author_matches_total": 0,
+    "candidate_doi_count": 5,
+    "strict_candidate_doi_count": 0,
+    "response_bytes_total": 49795
+  },
+  "decision": {
+    "candidate_dois_added_to_frozen_study_graph": 0,
+    "training_candidate_admission": 0,
+    "new_independent_test_admission": 0,
+    "criteria_changed_after_results": false,
+    "crossref_metadata_proves_construct_or_family_independence": false
+  },
+  "record_coverage": {
+    "records_with_all_related_primary_study_keys_before_crossref": 133,
+    "records_with_all_related_primary_study_keys_after_crossref": 133,
+    "records_still_missing_at_least_one_related_primary_study_key": 8
+  },
+  "local_only_detail": {
+    "ledger_path": "data\\manifests\\data_first_clean_release_crossref_review_v2.jsonl",
+    "ledger_rows": 10,
+    "ledger_sha256": "707113097001ee6a9db6ece6f4e5249f475e0a461341a8ddd6a163253d90b72d",
+    "raw_response_directory": "data\\raw\\primary_citation_crossref_review_v1"
+  },
+  "input_fingerprints": {
+    "rcsb_citation_review_v2_sha256": "a96fdec956fed48babefd61e46ca5395eec6df3b5fc96405e178750d50fec682",
+    "crossref_initial_aggregate_sha256": "e10ff3d16d6673149779bc67b322a5b33faa0112c5f93fcf2875ebbfc415e09c",
+    "crossref_local_detail_sha256": "e02b5432ca8ff6e7f7822b8b2e64ce1a06641960a2c7e030425859a01fa0481d"
+  },
+  "limitations": [
+    "Exact title and first-author agreement are bibliographic candidates; they do not replace manual primary-article review.",
+    "When source and Crossref publication years are both present they must agree; missing source year remains unknown and does not count as a mismatch, but still prevents the strict match category.",
+    "No candidate DOI is added to the frozen relation graph; all 8 records with at least one related entry lacking a primary-study key remain unresolved.",
+    "Construct ancestry, assay independence, evaluation blindness, and family/remote-homology independence remain unverified.",
+    "No labels, splits, model results, or training data were changed or inspected."
+  ],
+  "network_requests_repeated": false,
+  "test_predictions_read": false,
+  "training_started": false
+}

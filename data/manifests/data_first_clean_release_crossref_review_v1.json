@@ -1,0 +1,46 @@
+{
+  "audit": "clean-release-crossref-primary-citation-title-review-v1",
+  "created_at_utc": "2026-10-27T22:56:30.373705+00:00",
+  "scope": "Limited title cross-reference for RCSB primary article titles where local PDB records lack DOI/PubMed keys; candidate matches remain unverified pending manual review.",
+  "query_summary": {
+    "source": "Crossref REST API works search",
+    "entry_count": 10,
+    "response_state_counts": {
+      "crossref_response_received": 10
+    },
+    "http_200_responses": 10,
+    "responses_with_recorded_sha256": 10,
+    "primary_titles_present": 10,
+    "entries_with_exact_title_matches": 5,
+    "exact_title_matches_total": 6,
+    "entries_with_strict_title_year_author_match": 0,
+    "strict_title_year_author_matches_total": 0,
+    "entries_with_unique_strict_candidate_doi": 0,
+    "response_bytes_total": 49795
+  },
+  "decision": {
+    "crossref_matches_are_automatically_verified": false,
+    "primary_study_keys_added_to_frozen_relation_graph": 0,
+    "training_candidate_admission": 0,
+    "new_independent_test_admission": 0,
+    "construct_ancestry_or_homology_resolved": false
+  },
+  "local_only_detail": {
+    "ledger_path": "data\\manifests\\data_first_clean_release_crossref_review_v1.jsonl",
+    "ledger_rows": 10,
+    "ledger_sha256": "e02b5432ca8ff6e7f7822b8b2e64ce1a06641960a2c7e030425859a01fa0481d",
+    "raw_response_directory": "data\\raw\\primary_citation_crossref_review_v1"
+  },
+  "input_fingerprints": {
+    "rcsb_remote_citation_review_sha256": "787aa4f6990f4c8db0188f7a9d40fa6ca3e7cf7ce746a7b7cf30ce0e1e4bc401",
+    "prior_cif_metadata_audit_sha256": "f078332088975b02d3116d8aa7e502d586d09f968d7593b27f49aebc20c1c4e1"
+  },
+  "limitations": [
+    "Title similarity is not a primary-source citation verification; exact-title metadata matches must be reviewed against the article record and project source mapping.",
+    "No DOI from a title search is added to the frozen relation graph without that review.",
+    "This audit does not establish construct ancestry, assay independence, evaluation blindness, or remote-homology independence.",
+    "Only the existing unresolved citation set was queried; no bulk download, training, test evaluation, label change, or split change occurred."
+  ],
+  "test_predictions_read": false,
+  "training_started": false
+}
