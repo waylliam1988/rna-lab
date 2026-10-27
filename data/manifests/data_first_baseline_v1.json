@@ -1,0 +1,147 @@
+{
+  "manifest": "data-first-baseline-v1",
+  "created_at_utc": "2026-10-27T14:59:45.363261+00:00",
+  "status": "frozen_engineering_reference",
+  "model": {
+    "class": "rna2d.sequence_encoders.SequencePairModel",
+    "kind": "cnn",
+    "width": 113,
+    "hidden": 64,
+    "depth": 2,
+    "parameters": 150019,
+    "precision": "float32 eager, no autocast/compile",
+    "head": "common symmetric query-dot-product plus log-distance bias",
+    "loss": "balanced_masked_bce_from_run_controlled_experiment"
+  },
+  "training": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "epochs": 25,
+    "batch_size": 4,
+    "lr": 0.001,
+    "weight_decay": 0.01,
+    "gradient_clip": 1.0,
+    "checkpoint": "last epoch25 only, no validation selection"
+  },
+  "dataset": {
+    "path": "data/experimental/joint_split_v2",
+    "train_sha256": "4168f00f61d9a3330db33b45308fe247c6ba15fd1c50ce4b868559b78f3ffcb9",
+    "validation_sha256": "794e1cd6692eccfbad1212fa8e4246c2698eaede8fb686f8a502e52908451a71",
+    "test_sha256": "a2d58d8fd899799703cc82e38db755bbeb58f327bd7d2ed3289cbcf6d5cf6b9e",
+    "joint_manifest_sha256": "9e2ae4fd32bab3a288997c0d761ede1a423864d2fd0974c5745239f1dfbad92c",
+    "joint_validation_sha256": "30784a93d06c60ad968448fc82a0e6836a13ecea9e9d93c46442e1fad68c5da9",
+    "split_counts": {
+      "train": 88,
+      "validation": 10,
+      "test": 8
+    },
+    "groups": {
+      "train": 8,
+      "validation": 7,
+      "test": 4
+    },
+    "one_d_pretraining_enabled": false
+  },
+  "files": {
+    "model_source": {
+      "path": "src\\rna2d\\sequence_encoders.py",
+      "sha256": "2e214d1ea10950c2ef89590fd12360cdc18dbe5a5579065c84f4625319990e9f"
+    },
+    "comparison_runner": {
+      "path": "scripts\\run_encoder_comparison.py",
+      "sha256": "ce1a363973e9ff95c7124ccd41d6e17d54ed5426a3924d41cc81fd2ddeeb28c9"
+    },
+    "loss_source": {
+      "path": "scripts\\run_controlled_experiment.py",
+      "sha256": "12283ece17cf4f463d5e7fc4cb7cd74db115b0365e101669ead2724f7bd7a51a"
+    },
+    "training_source": {
+      "path": "src\\rna2d\\training.py",
+      "sha256": "4081b5765d38634e7dc5a7f88060c5720314dd0b347b8718468008c3361ffa9e"
+    },
+    "data_source": {
+      "path": "src\\rna2d\\data.py",
+      "sha256": "9f9c9bd41c0e226e6885fc1069d4617d6b02740f9b464464dc06354aa63cfdd2"
+    },
+    "protocol": {
+      "path": "data\\manifests\\encoder_comparison_protocol_v1.json",
+      "sha256": "807d89597ebb9063446483973731901bfa2a36a702fdfdbede1ac75f723c7a29"
+    },
+    "joint_manifest": {
+      "path": "data\\manifests\\joint_split_v2.json",
+      "sha256": "9e2ae4fd32bab3a288997c0d761ede1a423864d2fd0974c5745239f1dfbad92c"
+    },
+    "joint_validation": {
+      "path": "data\\manifests\\joint_split_v2_validation.json",
+      "sha256": "30784a93d06c60ad968448fc82a0e6836a13ecea9e9d93c46442e1fad68c5da9"
+    },
+    "train": {
+      "path": "data\\experimental\\joint_split_v2\\train.jsonl",
+      "sha256": "4168f00f61d9a3330db33b45308fe247c6ba15fd1c50ce4b868559b78f3ffcb9"
+    },
+    "validation": {
+      "path": "data\\experimental\\joint_split_v2\\validation.jsonl",
+      "sha256": "794e1cd6692eccfbad1212fa8e4246c2698eaede8fb686f8a502e52908451a71"
+    },
+    "test": {
+      "path": "data\\experimental\\joint_split_v2\\test.jsonl",
+      "sha256": "a2d58d8fd899799703cc82e38db755bbeb58f327bd7d2ed3289cbcf6d5cf6b9e"
+    }
+  },
+  "checkpoints": {
+    "42": {
+      "path": "runs\\encoder_comparison_v1_seed42\\cnn.pt",
+      "sha256": "b7a7204c0ac363118fccd7cde319b2526e8cd31fbe7ca3024eb06c52045336bd",
+      "report_sha256": "9814624c6c4abe935ab3ec4d905f54dd47a0147ced62bea47b2ba9623186e7e8",
+      "updates": 550,
+      "parameters": 150019,
+      "validation_macro_f1": 0.4091450327029075,
+      "reload_verified": true,
+      "test_evaluated": false
+    },
+    "43": {
+      "path": "runs\\encoder_comparison_v1_seed43\\cnn.pt",
+      "sha256": "cd2865c248319f724df31d74aca134c4eef2c5d7637e75e67c8d57118965af71",
+      "report_sha256": "00c45776c82a323aa96906074ad940f68328cbcd83c624cb335b357ab641bd42",
+      "updates": 550,
+      "parameters": 150019,
+      "validation_macro_f1": 0.4920892469599366,
+      "reload_verified": true,
+      "test_evaluated": false
+    },
+    "44": {
+      "path": "runs\\encoder_comparison_v1_seed44\\cnn.pt",
+      "sha256": "b4b4c6c6c5750cea0ad11ec5f33ceb495bbd2b3c45704ee5ee765c5999337717",
+      "report_sha256": "af7c801aeb4ebeb22decf78bc60492786336de2d4c26d6e74739560e97e7e559",
+      "updates": 550,
+      "parameters": 150019,
+      "validation_macro_f1": 0.39840434419381787,
+      "reload_verified": true,
+      "test_evaluated": false
+    }
+  },
+  "historical_boundaries": {
+    "paired_v0_2": {
+      "path": "data/experimental/paired_v0_2",
+      "status": "historical_pipeline_validation_only",
+      "training_default": false
+    },
+    "clean_release_v1": {
+      "path": "data/experimental/clean_release_v1",
+      "status": "evidence_pool_pending_joint_audit",
+      "training_split_ready": false
+    },
+    "joint_split_v2": {
+      "status": "approved_for_frozen_exploration_only",
+      "full_pool_not_approved": true
+    }
+  },
+  "limitations": [
+    "The old test is already exposed and cannot serve as a new blind test.",
+    "The 88/10/8 split is exploratory and not evidence of broad cross-family generalization.",
+    "This freeze records a reference; it does not start a new training run."
+  ]
+}

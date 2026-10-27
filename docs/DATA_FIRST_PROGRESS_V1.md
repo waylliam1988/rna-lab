@@ -13,12 +13,12 @@
 | ID | 工作 | 状态 | 产物/完成证据 | 下一动作或阻塞 |
 | --- | --- | --- | --- | --- |
 | D0 | 总路线与数据/损失/记录细则 | 完成 | [路线图](DATA_FIRST_ROADMAP_V1.md)、[执行细则](DATA_FIRST_EXECUTION_V1.md)；本次已核对模型、损失、mask与旧runner源码 | 文档方案，不表示实现完成 |
-| S0-1 | 冻结CNN源码、构造参数、原权重指纹 | 未开始 | 待生成data_first_baseline_v1.json | 逐项定位旧检查点并核对SHA256 |
-| S0-2 | 数据版本与政策对应、实验登记模板 | 未开始 | 待生成版本对应表及实验协议模板 | 对齐61条、176候选、88/10/8及历史1D计数 |
-| S1-1 | 1D/2D/辅助/历史评估联合关系表 | 未开始 | 待生成data_first_relations_v1.jsonl | 登记母本、构建体、同源、研究及未知项 |
-| S1-2 | 隔离决定与新开发/测试候选 | 未开始 | 待生成data_first_admission_v1.jsonl与审计报告 | 先确定问题及隔离规则，再决定去向 |
-| S2-1 | 待审直接实验2D分层复核 | 未开始 | 待生成复核/排除报告 | 不改旧标签，不合并历史计数 |
-| S2-2 | 一个比较辅助来源的有限试点 | 未开始 | 待生成来源、映射、正负未知监督及隔离审核 | 首批最多20条候选，按来源固定ID顺序取；不足不凑数；另按独立组和有效监督量判断训练可行性，不自动放行正式运行 |
+| S0-1 | 冻结CNN源码、构造参数、原权重指纹 | 完成 | `data/manifests/data_first_baseline_v1.json`，含源码/协议/数据/三种子检查点SHA256及重载证据 | 不重训；后续实验沿用该参照 |
+| S0-2 | 数据版本与政策对应、实验登记模板 | 完成 | 冻结清单的历史边界、joint_split_v2计数和`docs/DATA_FIRST_AUDIT_V1.md` | 旧61条仅历史；clean_release_v1仍待联合审计 |
+| S1-1 | 1D/2D/辅助/历史评估联合关系表 | 部分完成（首版） | `data/manifests/data_first_relations_v1.jsonl`，213826条登记；joint 1D unresolved记录保留原因 | profile显式映射、历史关系别名、辅助池关系仍待补 |
+| S1-2 | 隔离决定与新开发/测试候选 | 部分完成 | `data/manifests/data_first_admission_v1.jsonl`及`docs/DATA_FIRST_AUDIT_V1.md`；joint_split_v2去向已核验 | clean_release_v1的141条及新候选尚无新独立评估准入 |
+| S2-1 | 待审直接实验2D分层复核 | 完成（不可自动准入） | `data/manifests/joint_quarantine_audit_v1.json`、[审计说明](JOINT_QUARANTINE_AUDIT_V1.md)；70条全部保留隔离 | 新版本需补同源/母本/构建体/primary-study证据；不改当前冻结划分 |
+| S2-2 | 一个比较辅助来源的有限试点 | 完成（不可准入） | `data/manifests/data_first_comparative_pilot_v1.json`；固定前20条候选，20/20缺来源与质量核验 | 停止扩大该来源；补齐原始PDB/链、方法/覆盖、映射和隔离证据后另立版本 |
 | S3-1 | 辅助配对级mask入口与评价准入 | 未开始 | 待实现与契约检查 | 旧collate不能直接承载positive_only/部分标签；旧evaluate尚未排除无候选监督RNA，须新增准入清单与组级分母检查 |
 | S3-2 | 训练样本链路冒烟与重载 | 未开始 | 待生成训练链路报告 | 每条件一个种子最多5更新；B实验2+3、C辅助2+实验3，验证优化器重置和相同后段采样；不访问新测试，不接续冒烟权重 |
 | S4 | 正式A/B/C协议冻结 | 未开始 | 待生成data_first_abc_protocol_v1.json | 填U/Ua/Uf/delta/严重退步阈值、长度与分组等 |
@@ -33,6 +33,10 @@
 | --- | --- | --- | --- | --- |
 | 2026-10-27 | D0 | 阅读路线图、项目约定、基线决策、历史数据报告及当前模型/损失/组批/评价源码；新增执行细则及本表 | 文档已补数据用途、BCE、候选1D损失、A/B/C与续训规则；未修改训练代码、原始数据或权重，未执行新实验 | S0-1，核对基线指纹 |
 | 2026-10-27 | D0 / S6-L设计 | 按用户要求新增路线阶段6D及执行细则第8节：伙伴竞争公式、可靠负候选、稳定实现、契约检查、6次独立对照、评价及停止规则 | 仅更新文档；损失实现、lambda/预算冻结及训练均未开始，A/B/C仍固定BCE | 当前仍从S0-1继续，损失分支按进入条件执行 |
+| 2026-10-27 | S0-1 / S0-2 / S1-1 | 运行 `scripts/build_data_first_audit.py`，核对CNN源码/协议/训练与留出文件、三种子CNN检查点，并生成基线冻结、联合关系与逐记录去向清单；产物及SHA256见 `docs/DATA_FIRST_AUDIT_V1.md` 与 `docs/DATA_FIRST_AUDIT_V1.json` | S0完成；S1首版机器关系登记完成。joint_split_v2为88/10/8，1D为213473条quarantine；clean_release_v1的141条2D仍training_split_ready=false；未降低准入要求，未启动新训练 | 继续S1-2/S2：补独立实验候选与可追溯比较来源试点；辅助准入和链路通过前不冻结A/B/C |
+| 2026-10-27 | S0/S1验证 | `.venv3128/Scripts/python.exe -m unittest discover -s tests -v`；审计清单断言检查 | 82项测试通过；新清单计数/哈希断言通过；未读取旧test作选择，未启动A/B/C | 继续补逐条来源/映射/构建体关系审计；保持当前准入决定 |
+| 2026-10-27 | S2-2 | 对`bprna_pdb_candidates_NOT_GOLD.jsonl`按固定文件顺序抽取20条，生成可行性统计和准入决定 | 20/20 `provenance_verified=false`、`quality_verified=false`，原始PDB/链、方法/覆盖或提取策略待核验；结论为stop_and_quarantine，不是训练样本 | 不扩大该来源；补齐证据后另立版本，或归档不可行原因；A/B/C仍不启动 |
+| 2026-10-27 | S2-1 | 运行 `scripts/audit_joint_quarantine.py`，审计 `joint_split_v2/quarantine.jsonl` 的证据缺口 | 70/70均为`unverified_homology_or_primary_study`；64条缺homology component、9条study完整性不足、6条缺study ID；决定retain_quarantine，未移动记录 | 新版本补同源/研究/构建体证据；当前数据门禁不变，A/B/C仍不启动 |
 | 2026-10-27 | D0审阅补充 | 补齐新评价准入待实现状态、无监督RNA/空组分母检查、B/C两阶段短冒烟及试点训练可行性验收；同步总路线和任务表 | 仅文档修改；未实现评价逻辑、未训练或访问测试；本次按用户要求提交推送文档 | S0-1，核对基线指纹 |
 
 每次追加：日期/任务ID/实际动作/产物路径与哈希或检查命令/通过或失败/限制/下一步。技术失败不删行。文档检查不能写成模型测试通过。

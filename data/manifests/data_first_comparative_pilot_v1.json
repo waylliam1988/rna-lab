@@ -1,0 +1,27 @@
+{
+  "pilot": "comparative-source-feasibility-v1",
+  "source": "data/experimental/bprna_pdb_candidates_NOT_GOLD.jsonl",
+  "selection": "first 20 records in fixed file order; feasibility only, never training",
+  "candidate_count": 20,
+  "unique_sequence_sha256": 20,
+  "total_positive_pairs": 457,
+  "crossing_pair_records": 9,
+  "evidence_classes": [
+    "reported_pdb_derived_pairing"
+  ],
+  "provenance_verified": [
+    false
+  ],
+  "quality_verified": [
+    false
+  ],
+  "pending_reason_counts": {
+    "check_method_resolution_coverage": 20,
+    "check_pair_extractor_and_annotation_policy": 20,
+    "resolve_original_PDB_and_chain": 20
+  },
+  "decision": "stop_and_quarantine",
+  "reason": "All sampled records lack verified provenance and quality; original PDB/chain, method/resolution/coverage and extractor policy are unresolved.",
+  "training_allowed": false,
+  "next_action": "Do not expand or train from this source until each admitted record has source receipt, mapping audit, quality review, and joint isolation evidence."
+}
