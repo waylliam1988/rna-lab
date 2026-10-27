@@ -32,6 +32,17 @@ def group_macro_f1(details, rows):
     return statistics.mean(per_group.values()), per_group
 
 
+def group_macro_conflict_rate(details, rows):
+    group_by_id = {row["id"]: row["split_group_id"] for row in rows}
+    values = {}
+    for detail in details:
+        values.setdefault(group_by_id[detail["id"]], []).append(
+            detail["multi_partner_conflict_endpoint_rate"]
+        )
+    per_group = {group: statistics.mean(rates) for group, rates in values.items()}
+    return statistics.mean(per_group.values()), per_group
+
+
 def main() -> None:
     protocol_path = ROOT / "data/manifests/data_first_loss_protocol_v1.json"
     protocol = json.loads(protocol_path.read_text(encoding="utf-8"))
@@ -65,14 +76,33 @@ def main() -> None:
             model.load_state_dict(checkpoint["model"], strict=True)
             metrics, details = evaluate(model, loader, device, protocol["threshold"])
             group_macro, per_group = group_macro_f1(details, dataset.rows)
+            conflict_group_macro, conflict_per_group = group_macro_conflict_rate(details, dataset.rows)
             if abs(group_macro - result["validation_group_macro_f1"]) > protocol["reload_tolerance"]:
                 raise ValueError(f"Group macro changed after reload: {condition}/{seed}")
+            if abs(metrics["macro_multi_partner_conflict_endpoint_rate"] -
+                   result["validation"]["macro_multi_partner_conflict_endpoint_rate"]) > protocol["reload_tolerance"]:
+                raise ValueError(f"Multi-partner conflict rate changed after reload: {condition}/{seed}")
+            if any(abs(a["multi_partner_conflict_endpoint_rate"] - b["multi_partner_conflict_endpoint_rate"])
+                   > protocol["reload_tolerance"] for a, b in zip(details, result["details"])):
+                raise ValueError(f"Per-RNA conflict rates changed after reload: {condition}/{seed}")
+            if abs(conflict_group_macro -
+                   result["validation_group_macro_multi_partner_conflict_endpoint_rate"]) > protocol["reload_tolerance"]:
+                raise ValueError(f"Group macro conflict rate changed after reload: {condition}/{seed}")
+            expected_per_group = result["validation_per_group_multi_partner_conflict_endpoint_rate"]
+            if conflict_per_group.keys() != expected_per_group.keys() or any(
+                abs(conflict_per_group[group] - expected_per_group[group]) > protocol["reload_tolerance"]
+                for group in conflict_per_group
+            ):
+                raise ValueError(f"Per-group conflict rates changed after reload: {condition}/{seed}")
             if any(a["predicted_pairs"] != b["predicted_pairs"] for a, b in zip(details, result["details"])):
                 raise ValueError(f"Decoded predictions changed after reload: {condition}/{seed}")
             checks.append({
                 "condition": condition, "seed": seed,
                 "checkpoint_sha256": result["checkpoint_sha256"],
                 "validation_group_macro_f1": group_macro,
+                "validation_macro_multi_partner_conflict_endpoint_rate":
+                    metrics["macro_multi_partner_conflict_endpoint_rate"],
+                "validation_group_macro_multi_partner_conflict_endpoint_rate": conflict_group_macro,
                 "all_predictions_reproduced": True,
                 "test_accessed": False,
             })

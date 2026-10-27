@@ -43,7 +43,7 @@ def log_unexpected_failure():
         exc_type, exc, _ = sys.exc_info()
         if exc_type is not None:
             append_progress(
-                f"| 2026-10-27 | S6-L运行失败 | `{condition}` seed{seed}；protocol `{protocol_hash}`；异常 `{exc_type.__name__}: {exc}` | 失败运行目录保留，未触碰test；按冻结规则不自动重试 | 保留失败原因；该条件/种子不重跑 |")
+                f"| {datetime.now().astimezone().date().isoformat()} | S6-L运行失败 | `{condition}` seed{seed}；protocol `{protocol_hash}`；异常 `{exc_type.__name__}: {exc}` | 失败运行目录保留，未触碰test；按冻结规则不自动重试 | 保留失败原因；该条件/种子不重跑 |")
             globals()["ACTIVE_RUN"] = None
 
 
@@ -77,6 +77,17 @@ def group_macro_f1(details, rows):
     for detail in details:
         values.setdefault(group_by_id[detail["id"]], []).append(detail["f1"])
     per_group = {group: statistics.mean(scores) for group, scores in values.items()}
+    return statistics.mean(per_group.values()), per_group
+
+
+def group_macro_conflict_rate(details, rows):
+    group_by_id = {row["id"]: row["split_group_id"] for row in rows}
+    values = {}
+    for detail in details:
+        values.setdefault(group_by_id[detail["id"]], []).append(
+            detail["multi_partner_conflict_endpoint_rate"]
+        )
+    per_group = {group: statistics.mean(rates) for group, rates in values.items()}
     return statistics.mean(per_group.values()), per_group
 
 
@@ -129,7 +140,7 @@ def main() -> None:
     output.mkdir(parents=True, exist_ok=False)
     ACTIVE_RUN = (args.condition, args.seed, protocol_hash)
     append_progress(
-        f"| 2026-10-27 | S6-L运行启动 | `{args.condition}` seed{args.seed}；protocol `{protocol_hash}`；train `{protocol['data_sha256']['train']}`；validation `{protocol['data_sha256']['validation']}`；550更新 | 仅加载train/validation；检查点本地保存，test未打开 | 等待运行完成或保留异常 |")
+        f"| {datetime.now().astimezone().date().isoformat()} | S6-L运行启动 | `{args.condition}` seed{args.seed}；protocol `{protocol_hash}`；train `{protocol['data_sha256']['train']}`；validation `{protocol['data_sha256']['validation']}`；550更新 | 仅加载train/validation；检查点本地保存，test未打开 | 等待运行完成或保留异常 |")
     device = torch.device(args.device)
     torch.set_num_threads(protocol["torch_num_threads"])
     torch.backends.cudnn.benchmark = False
@@ -233,6 +244,7 @@ def main() -> None:
                                    shuffle=False, collate_fn=collate, num_workers=0)
     metrics, details = evaluate(model, validation_loader, device, protocol["threshold"])
     group_macro, per_group = group_macro_f1(details, validation_data.rows)
+    conflict_group_macro, conflict_per_group = group_macro_conflict_rate(details, validation_data.rows)
     result = {
         "condition": args.condition,
         "seed": args.seed,
@@ -247,13 +259,15 @@ def main() -> None:
         "validation": metrics,
         "validation_group_macro_f1": group_macro,
         "validation_per_group_f1": per_group,
+        "validation_group_macro_multi_partner_conflict_endpoint_rate": conflict_group_macro,
+        "validation_per_group_multi_partner_conflict_endpoint_rate": conflict_per_group,
         "details": details,
         "reload_verified_in_runner": False,
         "test_accessed": False,
     }
     write_json(output / "result.json", result)
     append_progress(
-        f"| 2026-10-27 | S6-L运行完成 | `{args.condition}` seed{args.seed}；550更新；schedule `{schedule_hash}`；checkpoint `{result['checkpoint_sha256']}` | validation group-macro F1={group_macro:.6f}；test未访问；独立重载待统一执行 | 继续冻结名单中的其他条件/种子，不改协议 |")
+        f"| {datetime.now().astimezone().date().isoformat()} | S6-L运行完成 | `{args.condition}` seed{args.seed}；550更新；schedule `{schedule_hash}`；checkpoint `{result['checkpoint_sha256']}` | validation group-macro F1={group_macro:.6f}；test未访问；独立重载待统一执行 | 继续冻结名单中的其他条件/种子，不改协议 |")
     global RUN_COMPLETED
     RUN_COMPLETED = True
     print(json.dumps({"condition": args.condition, "seed": args.seed,

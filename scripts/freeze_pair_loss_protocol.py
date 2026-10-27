@@ -68,7 +68,7 @@ def main() -> None:
         "summarizer": ROOT / "scripts/summarize_pair_loss_comparison.py",
         "coverage_auditor": ROOT / "scripts/audit_pair_loss_coverage.py",
     }
-    group_deltas = coverage["splits"]["validation"]["groups"]
+    validation_group_count = coverage["splits"]["validation"]["groups"]
     protocol = {
         "protocol": "data-first-pair-loss-v1",
         "status": "frozen_before_training",
@@ -103,8 +103,14 @@ def main() -> None:
         "checkpoint": "Final optimizer update only; no validation checkpoint selection or early stopping.",
         "threshold": 0.5,
         "primary_metric": "validation group-macro F1 (RNA F1 averaged within split_group_id, then equally across groups)",
-        "secondary_metrics": ["validation RNA-macro precision/recall/F1", "per-group F1", "per-RNA F1", "length strata", "training time", "peak allocated CUDA memory", "loss component and competition coverage"],
-        "validation_groups": group_deltas,
+        "secondary_metrics": ["validation RNA-macro precision/recall/F1", "per-group F1", "per-RNA F1", "length strata", "predecode legal-candidate multi-partner endpoint rate at threshold 0.5, using all sequence-compatible candidates irrespective of observed-label masks, averaged per RNA then per group", "training time", "peak allocated CUDA memory", "loss component and competition coverage"],
+        "validation_group_count": validation_group_count,
+        "multi_partner_conflict_diagnostic": {
+            "threshold_probability": 0.5,
+            "candidate_rule": "All AU/GC/GU-compatible pairs at sequence separation >=4, independent of observed-label masks and pair truth.",
+            "conflict_rule": "An endpoint is conflicting when at least two legal partners have sigmoid score >= threshold_probability.",
+            "aggregation": "Conflict endpoints divided by all nucleotides per RNA, then arithmetic mean within group, then equal mean across validation groups.",
+        },
         "gate": {
             "delta_loss": 0.02,
             "delta_rationale": "Predeclared minimum practical gain of two absolute F1 points for continuation; set as an engineering utility threshold before any formal run, not estimated from the outcomes.",

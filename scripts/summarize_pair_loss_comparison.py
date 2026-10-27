@@ -50,6 +50,17 @@ def main() -> None:
         bce = statistics.mean(r["validation_per_group_f1"][group] for r in results["bce"])
         comp = statistics.mean(r["validation_per_group_f1"][group] for r in results["bce_competition"])
         per_group_delta[group] = comp - bce
+    conflict_rate_by_group_delta = {}
+    for group in sorted(results["bce"][0]["validation_per_group_multi_partner_conflict_endpoint_rate"]):
+        bce = statistics.mean(
+            r["validation_per_group_multi_partner_conflict_endpoint_rate"][group]
+            for r in results["bce"]
+        )
+        comp = statistics.mean(
+            r["validation_per_group_multi_partner_conflict_endpoint_rate"][group]
+            for r in results["bce_competition"]
+        )
+        conflict_rate_by_group_delta[group] = comp - bce
     improved_seeds = sum(delta > 0 for delta in seed_deltas.values())
     improved_groups = sum(delta > 0 for delta in per_group_delta.values())
     severe_group_regressions = {g: d for g, d in per_group_delta.items() if d < -protocol["gate"]["severe_group_regression_max"]}
@@ -69,6 +80,15 @@ def main() -> None:
                 "validation_group_macro_f1_mean": statistics.mean(r["validation_group_macro_f1"] for r in rows),
                 "validation_group_macro_f1_stdev": statistics.stdev(r["validation_group_macro_f1"] for r in rows),
                 "validation_macro_f1_mean": statistics.mean(r["validation"]["macro_f1"] for r in rows),
+                "validation_group_macro_multi_partner_conflict_endpoint_rate_mean": statistics.mean(
+                    r["validation_group_macro_multi_partner_conflict_endpoint_rate"] for r in rows
+                ),
+                "validation_group_macro_multi_partner_conflict_endpoint_rate_stdev": statistics.stdev(
+                    r["validation_group_macro_multi_partner_conflict_endpoint_rate"] for r in rows
+                ),
+                "validation_macro_multi_partner_conflict_endpoint_rate_mean": statistics.mean(
+                    r["validation"]["macro_multi_partner_conflict_endpoint_rate"] for r in rows
+                ),
                 "parameters": rows[0]["parameters"],
                 "total_updates_per_seed": sorted({r["updates"] for r in rows}),
                 "sample_order_hashes": {str(r["seed"]): r["sample_order_sha256"] for r in rows},
@@ -77,6 +97,8 @@ def main() -> None:
         "seed_deltas_group_macro_f1": seed_deltas,
         "mean_seed_delta": mean_delta,
         "per_group_delta_competition_minus_bce": per_group_delta,
+        "per_group_multi_partner_conflict_endpoint_rate_delta_competition_minus_bce":
+            conflict_rate_by_group_delta,
         "improved_seeds": improved_seeds,
         "improved_groups": improved_groups,
         "severe_group_regressions": severe_group_regressions,

@@ -45,6 +45,8 @@
 | 2026-10-27 | S6-L候选代码 | 新增 `src/rna2d/losses.py`，把既有正负类平衡BCE抽为共享函数，并实现未启用的可选伙伴竞争loss；`train_baseline.py`和旧比较runner改用同一BCE | 专项契约8项、全套90项测试通过；baseline与controlled-runner `--help` 导入、Python compile、`git diff --check`通过。尚未跑任何效果实验。BCE共享实现是采用的默认实现路径；伙伴竞争仅候选，契约通过但无开发收益证据，未作为可选训练配置、未默认启用 | 保持BCE默认；数据主线/协议通过后再决定是否冻结6次效果对照 |
 | 2026-10-27 | D0审阅补充（历史） | 补齐新评价准入待实现状态、无监督RNA/空组分母检查、B/C两阶段短冒烟及试点训练可行性验收 | 文档修改；未实现评价逻辑、未训练或访问测试；该行原先“下一步S0-1”已由后续S0/S1/S2记录完成，不再代表当前续接位置 | 见任务表的S1-2、S2-1、S2-2状态 |
 | 2026-10-27 | S6-L工具阶段验证 | `.venv3128/Scripts/python.exe -m unittest discover -s tests -v`、新增脚本`py_compile`、`git diff --check`；修正运行器预检失败日志边界 | 94项测试通过；coverage仅使用joint_split_v2 train/validation，工具静态检查未发现test数据入口；未启动训练、未读取test | 提交并推送覆盖审计与六次运行工具阶段；之后单独冻结并推送正式protocol，再依照明确授权决定是否运行 |
+| 2026-10-28 | S6-L评价诊断修复 | 将不受观测真值mask影响的合法候选多伙伴端点率接入共享`evaluate`，加入逐RNA/逐组统计、独立重载核验和4项契约测试；运行器日志改用本地日期 | 98项测试、Python编译和`git diff --check`通过；未知位置仍可进入诊断，F1评价范围未改变；尚未冻结protocol或训练 | 提交并推送诊断修复；随后重新生成并审阅冻结protocol |
+| 2026-10-28 | S6-L验证命令失败与纠正 | `python -m unittest tests.test_training_metrics`因`tests`不是可导入包而失败；改用`python -m unittest discover -s tests -v`复跑 | 首次失败仅为测试发现器调用错误，没有执行训练或读取数据；修正调用后98项全部通过 | 保留本次修复并推送；返回S1未完成的profile/历史关系审计，再决定损失协议的冻结时点 |
 
 每次追加：日期/任务ID/实际动作/产物路径与哈希或检查命令/通过或失败/限制/下一步。技术失败不删行。文档检查不能写成模型测试通过。
 

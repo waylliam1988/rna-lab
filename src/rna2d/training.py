@@ -1,5 +1,6 @@
 import hashlib
 import json
+import math
 import random
 from pathlib import Path
 import torch
@@ -51,6 +52,32 @@ def collate(rows):
     return tokens, labels, mask, rows
 
 
+def multi_partner_conflict_diagnostic(scores, sequence, threshold=0.5):
+    """Count endpoints scoring at least two legal partners above threshold.
+
+    This diagnostic deliberately uses every canonical, minimum-separation
+    candidate, independent of observed-label masks or the true pair set. The
+    rate denominator is every nucleotide in the sequence.
+    """
+    n = len(sequence)
+    if n == 0 or len(scores) != n or any(len(row) != n for row in scores):
+        raise ValueError("Scores must be a non-empty square matrix matching the sequence")
+    if not math.isfinite(threshold) or not 0 <= threshold <= 1:
+        raise ValueError("Probability threshold must be finite and between 0 and 1")
+    conflict_endpoints = 0
+    for i in range(n):
+        high_scoring_partners = sum(
+            float(scores[i][j]) >= threshold
+            for j in range(n)
+            if abs(i - j) >= 4 and sequence[i] + sequence[j] in CANONICAL
+        )
+        conflict_endpoints += high_scoring_partners >= 2
+    return {
+        "multi_partner_conflict_endpoints": int(conflict_endpoints),
+        "multi_partner_conflict_endpoint_rate": conflict_endpoints / n,
+    }
+
+
 @torch.no_grad()
 def evaluate(model, loader, device, threshold=0.5):
     model.eval()
@@ -63,8 +90,10 @@ def evaluate(model, loader, device, threshold=0.5):
             truth = observable_pairs(r['pairs'], r['observed_mask'])
             metrics = pair_metrics(assessed_pred, truth)
             cross = pair_metrics(crossing_pairs(assessed_pred), crossing_pairs(truth))
+            conflict = multi_partner_conflict_diagnostic(matrix, r['sequence'], threshold)
             details.append({'id': r['id'], 'length': len(r['sequence']), **metrics,
                             'crossing': cross, 'predicted_pairs': pred, 'evaluated_predicted_pairs': assessed_pred,
+                            **conflict,
                             'evaluated_position_fraction': sum(r['observed_mask']) / len(r['observed_mask']),
                             'true_crossing_pairs': len(crossing_pairs(truth))})
             tp += metrics['tp']; fp += metrics['fp']; fn += metrics['fn']
@@ -75,6 +104,8 @@ def evaluate(model, loader, device, threshold=0.5):
                'macro_f1': sum(r['f1'] for r in details) / len(details),
                'macro_precision': sum(r['precision'] for r in details) / len(details),
                'macro_recall': sum(r['recall'] for r in details) / len(details),
+               'macro_multi_partner_conflict_endpoint_rate':
+                   sum(r['multi_partner_conflict_endpoint_rate'] for r in details) / len(details),
                'micro_f1': 2 * tp / (2 * tp + fp + fn) if 2 * tp + fp + fn else 1.0,
                'crossing_macro_f1_on_positive_samples':
                    sum(r['crossing']['f1'] for r in cross_rows) / len(cross_rows) if cross_rows else None,
