@@ -6,6 +6,8 @@
 
 六项初步验证已完成，见[固定协议实验结果](docs/EXPERIMENT_RESULTS_V1.md)：176条配对标签中106条进入保守隔离划分，88/10/8；三种子比较与封存测试均未支持复杂机制稳定增益。RWKV状态预测未胜过持久性基线，不称已验证的世界模型。
 
+上述结果针对新写的2D适配器，不能替代原Nezha完整体系的验证。[迁移边界核查](docs/NEZHA_FIDELITY_AND_3D_PLAN.md)后，已恢复[原物理状态、观测和反馈接口](docs/PHYSICAL_INTERFACE_V1.md)，并完成[静态3D联合隔离](docs/THREE_D_ISOLATION_V1.md)。新物理预测实验按[预先冻结协议](docs/PHYSICAL_FORECAST_PROTOCOL_V1.md)分别检查训练预算和展开长度；模拟转移与实验坐标明确区分。
+
 **配对监督只用通过审核的直接实验证据。** 扩充获取、官方来源复核及精细清洗见[本轮发布报告](docs/CLEAN_RELEASE_V1_REPORT.md)和[精细清洗协议](docs/FINE_CLEANING_PROTOCOL_V2.md)。实测反应性与精确配对标签分开计数，未知/未核验记录隔离，不用模型预测或补全值充数。
 
 新清洗池位于 `data/experimental/clean_release_v1`，尚未完成联合同源/研究/构建体隔离，不自动用于训练。原61条、49/6/6划分的[链路验证版本](docs/DATASET_V0_2_REPORT.md)保留，默认训练路径不变；此前旧基准烟测不代表严格实验数据下的效果。
