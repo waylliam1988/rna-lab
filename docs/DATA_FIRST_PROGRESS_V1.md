@@ -25,7 +25,7 @@
 | S5-1 | 9次正式运行与全种子开发报告 | 未开始 | 无新运行 | S0–S4通过后才启动 |
 | S5-2 | 可用时的新独立测试 | 未开始 | 没有本轮新盲测证据 | 无新独立组时保留未执行及原因，不制造测试集 |
 | S6 | 序列预训练/反应性/架构/3D单项分支 | 未开始 | 仅有进入条件和候选方案 | 不与首轮辅助2D叠加，触发后另立协议 |
-| S6-L | 固定数据：BCE与BCE＋伙伴竞争损失对照 | v1因验证维度故障停止；共享评价修复及111项测试通过；v2版本化工具已验证，待冻结协议 | v1失败产物保留在`runs/data_first_loss_v1/bce/seed42/`，checkpoint SHA256 `1c356a7c230e5683ddea35e36341a0fd84f6cd91ca5ca52b5327ab61c8aa7536`；修复后训练/验证/核验/汇总入口接受独立协议路径并写独立v2目录 | 候选状态保留；开发门槛未评估；未可选合入；默认仍为BCE。v1不重跑；冻结v2后从头运行配对6次 |
+| S6-L | 固定数据：BCE与BCE＋伙伴竞争损失对照 | v1因验证维度故障停止；评价修复及111项测试通过；v2协议已冻结，训练未开始 | v1失败产物保留在`runs/data_first_loss_v1/bce/seed42/`，checkpoint SHA256 `1c356a7c230e5683ddea35e36341a0fd84f6cd91ca5ca52b5327ab61c8aa7536`；v2协议`data/manifests/data_first_loss_protocol_v2.json` SHA256 `46db4520d0bcfc15319f96def77258b4c62ec612837d34caa2a281c098a02659`，源码/数据/coverage指纹已核验 | 候选状态保留；开发门槛未评估；未可选合入；默认仍为BCE。v1不重跑；按v2从头运行配对6次 |
 
 ## 执行日志（只追加）
 
@@ -67,6 +67,7 @@
 | 2026-10-28 | S6-L停止判定 | seed42已完成550次更新并写出checkpoint（SHA256 `1c356a7c230e5683ddea35e36341a0fd84f6cd91ca5ca52b5327ab61c8aa7536`）；验证阶段短序列与批次补齐分数矩阵尺寸不匹配，未写出`result.json` | 已确认是evaluation诊断输入长度契约问题；冻结协议要求不重试或改阈值/协议，故不启动其余5次（同一评价代码会触发相同技术失败）。未访问test，不能给出效果结论 | 提交并推送失败留痕；后续若修复评价代码，需另立协议版本，不能补跑本版 |
 | 2026-10-28 | S6-L共享评价变长批次修复 | `evaluate`对模型输出逐条裁剪到真实序列长度，再执行解码和多伙伴诊断；新增`test_evaluation_crops_batch_padding_per_sequence` | 定向评价测试5项通过，全套111项测试通过；`py_compile`及`git diff --check`通过。仅测试合成短/长序列，未读取test、未重跑v1、未触碰失败checkpoint；v1仍停止，历史错误留痕保留 | 提交并推送正确性修复；再为相同预声明单因素比较建立全新协议版本，六次运行均从头开始 |
 | 2026-10-28 | S6-L v2运行工具版本化 | 冻结脚本支持只生成v2；训练、独立核验和汇总脚本接受显式协议路径，并按版本隔离runs及manifest；执行细则记录v1失败和v2重启边界 | 111项测试、脚本帮助/导入、Python编译和`git diff --check`通过；v2流程沿用已冻结的数据/损失/预算/门槛，不读取test，不复用v1 checkpoint/指标 | 提交并推送版本化工具；随后冻结v2协议及源码指纹，再启动六次正式配对运行 |
+| 2026-10-28 | S6-L v2协议冻结 | 运行`scripts/freeze_pair_loss_protocol.py --version v2`，生成`data/manifests/data_first_loss_protocol_v2.json`（SHA256 `46db4520d0bcfc15319f96def77258b4c62ec612837d34caa2a281c098a02659`）；核对覆盖审计、train/validation、模型/损失/训练/采样及运行工具源码指纹 | `frozen_before_training`；仍为lambda=0.05、seed 42/43/44、每条件550更新、共6次；v2明确不复用v1 checkpoint/指标。数据与10个源码指纹全部匹配，test访问仍禁止；未启动训练 | 提交并推送v2协议阶段；之后按冻结顺序启动六次运行，每个条件/seed仅一次 |
 每次追加：日期/任务ID/实际动作/产物路径与哈希或检查命令/通过或失败/限制/下一步。技术失败不删行。文档检查不能写成模型测试通过。
 
 本次文档核验：PowerShell检查6个变更文档的本地Markdown链接，缺失0项；`git diff --check`通过。首次Python链接检查因当前终端找不到python命令未执行，随后使用PowerShell完成同项检查。未运行模型测试。
