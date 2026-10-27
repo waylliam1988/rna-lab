@@ -1,0 +1,1383 @@
+{
+  "seed": 43,
+  "phase": "static",
+  "protocol_sha256": "e9a2816ee4e054d984175c59d5fef3ca7e52ef67156ba493cec528d67be95c0a",
+  "runner_sha256": "60f4540b72d84073b5340a28a1544cb0b6a4d3cb5135eab6b2d1d564275c28a8",
+  "model_sha256": "6f50bcd04274edb77c94fa319857fd61c2d8c98bcbd1d4a3b83625613339166a",
+  "baselines": {
+    "persistence": [
+      {
+        "horizon": 1,
+        "mse_by_channel": [
+          1.4978510307628312e-06,
+          0.0,
+          0.0,
+          9.712963219499215e-06,
+          7.085218953761796e-07
+        ],
+        "standardized_dynamic_mse": 24.682790756225586,
+        "skill_vs_persistence": 0.0,
+        "sign_accuracy_by_dynamic_channel": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "per_group": [
+          {
+            "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+            "standardized_dynamic_mse": 17.302642822265625,
+            "skill": 0.0
+          },
+          {
+            "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+            "standardized_dynamic_mse": 41.20226287841797,
+            "skill": 0.0
+          },
+          {
+            "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+            "standardized_dynamic_mse": 21.46957015991211,
+            "skill": 0.0
+          },
+          {
+            "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+            "standardized_dynamic_mse": 12.081720352172852,
+            "skill": 0.0
+          },
+          {
+            "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+            "standardized_dynamic_mse": 31.357749938964844,
+            "skill": 0.0
+          }
+        ]
+      },
+      {
+        "horizon": 4,
+        "mse_by_channel": [
+          3.4534554288256913e-05,
+          0.0,
+          0.0,
+          0.0005789822316728532,
+          1.4297843335953075e-05
+        ],
+        "standardized_dynamic_mse": 18.033157348632812,
+        "skill_vs_persistence": 0.0,
+        "sign_accuracy_by_dynamic_channel": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "per_group": [
+          {
+            "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+            "standardized_dynamic_mse": 10.222213745117188,
+            "skill": 0.0
+          },
+          {
+            "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+            "standardized_dynamic_mse": 43.37718963623047,
+            "skill": 0.0
+          },
+          {
+            "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+            "standardized_dynamic_mse": 12.434380531311035,
+            "skill": 0.0
+          },
+          {
+            "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+            "standardized_dynamic_mse": 9.8679838180542,
+            "skill": 0.0
+          },
+          {
+            "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+            "standardized_dynamic_mse": 14.264022827148438,
+            "skill": 0.0
+          }
+        ]
+      },
+      {
+        "horizon": 8,
+        "mse_by_channel": [
+          0.00021646241657435894,
+          0.0,
+          0.0,
+          0.0031624273397028446,
+          7.914235902717337e-05
+        ],
+        "standardized_dynamic_mse": 18.67619514465332,
+        "skill_vs_persistence": 0.0,
+        "sign_accuracy_by_dynamic_channel": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "per_group": [
+          {
+            "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+            "standardized_dynamic_mse": 10.266907691955566,
+            "skill": 0.0
+          },
+          {
+            "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+            "standardized_dynamic_mse": 53.99137878417969,
+            "skill": 0.0
+          },
+          {
+            "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+            "standardized_dynamic_mse": 10.295387268066406,
+            "skill": 0.0
+          },
+          {
+            "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+            "standardized_dynamic_mse": 9.23600959777832,
+            "skill": 0.0
+          },
+          {
+            "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+            "standardized_dynamic_mse": 9.591278076171875,
+            "skill": 0.0
+          }
+        ]
+      },
+      {
+        "horizon": 16,
+        "mse_by_channel": [
+          0.0016967691481113434,
+          0.0,
+          0.0,
+          0.014706484973430634,
+          0.000608769478276372
+        ],
+        "standardized_dynamic_mse": 24.75676155090332,
+        "skill_vs_persistence": 0.0,
+        "sign_accuracy_by_dynamic_channel": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "per_group": [
+          {
+            "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+            "standardized_dynamic_mse": 12.535462379455566,
+            "skill": 0.0
+          },
+          {
+            "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+            "standardized_dynamic_mse": 86.86018371582031,
+            "skill": 0.0
+          },
+          {
+            "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+            "standardized_dynamic_mse": 10.337584495544434,
+            "skill": 0.0
+          },
+          {
+            "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+            "standardized_dynamic_mse": 7.602115154266357,
+            "skill": 0.0
+          },
+          {
+            "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+            "standardized_dynamic_mse": 6.448463439941406,
+            "skill": 0.0
+          }
+        ]
+      }
+    ],
+    "linear": [
+      {
+        "horizon": 1,
+        "mse_by_channel": [
+          2.9921532540772467e-08,
+          0.0,
+          0.0,
+          5.846179828962168e-06,
+          5.372472396588297e-09
+        ],
+        "standardized_dynamic_mse": 0.45609784280285853,
+        "skill_vs_persistence": 0.9815216258442,
+        "sign_accuracy_by_dynamic_channel": [
+          1.0,
+          0.8,
+          1.0
+        ],
+        "per_group": [
+          {
+            "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+            "standardized_dynamic_mse": 0.29324906795247946,
+            "skill": 0.9830517759070241
+          },
+          {
+            "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+            "standardized_dynamic_mse": 0.6151303384663896,
+            "skill": 0.9850704719718538
+          },
+          {
+            "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+            "standardized_dynamic_mse": 0.5591498382153944,
+            "skill": 0.973956169869696
+          },
+          {
+            "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+            "standardized_dynamic_mse": 0.17840890060525763,
+            "skill": 0.9852331542690299
+          },
+          {
+            "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+            "standardized_dynamic_mse": 0.6345510687747709,
+            "skill": 0.9797641390083832
+          }
+        ]
+      },
+      {
+        "horizon": 4,
+        "mse_by_channel": [
+          4.863435321705571e-06,
+          0.0,
+          0.0,
+          0.000870008665882093,
+          5.594140970954785e-07
+        ],
+        "standardized_dynamic_mse": 2.7666084130225084,
+        "skill_vs_persistence": 0.8465821398030302,
+        "sign_accuracy_by_dynamic_channel": [
+          1.0,
+          0.4,
+          1.0
+        ],
+        "per_group": [
+          {
+            "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+            "standardized_dynamic_mse": 1.1564054837971363,
+            "skill": 0.8868732827711108
+          },
+          {
+            "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+            "standardized_dynamic_mse": 3.361888694427549,
+            "skill": 0.9224963921678422
+          },
+          {
+            "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+            "standardized_dynamic_mse": 4.6525356244589835,
+            "skill": 0.6258329385413752
+          },
+          {
+            "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+            "standardized_dynamic_mse": 0.7056196760653636,
+            "skill": 0.9284940379842962
+          },
+          {
+            "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+            "standardized_dynamic_mse": 3.9565925863635107,
+            "skill": 0.722617340542038
+          }
+        ]
+      },
+      {
+        "horizon": 8,
+        "mse_by_channel": [
+          6.873556367451165e-05,
+          0.0,
+          0.0,
+          0.004108855050540322,
+          8.480538908824572e-06
+        ],
+        "standardized_dynamic_mse": 3.8837968507154303,
+        "skill_vs_persistence": 0.7920456056153763,
+        "sign_accuracy_by_dynamic_channel": [
+          0.9333333333333332,
+          0.26666666666666666,
+          1.0
+        ],
+        "per_group": [
+          {
+            "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+            "standardized_dynamic_mse": 2.633158821256209,
+            "skill": 0.7435295124627088
+          },
+          {
+            "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+            "standardized_dynamic_mse": 9.765781218685895,
+            "skill": 0.8191233223044228
+          },
+          {
+            "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+            "standardized_dynamic_mse": 3.972868165901357,
+            "skill": 0.6141118286803884
+          },
+          {
+            "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+            "standardized_dynamic_mse": 1.3268998776304248,
+            "skill": 0.8563340733264716
+          },
+          {
+            "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+            "standardized_dynamic_mse": 1.7202761701032632,
+            "skill": 0.8206416124690371
+          }
+        ]
+      },
+      {
+        "horizon": 16,
+        "mse_by_channel": [
+          0.0009300065809157845,
+          0.0,
+          0.0,
+          0.017275307442367473,
+          0.0001746756277320664
+        ],
+        "standardized_dynamic_mse": 9.691241064563892,
+        "skill_vs_persistence": 0.6085416485255003,
+        "sign_accuracy_by_dynamic_channel": [
+          0.7333333333333333,
+          0.4333333333333333,
+          1.0
+        ],
+        "per_group": [
+          {
+            "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+            "standardized_dynamic_mse": 6.041442071805873,
+            "skill": 0.518051916321234
+          },
+          {
+            "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+            "standardized_dynamic_mse": 32.486834025638025,
+            "skill": 0.6259870445136875
+          },
+          {
+            "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+            "standardized_dynamic_mse": 6.801048014914119,
+            "skill": 0.3421047230283424
+          },
+          {
+            "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+            "standardized_dynamic_mse": 1.6271717687419298,
+            "skill": 0.7859580214555484
+          },
+          {
+            "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+            "standardized_dynamic_mse": 1.4997094417195205,
+            "skill": 0.7674315043130419
+          }
+        ]
+      }
+    ],
+    "train_mean_change": [
+      {
+        "horizon": 1,
+        "mse_by_channel": [
+          2.291971270551585e-07,
+          0.0,
+          0.0,
+          1.4111026757746004e-05,
+          7.923500788820093e-08
+        ],
+        "standardized_dynamic_mse": 3.513477087020874,
+        "skill_vs_persistence": 0.8576547878349334,
+        "sign_accuracy_by_dynamic_channel": [
+          1.0,
+          0.6,
+          1.0
+        ],
+        "per_group": [
+          {
+            "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+            "standardized_dynamic_mse": 0.8480046391487122,
+            "skill": 0.9509898777973114
+          },
+          {
+            "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+            "standardized_dynamic_mse": 10.2307767868042,
+            "skill": 0.7516938131045431
+          },
+          {
+            "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+            "standardized_dynamic_mse": 0.3309917747974396,
+            "skill": 0.9845832137144754
+          },
+          {
+            "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+            "standardized_dynamic_mse": 5.037328720092773,
+            "skill": 0.5830619669005309
+          },
+          {
+            "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+            "standardized_dynamic_mse": 1.1202852725982666,
+            "skill": 0.9642740542679623
+          }
+        ]
+      },
+      {
+        "horizon": 4,
+        "mse_by_channel": [
+          7.867148269724566e-06,
+          0.0,
+          0.0,
+          0.0007976748165674508,
+          2.06167919714062e-06
+        ],
+        "standardized_dynamic_mse": 4.332264423370361,
+        "skill_vs_persistence": 0.7597611810502606,
+        "sign_accuracy_by_dynamic_channel": [
+          1.0,
+          0.2,
+          1.0
+        ],
+        "per_group": [
+          {
+            "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+            "standardized_dynamic_mse": 0.7095427513122559,
+            "skill": 0.9305881515487601
+          },
+          {
+            "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+            "standardized_dynamic_mse": 13.918465614318848,
+            "skill": 0.6791293827229979
+          },
+          {
+            "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+            "standardized_dynamic_mse": 2.969233989715576,
+            "skill": 0.7612077270565476
+          },
+          {
+            "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+            "standardized_dynamic_mse": 1.214160442352295,
+            "skill": 0.8769596236942647
+          },
+          {
+            "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+            "standardized_dynamic_mse": 2.849919319152832,
+            "skill": 0.8002022743732129
+          }
+        ]
+      },
+      {
+        "horizon": 8,
+        "mse_by_channel": [
+          7.521042425651103e-05,
+          0.0,
+          0.0,
+          0.0018210150301456451,
+          1.5707801139797084e-05
+        ],
+        "standardized_dynamic_mse": 4.392125606536865,
+        "skill_vs_persistence": 0.7648276015259855,
+        "sign_accuracy_by_dynamic_channel": [
+          0.9333333333333332,
+          0.9333333333333333,
+          1.0
+        ],
+        "per_group": [
+          {
+            "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+            "standardized_dynamic_mse": 0.5063208937644958,
+            "skill": 0.9506841875902698
+          },
+          {
+            "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+            "standardized_dynamic_mse": 19.14397430419922,
+            "skill": 0.6454253487260693
+          },
+          {
+            "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+            "standardized_dynamic_mse": 0.9511158466339111,
+            "skill": 0.9076172831706852
+          },
+          {
+            "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+            "standardized_dynamic_mse": 0.659032940864563,
+            "skill": 0.9286452732765577
+          },
+          {
+            "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+            "standardized_dynamic_mse": 0.7001851201057434,
+            "skill": 0.9269977249595911
+          }
+        ]
+      },
+      {
+        "horizon": 16,
+        "mse_by_channel": [
+          0.0008811621810309589,
+          0.0,
+          0.0,
+          0.008615987375378609,
+          0.00020980206318199635
+        ],
+        "standardized_dynamic_mse": 9.29695987701416,
+        "skill_vs_persistence": 0.6244678506153429,
+        "sign_accuracy_by_dynamic_channel": [
+          0.7333333333333333,
+          0.7666666666666667,
+          1.0
+        ],
+        "per_group": [
+          {
+            "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+            "standardized_dynamic_mse": 1.0431008338928223,
+            "skill": 0.9167880049161676
+          },
+          {
+            "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+            "standardized_dynamic_mse": 42.132568359375,
+            "skill": 0.51493806993064
+          },
+          {
+            "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+            "standardized_dynamic_mse": 1.3229525089263916,
+            "skill": 0.8720249871237722
+          },
+          {
+            "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+            "standardized_dynamic_mse": 0.8026409149169922,
+            "skill": 0.8944187375974508
+          },
+          {
+            "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+            "standardized_dynamic_mse": 1.183529019355774,
+            "skill": 0.816463405526181
+          }
+        ]
+      }
+    ]
+  },
+  "results": [
+    {
+      "kind": "ghost",
+      "profile": "keep_static_no_geom",
+      "initial_weights_sha256": "7ec5f2ca00ccbeea953ff27f3c3f37f1f6adb6cadb438c8b81e4a6680704be02",
+      "parameters": 4085253,
+      "last50_train_loss": 0.1778017635643482,
+      "validation": [
+        {
+          "horizon": 1,
+          "mse_by_channel": [
+            8.212325105871522e-08,
+            0.0,
+            0.0,
+            2.4743880394075598e-05,
+            3.623963603696205e-08
+          ],
+          "standardized_dynamic_mse": 1.8566083037424892,
+          "skill_vs_persistence": 0.9247812647249295,
+          "sign_accuracy_by_dynamic_channel": [
+            1.0,
+            0.6,
+            1.0
+          ],
+          "per_group": [
+            {
+              "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+              "standardized_dynamic_mse": 0.6487923691782629,
+              "skill": 0.9625032790746062
+            },
+            {
+              "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+              "standardized_dynamic_mse": 5.245042971022458,
+              "skill": 0.8727001236194275
+            },
+            {
+              "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+              "standardized_dynamic_mse": 0.3474589751205931,
+              "skill": 0.9838162118508843
+            },
+            {
+              "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+              "standardized_dynamic_mse": 1.813848226514312,
+              "skill": 0.849868381849436
+            },
+            {
+              "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+              "standardized_dynamic_mse": 1.2278989768768205,
+              "skill": 0.9608422485903223
+            }
+          ]
+        },
+        {
+          "horizon": 4,
+          "mse_by_channel": [
+            6.641747515705194e-07,
+            0.0,
+            0.0,
+            0.00034947807563656577,
+            1.2212878009424875e-06
+          ],
+          "standardized_dynamic_mse": 2.0196088086185298,
+          "skill_vs_persistence": 0.8880058123170734,
+          "sign_accuracy_by_dynamic_channel": [
+            1.0,
+            0.7666666666666667,
+            1.0
+          ],
+          "per_group": [
+            {
+              "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+              "standardized_dynamic_mse": 0.14370594989692195,
+              "skill": 0.9859417975909998
+            },
+            {
+              "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+              "standardized_dynamic_mse": 7.675809563725854,
+              "skill": 0.8230450237072369
+            },
+            {
+              "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+              "standardized_dynamic_mse": 1.1855807609142173,
+              "skill": 0.9046530096188705
+            },
+            {
+              "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+              "standardized_dynamic_mse": 0.29273689459800156,
+              "skill": 0.970334680316113
+            },
+            {
+              "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+              "standardized_dynamic_mse": 0.8002108739576532,
+              "skill": 0.9439000565510434
+            }
+          ]
+        },
+        {
+          "horizon": 8,
+          "mse_by_channel": [
+            4.824781565660698e-06,
+            0.0,
+            0.0,
+            0.002122334724545583,
+            1.0172204762494629e-05
+          ],
+          "standardized_dynamic_mse": 3.0379181295675615,
+          "skill_vs_persistence": 0.837337417710734,
+          "sign_accuracy_by_dynamic_channel": [
+            1.0,
+            0.9333333333333333,
+            1.0
+          ],
+          "per_group": [
+            {
+              "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+              "standardized_dynamic_mse": 0.2559100844003363,
+              "skill": 0.9750742782463263
+            },
+            {
+              "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+              "standardized_dynamic_mse": 12.940609446337389,
+              "skill": 0.760320819031775
+            },
+            {
+              "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+              "standardized_dynamic_mse": 0.6633797512794557,
+              "skill": 0.9355653426134745
+            },
+            {
+              "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+              "standardized_dynamic_mse": 0.2889882553873863,
+              "skill": 0.9687107021351622
+            },
+            {
+              "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+              "standardized_dynamic_mse": 1.040703110433241,
+              "skill": 0.8914948454034801
+            }
+          ]
+        },
+        {
+          "horizon": 16,
+          "mse_by_channel": [
+            5.107519042755713e-05,
+            0.0,
+            0.0,
+            0.010582432979114681,
+            0.0001498809096725951
+          ],
+          "standardized_dynamic_mse": 7.26335395125743,
+          "skill_vs_persistence": 0.7066113055084782,
+          "sign_accuracy_by_dynamic_channel": [
+            0.7999999999999999,
+            0.7666666666666667,
+            1.0
+          ],
+          "per_group": [
+            {
+              "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+              "standardized_dynamic_mse": 0.7826766611374452,
+              "skill": 0.9375630002751093
+            },
+            {
+              "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+              "standardized_dynamic_mse": 31.52510051522045,
+              "skill": 0.6370592466352496
+            },
+            {
+              "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+              "standardized_dynamic_mse": 1.2399406986198889,
+              "skill": 0.8800550845166671
+            },
+            {
+              "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+              "standardized_dynamic_mse": 0.2378777209984466,
+              "skill": 0.9687090084573439
+            },
+            {
+              "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+              "standardized_dynamic_mse": 2.531174160310923,
+              "skill": 0.6074763881527221
+            }
+          ]
+        }
+      ],
+      "action_effect": [
+        {
+          "horizon": 1,
+          "standardized_effect_mse": 0.08431208548560577,
+          "skill_vs_zero_action_effect": 0.8630442025223221
+        },
+        {
+          "horizon": 4,
+          "standardized_effect_mse": 0.19241750522750423,
+          "skill_vs_zero_action_effect": 0.878150892368518
+        },
+        {
+          "horizon": 8,
+          "standardized_effect_mse": 0.18139928322705692,
+          "skill_vs_zero_action_effect": 0.9039123304427176
+        },
+        {
+          "horizon": 16,
+          "standardized_effect_mse": 0.449955369697731,
+          "skill_vs_zero_action_effect": 0.8345495062482244
+        }
+      ],
+      "checkpoint_sha256": "c64089bff733dde1306b382b4f40bf934f2d5267a5fe19f65c99761cdc4038dd",
+      "reload_verified": true
+    },
+    {
+      "kind": "ghost",
+      "profile": "drop_static_no_geom",
+      "initial_weights_sha256": "7ec5f2ca00ccbeea953ff27f3c3f37f1f6adb6cadb438c8b81e4a6680704be02",
+      "parameters": 4085253,
+      "last50_train_loss": 0.19128906354308128,
+      "validation": [
+        {
+          "horizon": 1,
+          "mse_by_channel": [
+            6.185577538614633e-08,
+            0.0,
+            0.0,
+            2.1484758544156882e-05,
+            3.088419237289656e-08
+          ],
+          "standardized_dynamic_mse": 1.531221909483424,
+          "skill_vs_persistence": 0.9379639877594792,
+          "sign_accuracy_by_dynamic_channel": [
+            1.0,
+            0.6,
+            1.0
+          ],
+          "per_group": [
+            {
+              "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+              "standardized_dynamic_mse": 0.44014885782791313,
+              "skill": 0.9745617555451405
+            },
+            {
+              "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+              "standardized_dynamic_mse": 4.5355732288189,
+              "skill": 0.88991931724229
+            },
+            {
+              "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+              "standardized_dynamic_mse": 0.6635844742964553,
+              "skill": 0.9690918602769469
+            },
+            {
+              "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+              "standardized_dynamic_mse": 1.545859198449756,
+              "skill": 0.8720497451199705
+            },
+            {
+              "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+              "standardized_dynamic_mse": 0.47094378802409764,
+              "skill": 0.9849815822582695
+            }
+          ]
+        },
+        {
+          "horizon": 4,
+          "mse_by_channel": [
+            2.762112018338007e-06,
+            0.0,
+            0.0,
+            0.0003963681027615572,
+            1.1758893248415614e-06
+          ],
+          "standardized_dynamic_mse": 2.223225011731032,
+          "skill_vs_persistence": 0.8767146002915798,
+          "sign_accuracy_by_dynamic_channel": [
+            1.0,
+            0.8,
+            1.0
+          ],
+          "per_group": [
+            {
+              "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+              "standardized_dynamic_mse": 0.1972295293957118,
+              "skill": 0.9807057909066007
+            },
+            {
+              "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+              "standardized_dynamic_mse": 7.739003621629558,
+              "skill": 0.8215881737260909
+            },
+            {
+              "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+              "standardized_dynamic_mse": 1.3144245319282455,
+              "skill": 0.894291112563397
+            },
+            {
+              "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+              "standardized_dynamic_mse": 0.7095226920721835,
+              "skill": 0.9280985148380503
+            },
+            {
+              "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+              "standardized_dynamic_mse": 1.1559446836294605,
+              "skill": 0.9189608220880456
+            }
+          ]
+        },
+        {
+          "horizon": 8,
+          "mse_by_channel": [
+            2.7116167742354203e-05,
+            0.0,
+            0.0,
+            0.0020061627535886114,
+            1.0309737426846972e-05
+          ],
+          "standardized_dynamic_mse": 3.1269374867574036,
+          "skill_vs_persistence": 0.8325709566355333,
+          "sign_accuracy_by_dynamic_channel": [
+            0.9333333333333332,
+            0.9333333333333333,
+            1.0
+          ],
+          "per_group": [
+            {
+              "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+              "standardized_dynamic_mse": 0.32392201905351575,
+              "skill": 0.9684498946740002
+            },
+            {
+              "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+              "standardized_dynamic_mse": 12.97842496555907,
+              "skill": 0.7596204198185442
+            },
+            {
+              "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+              "standardized_dynamic_mse": 0.7956953147101101,
+              "skill": 0.9227134158247599
+            },
+            {
+              "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+              "standardized_dynamic_mse": 0.6919282101330619,
+              "skill": 0.9250836410672958
+            },
+            {
+              "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+              "standardized_dynamic_mse": 0.844716924331263,
+              "skill": 0.911928637912205
+            }
+          ]
+        },
+        {
+          "horizon": 16,
+          "mse_by_channel": [
+            0.00021530830212556623,
+            0.0,
+            0.0,
+            0.010508716740210606,
+            0.00015107574294906249
+          ],
+          "standardized_dynamic_mse": 7.349325463622812,
+          "skill_vs_persistence": 0.7031386577557173,
+          "sign_accuracy_by_dynamic_channel": [
+            0.7333333333333332,
+            0.7666666666666667,
+            1.0
+          ],
+          "per_group": [
+            {
+              "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+              "standardized_dynamic_mse": 0.8535195580114326,
+              "skill": 0.9319116014890467
+            },
+            {
+              "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+              "standardized_dynamic_mse": 31.41550527905163,
+              "skill": 0.6383209897202905
+            },
+            {
+              "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+              "standardized_dynamic_mse": 1.1630083093553034,
+              "skill": 0.8874970927824999
+            },
+            {
+              "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+              "standardized_dynamic_mse": 0.5211638335896384,
+              "skill": 0.9314448909265525
+            },
+            {
+              "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+              "standardized_dynamic_mse": 2.793430338106054,
+              "skill": 0.5668068270646136
+            }
+          ]
+        }
+      ],
+      "action_effect": [
+        {
+          "horizon": 1,
+          "standardized_effect_mse": 0.032327207925528394,
+          "skill_vs_zero_action_effect": 0.9474879726178363
+        },
+        {
+          "horizon": 4,
+          "standardized_effect_mse": 0.18336947245385385,
+          "skill_vs_zero_action_effect": 0.8838805930939596
+        },
+        {
+          "horizon": 8,
+          "standardized_effect_mse": 0.17120674476011247,
+          "skill_vs_zero_action_effect": 0.909311344434056
+        },
+        {
+          "horizon": 16,
+          "standardized_effect_mse": 0.5602813699771675,
+          "skill_vs_zero_action_effect": 0.7939821690206378
+        }
+      ],
+      "checkpoint_sha256": "2282328db1719a5df055b890d75ace26c9f66d45a7df42ff6e4fc5c97c6e4840",
+      "reload_verified": true
+    },
+    {
+      "kind": "mlp",
+      "profile": "keep_static_no_geom",
+      "initial_weights_sha256": "8ebbab62721d2f563dc4bd749d0aa179c09cbe03c348ae345bfa2f7c15a0fdad",
+      "parameters": 4086125,
+      "last50_train_loss": 0.15066594272851944,
+      "validation": [
+        {
+          "horizon": 1,
+          "mse_by_channel": [
+            2.8189383478676415e-08,
+            0.0,
+            0.0,
+            4.649563360333982e-05,
+            2.1681459168556193e-08
+          ],
+          "standardized_dynamic_mse": 1.679317505236784,
+          "skill_vs_persistence": 0.9319640343013798,
+          "sign_accuracy_by_dynamic_channel": [
+            1.0,
+            0.7,
+            1.0
+          ],
+          "per_group": [
+            {
+              "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+              "standardized_dynamic_mse": 0.568398272340926,
+              "skill": 0.9671496268992219
+            },
+            {
+              "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+              "standardized_dynamic_mse": 5.869962133466795,
+              "skill": 0.857533015825169
+            },
+            {
+              "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+              "standardized_dynamic_mse": 0.05704193335942895,
+              "skill": 0.9973431264373454
+            },
+            {
+              "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+              "standardized_dynamic_mse": 1.504130010611303,
+              "skill": 0.875503656203995
+            },
+            {
+              "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+              "standardized_dynamic_mse": 0.3970551764054671,
+              "skill": 0.9873378932742847
+            }
+          ]
+        },
+        {
+          "horizon": 4,
+          "mse_by_channel": [
+            5.776496272875204e-07,
+            0.0,
+            0.0,
+            0.0006533448765426631,
+            6.448367636739473e-07
+          ],
+          "standardized_dynamic_mse": 2.0848607741252696,
+          "skill_vs_persistence": 0.884387368566751,
+          "sign_accuracy_by_dynamic_channel": [
+            1.0,
+            0.8,
+            1.0
+          ],
+          "per_group": [
+            {
+              "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+              "standardized_dynamic_mse": 0.08726004819938377,
+              "skill": 0.9914636838580033
+            },
+            {
+              "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+              "standardized_dynamic_mse": 8.39895684199255,
+              "skill": 0.8063738819313139
+            },
+            {
+              "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+              "standardized_dynamic_mse": 0.5511577219517801,
+              "skill": 0.9556746940015299
+            },
+            {
+              "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+              "standardized_dynamic_mse": 0.1608639296888835,
+              "skill": 0.9836983995256892
+            },
+            {
+              "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+              "standardized_dynamic_mse": 1.2260653287937486,
+              "skill": 0.9140449125992562
+            }
+          ]
+        },
+        {
+          "horizon": 8,
+          "mse_by_channel": [
+            3.259658376447875e-06,
+            0.0,
+            0.0,
+            0.0035419483941254598,
+            6.763601575600116e-06
+          ],
+          "standardized_dynamic_mse": 2.9550784143337943,
+          "skill_vs_persistence": 0.8417729954390746,
+          "sign_accuracy_by_dynamic_channel": [
+            0.9333333333333332,
+            0.7,
+            1.0
+          ],
+          "per_group": [
+            {
+              "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+              "standardized_dynamic_mse": 0.26203918322430897,
+              "skill": 0.9744773021160379
+            },
+            {
+              "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+              "standardized_dynamic_mse": 13.980288112269843,
+              "skill": 0.7410644360805565
+            },
+            {
+              "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+              "standardized_dynamic_mse": 0.17935039361197658,
+              "skill": 0.9825795388806524
+            },
+            {
+              "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+              "standardized_dynamic_mse": 0.11555733157144549,
+              "skill": 0.987488392000021
+            },
+            {
+              "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+              "standardized_dynamic_mse": 0.23815705099139903,
+              "skill": 0.975169414430485
+            }
+          ]
+        },
+        {
+          "horizon": 16,
+          "mse_by_channel": [
+            3.7279873793084485e-05,
+            0.0,
+            0.0,
+            0.015063985971573924,
+            0.00012062361595388856
+          ],
+          "standardized_dynamic_mse": 7.063883846803916,
+          "skill_vs_persistence": 0.7146685024905379,
+          "sign_accuracy_by_dynamic_channel": [
+            0.9,
+            0.5666666666666667,
+            1.0
+          ],
+          "per_group": [
+            {
+              "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+              "standardized_dynamic_mse": 0.7438389059882595,
+              "skill": 0.9406612310362528
+            },
+            {
+              "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+              "standardized_dynamic_mse": 32.63950883621702,
+              "skill": 0.6242293368500876
+            },
+            {
+              "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+              "standardized_dynamic_mse": 0.6025424514570741,
+              "skill": 0.9417134194437033
+            },
+            {
+              "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+              "standardized_dynamic_mse": 0.1257803312616916,
+              "skill": 0.9834545611702419
+            },
+            {
+              "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+              "standardized_dynamic_mse": 1.2077487090955272,
+              "skill": 0.8127075201179241
+            }
+          ]
+        }
+      ],
+      "action_effect": [
+        {
+          "horizon": 1,
+          "standardized_effect_mse": 0.030583490737099043,
+          "skill_vs_zero_action_effect": 0.9503204512208908
+        },
+        {
+          "horizon": 4,
+          "standardized_effect_mse": 0.05887609674318047,
+          "skill_vs_zero_action_effect": 0.9627164906825957
+        },
+        {
+          "horizon": 8,
+          "standardized_effect_mse": 0.03945841706031856,
+          "skill_vs_zero_action_effect": 0.9790987744146731
+        },
+        {
+          "horizon": 16,
+          "standardized_effect_mse": 0.41873843656655935,
+          "skill_vs_zero_action_effect": 0.846028104677749
+        }
+      ],
+      "checkpoint_sha256": "793c3f8ba89561ec2a03acf96cb3f1c2b4de641175bb2a2821a2cd7aa00b3aa5",
+      "reload_verified": true
+    },
+    {
+      "kind": "mlp",
+      "profile": "drop_static_no_geom",
+      "initial_weights_sha256": "8ebbab62721d2f563dc4bd749d0aa179c09cbe03c348ae345bfa2f7c15a0fdad",
+      "parameters": 4086125,
+      "last50_train_loss": 0.1322792462259531,
+      "validation": [
+        {
+          "horizon": 1,
+          "mse_by_channel": [
+            2.2355382815523514e-08,
+            0.0,
+            0.0,
+            4.778808832584738e-05,
+            8.138214573720436e-09
+          ],
+          "standardized_dynamic_mse": 1.4097187434017349,
+          "skill_vs_persistence": 0.9428865739970602,
+          "sign_accuracy_by_dynamic_channel": [
+            1.0,
+            0.6,
+            1.0
+          ],
+          "per_group": [
+            {
+              "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+              "standardized_dynamic_mse": 0.7534217023893198,
+              "skill": 0.956456264506611
+            },
+            {
+              "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+              "standardized_dynamic_mse": 4.117460847038322,
+              "skill": 0.9000671186631578
+            },
+            {
+              "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+              "standardized_dynamic_mse": 0.14464425528999414,
+              "skill": 0.993262824816117
+            },
+            {
+              "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+              "standardized_dynamic_mse": 1.4343068035020456,
+              "skill": 0.8812828999767329
+            },
+            {
+              "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+              "standardized_dynamic_mse": 0.5987601087889931,
+              "skill": 0.9809055142682613
+            }
+          ]
+        },
+        {
+          "horizon": 4,
+          "mse_by_channel": [
+            4.713448941208855e-07,
+            0.0,
+            0.0,
+            0.0006862160101031346,
+            3.937443249470593e-07
+          ],
+          "standardized_dynamic_mse": 1.8956942163366637,
+          "skill_vs_persistence": 0.89487729854027,
+          "sign_accuracy_by_dynamic_channel": [
+            1.0,
+            0.6333333333333333,
+            1.0
+          ],
+          "per_group": [
+            {
+              "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+              "standardized_dynamic_mse": 0.18767664507747353,
+              "skill": 0.9816403129735846
+            },
+            {
+              "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+              "standardized_dynamic_mse": 7.412787846895954,
+              "skill": 0.8291086188602574
+            },
+            {
+              "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+              "standardized_dynamic_mse": 0.5046824944721359,
+              "skill": 0.9594123331515153
+            },
+            {
+              "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+              "standardized_dynamic_mse": 0.17547947995330967,
+              "skill": 0.9822172914762732
+            },
+            {
+              "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+              "standardized_dynamic_mse": 1.1978446152844475,
+              "skill": 0.9160233666336671
+            }
+          ]
+        },
+        {
+          "horizon": 8,
+          "mse_by_channel": [
+            2.868651226372366e-06,
+            0.0,
+            0.0,
+            0.0039415519824370845,
+            5.291784594908674e-06
+          ],
+          "standardized_dynamic_mse": 2.8271183775891426,
+          "skill_vs_persistence": 0.8486245000283958,
+          "sign_accuracy_by_dynamic_channel": [
+            0.9333333333333332,
+            0.6666666666666666,
+            1.0
+          ],
+          "per_group": [
+            {
+              "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+              "standardized_dynamic_mse": 0.3474322062364971,
+              "skill": 0.9661599951357582
+            },
+            {
+              "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+              "standardized_dynamic_mse": 13.015300205873437,
+              "skill": 0.7589374359580696
+            },
+            {
+              "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+              "standardized_dynamic_mse": 0.23044612824294525,
+              "skill": 0.9776165653372041
+            },
+            {
+              "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+              "standardized_dynamic_mse": 0.23066390341819362,
+              "skill": 0.9750255885968677
+            },
+            {
+              "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+              "standardized_dynamic_mse": 0.31174944417463996,
+              "skill": 0.9674965691017617
+            }
+          ]
+        },
+        {
+          "horizon": 16,
+          "mse_by_channel": [
+            4.577031176856117e-05,
+            0.0,
+            0.0,
+            0.01658502019964416,
+            0.00010721297721909364
+          ],
+          "standardized_dynamic_mse": 6.878328417312335,
+          "skill_vs_persistence": 0.7221636439334143,
+          "sign_accuracy_by_dynamic_channel": [
+            0.8666666666666666,
+            0.5666666666666667,
+            1.0
+          ],
+          "per_group": [
+            {
+              "group": "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d",
+              "standardized_dynamic_mse": 0.7653825911447133,
+              "skill": 0.9389426119295685
+            },
+            {
+              "group": "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334",
+              "standardized_dynamic_mse": 31.327419216689197,
+              "skill": 0.6393351029606058
+            },
+            {
+              "group": "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f",
+              "standardized_dynamic_mse": 0.7656174359371941,
+              "skill": 0.9259384591954551
+            },
+            {
+              "group": "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6",
+              "standardized_dynamic_mse": 0.15450602727152185,
+              "skill": 0.9796759159607294
+            },
+            {
+              "group": "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504",
+              "standardized_dynamic_mse": 1.3787168155190421,
+              "skill": 0.7861945208560305
+            }
+          ]
+        }
+      ],
+      "action_effect": [
+        {
+          "horizon": 1,
+          "standardized_effect_mse": 0.05554717207286044,
+          "skill_vs_zero_action_effect": 0.9097696705632172
+        },
+        {
+          "horizon": 4,
+          "standardized_effect_mse": 0.054698807228554934,
+          "skill_vs_zero_action_effect": 0.9653617749516836
+        },
+        {
+          "horizon": 8,
+          "standardized_effect_mse": 0.0378600799967825,
+          "skill_vs_zero_action_effect": 0.9799454176917028
+        },
+        {
+          "horizon": 16,
+          "standardized_effect_mse": 0.3403887057304416,
+          "skill_vs_zero_action_effect": 0.8748376323001499
+        }
+      ],
+      "checkpoint_sha256": "a8e8b202db1a3359b385e1576292e59ed0baf277e6b44342fa21e15a0fbaf8f3",
+      "reload_verified": true
+    }
+  ],
+  "new_test_evaluated": false,
+  "elapsed_seconds": 267.263414144516
+}

@@ -1,0 +1,175 @@
+{
+  "phase": "static",
+  "primary": "equal mean over four horizons of group-macro standardized dynamic MSE",
+  "rows": [
+    {
+      "kind": "ghost",
+      "profile": "drop_static_no_geom",
+      "primary_mse_mean": 3.5780379632894967,
+      "primary_mse_seed_std": 0.09155619868204183,
+      "horizons": [
+        {
+          "horizon": 1,
+          "mse_mean": 1.669861988899506,
+          "mse_std": 0.24949099921730872,
+          "skill_vs_linear_mean": -2.6611924727328273
+        },
+        {
+          "horizon": 4,
+          "mse_mean": 2.107343955779361,
+          "mse_std": 0.08309828870562569,
+          "skill_vs_linear_mean": 0.23829337543396809
+        },
+        {
+          "horizon": 8,
+          "mse_mean": 3.1468836143480217,
+          "mse_std": 0.06058206949337721,
+          "skill_vs_linear_mean": 0.189740417610067
+        },
+        {
+          "horizon": 16,
+          "mse_mean": 7.3880622941311,
+          "mse_std": 0.06550485021318088,
+          "skill_vs_linear_mean": 0.23765570942759706
+        }
+      ]
+    },
+    {
+      "kind": "ghost",
+      "profile": "keep_static_no_geom",
+      "primary_mse_mean": 3.461327460119398,
+      "primary_mse_seed_std": 0.1247156869726993,
+      "horizons": [
+        {
+          "horizon": 1,
+          "mse_mean": 1.7323670255142478,
+          "mse_std": 0.1325074631778226,
+          "skill_vs_linear_mean": -2.798235516459212
+        },
+        {
+          "horizon": 4,
+          "mse_mean": 1.9753947545244144,
+          "mse_std": 0.04882817591300993,
+          "skill_vs_linear_mean": 0.28598686202710427
+        },
+        {
+          "horizon": 8,
+          "mse_mean": 2.9867674822833448,
+          "mse_std": 0.11512070560239109,
+          "skill_vs_linear_mean": 0.23096711875309459
+        },
+        {
+          "horizon": 16,
+          "mse_mean": 7.150780578155585,
+          "mse_std": 0.20979673552489794,
+          "skill_vs_linear_mean": 0.2621398507666394
+        }
+      ]
+    },
+    {
+      "kind": "mlp",
+      "profile": "drop_static_no_geom",
+      "primary_mse_mean": 3.357662031718473,
+      "primary_mse_seed_std": 0.07849713182645049,
+      "horizons": [
+        {
+          "horizon": 1,
+          "mse_mean": 1.3820174137178123,
+          "mse_std": 0.14255854136113513,
+          "skill_vs_linear_mean": -2.0300897834221256
+        },
+        {
+          "horizon": 4,
+          "mse_mean": 1.9965849956462585,
+          "mse_std": 0.1132683821222205,
+          "skill_vs_linear_mean": 0.27832757745972536
+        },
+        {
+          "horizon": 8,
+          "mse_mean": 2.9878871006662724,
+          "mse_std": 0.1196036756257934,
+          "skill_vs_linear_mean": 0.23067883941564124
+        },
+        {
+          "horizon": 16,
+          "mse_mean": 7.064158616843549,
+          "mse_std": 0.3223698138182792,
+          "skill_vs_linear_mean": 0.27107802088695254
+        }
+      ]
+    },
+    {
+      "kind": "mlp",
+      "profile": "keep_static_no_geom",
+      "primary_mse_mean": 3.476387755478739,
+      "primary_mse_seed_std": 0.1836881985301582,
+      "horizons": [
+        {
+          "horizon": 1,
+          "mse_mean": 1.6083136630159462,
+          "mse_std": 0.05060770448582409,
+          "skill_vs_linear_mean": -2.526247028778682
+        },
+        {
+          "horizon": 4,
+          "mse_mean": 2.0468625428657132,
+          "mse_std": 0.03997574651501586,
+          "skill_vs_linear_mean": 0.2601545873889959
+        },
+        {
+          "horizon": 8,
+          "mse_mean": 3.051362969187208,
+          "mse_std": 0.19002053972551441,
+          "skill_vs_linear_mean": 0.214335073003337
+        },
+        {
+          "horizon": 16,
+          "mse_mean": 7.199011846846088,
+          "mse_std": 0.5250463209508107,
+          "skill_vs_linear_mean": 0.2571630610686862
+        }
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "comparison": "drop_static_without_geometry",
+      "kind": "ghost",
+      "base": "keep_static_no_geom",
+      "new": "drop_static_no_geom",
+      "base_primary": 3.461327460119398,
+      "new_primary": 3.5780379632894967,
+      "mean_paired_relative_error_reduction": -0.0343180678684157,
+      "new_better_seeds": 0,
+      "new_better_groups": 0,
+      "base_better_seeds": 3,
+      "base_better_groups": 5,
+      "new_consistent_development_gain": false,
+      "base_consistent_development_gain": true,
+      "paired_initial_weights_verified": true
+    },
+    {
+      "comparison": "drop_static_without_geometry",
+      "kind": "mlp",
+      "base": "keep_static_no_geom",
+      "new": "drop_static_no_geom",
+      "base_primary": 3.476387755478739,
+      "new_primary": 3.357662031718473,
+      "mean_paired_relative_error_reduction": 0.03195602506462014,
+      "new_better_seeds": 2,
+      "new_better_groups": 2,
+      "base_better_seeds": 1,
+      "base_better_groups": 3,
+      "new_consistent_development_gain": false,
+      "base_consistent_development_gain": false,
+      "paired_initial_weights_verified": true
+    }
+  ],
+  "J_gate_enabled": false,
+  "new_independent_test": false,
+  "result_sha256": {
+    "static:42": "766c4b5056665f2d0472ad5ddcd2c3593efd9b9b28321389023da5b70b494916",
+    "static:43": "29866145c1f2a42de9ecf4b0dbc66cd565e018ccc841070d6d3ffa54895addf1",
+    "static:44": "369b47c6e1da81207ad58dee0806f1c1a52e36be6a8688930cc982dcecb2a9c2"
+  }
+}

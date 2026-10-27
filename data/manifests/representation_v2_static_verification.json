@@ -1,0 +1,79 @@
+{
+  "all_checks_passed": true,
+  "independently_reloaded_checkpoints": 12,
+  "checks": [
+    {
+      "seed": 42,
+      "kind": "ghost",
+      "profile": "keep_static_no_geom",
+      "sha256": "3c321567bb55f6b607f98fd97460b0e65355a0b9d69f6ba237cab9ff45f86300"
+    },
+    {
+      "seed": 42,
+      "kind": "ghost",
+      "profile": "drop_static_no_geom",
+      "sha256": "a119f63b7de140f645101c273907eda037fb28a7cadb8f14ac7a84c3f13e6147"
+    },
+    {
+      "seed": 42,
+      "kind": "mlp",
+      "profile": "keep_static_no_geom",
+      "sha256": "d61afe9e443104af0062ddb2efc9202315ed234c502deacac496f6d80bd1eae9"
+    },
+    {
+      "seed": 42,
+      "kind": "mlp",
+      "profile": "drop_static_no_geom",
+      "sha256": "7c8adefbd42a12a6d4666222f281542a3c3521c8d6cd9af784867f4baf40cd34"
+    },
+    {
+      "seed": 43,
+      "kind": "ghost",
+      "profile": "keep_static_no_geom",
+      "sha256": "c64089bff733dde1306b382b4f40bf934f2d5267a5fe19f65c99761cdc4038dd"
+    },
+    {
+      "seed": 43,
+      "kind": "ghost",
+      "profile": "drop_static_no_geom",
+      "sha256": "2282328db1719a5df055b890d75ace26c9f66d45a7df42ff6e4fc5c97c6e4840"
+    },
+    {
+      "seed": 43,
+      "kind": "mlp",
+      "profile": "keep_static_no_geom",
+      "sha256": "793c3f8ba89561ec2a03acf96cb3f1c2b4de641175bb2a2821a2cd7aa00b3aa5"
+    },
+    {
+      "seed": 43,
+      "kind": "mlp",
+      "profile": "drop_static_no_geom",
+      "sha256": "a8e8b202db1a3359b385e1576292e59ed0baf277e6b44342fa21e15a0fbaf8f3"
+    },
+    {
+      "seed": 44,
+      "kind": "ghost",
+      "profile": "keep_static_no_geom",
+      "sha256": "8e58583fe380c09aa03e9e6d1a33c1bee3b5ec647c0273a2892118dd4f2bf4d0"
+    },
+    {
+      "seed": 44,
+      "kind": "ghost",
+      "profile": "drop_static_no_geom",
+      "sha256": "801b12529ea1e6f1a298bc0d96450d6f6f9120338d26ae662113e6f5f3ff0af9"
+    },
+    {
+      "seed": 44,
+      "kind": "mlp",
+      "profile": "keep_static_no_geom",
+      "sha256": "311de5d92aa3af24f19f094f8e738b4b0c3ebcc167e4f80555717d0dff308a49"
+    },
+    {
+      "seed": 44,
+      "kind": "mlp",
+      "profile": "drop_static_no_geom",
+      "sha256": "9e8c5f03be136198da7b2310d7591a88865862fa5bb02d86ec04e6c36ebbaec7"
+    }
+  ],
+  "source_sha256": "b3df7d5bd242c4b5023c4d728000f584195e3323b7b001c73699c1d0963dd809"
+}
