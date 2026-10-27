@@ -25,7 +25,7 @@
 | S5-1 | 9次正式运行与全种子开发报告 | 未开始 | 无新运行 | S0–S4通过后才启动 |
 | S5-2 | 可用时的新独立测试 | 未开始 | 没有本轮新盲测证据 | 无新独立组时保留未执行及原因，不制造测试集 |
 | S6 | 序列预训练/反应性/架构/3D单项分支 | 未开始 | 仅有进入条件和候选方案 | 不与首轮辅助2D叠加，触发后另立协议 |
-| S6-L | 固定数据：BCE与BCE＋伙伴竞争损失对照 | 候选实现完成，效果对照未开始 | `src/rna2d/losses.py`提供共享BCE和可选竞争项；`tests/test_pair_losses.py`验证8项契约；基线runner调用共享BCE | 候选函数尚未接入正式loss CLI；无损失效果证据，待数据主线归档后冻结协议 |
+| S6-L | 固定数据：BCE与BCE＋伙伴竞争损失对照 | 候选实现完成，效果对照未开始 | `src/rna2d/losses.py`提供共享BCE和可选竞争项；`tests/test_pair_losses.py`验证8项契约；基线runner调用共享BCE | 状态：BCE共享实现已采用；竞争项仅候选、契约通过、未接入实验配置、未可选合入、未默认启用。无效果证据，待数据主线归档后冻结协议 |
 
 ## 执行日志（只追加）
 
@@ -39,7 +39,8 @@
 | 2026-10-27 | S2-1 | 运行 `scripts/audit_joint_quarantine.py`，审计 `joint_split_v2/quarantine.jsonl` 的证据缺口 | 70/70均为`unverified_homology_or_primary_study`；64条缺homology component、9条study完整性不足、6条缺study ID；决定retain_quarantine，未移动记录 | 新版本补同源/研究/构建体证据；当前数据门禁不变，A/B/C仍不启动 |
 | 2026-10-27 | S1版本回连修正 | 根据 `joint_split_v2.json` 的 `paired_source_sha256=244221...` 定位真实来源为`annotation_review_v1/paired.jsonl`；按序列哈希、mask和pairs逐条核对，不再把clean_release的同ID记录直接继承split资格 | 106条源记录精确匹配；clean_release 141条中74条同序列、71条mask/pairs完全匹配、3条标签冲突、67条无同序列对应；训练准入仍只限joint_split_v2 train文件。修正了先前错误地按跨版本ID继承split的关系脚本，并在清单中保留冲突状态 | 重跑审计生成器及契约断言；阶段审计更正需单独commit/push |
 | 2026-10-27 | S1版本回连更正 | 按 `joint_split_v2.json` 的源指纹核实真实来源为`annotation_review_v1/paired.jsonl`；生成器改为sequence SHA256关联并逐条比对mask/pairs；补充 clean_release alias/conflict 统计 | 106条source记录精确标签匹配；clean_release 71条精确标签别名不获训练资格，3条同序列异标签 quarantine，67条无split对应；新结构断言通过。更正了前一版错误按跨版本ID继承split的映射 | 全量测试与Git差异检查后，单独commit/push该更正 |
-| 2026-10-27 | S6-L候选代码 | 新增 `src/rna2d/losses.py`，把既有正负类平衡BCE抽为共享函数，并实现未启用的可选伙伴竞争loss；`train_baseline.py`和旧比较runner改用同一BCE | 专项契约测试8项通过，包括lambda=0等价、左右伙伴、unknown mask、无适用端点和极端logit；尚未跑任何效果实验。BCE共享实现是采用的生产路径；伙伴竞争仅候选，未开发收益通过、未作为可选训练配置、未默认启用 | 全套测试确认重构行为；待数据阶段完成和协议冻结后才运行效果对照 |
+| 2026-10-27 | S1版本更正提交 | Git提交`6de1d82`，推送`origin/main` | 只提交聚合审计、版本映射修正和生成工具；逐样本清单继续被`.gitignore`排除 | 继续S6-L候选实现验证 |
+| 2026-10-27 | S6-L候选代码 | 新增 `src/rna2d/losses.py`，把既有正负类平衡BCE抽为共享函数，并实现未启用的可选伙伴竞争loss；`train_baseline.py`和旧比较runner改用同一BCE | 专项契约8项、全套90项测试通过；baseline与controlled-runner `--help` 导入、Python compile、`git diff --check`通过。尚未跑任何效果实验。BCE共享实现是采用的默认实现路径；伙伴竞争仅候选，契约通过但无开发收益证据，未作为可选训练配置、未默认启用 | 保持BCE默认；数据主线/协议通过后再决定是否冻结6次效果对照 |
 | 2026-10-27 | D0审阅补充（历史） | 补齐新评价准入待实现状态、无监督RNA/空组分母检查、B/C两阶段短冒烟及试点训练可行性验收 | 文档修改；未实现评价逻辑、未训练或访问测试；该行原先“下一步S0-1”已由后续S0/S1/S2记录完成，不再代表当前续接位置 | 见任务表的S1-2、S2-1、S2-2状态 |
 
 每次追加：日期/任务ID/实际动作/产物路径与哈希或检查命令/通过或失败/限制/下一步。技术失败不删行。文档检查不能写成模型测试通过。

@@ -10,6 +10,7 @@ sys.path.insert(0, str(ROOT / 'src'))
 from rna2d.model import PairBaseline
 from rna2d.training import Records, collate, evaluate, fingerprint, seed_all, select_device
 from rna2d.evidence import pairing_evidence_issues
+from rna2d.losses import balanced_pair_bce
 
 
 def main():
@@ -66,15 +67,8 @@ def main():
                 continue
             optim.zero_grad(set_to_none=True)
             logits = model(tokens)
-            # Balance positive/negative classes within each sample; average samples equally.
-            sample_losses = []
-            for b in range(len(tokens)):
-                pos, neg = mask[b] & labels[b].bool(), mask[b] & ~labels[b].bool()
-                terms = []
-                if pos.any(): terms.append(torch.nn.functional.softplus(-logits[b][pos]).mean())
-                if neg.any(): terms.append(torch.nn.functional.softplus(logits[b][neg]).mean())
-                if terms: sample_losses.append(torch.stack(terms).mean())
-            loss = torch.stack(sample_losses).mean()
+            # Shared class-balanced objective used by research runners too.
+            loss = balanced_pair_bce(logits, labels, mask)
             if not torch.isfinite(loss):
                 raise FloatingPointError('Nonfinite loss')
             loss.backward()

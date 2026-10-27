@@ -202,7 +202,7 @@ U、Ua、Uf必须在正式运行前写成具体数字。B/C总优化器更新数
 
 后续候选优先级：伙伴分类交叉熵（显式“不配对”类别、未知与对称性另行设计）→有具体误差证据再考虑soft Dice/F1或Focal。暂不以MSE替代配对BCE，不在现有正负平衡上直接叠加大pos_weight。原理参考：[UFold的加权交叉熵](https://pmc.ncbi.nlm.nih.gov/articles/PMC8860580/)、[伙伴多分类研究](https://pmc.ncbi.nlm.nih.gov/articles/PMC12008525/)、[BCE权重定义](https://docs.pytorch.org/docs/stable/generated/torch.nn.modules.loss.BCEWithLogitsLoss.html)；这些资料不证明本项目候选组合有效。
 
-交付：独立损失协议、掩码/梯度契约检查、6次运行及重载报告、逐组差值和继续/停止结论。状态：待实现、待冻结、未训练；进度登记S6-L。
+交付：独立损失协议、掩码/梯度契约检查、6次运行及重载报告、逐组差值和继续/停止结论。共享BCE与竞争项函数及契约检查已实现；竞争项效果尚未验证、未作为可选训练配置或默认启用。预算、lambda与推进阈值待正式冻结；进度登记S6-L。
 
 ## 10. 执行顺序与最小交付
 

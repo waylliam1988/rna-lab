@@ -14,6 +14,7 @@ sys.path.insert(0,str(ROOT/'src'))
 from rna2d.training import Records,collate,evaluate,seed_all
 from rna2d.model import PairBaseline
 from rna2d.evidence import pairing_evidence_issues
+from rna2d.losses import balanced_pair_bce
 
 
 def make_model(mode,hidden,steps):
@@ -25,14 +26,8 @@ def make_model(mode,hidden,steps):
 
 
 def balanced_loss(logits,labels,mask):
-    losses=[]
-    for b in range(len(logits)):
-        pos,neg=mask[b]&labels[b].bool(),mask[b]&~labels[b].bool();terms=[]
-        if pos.any():terms.append(torch.nn.functional.softplus(-logits[b][pos]).mean())
-        if neg.any():terms.append(torch.nn.functional.softplus(logits[b][neg]).mean())
-        if terms:losses.append(torch.stack(terms).mean())
-    if not losses:raise ValueError('No usable supervision')
-    return torch.stack(losses).mean()
+    """Backward-compatible name for the shared balanced pair BCE."""
+    return balanced_pair_bce(logits,labels,mask)
 
 
 def main():
