@@ -3,7 +3,11 @@ from pathlib import Path
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from audit_comparative_candidate_relations import compare_pair_sets, pair_signature
+from audit_comparative_candidate_relations import (
+    compare_pair_sets,
+    pair_signature,
+    sequence_alphabet_class,
+)
 
 
 class ComparativeCandidateRelationTests(unittest.TestCase):
@@ -21,6 +25,12 @@ class ComparativeCandidateRelationTests(unittest.TestCase):
     def test_raw_pair_difference_is_not_called_a_label_verdict(self):
         status = compare_pair_sets(pair_signature([[0, 9]], 10), pair_signature([[1, 8]], 10))
         self.assertEqual(status, "different_pair_set")
+
+    def test_noncanonical_sequences_are_classified_and_retained_for_audit(self):
+        self.assertEqual(sequence_alphabet_class("ACGU"), "canonical_ACGU")
+        self.assertEqual(sequence_alphabet_class("ACNUI"), "contains_non_ACGU")
+        with self.assertRaises(ValueError):
+            sequence_alphabet_class("")
 
 
 if __name__ == "__main__":

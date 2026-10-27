@@ -61,6 +61,12 @@ def compare_pair_sets(candidate, reference) -> str:
     return "exact_pair_set_match" if candidate == reference else "different_pair_set"
 
 
+def sequence_alphabet_class(sequence: str) -> str:
+    if not sequence:
+        raise ValueError("Empty comparative candidate sequence")
+    return "canonical_ACGU" if set(sequence) <= set("ACGU") else "contains_non_ACGU"
+
+
 def audit_archive(candidates: list[dict], archive_path: Path) -> dict:
     if not archive_path.is_file():
         raise FileNotFoundError(archive_path)
@@ -111,6 +117,7 @@ def audit() -> dict:
 
     sequence_rows: dict[str, list[dict]] = defaultdict(list)
     pair_variants: dict[str, set[tuple[tuple[int, int], ...]]] = defaultdict(set)
+    alphabet_record_counts = Counter()
     lengths = []
     source_flag_counts = {
         key: Counter(str(row.get(key, False)).lower() for row in candidates)
@@ -121,8 +128,7 @@ def audit() -> dict:
         sequence_hash = hashlib.sha256(sequence.encode("utf-8")).hexdigest()
         if row.get("sequence_sha256") != sequence_hash:
             raise ValueError(f"Candidate sequence SHA256 mismatch: {row.get('id')}")
-        if not sequence or not set(sequence) <= set("ACGU"):
-            raise ValueError(f"Invalid comparative candidate sequence: {row.get('id')}")
+        alphabet_record_counts[sequence_alphabet_class(sequence)] += 1
         signature = pair_signature(row.get("pairs", []), len(sequence))
         sequence_rows[sequence_hash].append(row)
         pair_variants[sequence_hash].add(signature)
@@ -237,6 +243,12 @@ def audit() -> dict:
             "duplicate_sequence_records_beyond_first": duplicate_sequence_record_count,
             "sequences_with_different_candidate_pair_sets": conflict_sequence_count,
             "sequence_length": {"min": min(lengths), "median": sorted(lengths)[len(lengths) // 2], "max": max(lengths)},
+            "sequence_alphabet_record_counts": dict(sorted(alphabet_record_counts.items())),
+            "sequence_alphabet_unique_counts": {
+                alphabet: sum(sequence_alphabet_class(rows[0]["sequence"]) == alphabet
+                              for rows in sequence_rows.values())
+                for alphabet in sorted(alphabet_record_counts)
+            },
             "source_status_counts": {key: dict(sorted(value.items())) for key, value in source_flag_counts.items()},
             "candidate_pair_annotations_are_approved_truth": False,
             "eligible_training_records": 0,
