@@ -1,6 +1,6 @@
 # 当前2D工程基线：继续使用CNN
 
-2026-10-27，依据本项目已完成实验作出的工程选择；不新增训练，不改变冻结协议。
+决策形成2026-10-27，执行状态同步2026-10-28。当前生产入口已采用此CNN；本次文档同步不新增训练、不改变冻结协议。
 
 当前主任务是sequence-only的1D序列→带观测掩码的2D配对预测。继续使用已验证的CNN作为工程基线，保留RWKV、Ghost和分步更新研究实现；不把这项选择解释为CNN架构的普遍优势。
 
@@ -25,6 +25,10 @@ CNN原比较开发宏F1只有0.4332±0.0419（10条、7组），与训练F1相�
 | `src/rna2d/sequence_encoders.py`的SequencePairModel(kind=cnn,width=113) | 本次约150k参数比较与训练拟合参考，hidden64/depth2 | [比较结果](ENCODER_COMPARISON_RESULTS_V1.md)、[拟合扫描](ENCODER_LR_SCAN_RESULTS_V1.md) |
 
 训练、评价和推理入口现默认使用第二种`SequencePairModel(kind=cnn,width=113,hidden=64,depth=2)`，并从`joint_split_v2`加载数据；训练checkpoint记录明确模型配置、数据manifest/划分指纹和评价阈值。`PairBaseline`仍可通过`train_baseline.py --model-kind pair_baseline`显式回退，模型工厂继续加载其历史checkpoint。该入口和新smoke链路不构成新性能证据，也不改写上面的旧实验结果。
+
+## 后续已完成的损失对照
+
+2026-10-28的S6-L v2使用同一CNN、组均匀采样、每条件三个种子550更新，BCE验证逐RNA宏F1为0.4710、组宏F1为0.5224；加伙伴竞争组宏F1为0.5248，未过预声明gate，保持BCE默认。该结果不替换上方原比较的0.4332：采样及报告口径不同，也没有新独立测试。见[损失报告](DATA_FIRST_LOSS_RESULTS_V2.md)。
 
 ## 下一步
 

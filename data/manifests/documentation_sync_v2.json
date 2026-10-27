@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-28",
+  "timezone": "Asia/Taipei",
+  "reviewed_through_commit": "c2adc36",
+  "scope": "Documentation synchronization and next-action teaching only",
+  "markdown_files_checked": 14,
+  "local_links_checked": 144,
+  "missing_links": [],
+  "balanced_fenced_blocks": true,
+  "entrypoint_help_checks": {
+    "train_baseline.py": "passed, exit 0",
+    "evaluate.py": "passed, exit 0",
+    "predict.py": "passed, exit 0"
+  },
+  "new_training": false,
+  "new_evaluation": false,
+  "new_network_requests": false,
+  "new_data_admission": false,
+  "model_tests_rerun": false,
+  "last_recorded_code_test_count": 130,
+  "frozen_experiment_protocols_modified": false,
+  "input_artifact_sha256": {
+    "data/manifests/data_first_loss_summary_v2.json": "53493b48511023ddbb100cef68cb9c871168ba7648edcec0f501063711b53363",
+    "data/manifests/data_first_loss_verification_v2.json": "ca1117899d08c0bad03871688924d6ab9e1c9a51645827b01df55daa67d311ef",
+    "data/manifests/data_first_clean_release_cif_metadata_audit_v1.json": "f078332088975b02d3116d8aa7e502d586d09f968d7593b27f49aebc20c1c4e1",
+    "data/manifests/data_first_clean_release_crossref_review_v2.json": "0dd3e9822907373ef6c35bce853927d46d6645503490215a190fb98b8cfc054d"
+  },
+  "updated_documents_sha256": {
+    "README.md": "00649fe711a56409259f63a489f0725d1b4e3ccd89d7f2ece3a6f39046941ff2",
+    "data/README.md": "5a3f3629bdb81fffe6be1112c8174d6bef88f578d0f928ce8685c3bbe442fbbf",
+    "docs/BASELINE_DECISION_V1.md": "97cc064f10d7014ee38875093ebfe500d3f47a8cb5b73e57b7e573d43b655645",
+    "docs/DATA_FIRST_EXECUTION_V1.md": "a8f8357610cbdcc406e6401f7fb6eeee2636b8d7ecdc2a92aa0d2a5227b80b16",
+    "docs/DATA_FIRST_PROGRESS_V1.md": "5f5f07d308b11703cb96074ee068f68012d04a0061c59b8f5132487384662444",
+    "docs/DATA_FIRST_ROADMAP_V1.md": "970522655271516bcf7dd071d12e895bdf2317226ea5f54e4604a2012c84be0d",
+    "docs/DISCUSSION.md": "dff42d2ea41c52848b267f76702ecccdb0e434b1a03c625fc34899750751164f",
+    "docs/DOCUMENTATION_AUDIT_V1.md": "ba5dcabae7a49f3c3efde8dd928d64f4f680171531569573c5946c308edc67ce",
+    "docs/DOCUMENTATION_SYNC_V2.md": "5b4c2612e6ffd6a63372ac97246eaabc7e01751cc58f6a62a7680ef293d7fed2",
+    "docs/NEXT_ACTION_GUIDE_V1.md": "49949722f8cb3881d652a8caf99eff7ef82ca8582189b05eb687c574345a11f0",
+    "docs/NEXT_STEPS.md": "e3298307fd20adbd0aa618159ddec233f04d4f20cae54f200bad180d53a93cbc",
+    "docs/ROADMAP.md": "9589c79d077abf674902552aff539eca4c5f4211ba60242fd8bb28855faadc05",
+    "docs/STAGED_VALIDATION.md": "3e9d4e9725e384fa472eb455997685dc422dfdd6a04d238f535a4cdd904ce5de",
+    "docs/STATUS.md": "1498a43634ae1c481b9c4347144d5cc7a59248e8d6f823878b31906df720c061"
+  }
+}

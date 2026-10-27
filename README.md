@@ -1,81 +1,52 @@
-# RNA Lab — 从可验证的 RNA 2D 基线开始
+# RNA Lab — 从可验证的RNA 2D基线开始
 
-本项目从 **1D 序列 → 2D 碱基配对图** 开始。旧项目保持独立。Ghost 动力学、RWKV 记忆和分步折叠是后续主线，需要分别验证其收益。
+主线是仅输入1D序列预测2D配对图。原Nezha项目保持独立；Ghost、RWKV和分步更新保留作逐项验证的研究机制。
 
-后续计划：[数据优先详细路线图](docs/DATA_FIRST_ROADMAP_V1.md)。固定CNN工程参照，先补独立隔离评估和经审核辅助监督，再按预算对照检验数据收益；包含逐阶段交付、验收与停止条件，尚未启动新实验。
+## 当前进度（2026-10-28）
 
-执行交接：[数据怎么用、损失与运行细则](docs/DATA_FIRST_EXECUTION_V1.md)；[做到哪里与下一步](docs/DATA_FIRST_PROGRESS_V1.md)。
+- 约150k参数CNN参照已冻结；训练/评价/推理入口已统一模型加载。默认训练数据为`joint_split_v2`，训练和评价核验manifest与数据指纹。
+- 基线冻结、数据版本核对、隔离原因及profile/历史/比较候选/实验结构关系审计已完成相应机器审核；生物学来源关系仍有缺口。没有新增辅助监督或新独立测试获准使用。
+- BCE与BCE＋伙伴竞争按v2协议完成6次训练和6个检查点独立重载。验证组宏F1均值0.5224与0.5248，未过预声明门槛；保持balanced BCE默认，停止该项调优。
+- 最新有限RCSB/Crossref文献元数据核对完成，8条记录仍缺至少一个关联主研究键；候选DOI未写入关系图。上一研究阶段已收尾暂停；本次只同步文档和操作指南。
+- 最近一次代码回归记录为130项测试通过；这是代码/契约证据，不是模型准确率证明。
 
-最新：[训练拟合验收](docs/ENCODER_LR_SCAN_RESULTS_V1.md)已完成。EGNN几何审计与有限lr扫描已完成：坐标/距离进入网络，padding对齐、坐标更新与梯度通过；输入是序列位置种子，不是实验几何。按冻结协议完成3编码器×4变体×3种子、25epoch，仅评估88条训练RNA。Transformer/EGNN-seed/RWKV-Lite最终训练F1最高为0.7434/0.6438/0.7650，原CNN三个种子为0.9723–0.9902。全部低于0.8的止损条件触发，停止调优；0.9拟合验收门槛未通过，不进行新的验证集比较，不宣称CNN泛化更好或架构优劣。36检查点重载、82项测试通过；旧速度/显存仅作为当前实现的工程比较。
+现在先读[下一步操作指南](docs/NEXT_ACTION_GUIDE_V1.md)。唯一逐项当前台账是[DATA_FIRST_PROGRESS_V1.md](docs/DATA_FIRST_PROGRESS_V1.md)；[STATUS](docs/STATUS.md)作概览，[NEXT_STEPS](docs/NEXT_STEPS.md)作续接入口。
 
-最新：[输入表示v2实验](docs/INPUT_REPRESENTATION_V2_RESULTS.md)已完成。正式区分静态上下文与动态观测；Ghost从指定静态密度得到小幅开发收益。实时几何接触的收益依架构/组而异，移除指定静态项的MLP分支达到预声明一致性规则；其余平均改善不足以证明普遍收益。24检查点重载、76项测试通过，J门控保持关闭。
+## 数据怎么理解
 
-最新：[三关任务与接口检查](docs/GATES_VALIDATION_V1.md)已完成。受检时序/未来隔离/动作接口和小样本拟合通过；新模拟任务能学习部分状态与动作变化，但未建立RWKV额外记忆的稳定收益。7种对照×3种子、21个检查点重载通过，72项测试通过；仅5组开发验证，不是实验折叠轨迹或独立盲测。
+| 版本/类型 | 已有数量 | 当前用途 |
+| --- | ---: | --- |
+| `annotation_review_v1`扩展2D池 | 176条 | joint划分的源版本；不是176条均可训练 |
+| `joint_split_v2` | train88 / validation10 / test8；另70条隔离 | 已放行探索子集；旧8条test已揭盲，不再调参或包装为新盲测 |
+| `clean_release_v1`实验关联1D | 213579条不同序列 | 联合去向中213473条隔离；不启动全池1D预训练 |
+| `clean_release_v1`2D | 141条不同序列 | 与joint同序列74条，其中71条标签一致、3条冲突；其余67条仍未建立独立性准入，不与176相加 |
+| 实测探测profile | 344495个 / 212652条不同序列 | 反应性不是配对图；本轮未准入辅助训练 |
 
-逐项完成、验证与提交的最新进度：[STAGED_VALIDATION.md](docs/STAGED_VALIDATION.md)。扩展配对池和隔离划分使用独立版本，原始清洗发布不覆盖。
+141条clean-release记录的来源、链和规范序列映射已复核，180个关联结构条目均有哈希回连；133条记录的所有关联条目具有主研究键，8条仍缺至少一个。具有研究键不等于构建体和家族独立性已审核通过。没有新的准入不代表此前全部实验数据无效；已有88/10探索划分保留。
 
-六项初步验证已完成，见[固定协议实验结果](docs/EXPERIMENT_RESULTS_V1.md)：176条配对标签中106条进入保守隔离划分，88/10/8；三种子比较与封存测试均未支持复杂机制稳定增益。RWKV状态预测未胜过持久性基线，不称已验证的世界模型。
+比较分析只能成为独立辅助池，需原文、比对映射、标签范围和联合隔离证据；模型预测/补全标签仍排除。未知标签不当负边。详见[数据审计](docs/DATA_FIRST_AUDIT_V1.md)和[比较数据政策](docs/COMPARATIVE_DATA.md)。
 
-上述结果针对新写的2D适配器，不能替代原Nezha完整体系的验证。[迁移边界核查](docs/NEZHA_FIDELITY_AND_3D_PLAN.md)后，已恢复[原物理状态、观测和反馈接口](docs/PHYSICAL_INTERFACE_V1.md)，并完成[静态3D联合隔离](docs/THREE_D_ISOLATION_V1.md)。新物理预测实验按[预先冻结协议](docs/PHYSICAL_FORECAST_PROTOCOL_V1.md)分别检查训练预算和展开长度；模拟转移与实验坐标明确区分。
+## 模型与证据边界
 
-**配对监督只用通过审核的直接实验证据。** 扩充获取、官方来源复核及精细清洗见[本轮发布报告](docs/CLEAN_RELEASE_V1_REPORT.md)和[精细清洗协议](docs/FINE_CLEANING_PROTOCOL_V2.md)。实测反应性与精确配对标签分开计数，未知/未核验记录隔离，不用模型预测或补全值充数。
+当前默认`SequencePairModel(kind=cnn,width=113,hidden=64,depth=2)`，150019参数；早期`PairBaseline`仅作显式回退。CNN旧参照训练宏F1为0.9723–0.9902，旧比较开发逐RNA宏F1为0.4332±0.0419；新损失对照采用组均匀采样，BCE逐RNA宏F1为0.4710、组宏F1为0.5224。这些是不同实验/汇总，不能混为同口径提升或新测试成绩。
 
-新清洗池位于 `data/experimental/clean_release_v1`，全池不自动用于训练。后续扩展2D池176条已有 `joint_split_v2` 的88/10/8隔离子集；70条2D和213473条1D继续隔离，1D预训练关闭。旧8条测试已揭盲，不再用于调参。原61条、49/6/6划分的[链路验证版本](docs/DATASET_V0_2_REPORT.md)保留，默认训练路径不变；此前旧基准烟测不代表严格实验数据下的效果。
+CNN是当前能充分拟合且成本低的工程参照，不宣称架构泛化更优。其他编码器有限lr扫描已止损，不重开排名。预测范围为保守AU/GC/GU单伙伴配对及观测标签范围；贪心解码允许交叉边，不等于假结或真实动力学已解决。sigmoid是未校准分数。
 
-可靠的比较序列分析可以作为**独立辅助监督池**，经过逐条溯源、比对映射与同源性审核后，再用实验留出集验证收益；不把它改名为实验真值。详见[比较分析数据策略](docs/COMPARATIVE_DATA.md)。模型预测结构和模型补全值仍排除。
+原物理接口和35/5静态3D/模拟辅助支线已验证部分接口与状态变化，不代表真实共转录折叠或序列到3D预测成功；J能量门控仍关闭。历史结果入口：[基线决策](docs/BASELINE_DECISION_V1.md)、[拟合扫描](docs/ENCODER_LR_SCAN_RESULTS_V1.md)、[损失v2](docs/DATA_FIRST_LOSS_RESULTS_V2.md)、[三关检查](docs/GATES_VALIDATION_V1.md)、[输入v2](docs/INPUT_REPRESENTATION_V2_RESULTS.md)。
 
-仓库只提交源码、文档及数据策略；第三方数据、环境和权重保留在本地。数据获取方式见[data目录说明](data/README.md)。
-
-## 已有内容
-
-- 官方基准归档下载、SHA256 清单、严格 BPSEQ 解析、清洗和审计报告。
-- 保留官方 train/validation/test 划分；逐序列去重，移除跨集合完全相同序列。
-- 小型 CNN 配对基线、独立训练/评估、允许交叉配对的贪心解码和指标。
-- 研究路线、讨论纠错、数据说明及旧 Ghost/RWKV 的只读参考快照。
-- `src/rna2d/core` 保留独立 RWKV、连续控制层、显式状态 Ghost；已通过 `iterative.py` / `ghost_frontend.py` 接入实验分步2D预测器，静态基线独立保留，结果按消融报告。
-
-## 快速开始（PowerShell，在本目录运行）
-
-正式环境使用 Python **3.12.8**，解释器位于 `.venv3128/Scripts/python.exe`。实验审计还使用 requests、Gemmi、NumPy、SciPy、MDTraj、Barnaba 等已锁定依赖。统一通过 `run.ps1` 调用，避免误用 PATH 或临时 CPU 环境。
+## 本机使用（PowerShell）
 
 ```powershell
-./run.ps1 scripts/download_data.py
-./run.ps1 scripts/prepare_data.py --max-length 256
-./run.ps1 -m unittest discover -s tests -v
+Set-Location 'D:\RNA flod'
+./run.ps1 scripts/train_baseline.py --help
+./run.ps1 scripts/evaluate.py --help
+./run.ps1 scripts/predict.py --help
 ```
 
-训练环境配置见 [环境说明](docs/ENVIRONMENT.md)。当前固定 PyTorch 2.7.1 + CUDA 12.8：
+以上仅查看入口，不训练、不下载、不评价模型。`run.ps1`使用项目Python3.12.8虚拟环境，PyTorch2.7.1+cu128；单次实验按单卡约22GB显存安排。详细环境见[ENVIRONMENT](docs/ENVIRONMENT.md)。
 
-```powershell
-./run.ps1 scripts/check_environment.py
-./run.ps1 scripts/train_baseline.py --epochs 5 --batch-size 4 --device cuda:0
-./run.ps1 scripts/evaluate.py --checkpoint runs/baseline/best.pt --split validation
-# 此入口仅为早期小模型示例，不是约150k比较版复现命令
-# 旧测试已揭盲，不再用于后续方案验收；新盲测需另行冻结
-```
+训练入口默认CNN、joint_split_v2和balanced BCE，按validation组宏F1保存开发检查点。一般CLI训练不等于冻结实验复现；评价CLI只开放validation，核验数据指纹，旧检查点缺指纹须显式兼容选项。新独立test需另立冻结协议。不要重跑早期下载/prepare脚本来“刷新”数据，也不要覆盖既有运行目录。
 
-`run.ps1` 固定调用项目的 Python 3.12.8 环境；不修改全局 PATH。选择 GPU 可用 `--device cuda:0` / `cuda:1` / `cuda:2`。初版训练是单卡，不自动合并三张卡的显存。
+后续A/B/C尚未开始：辅助监督准入、配对级mask、评价分母与两阶段冒烟须先通过，才冻结预算和正式运行。见[执行细则](docs/DATA_FIRST_EXECUTION_V1.md)和[路线图](docs/DATA_FIRST_ROADMAP_V1.md)。
 
-## 必须理解的边界
-
-扩充全池完成的是**精确序列去重和证据/质量审核**；仅joint_split_v2中已放行子集完成声明范围的联合同源/研究/构建体隔离，不代表全量1D均可训练。原61条版本只在已声明的RNA3DB分量与80%全局相似性范围内做了隔离。历史 `data/processed` 基准来源混合，不属于新实验池。长度、配对类型、背景与掩码范围会改变评估分布，不能直接与论文全量成绩比较。
-
-基线只预测 AU/GC/GU、一碱基至多一配对的任务；含其他配对的样本完整保存在标准化记录中，但从基线集合排除，不静默改成未配对。贪心解码支持交叉边，但不保证最优，也不代表已经解决假结预测。未经校准的 sigmoid 输出称为分数。
-
-当前CNN版本选择及限制见[基线决策](docs/BASELINE_DECISION_V1.md)。约150k比较版与默认train_baseline.py的早期小模型不同，不混用指标。
-
-阅读顺序：[讨论与纠错](docs/DISCUSSION.md) → [研究路线](docs/ROADMAP.md) → [数据协议](docs/DATA_PROTOCOL.md) → `data/reports/prepare_report.json`。
-
-迁移范围与验证：[核心迁移说明](docs/MIGRATION.md)。
-
-当前可运行的数据审计：
-
-```powershell
-./run.ps1 scripts/audit_experimental_sources.py --offline
-./run.ps1 scripts/screen_probing_samples.py
-./run.ps1 scripts/query_current_experimental_pdb.py
-```
-
-默认数据目录为 `data/experimental/paired_v0_2`，每条记录通过实验证据门禁后才能运行。当前样本规模不支持广泛架构结论，建议先扩充数据。已有历史基准权重如需复核，可在评估命令明确指定 `--data-dir data/processed`，不能将其成绩称为严格实验证据评估。
-
-下一次继续：[下一步清单](docs/NEXT_STEPS.md)。运行状态见 `docs/STATUS.md`（完成实测后更新）。
+仓库提交源码、文档和聚合摘要；原始材料、逐记录台账、环境和权重留本地。[数据目录](data/README.md) · [迁移边界](docs/MIGRATION.md) · [最新文档同步](docs/DOCUMENTATION_SYNC_V2.md)。

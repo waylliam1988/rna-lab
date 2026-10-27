@@ -1,6 +1,6 @@
 # 数据优先路线：数据、损失与执行细则 v1
 
-日期：2026-10-27。配套[总路线图](DATA_FIRST_ROADMAP_V1.md)与[执行进度](DATA_FIRST_PROGRESS_V1.md)。本文件补充执行设计，不代表新数据已放行或新训练已完成。不设置负责人、验收人字段。
+设计日期2026-10-27，状态同步2026-10-28。配套[总路线图](DATA_FIRST_ROADMAP_V1.md)与[执行进度](DATA_FIRST_PROGRESS_V1.md)。本文件保留设计并标明执行状态；S0/S2机器审计和S6-L v2已有结果，A/B/C仍未启动，新数据未准入。当前操作入口为[NEXT_ACTION_GUIDE_V1.md](NEXT_ACTION_GUIDE_V1.md)。不设置负责人、验收人字段。
 
 ## 1. 先分清手里的数据
 
@@ -23,13 +23,13 @@
 
 - 模型：`src/rna2d/sequence_encoders.py::SequencePairModel`，CNN参数为kind=cnn、width=113、hidden=64、depth=2。
 - 旧比较入口：`scripts/run_encoder_comparison.py`；它会运行多种编码器，不可直接当作新A/B/C启动命令。
-- 当前配对损失：`scripts/run_controlled_experiment.py::balanced_loss`，比较版CNN复用此函数。
+- 当前共享配对损失：`src/rna2d/losses.py::balanced_pair_bce`；`run_controlled_experiment.py::balanced_loss`是兼容名称。默认CNN入口和研究runner复用共享BCE，伙伴竞争不默认启用。
 - 实验数据组批/评价：`src/rna2d/training.py::collate/evaluate`；解码及配对指标：`src/rna2d/data.py`。
 - 现有联合隔离材料：`data/manifests/joint_split_v2.json`及`joint_split_v2_validation.json`；实际数据路径须从清单核对，不凭目录名选择版本。
 - 历史1D：`data/experimental/clean_release_v1/sequences.sqlite3`及`sequences.fasta`；实测profile：`data/experimental/probing_clean_v2/profiles.sqlite3`。这些路径存在不等于训练获准。
 - `data/experimental/POLICY.json`仍含旧61条默认路径；先建立版本对应表，不能只读一个ready布尔值决定新训练资格。
 
-以下是新工作包的约定输出，**尚待生成**：
+以下是工作包的约定输出，**前四项已生成**（联合关系/去向明细留本地并被Git忽略）；A/B/C协议和运行输出仍未生成。S6-L v2是另一个已完成的损失实验，不能算作A/B/C。
 
 | 产物 | 约定位置 | 内容 |
 | --- | --- | --- |
@@ -161,9 +161,9 @@ C在辅助训练后必须接实验微调；不能拿辅助开发最优检查点�
 
 变更预算、损失、标签定义、隔离边界、主指标或选择规则时，新建协议版本并记录变更原因；旧记录保留。状态文档更新不自动意味着允许发布原始数据或模型。
 
-## 8. 独立的配对损失对照（待实现）
+## 8. 独立配对损失对照（v2已完成，候选停止合入）
 
-状态更新：`src/rna2d/losses.py`已提供稳定logsumexp实现及可选`competition_weight`入口；原平衡BCE已抽为共享实现，并由`train_baseline.py`和受控比较runner复用。8项契约测试及全套测试均通过。竞争项尚未加入任何正式训练配置或效果运行，仍是候选；不得据此改变当前BCE默认值。
+状态更新：`src/rna2d/losses.py`已提供稳定logsumexp实现及可选`competition_weight`入口；原平衡BCE已抽为共享实现，并由`train_baseline.py`和受控比较runner复用。8项契约测试及全套测试均通过。竞争项已在独立v2冻结协议中完成六次效果运行和重载，开发gate不通过；保留实现但停止合入，不提供默认CLI启用。BCE保持默认，结果见[DATA_FIRST_LOSS_RESULTS_V2.md](DATA_FIRST_LOSS_RESULTS_V2.md)。
 
 2026-10-28补充：共享`evaluate`现报告解码前多伙伴高分端点率，按全部合法AU/GC/GU候选和序列长度计算，不使用观测真值mask筛候选；运行器汇总逐RNA/逐组结果，独立重载脚本复核该指标。该诊断是次要机制指标，不改变主F1的观测标签范围或S3评价准入规则。
 
@@ -196,11 +196,13 @@ batch竞争损失 = mean(有适用端点的RNA竞争损失)
 - lambda=0时，在相同输入、权重与随机状态下，总损失及梯度与原BCE一致；新代码不得无意改变参照组。
 - 单RNA重复组批平均一致；无向边虽然仅保存一次，正边两端均可参与竞争，分母准确。
 
-### 8.3 固定对照和记录
+### 8.3 固定对照和记录（保留设计与版本沿革）
 
 v1协议 `data/manifests/data_first_loss_protocol_v1.json` 已冻结；其`bce/seed42`完成550次训练更新后，在验证评价时因变长批次矩阵尺寸错误失败。checkpoint和日志保留于`runs/data_first_loss_v1/bce/seed42/`，没有正式结果，也没有重试或运行其余条件。该v1结果状态是技术失败，不能用于损失选择。
 
 已修复共享`evaluate`并添加变长批次契约测试。为保留冻结协议不可变性，修复后通过`data/manifests/data_first_loss_protocol_v2.json`建立新协议；v2运行目录为`runs/data_first_loss_v2/<bce|bce_competition>/seed<seed>/`，独立重载核验及汇总分别写到`data/manifests/data_first_loss_verification_v2.json`和`data/manifests/data_first_loss_summary_v2.json`。v2沿用相同数据、损失、预算、种子、阈值和门槛，不复用v1 checkpoint或指标；所有6次从配对随机初始化重新运行。每版协议与运行源码分别保存指纹。
+
+以下保留该分支的执行设计；实际v2已经完成，gate不通过，不因这里的将来时措辞重跑。
 
 - 归档数据主线结果后，预声明唯一训练流程：仅实验训练，或固定的辅助训练后微调；两损失条件完全相同，不挑最有利的数据子集。不混用旧BCE检查点直接比较新训练。
 - 两条件均从相同种子随机初始state_dict重新训练，三个种子42/43/44、相同采样序列与阶段边界；辅助流程若存在，须明确竞争项在哪些阶段启用，并固定两阶段数据语义。

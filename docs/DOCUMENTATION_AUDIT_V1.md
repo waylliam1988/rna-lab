@@ -1,5 +1,7 @@
 # 文档同步审计（2026-10-27）
 
+**历史审计：本页保留2026-10-27的同步范围与当时结论。2026-10-28的数据优先执行、默认入口与后续教学同步见[DOCUMENTATION_SYNC_V2.md](DOCUMENTATION_SYNC_V2.md)，当前操作见[NEXT_ACTION_GUIDE_V1.md](NEXT_ACTION_GUIDE_V1.md)。**
+
 检查范围：仓库根README、AGENTS、data/README和docs中的Markdown；对照当前源码、已有实验摘要和冻结协议。只更正状态与解释，不改变历史指标、数据、权重或冻结实验协议。各阶段的13/50/80项测试数是当时记录，不一律替换成当前82。
 
 | 发现的滞后 | 更新位置 | 处理 |

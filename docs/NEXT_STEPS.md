@@ -1,5 +1,7 @@
 # 下一次从这里继续
 
+**当前续接：先读[逐步操作指南](NEXT_ACTION_GUIDE_V1.md)，按S1-1审核已有候选的文献、构建体和同源关系。** 基线冻结与有限元数据查询已完成，不重跑；本次仅更新文档，不恢复研究运行。A/B/C仍未准入。
+
 阶段6D的BCE与BCE＋伙伴竞争对照已按v2冻结协议完成6次运行、六个checkpoint独立重载和预声明门槛汇总，见[结果报告](DATA_FIRST_LOSS_RESULTS_V2.md)。gate不通过，候选保留但停止可选合入，默认仍为BCE；不追加seed或调参。
 
 当前可执行细则见[数据/损失/运行说明](DATA_FIRST_EXECUTION_V1.md)，实际做到哪里见[进度台账](DATA_FIRST_PROGRESS_V1.md)。CNN参照和`joint_split_v2`已冻结；profile、历史划分、bpRNA-PDB候选及clean_release与当前/历史数据的精确关系已有聚合报告。

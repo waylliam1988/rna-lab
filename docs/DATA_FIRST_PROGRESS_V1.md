@@ -2,6 +2,8 @@
 
 更新日期：2026-10-28。范围：总路线图阶段0–6。这里区分旧实验、本次文档设计和未来执行，不设置人员字段。
 
+本次文档同步与下一步教学见[DOCUMENTATION_SYNC_V2.md](DOCUMENTATION_SYNC_V2.md)及[NEXT_ACTION_GUIDE_V1.md](NEXT_ACTION_GUIDE_V1.md)。研究暂停阶段后的本次操作仅更新文档，不进行新的来源审核或训练。
+
 ## 当前停在哪里
 
 **S0基线冻结、joint数据版本核对、S2-1隔离原因审计、S2-2辅助来源试点、profile/历史/比较候选关系审计和S6-L损失对照均已形成可复核结果；生产训练/评价/推理入口也已完成manifest门禁和checkpoint兼容验证。** 没有辅助监督或新独立测试通过准入；clean_release的构建体/同源及部分文献关系仍缺证据。旧test已揭盲，不据其调参；A/B/C不启动。S6-L v2的伙伴竞争gate不通过，默认保持BCE。当前从S1-1未完成的生物学来源关系审核继续；无法核实的记录保持隔离。
@@ -24,7 +26,7 @@
 | S4 | 正式A/B/C协议冻结 | 未开始 | 待生成data_first_abc_protocol_v1.json | 填U/Ua/Uf/delta/严重退步阈值、长度与分组等 |
 | S5-1 | 9次正式运行与全种子开发报告 | 未开始 | 无新运行 | S0–S4通过后才启动 |
 | S5-2 | 可用时的新独立测试 | 未开始 | 没有本轮新盲测证据 | 无新独立组时保留未执行及原因，不制造测试集 |
-| S6 | 序列预训练/反应性/架构/3D单项分支 | 未开始 | 仅有进入条件和候选方案 | 不与首轮辅助2D叠加，触发后另立协议 |
+| S6 | 序列预训练/反应性/架构/3D单项分支（不含下方S6-L） | 未开始 | 仅有进入条件和候选方案 | 不与首轮辅助2D叠加，触发后另立协议 |
 | S6-L | 固定数据：BCE与BCE＋伙伴竞争损失对照 | v1因验证维度故障停止；评价修复及111项测试通过；v2六次运行、独立重载和预声明汇总均完成，gate不通过 | 结果报告`docs/DATA_FIRST_LOSS_RESULTS_V2.md`（SHA256 `3b051e6438e0f23cd1269e2fdfc6ce2f25c9c20c900dd6b06c29de17c695e4b3`）；v2协议 SHA256 `46db4520d0bcfc15319f96def77258b4c62ec612837d34caa2a281c098a02659`；verification SHA256 `ca1117899d08c0bad03871688924d6ab9e1c9a51645827b01df55daa67d311ef`；summary SHA256 `53493b48511023ddbb100cef68cb9c871168ba7648edcec0f501063711b53363` | 候选状态：保留但停止；开发通过：否；可选合入：否；默认启用：否。BCE保持默认；无独立test，不作跨家族泛化结论 |
 | P0 | 生产训练/评价/推理入口与检查点契约 | 完成必要门禁与共享加载 | `src/rna2d/experiment_data.py`校验joint split manifest和train/validation指纹；`src/rna2d/model_factory.py`统一CNN与PairBaseline加载；`src/rna2d/reporting.py`统一group-macro F1；默认入口使用joint_split_v2/CNN，PairBaseline保留显式回退 | 仅validation默认评价；旧checkpoint需显式兼容开关；smoke只证明工程链路，不产生科学效果结论 |
 
@@ -107,7 +109,7 @@
 
 本次版本回连修正核验：`joint_split_v2`源哈希与`annotation_review_v1/paired.jsonl`核对一致；106条split记录按sequence SHA256、observed_mask、pairs精确匹配。clean_release 141条中74条序列相同，71条监督相同，3条监督不同；clean_release全体`training_allowed=false`。修正后生成器断言通过，测试结果见本次S1更正日志。
 
-## 运行登记模板（尚无新运行）
+## 后续运行登记模板（A/B/C尚无运行；S6-L已完成）
 
 ```text
 run_id:
@@ -123,3 +125,8 @@ evaluation_split / test_accessed:
 result_path / reload_verification:
 failure_reason / next_action:
 ```
+
+
+## 本次文档交接同步（2026-10-28）
+
+按用户要求，核对c3f7c2f之后至c2adc36的提交、现有聚合审计、S6-L结果和当前训练/评价源码，修正README/STATUS/路线/执行细则等滞后描述，新增逐步操作指南。未开展新人工来源核验、网络查询、下载、数据放行或模型训练。文档链接/格式及入口help核验见[同步报告](DOCUMENTATION_SYNC_V2.md)，不是新增性能证据。下一研究动作仍为S1-1小批次原文、构建体与同源关系核查；按证据更新台账后commit/push，不跳到S3或A/B/C。

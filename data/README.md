@@ -9,14 +9,8 @@
 - `manifests/`：可提交的公开来源URL、字节哈希、发布计数与验证摘要；不含第三方序列/信号原始数据。
 - `reports/`：本地审计及运行报告。
 
-已有脚本：
-
-```powershell
-./run.ps1 scripts/download_data.py
-./run.ps1 scripts/prepare_data.py
-./run.ps1 scripts/audit_experimental_sources.py --bpseq-zip '你的原始bpRNA归档路径'
-./run.ps1 scripts/query_current_experimental_pdb.py
-./run.ps1 scripts/screen_probing_samples.py
-```
+当前只读续接入口：[逐步指南](../docs/NEXT_ACTION_GUIDE_V1.md)、[进度台账](../docs/DATA_FIRST_PROGRESS_V1.md)。早期download/prepare脚本用于历史归档获取，不是刷新已冻结数据的默认命令；本轮无需重复大下载。
 
 最新获取与清洗范围见 `docs/CLEAN_RELEASE_V1_REPORT.md`、`docs/FINE_CLEANING_PROTOCOL_V2.md`。原始数据、排除原因和待审证据保留；全池没有自动获得训练资格；后续joint_split_v2已对176条扩展2D候选放行88/10/8子集，70条2D与213473条1D继续隔离，1D预训练关闭。旧8条测试已揭盲，后续不得用于调参。见[逐项验证](../docs/STAGED_VALIDATION.md)。探测反应性不等于精确配对标签。
+
+后续审计已核验344495个profile及167个RMDB来源文件；clean_release的141条记录与joint并非同一版本，74条同序列中有3条标签冲突，不以跨版本ID继承split资格。没有新的辅助训练/测试准入。逐记录关系和文献台账留本地，聚合报告在manifests。人工审查的新工作材料使用`data/reports/`独立版本，不覆盖原始台账。

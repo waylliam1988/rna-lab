@@ -104,3 +104,9 @@ Ghost-only复用两级连续控制和轨迹编码，不含RWKV；full额外接�
 ## 20. 文档同步与CNN工程基线决策：完成
 
 更新路线图、数据放行范围、物理迁移边界、环境历史状态和旧比较解释；区分早期PairBaseline与约150k参数CNN比较版。历史数值、机器摘要和冻结协议保留。见[文档审计](DOCUMENTATION_AUDIT_V1.md)与[基线决策](BASELINE_DECISION_V1.md)。本次仅同步文档及报告生成器文字，不训练、不重新评估模型。
+
+## 21. 数据优先交接后的执行（截至2026-10-28）
+
+c3f7c2f之后的S0冻结、S2隔离/试点、profile/历史/比较候选和clean_release机器关系审计已有结果；人工构建体/同源及部分主研究缺口仍在，未新增数据准入。S6-L v2六次对照和六个检查点重载完成，竞争项gate不通过，BCE继续默认；生产入口默认150k CNN/joint_split_v2并加manifest/检查点门禁。最新代码回归记录130项，详细追加日志以[DATA_FIRST_PROGRESS_V1.md](DATA_FIRST_PROGRESS_V1.md)为准。
+
+最新有限文献元数据阶段c2adc36收尾暂停。本次只同步状态文档及[下一步教学](NEXT_ACTION_GUIDE_V1.md)，不恢复研究运行，不重复下载/训练。A/B/C尚未开始，没有新独立测试。历史冻结协议和数值不改写。
