@@ -1,0 +1,21 @@
+{
+  "unit_tests_passed": 72,
+  "independent_checkpoint_reloads_passed": 21,
+  "gate1_interface_checks_passed": true,
+  "gate2_dynamic_signal_detected": true,
+  "gate3_partial_predictive_skill_demonstrated": true,
+  "stable_additional_rwkv_memory_benefit_demonstrated": false,
+  "train_sequences": 35,
+  "development_validation_sequences": 5,
+  "new_independent_test_sequences": 0,
+  "experimental_trajectory_labels": false,
+  "artifact_sha256": {
+    "data/manifests/gate1_contract_v1.json": "4e8d656680f57effead325fa68ed84b5549cbbfafdda554d77cbc5018344c894",
+    "data/manifests/gate2_signal_v1.json": "dca786b4c3d281d4e0427a61f52939636b015ff248170162552c2f97e5ec7760",
+    "data/manifests/gate3_protocol_v1.json": "35b1f45ed1177f1f3600da98ffd5b1a90b207b2a556288f06adf8f252a70c736",
+    "data/manifests/gate3_summary_v1.json": "0b3445ea27318446868a4acdc5ed23c677a1db23cfe178601267f6e9563ee52b",
+    "data/manifests/gate3_checkpoint_verification_v1.json": "bdeba195d676cd7932612edc6b53c9bf70135e1938ebb95450a34464ab067b3a",
+    "src/rna2d/physics/causal_probe.py": "e3af38930a5987ca614787998c258fdf87f61c78bd98eb4013144be3229740c0",
+    "scripts/run_gate3_probe.py": "48118cdaad356bd24019c5fe2e16a1a83c95a77db9ca38f0b65874cc55303a6b"
+  }
+}
