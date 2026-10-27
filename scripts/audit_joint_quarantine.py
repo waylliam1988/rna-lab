@@ -57,7 +57,8 @@ def main() -> None:
         ],
     }
     out = ROOT / "data/manifests/joint_quarantine_audit_v1.json"
-    out.write_text(json.dumps(report, ensure_ascii=True, indent=2) + "\n", encoding="utf-8")
+    with out.open("w", encoding="utf-8", newline="\n") as f:
+        f.write(json.dumps(report, ensure_ascii=True, indent=2) + "\n")
     print(json.dumps(report, ensure_ascii=True, indent=2))
 
 

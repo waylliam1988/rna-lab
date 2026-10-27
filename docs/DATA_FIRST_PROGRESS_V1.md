@@ -4,7 +4,7 @@
 
 ## 当前停在哪里
 
-**已完成：路线规划和执行细则的文档整理。下一步：生成本轮基线冻结清单及数据版本对应表。** 本轮尚未完成新的联合隔离审计、辅助试点放行、辅助入口或A/B/C协议冻结，没有启动新训练、下载或新测试评价。
+**S0基线冻结已完成；S2-1直接实验隔离原因审计完成；S2-2比较来源试点结论为不可准入。** 当前从S1未覆盖的profile/历史关系与新增独立评估候选继续；不启动A/B/C，直到辅助监督具备逐条来源、映射和隔离证据并通过链路门禁。
 
 旧CNN拟合/比较等完成情况见[基线决策](BASELINE_DECISION_V1.md)与[STATUS](STATUS.md)，不能将旧结果算为本轮阶段验收。
 
@@ -15,8 +15,8 @@
 | D0 | 总路线与数据/损失/记录细则 | 完成 | [路线图](DATA_FIRST_ROADMAP_V1.md)、[执行细则](DATA_FIRST_EXECUTION_V1.md)；本次已核对模型、损失、mask与旧runner源码 | 文档方案，不表示实现完成 |
 | S0-1 | 冻结CNN源码、构造参数、原权重指纹 | 完成 | `data/manifests/data_first_baseline_v1.json`，含源码/协议/数据/三种子检查点SHA256及重载证据 | 不重训；后续实验沿用该参照 |
 | S0-2 | 数据版本与政策对应、实验登记模板 | 完成 | 冻结清单的历史边界、joint_split_v2计数和`docs/DATA_FIRST_AUDIT_V1.md` | 旧61条仅历史；clean_release_v1仍待联合审计 |
-| S1-1 | 1D/2D/辅助/历史评估联合关系表 | 部分完成（首版） | `data/manifests/data_first_relations_v1.jsonl`，213826条登记；joint 1D unresolved记录保留原因 | profile显式映射、历史关系别名、辅助池关系仍待补 |
-| S1-2 | 隔离决定与新开发/测试候选 | 部分完成 | `data/manifests/data_first_admission_v1.jsonl`及`docs/DATA_FIRST_AUDIT_V1.md`；joint_split_v2去向已核验 | clean_release_v1的141条及新候选尚无新独立评估准入 |
+| S1-1 | 1D/2D/辅助/历史评估联合关系表 | 部分完成（版本回连已修正） | 本地`data/manifests/data_first_relations_v1.jsonl`，214002条；106条split源记录与annotation_review逐条标签匹配；profile/历史别名未完全连接 | profile显式映射、历史测试关系、辅助池关系仍待补 |
+| S1-2 | 隔离决定与新开发/测试候选 | 部分完成 | 本地`data/manifests/data_first_admission_v1.jsonl`及`docs/DATA_FIRST_AUDIT_V1.md`；clean_release 74条同序列仅71条标签完全相同，3条标签不一致隔离；全体clean_release不作训练输入 | 需补clean_release母本/构建体和新独立评估候选审核 |
 | S2-1 | 待审直接实验2D分层复核 | 完成（不可自动准入） | `data/manifests/joint_quarantine_audit_v1.json`、[审计说明](JOINT_QUARANTINE_AUDIT_V1.md)；70条全部保留隔离 | 新版本需补同源/母本/构建体/primary-study证据；不改当前冻结划分 |
 | S2-2 | 一个比较辅助来源的有限试点 | 完成（不可准入） | `data/manifests/data_first_comparative_pilot_v1.json`；固定前20条候选，20/20缺来源与质量核验 | 停止扩大该来源；补齐原始PDB/链、方法/覆盖、映射和隔离证据后另立版本 |
 | S3-1 | 辅助配对级mask入口与评价准入 | 未开始 | 待实现与契约检查 | 旧collate不能直接承载positive_only/部分标签；旧evaluate尚未排除无候选监督RNA，须新增准入清单与组级分母检查 |
@@ -25,7 +25,7 @@
 | S5-1 | 9次正式运行与全种子开发报告 | 未开始 | 无新运行 | S0–S4通过后才启动 |
 | S5-2 | 可用时的新独立测试 | 未开始 | 没有本轮新盲测证据 | 无新独立组时保留未执行及原因，不制造测试集 |
 | S6 | 序列预训练/反应性/架构/3D单项分支 | 未开始 | 仅有进入条件和候选方案 | 不与首轮辅助2D叠加，触发后另立协议 |
-| S6-L | 固定数据：BCE与BCE＋伙伴竞争损失对照 | 未开始 | [路线阶段6D](DATA_FIRST_ROADMAP_V1.md)、[执行细则第8节](DATA_FIRST_EXECUTION_V1.md#8-独立的配对损失对照待实现)；仅设计 | 先归档数据主线，再实现与检查，冻结lambda/预算/门槛，正式2条件×3种子 |
+| S6-L | 固定数据：BCE与BCE＋伙伴竞争损失对照 | 候选实现完成，效果对照未开始 | `src/rna2d/losses.py`提供共享BCE和可选竞争项；`tests/test_pair_losses.py`验证8项契约；基线runner调用共享BCE | 候选函数尚未接入正式loss CLI；无损失效果证据，待数据主线归档后冻结协议 |
 
 ## 执行日志（只追加）
 
@@ -37,13 +37,18 @@
 | 2026-10-27 | S0/S1验证 | `.venv3128/Scripts/python.exe -m unittest discover -s tests -v`；审计清单断言检查 | 82项测试通过；新清单计数/哈希断言通过；未读取旧test作选择，未启动A/B/C | 继续补逐条来源/映射/构建体关系审计；保持当前准入决定 |
 | 2026-10-27 | S2-2 | 对`bprna_pdb_candidates_NOT_GOLD.jsonl`按固定文件顺序抽取20条，生成可行性统计和准入决定 | 20/20 `provenance_verified=false`、`quality_verified=false`，原始PDB/链、方法/覆盖或提取策略待核验；结论为stop_and_quarantine，不是训练样本 | 不扩大该来源；补齐证据后另立版本，或归档不可行原因；A/B/C仍不启动 |
 | 2026-10-27 | S2-1 | 运行 `scripts/audit_joint_quarantine.py`，审计 `joint_split_v2/quarantine.jsonl` 的证据缺口 | 70/70均为`unverified_homology_or_primary_study`；64条缺homology component、9条study完整性不足、6条缺study ID；决定retain_quarantine，未移动记录 | 新版本补同源/研究/构建体证据；当前数据门禁不变，A/B/C仍不启动 |
-| 2026-10-27 | D0审阅补充 | 补齐新评价准入待实现状态、无监督RNA/空组分母检查、B/C两阶段短冒烟及试点训练可行性验收；同步总路线和任务表 | 仅文档修改；未实现评价逻辑、未训练或访问测试；本次按用户要求提交推送文档 | S0-1，核对基线指纹 |
+| 2026-10-27 | S1版本回连修正 | 根据 `joint_split_v2.json` 的 `paired_source_sha256=244221...` 定位真实来源为`annotation_review_v1/paired.jsonl`；按序列哈希、mask和pairs逐条核对，不再把clean_release的同ID记录直接继承split资格 | 106条源记录精确匹配；clean_release 141条中74条同序列、71条mask/pairs完全匹配、3条标签冲突、67条无同序列对应；训练准入仍只限joint_split_v2 train文件。修正了先前错误地按跨版本ID继承split的关系脚本，并在清单中保留冲突状态 | 重跑审计生成器及契约断言；阶段审计更正需单独commit/push |
+| 2026-10-27 | S1版本回连更正 | 按 `joint_split_v2.json` 的源指纹核实真实来源为`annotation_review_v1/paired.jsonl`；生成器改为sequence SHA256关联并逐条比对mask/pairs；补充 clean_release alias/conflict 统计 | 106条source记录精确标签匹配；clean_release 71条精确标签别名不获训练资格，3条同序列异标签 quarantine，67条无split对应；新结构断言通过。更正了前一版错误按跨版本ID继承split的映射 | 全量测试与Git差异检查后，单独commit/push该更正 |
+| 2026-10-27 | S6-L候选代码 | 新增 `src/rna2d/losses.py`，把既有正负类平衡BCE抽为共享函数，并实现未启用的可选伙伴竞争loss；`train_baseline.py`和旧比较runner改用同一BCE | 专项契约测试8项通过，包括lambda=0等价、左右伙伴、unknown mask、无适用端点和极端logit；尚未跑任何效果实验。BCE共享实现是采用的生产路径；伙伴竞争仅候选，未开发收益通过、未作为可选训练配置、未默认启用 | 全套测试确认重构行为；待数据阶段完成和协议冻结后才运行效果对照 |
+| 2026-10-27 | D0审阅补充（历史） | 补齐新评价准入待实现状态、无监督RNA/空组分母检查、B/C两阶段短冒烟及试点训练可行性验收 | 文档修改；未实现评价逻辑、未训练或访问测试；该行原先“下一步S0-1”已由后续S0/S1/S2记录完成，不再代表当前续接位置 | 见任务表的S1-2、S2-1、S2-2状态 |
 
 每次追加：日期/任务ID/实际动作/产物路径与哈希或检查命令/通过或失败/限制/下一步。技术失败不删行。文档检查不能写成模型测试通过。
 
 本次文档核验：PowerShell检查6个变更文档的本地Markdown链接，缺失0项；`git diff --check`通过。首次Python链接检查因当前终端找不到python命令未执行，随后使用PowerShell完成同项检查。未运行模型测试。
 
 审阅补充后的核验：PowerShell检查7个待提交文档的本地文件链接，缺失0项；`git diff --check`通过。仅文档变更，未运行模型测试；提交前另检查暂存差异。
+
+本次版本回连修正核验：`joint_split_v2`源哈希与`annotation_review_v1/paired.jsonl`核对一致；106条split记录按sequence SHA256、observed_mask、pairs精确匹配。clean_release 141条中74条序列相同，71条监督相同，3条监督不同；clean_release全体`training_allowed=false`。修正后生成器断言通过，测试结果见本次S1更正日志。
 
 ## 运行登记模板（尚无新运行）
 

@@ -1,6 +1,6 @@
 {
   "manifest": "data-first-baseline-v1",
-  "created_at_utc": "2026-10-27T14:59:45.363261+00:00",
+  "created_at_utc": "2026-10-27T15:18:25.188726+00:00",
   "status": "frozen_engineering_reference",
   "model": {
     "class": "rna2d.sequence_encoders.SequencePairModel",
@@ -29,6 +29,8 @@
   "dataset": {
     "path": "data/experimental/joint_split_v2",
     "train_sha256": "4168f00f61d9a3330db33b45308fe247c6ba15fd1c50ce4b868559b78f3ffcb9",
+    "joint_source_path": "data\\experimental\\annotation_review_v1\\paired.jsonl",
+    "joint_source_sha256": "24422182c3c6b6989bb023909e8df5b2ea72f2bdf317e2089cc6b4479da8a673",
     "validation_sha256": "794e1cd6692eccfbad1212fa8e4246c2698eaede8fb686f8a502e52908451a71",
     "test_sha256": "a2d58d8fd899799703cc82e38db755bbeb58f327bd7d2ed3289cbcf6d5cf6b9e",
     "joint_manifest_sha256": "9e2ae4fd32bab3a288997c0d761ede1a423864d2fd0974c5745239f1dfbad92c",
@@ -56,7 +58,7 @@
     },
     "loss_source": {
       "path": "scripts\\run_controlled_experiment.py",
-      "sha256": "12283ece17cf4f463d5e7fc4cb7cd74db115b0365e101669ead2724f7bd7a51a"
+      "sha256": "52068f594617997d94fc94b66dd85eb671d0d7b6b7143e71f676d2a37c61478a"
     },
     "training_source": {
       "path": "src\\rna2d\\training.py",

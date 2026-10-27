@@ -1,19 +1,40 @@
 {
   "audit": "data-first-audit-v1",
-  "created_at_utc": "2026-10-27T14:59:45.363261+00:00",
+  "created_at_utc": "2026-10-27T15:18:25.188726+00:00",
   "status": "S0_and_S1_partial_complete",
   "baseline_manifest": "data/manifests/data_first_baseline_v1.json",
-  "baseline_sha256": "b1fe8d7447582af494e4611e74df70bc7ad08d36ee25bc29c002a988217043b6",
+  "baseline_sha256": "a89039c608059809a8efe9d6a8a420453b4b7ae830ecc4d1f1ed00863e7e86e4",
   "relations_path": "data/manifests/data_first_relations_v1.jsonl",
-  "relations_sha256": "bad499eb6bcdc812fe0492ad208ab25e1d6862361c19f91cb11c17558a37832d",
+  "relations_sha256": "972f67d9e138f9abbe720f2b6b642aedf72fa5d88d54d4f4708d3581753921cf",
   "admission_path": "data/manifests/data_first_admission_v1.jsonl",
-  "admission_sha256": "3aba4dcdce08e70c924b20cb23ce75b7dd250221891e1b2822d61a816ab7a7a4",
+  "admission_sha256": "57b69c1f3445ffb3f7e6cfd5ffd8bca95c8c0c28c60da69058d18305ad3213e5",
   "counts": {
     "joint_train": 88,
     "joint_validation": 10,
     "joint_test": 8,
     "joint_quarantine_2d": 70,
     "clean_release_unique_2d_sequences": 141,
+    "clean_release_same_sequence_as_split": 74,
+    "clean_release_exact_mask_pair_alias": 71,
+    "clean_release_same_sequence_label_conflict": 3,
+    "joint_source_exact_label_matches": 106,
+    "relation_rows_by_source": {
+      "joint_split_v2": 106,
+      "annotation_review_v1": 176,
+      "clean_release_v1": 141,
+      "joint_1d_assignments_v2": 213579
+    },
+    "admission_rows_by_decision": {
+      "joint_split_v2:pass": 88,
+      "joint_split_v2:held_out": 18,
+      "annotation_review_v1:represented_in_joint_split_v2": 106,
+      "annotation_review_v1:quarantine": 70,
+      "clean_release_v1:alias_excluded": 71,
+      "clean_release_v1:quarantine": 67,
+      "clean_release_v1:quarantine_label_conflict": 3,
+      "joint_1d_assignments_v2:quarantine": 213473,
+      "joint_1d_assignments_v2:excluded_from_pair_training": 106
+    },
     "joint_1d_assignments": {
       "quarantine": 213473,
       "train": 88,
@@ -30,8 +51,8 @@
     "one_d_pretraining": "do_not_enable"
   },
   "not_completed": [
-    "Full relation coverage for 1D/profile pools is not claimed; those pools remain quarantined.",
-    "Comparative auxiliary source trial is not started because no reviewed source admission exists.",
+    "Full relation coverage for probing profiles and historical aliases is not claimed; unverified material remains quarantined.",
+    "Comparative auxiliary source trial is not admitted because sampled records lack reviewed source evidence.",
     "A/B/C is not frozen or run; no new effect conclusion is made."
   ]
 }
