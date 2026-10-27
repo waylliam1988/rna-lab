@@ -1,0 +1,69 @@
+{
+  "created_at_utc": "2026-10-27T08:20:00.102356+00:00",
+  "protocol": "clean-release-v1",
+  "initial_coordinate_entries_screened": 10522,
+  "official_candidate_entries_rechecked": 1965,
+  "unique_1d_sequences": 213579,
+  "unique_2d_sequences": 141,
+  "coordinate_unique_1d_sequences": 927,
+  "probing_unique_1d_sequences": 212652,
+  "coordinate_probing_sequence_overlap": 0,
+  "accepted_probing_profiles": 344495,
+  "paired_context_distribution": {
+    "single_RNA": 14,
+    "complex": 127
+  },
+  "paired_conflicting_sequences_quarantined": 3,
+  "coordinate_counts": {
+    "coordinate_1d_records": 3315,
+    "coordinate:independent_annotation_missing_for_chain": 760,
+    "coordinate:local_quality_coverage_below0_95": 777,
+    "coordinate:Barnaba:no_unambiguous_canonical_pairs": 342,
+    "coordinate:accepted_consensus_pairs": 247,
+    "coordinate:independent_canonical_pair_jaccard_below0_9": 1503,
+    "coordinate:insufficient_consensus_label_coverage": 170,
+    "coordinate:pair_length_outside20_512": 282,
+    "coordinate:Barnaba:multiple_canonical_partners": 11
+  },
+  "coordinate_errors": [],
+  "official_coordinate_download_failures": [],
+  "rasp_tracks_audited": 600,
+  "rasp_training_approved_sequences": 0,
+  "comparative_training_approved_sequences": 0,
+  "training_split_ready": false,
+  "model_training_performed": false,
+  "tool_versions": {
+    "gemmi": "0.7.5",
+    "barnaba": "0.1.9",
+    "mdtraj": "1.11.2",
+    "numpy": "2.2.6",
+    "scipy": "1.18.1"
+  },
+  "accepted_probing_source_files": 167,
+  "protocol_fingerprints": {
+    "src\\rna2d\\fine_qc.py": "5fe2278cccb59a2b5b7375a3111d8bef73288b8f8366b3895440f1f5fb8eb805",
+    "src\\rna2d\\probing_qc.py": "520c3f095604359d2190c4a2f2ef3df28f7175ee941b5d0853fc59ad3895e202",
+    "src\\rna2d\\annotation.py": "42efe03351df32282e9b958536cda569fb7fc5492133e20ce3b88ad88dd6fa75",
+    "src\\rna2d\\coordinate_qc.py": "af8e8d68cbe1cffd8bafeb5185f80fddb14641ddc2f0475e153430f638dcc948",
+    "scripts\\clean_coordinate_pairs.py": "16d404b55dff070fabb4e47af2d670f88704a5c2ec966454bb6c85d0dad723b7",
+    "scripts\\clean_probing_corpus.py": "fe4ee2170f12e79f513a1b230684dfeb42274dc372a41366622827d7bac4d9e8",
+    "data\\experimental\\verified_coordinate_v1\\source_verification_report.json": "4ff2a18602a783420298f154e3a929723134f55a6724bfb138993f15df232d42",
+    "data\\experimental\\fr3d_index_v1\\summary.json": "df5d8cfd551425a8180dcbfd734577095aa6c0797db2d17d8a1841a48d793e96",
+    "data\\experimental\\probing_clean_v2\\source_header_review.json": "4031e6e8bcaf5b1d0b31ebf827160ed5b4d8a32966dc84531699d90063e7c751"
+  },
+  "fingerprints": {
+    "paired_deduplicated.jsonl": "ab4617d4b0f2e025cc2a8cfda38b1a7c1d3610121f4e95005ecc7ac23262d99f",
+    "sequences.fasta": "ff4e5e2fe399e3d0600ed4a2e1171dbf836dc62b84e4ca4f726aca9e4bc92118",
+    "fine_entry_results.jsonl": "7ae6c6a8556a53b0e32060b58ac1863321e26c0451c3028e2ca8757463f5406d",
+    "config.json": "5be23a3b403fb3d7e9c36d571bff06b72f5ae2fd0ea453c2aa744c495aac4269"
+  },
+  "limitations": [
+    "Unique means exact complete sequence strings, not independent families; library mutants and flanks are retained.",
+    "1D is experimentally associated sequence; measured reactivity is not an exact partner label.",
+    "2D is canonical AU/GC/GU consensus with unknown/interface labels masked, length20-512; not all noncanonical RNA interactions.",
+    "RNA complexes are explicitly contextual; they are not evidence of isolated-RNA folding under unspecified conditions.",
+    "Automated strict QC is completed under recorded thresholds; unresolved/unsupported evidence is quarantined, not silently approved.",
+    "NMR, modified bases, source/version gaps, RASP assay/replicate evidence and comparative alignments remain outside the approved pool.",
+    "Homology/study/construct-controlled split and leakage audit are required before training; no new training-ready split is claimed."
+  ]
+}

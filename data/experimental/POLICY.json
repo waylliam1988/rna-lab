@@ -5,6 +5,9 @@
   "paired_dataset_path": "data/experimental/paired_v0_2",
   "paired_dataset_scope": "61 unmodified single-RNA sequences, strict canonical geometry annotation and masked labels; 49/6/6 samples across 7/4/4 groups",
   "benchmark_ready": false,
+  "screened_release_path": "data/experimental/clean_release_v1",
+  "screened_release_training_split_ready": false,
+  "screened_release_policy": "Exact-sequence deduplicated, evidence-screened pools; measured probing is not pair truth. Require joint homology/study/construct split before training. Existing paired_v0_2 remains the small pipeline-validation default.",
   "intended_use": "Small pipeline validation only; expand data and annotation validation before scientific architecture comparison",
   "comparative_auxiliary_training_ready": false,
   "comparative_auxiliary_policy": {

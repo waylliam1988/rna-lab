@@ -1,0 +1,16 @@
+{
+  "created_at_utc": "2026-10-27T08:20:43.476144+00:00",
+  "passed": true,
+  "unique_sequences_checked": 213579,
+  "paired_sequences_checked": 141,
+  "measured_profiles_checked": 344495,
+  "training_split_ready": false,
+  "checks": [
+    "sequence SHA256/alphabet/dedup",
+    "official coordinate source receipt and experimental evidence flags",
+    "canonical pairing bounds, masks, one-partner rule, interface exclusion",
+    "independent annotation agreement and modified-base exclusion",
+    "all measured-array dimensions, source positions, finite values/uncertainties and missing masks"
+  ],
+  "note": "Evidence/format contracts, not accuracy measurement or proof of biological native-state correctness."
+}

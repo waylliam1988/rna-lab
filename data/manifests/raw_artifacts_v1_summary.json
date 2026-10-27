@@ -1,0 +1,12 @@
+{
+  "artifacts": 4646,
+  "manifest_sha256": "d6a8c68a02093580963abcf8e00d8d773911c2bdaf89fc2706b99fab67f25e63",
+  "source_reports": {
+    "data/reports/experimental_acquisition_v1_all.json": "5f952cf063f8c6b0ac310327dafe33f47cf0d4ec823aaa3ff9d592fd40097bcf",
+    "data/reports/additional_experimental_acquisition_v1.json": "08c31a647814e78093e3df3ba8e95529e16f448070d428832a4a058da994980d",
+    "data/reports/rasp_reference_acquisition_v1.json": "2b891da73504c312e0f918cae11e170c0ab349cf0061f2821c0d29a4e5da9510",
+    "data/reports/rasp_bigwig_fallback_v1.json": "295532db1730ce56e6cf7ac01100b1901a128f9ed5aa1123b77a91a1fec7a3f6",
+    "data/experimental/verified_coordinate_v1/source_verification_report.json": "4ff2a18602a783420298f154e3a929723134f55a6724bfb138993f15df232d42"
+  },
+  "note": "Official artifact URLs and byte hashes only. Raw datasets/environments/weights are not committed; local ZIP references are not promoted by filename."
+}
