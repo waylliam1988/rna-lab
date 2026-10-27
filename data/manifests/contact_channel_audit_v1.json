@@ -1,0 +1,325 @@
+{
+  "channel_numbering": "one-based macro2/3; zero-based indices1/2",
+  "features": [
+    "mean masked row density of input J",
+    "maximum masked row density of input J"
+  ],
+  "source_is_nonzero_static_context": true,
+  "statement": "当前设定下不携带动态信息",
+  "preprocessing_zeroing_detected": false,
+  "raw_datasets": {
+    "physical_forecast_v1:train": {
+      "source_sha256": "b74d99493134ad488247018ff97f9ca43cae99a6a194388b2edba79fe04770ab",
+      "shape": [
+        140,
+        33,
+        18
+      ],
+      "min": [
+        0.02443181909620762,
+        0.049275364726781845
+      ],
+      "max": [
+        0.03947144001722336,
+        0.06236559525132179
+      ],
+      "max_temporal_range": [
+        0.0,
+        0.0
+      ],
+      "between_case_std": [
+        0.002547658274101858,
+        0.004418156810887119
+      ],
+      "nonzero_values": [
+        4620,
+        4620
+      ]
+    },
+    "physical_forecast_v1:validation": {
+      "source_sha256": "2863a731f3fb49aad432e91603a5ce9f72ff1e6c7c3ec4ca999da586276115b8",
+      "shape": [
+        20,
+        33,
+        18
+      ],
+      "min": [
+        0.03176470845937729,
+        0.05000000074505806
+      ],
+      "max": [
+        0.036273293197155,
+        0.060624998062849045
+      ],
+      "max_temporal_range": [
+        0.0,
+        0.0
+      ],
+      "between_case_std": [
+        0.0015534568567212737,
+        0.003892825275787651
+      ],
+      "nonzero_values": [
+        660,
+        660
+      ]
+    },
+    "gate3_v1:train": {
+      "source_sha256": "03bc1c7676040cd2d5561bf7b95bd05e46fdf8c15442c58dfc7de415434f66b5",
+      "shape": [
+        210,
+        8,
+        18
+      ],
+      "min": [
+        0.02443181909620762,
+        0.049275364726781845
+      ],
+      "max": [
+        0.03947144001722336,
+        0.06236559525132179
+      ],
+      "max_temporal_range": [
+        0.0,
+        0.0
+      ],
+      "between_case_std": [
+        0.002547658274101857,
+        0.004418156810887118
+      ],
+      "nonzero_values": [
+        1680,
+        1680
+      ]
+    },
+    "gate3_v1:validation": {
+      "source_sha256": "f1bcabc173c4e859d9b0831c2b652fd847c8cb88bb4941f456595b931f2c87b2",
+      "shape": [
+        30,
+        8,
+        18
+      ],
+      "min": [
+        0.03176470845937729,
+        0.05000000074505806
+      ],
+      "max": [
+        0.036273293197155,
+        0.060624998062849045
+      ],
+      "max_temporal_range": [
+        0.0,
+        0.0
+      ],
+      "between_case_std": [
+        0.0015534568567212737,
+        0.003892825275787651
+      ],
+      "nonzero_values": [
+        240,
+        240
+      ]
+    }
+  },
+  "normalization": {
+    "physical_forecast_v1": {
+      "checkpoint_sha256": "aa6477fd0d3d53db7b617ab70abee1c0c3f1e4397156cd6cfec669dd485d338a",
+      "saved_mean_channels": [
+        0.03389168530702591,
+        0.05336271971464157
+      ],
+      "saved_scale_channels": [
+        0.009999999776482582,
+        0.009999999776482582
+      ],
+      "splits": {
+        "train": {
+          "normalized": {
+            "shape": [
+              140,
+              33,
+              18
+            ],
+            "min": [
+              -0.9459866285324097,
+              -0.4087355136871338
+            ],
+            "max": [
+              0.5579754710197449,
+              0.9002875685691833
+            ],
+            "max_temporal_range": [
+              0.0,
+              0.0
+            ],
+            "between_case_std": [
+              0.254765828836992,
+              0.4418156954311662
+            ],
+            "nonzero_values": [
+              4620,
+              4620
+            ]
+          },
+          "max_inverse_error": 0.0
+        },
+        "validation": {
+          "normalized": {
+            "shape": [
+              20,
+              33,
+              18
+            ],
+            "min": [
+              -0.21269768476486206,
+              -0.33627191185951233
+            ],
+            "max": [
+              0.23816078901290894,
+              0.726227879524231
+            ],
+            "max_temporal_range": [
+              0.0,
+              0.0
+            ],
+            "between_case_std": [
+              0.15534568567212736,
+              0.38928254730944317
+            ],
+            "nonzero_values": [
+              660,
+              660
+            ]
+          },
+          "max_inverse_error": 0.0
+        }
+      }
+    },
+    "gate3_v1": {
+      "checkpoint_sha256": "2fcc49e4bb1b7a4aec3a949237b29090643bbc76395aea1acd39fb9c7bdfcc96",
+      "saved_mean_channels": [
+        0.03389168530702591,
+        0.05336273834109306
+      ],
+      "saved_scale_channels": [
+        0.009999999776482582,
+        0.009999999776482582
+      ],
+      "splits": {
+        "train": {
+          "normalized": {
+            "shape": [
+              210,
+              8,
+              18
+            ],
+            "min": [
+              -0.9459866285324097,
+              -0.4087373614311218
+            ],
+            "max": [
+              0.5579754710197449,
+              0.9002857208251953
+            ],
+            "max_temporal_range": [
+              0.0,
+              0.0
+            ],
+            "between_case_std": [
+              0.2547658288369921,
+              0.44181568978460684
+            ],
+            "nonzero_values": [
+              1680,
+              1680
+            ]
+          },
+          "max_inverse_error": 0.0
+        },
+        "validation": {
+          "normalized": {
+            "shape": [
+              30,
+              8,
+              18
+            ],
+            "min": [
+              -0.21269768476486206,
+              -0.33627375960350037
+            ],
+            "max": [
+              0.23816078901290894,
+              0.7262259721755981
+            ],
+            "max_temporal_range": [
+              0.0,
+              0.0
+            ],
+            "between_case_std": [
+              0.15534568567212736,
+              0.389282527578765
+            ],
+            "nonzero_values": [
+              240,
+              240
+            ]
+          },
+          "max_inverse_error": 0.0
+        }
+      }
+    }
+  },
+  "raw_physics_replays": [
+    {
+      "split": "train",
+      "id": "4PQV_A",
+      "states_replayed": 33,
+      "J_fixed": true,
+      "mask_fixed": true,
+      "mask_valid_residues": 68,
+      "macro_contact_temporal_range": [
+        0.0,
+        0.0
+      ],
+      "geometry_contact_mean_range": 0.0018424017471261322,
+      "first_geometry_contact_mean": 0.0006209250423125923,
+      "last_geometry_contact_mean": 0.0024633267894387245,
+      "max_position_change_nm": 0.48603346943855286,
+      "raw_trace_sha256": "84acd2d1988b17a5af00b4b326cf8e3d901016e865c20fb0b7f40b749da7b73b"
+    },
+    {
+      "split": "validation",
+      "id": "7LYJ_A",
+      "states_replayed": 33,
+      "J_fixed": true,
+      "mask_fixed": true,
+      "mask_valid_residues": 66,
+      "macro_contact_temporal_range": [
+        0.0,
+        0.0
+      ],
+      "geometry_contact_mean_range": 0.002547736105043441,
+      "first_geometry_contact_mean": 0.0005799061036668718,
+      "last_geometry_contact_mean": 0.003127642208710313,
+      "max_position_change_nm": 0.5944691896438599,
+      "raw_trace_sha256": "b251471150d2802eadf4e2a71f068667747cd76921f68b3bdc34c18c35b17090"
+    }
+  ],
+  "original_source": {
+    "rna_system_sha256": "4266c36f0c8878f4002e9010e923723e13db05603b3c23273401541f79eb90ad",
+    "method_lines": {
+      "_fold_precompute_sums_and_contacts": 10501,
+      "_fold_build_obs_vec": 10517,
+      "simulate_fold": 12174
+    },
+    "msa_gate_config": {
+      "RNA_MSA_GATE_ENABLE": true,
+      "RNA_MSA_GATE_USE_ENERGY": true
+    },
+    "limitation": "Full original BioSystem trajectories were not executed. Its optional energy-driven J gate can make these channels vary; that outer gate is not present in the current fixed-J interface."
+  },
+  "actual_observation_dimensions": 18,
+  "static_channels_in_macro_fraction": 0.4,
+  "static_channels_in_observation_fraction": 0.1111111111111111,
+  "source_sha256": "3b1de7e0f0d933e934ef385b896b779cc525e4a5afc53e2824540c43d6204049"
+}
