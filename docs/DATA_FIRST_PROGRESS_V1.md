@@ -25,7 +25,7 @@
 | S5-1 | 9次正式运行与全种子开发报告 | 未开始 | 无新运行 | S0–S4通过后才启动 |
 | S5-2 | 可用时的新独立测试 | 未开始 | 没有本轮新盲测证据 | 无新独立组时保留未执行及原因，不制造测试集 |
 | S6 | 序列预训练/反应性/架构/3D单项分支 | 未开始 | 仅有进入条件和候选方案 | 不与首轮辅助2D叠加，触发后另立协议 |
-| S6-L | 固定数据：BCE与BCE＋伙伴竞争损失对照 | v1因验证维度故障停止；评价修复及111项测试通过；v2协议已冻结，训练未开始 | v1失败产物保留在`runs/data_first_loss_v1/bce/seed42/`，checkpoint SHA256 `1c356a7c230e5683ddea35e36341a0fd84f6cd91ca5ca52b5327ab61c8aa7536`；v2协议`data/manifests/data_first_loss_protocol_v2.json` SHA256 `46db4520d0bcfc15319f96def77258b4c62ec612837d34caa2a281c098a02659`，源码/数据/coverage指纹已核验 | 候选状态保留；开发门槛未评估；未可选合入；默认仍为BCE。v1不重跑；按v2从头运行配对6次 |
+| S6-L | 固定数据：BCE与BCE＋伙伴竞争损失对照 | v1因验证维度故障停止；评价修复及111项测试通过；v2六次运行全部完成，独立重载通过，汇总结论待执行 | v2协议`data/manifests/data_first_loss_protocol_v2.json` SHA256 `46db4520d0bcfc15319f96def77258b4c62ec612837d34caa2a281c098a02659`；六个checkpoint均独立重载，`data/manifests/data_first_loss_verification_v2.json` SHA256 `ca1117899d08c0bad03871688924d6ab9e1c9a51645827b01df55daa67d311ef` | 候选状态保留；开发门槛待汇总判定；未可选合入；默认仍为BCE。运行指标只作预声明validation开发判定，不访问test |
 
 ## 执行日志（只追加）
 
@@ -80,6 +80,8 @@
 | 2026-10-28 | S6-L运行完成 | `bce_competition` seed43；550更新；schedule `2b12cb70581f6ef836bfc9035d7a3170219f05a937b1723096480b6bd9e31cbb`；checkpoint `6515470321d9ba35264238d9e47452ef505d534f50a84810b7d81ec33090d096` | validation group-macro F1=0.554906；test未访问；独立重载待统一执行 | 继续冻结名单中的其他条件/种子，不改协议 |
 | 2026-10-28 | S6-L运行启动 | `bce_competition` seed44；protocol `46db4520d0bcfc15319f96def77258b4c62ec612837d34caa2a281c098a02659`；train `4168f00f61d9a3330db33b45308fe247c6ba15fd1c50ce4b868559b78f3ffcb9`；validation `794e1cd6692eccfbad1212fa8e4246c2698eaede8fb686f8a502e52908451a71`；550更新 | 仅加载train/validation；检查点本地保存，test未打开 | 等待运行完成或保留异常 |
 | 2026-10-28 | S6-L运行完成 | `bce_competition` seed44；550更新；schedule `c06a3efc718e08a927d4cfba37279a0cc31a8535bdbb6c86fd5a6ed1450a6269`；checkpoint `1422417c0209418da57fb3935481ca25679258a583886ae9cf0107742c595d7a` | validation group-macro F1=0.491957；test未访问；独立重载待统一执行 | 继续冻结名单中的其他条件/种子，不改协议 |
+| 2026-10-28 | S6-L v2六次正式运行完成 | 严格按顺序完成`bce`及`bce_competition`的seed 42/43/44；每次550更新，从协议初始化状态开始，使用共同采样日程，validation在最终checkpoint评价 | 6/6运行成功，结果/step日志/checkpoint保留在本地ignored `runs/data_first_loss_v2/`；各结果checkpoint SHA256与文件一致。validation group-macro F1：BCE 0.511988/0.546002/0.509172；competition 0.527559/0.554906/0.491957。未访问test；当前只列运行结果，不据单次结果停止或改门槛 | 独立核验全部六个checkpoint的验证预测后，再单独执行预声明门槛汇总 |
+| 2026-10-28 | S6-L v2独立checkpoint核验 | 运行`scripts/verify_pair_loss_comparison.py --protocol data/manifests/data_first_loss_protocol_v2.json`，生成`data/manifests/data_first_loss_verification_v2.json`（SHA256 `ca1117899d08c0bad03871688924d6ab9e1c9a51645827b01df55daa67d311ef`） | 6/6检查点严格加载成功；validation group-macro、逐RNA多伙伴诊断、逐组多伙伴诊断及解码预测均与run结果重现；全部`test_accessed=false`。仅使用冻结validation，不进行选择或测试评估 | 提交并推送验证产物与台账；之后运行固定summarizer应用冻结gate |
 每次追加：日期/任务ID/实际动作/产物路径与哈希或检查命令/通过或失败/限制/下一步。技术失败不删行。文档检查不能写成模型测试通过。
 
 本次文档核验：PowerShell检查6个变更文档的本地Markdown链接，缺失0项；`git diff --check`通过。首次Python链接检查因当前终端找不到python命令未执行，随后使用PowerShell完成同项检查。未运行模型测试。

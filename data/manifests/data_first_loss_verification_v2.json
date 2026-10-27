@@ -1,0 +1,69 @@
+{
+  "verification": "pair-loss-comparison-v2",
+  "protocol_sha256": "46db4520d0bcfc15319f96def77258b4c62ec612837d34caa2a281c098a02659",
+  "all_checks_passed": true,
+  "reloaded_checkpoints": 6,
+  "checks": [
+    {
+      "condition": "bce",
+      "seed": 42,
+      "checkpoint_sha256": "4f7ebc61c361dcd30859918f3ed13f64ba6aa5dcbe2e4fec6027be09c8c00037",
+      "validation_group_macro_f1": 0.511988011988012,
+      "validation_macro_multi_partner_conflict_endpoint_rate": 0.3100870175293868,
+      "validation_group_macro_multi_partner_conflict_endpoint_rate": 0.3533908812044995,
+      "all_predictions_reproduced": true,
+      "test_accessed": false
+    },
+    {
+      "condition": "bce",
+      "seed": 43,
+      "checkpoint_sha256": "527f3f291f8854f954a0ab3909c9a91dcaf1c91c85c4866a7124f423d7444fff",
+      "validation_group_macro_f1": 0.5460021631671367,
+      "validation_macro_multi_partner_conflict_endpoint_rate": 0.4028843202691867,
+      "validation_group_macro_multi_partner_conflict_endpoint_rate": 0.44125909376726574,
+      "all_predictions_reproduced": true,
+      "test_accessed": false
+    },
+    {
+      "condition": "bce",
+      "seed": 44,
+      "checkpoint_sha256": "1b03b2a5d8e8458fa336de57ef0d606ba0f6204717f83793609c1080e1257a16",
+      "validation_group_macro_f1": 0.5091720366307443,
+      "validation_macro_multi_partner_conflict_endpoint_rate": 0.38363786457587273,
+      "validation_group_macro_multi_partner_conflict_endpoint_rate": 0.41001994378438766,
+      "all_predictions_reproduced": true,
+      "test_accessed": false
+    },
+    {
+      "condition": "bce_competition",
+      "seed": 42,
+      "checkpoint_sha256": "f63e3b101c4e7c8f3d59622e4eb03ee30e869ef2fcc43b8adbfd5803accce021",
+      "validation_group_macro_f1": 0.5275591511355101,
+      "validation_macro_multi_partner_conflict_endpoint_rate": 0.31037009281233097,
+      "validation_group_macro_multi_partner_conflict_endpoint_rate": 0.3559590999655488,
+      "all_predictions_reproduced": true,
+      "test_accessed": false
+    },
+    {
+      "condition": "bce_competition",
+      "seed": 43,
+      "checkpoint_sha256": "6515470321d9ba35264238d9e47452ef505d534f50a84810b7d81ec33090d096",
+      "validation_group_macro_f1": 0.5549055111555111,
+      "validation_macro_multi_partner_conflict_endpoint_rate": 0.373866285215937,
+      "validation_group_macro_multi_partner_conflict_endpoint_rate": 0.416128896095748,
+      "all_predictions_reproduced": true,
+      "test_accessed": false
+    },
+    {
+      "condition": "bce_competition",
+      "seed": 44,
+      "checkpoint_sha256": "1422417c0209418da57fb3935481ca25679258a583886ae9cf0107742c595d7a",
+      "validation_group_macro_f1": 0.4919566544566545,
+      "validation_macro_multi_partner_conflict_endpoint_rate": 0.27215584350677235,
+      "validation_group_macro_multi_partner_conflict_endpoint_rate": 0.32306520751498496,
+      "all_predictions_reproduced": true,
+      "test_accessed": false
+    }
+  ],
+  "test_accessed": false
+}
