@@ -1,0 +1,61 @@
+{
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "updates": 500,
+  "batch_size": 16,
+  "lr": 0.001,
+  "weight_decay": 0.0001,
+  "gradient_clip": 1.0,
+  "history_length": 8,
+  "horizons": [
+    1,
+    4,
+    8,
+    16
+  ],
+  "actions": [
+    -0.4,
+    0.0,
+    0.4
+  ],
+  "episodes_per_sequence": 2,
+  "anchor_step": 8,
+  "temperature": 0.0,
+  "dt": 0.05,
+  "variants": [
+    "ghost_obs",
+    "ghost_momentum",
+    "ghost_action",
+    "ghost_full",
+    "mlp_obs",
+    "mlp_full"
+  ],
+  "target": "change in original normalized macro observations",
+  "loss": "MSE of change divided by train-only per-horizon channel std, floor1e-5; dynamic channels0,3,4",
+  "baselines": [
+    "persistence",
+    "causal_linear_trend",
+    "train_mean_change"
+  ],
+  "diagnostics": [
+    "history_shuffle_preserving_current",
+    "reset_every_step",
+    "momentum_drop",
+    "action_drop",
+    "matched_counterfactual_action_shuffle",
+    "action_effect_error"
+  ],
+  "mlp_capacity": "match total Ghost parameter count within1%; width selected by parameters only",
+  "selection": "All fixed500-update seeds reported; no validation selection",
+  "limits": [
+    "Simulator-generated auxiliary transitions, not experimental folding trajectories.",
+    "Current physical observations are input; no sequence-only folding claim.",
+    "Only35 train sequences and5 development validation; no fresh independent test.",
+    "Momentum is an8-dimensional summary, not full momenta; original GVP/policy/metric not restored.",
+    "Drop/shuffle/reset are distribution-shift diagnostics; independently trained variants are the principal controls.",
+    "Ghost total parameter count includes unused original bus/goal parameters; equal count does not equal active capacity or FLOPs."
+  ]
+}

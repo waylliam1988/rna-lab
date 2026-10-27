@@ -1,0 +1,20 @@
+{
+  "checks": {
+    "train": {
+      "current_interfaces_checked": 210,
+      "full_forks_replayed": 3
+    },
+    "validation": {
+      "current_interfaces_checked": 30,
+      "full_forks_replayed": 30
+    }
+  },
+  "known_group_isolation_passed": true,
+  "momentum_ambiguity": {
+    "current_observations_identical": true,
+    "momentum_summaries_differ": true,
+    "next8_macro_max_abs_difference": 0.04659414291381836
+  },
+  "all_checks_passed": true,
+  "source_sha256": "33dc32f63ffad80dddb47b419e63d99f5e4e09ba78db5b8bd73de9b93ecc20f8"
+}

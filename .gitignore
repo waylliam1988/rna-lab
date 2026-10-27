@@ -9,6 +9,7 @@ data/reports/
 data/experimental/*
 !data/experimental/POLICY.json
 data/comparative/
+data/simulated/
 runs/
 .pytest_cache/
 .env
