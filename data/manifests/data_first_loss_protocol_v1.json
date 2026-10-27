@@ -1,0 +1,142 @@
+{
+  "protocol": "data-first-pair-loss-v1",
+  "status": "frozen_before_training",
+  "coverage_audit_sha256": "1352329f697ce0c093297448c3e0b27663a2e8596159522e98bae89ed03bc75f",
+  "dataset": "data/experimental/joint_split_v2",
+  "data_sha256": {
+    "train": "4168f00f61d9a3330db33b45308fe247c6ba15fd1c50ce4b868559b78f3ffcb9",
+    "validation": "794e1cd6692eccfbad1212fa8e4246c2698eaede8fb686f8a502e52908451a71"
+  },
+  "split_counts": {
+    "train": 88,
+    "validation": 10
+  },
+  "split_groups": {
+    "train": 8,
+    "validation": 7
+  },
+  "isolation_manifest_sha256": "9e2ae4fd32bab3a288997c0d761ede1a423864d2fd0974c5745239f1dfbad92c",
+  "split_validation_manifest_sha256": "30784a93d06c60ad968448fc82a0e6836a13ecea9e9d93c46442e1fad68c5da9",
+  "test_access": "prohibited; runner and verifier open only train.jsonl and validation.jsonl",
+  "model": {
+    "class": "rna2d.sequence_encoders.SequencePairModel",
+    "kind": "cnn",
+    "width": 113,
+    "hidden": 64,
+    "depth": 2,
+    "parameters": 150019,
+    "precision": "float32"
+  },
+  "model_source_sha256": "2e214d1ea10950c2ef89590fd12360cdc18dbe5a5579065c84f4625319990e9f",
+  "initial_state_sha256": {
+    "42": "f48391e1fc29b69fc84042f3e0943d0469ea26839b774fb76f08fcbd85d5cc49",
+    "43": "c7d227aeada9d774c3566399a419575be8877c81b0f4b864d3dfb41038a666e5",
+    "44": "4b2d59c997e2f048562f542330aab839ed57b2b078c20a9c2f591bf6d5e0bd38"
+  },
+  "conditions": {
+    "bce": {
+      "loss": "balanced_pair_bce",
+      "lambda": 0.0
+    },
+    "bce_competition": {
+      "loss": "balanced_pair_bce + lambda * partner_competition_loss",
+      "lambda": 0.05
+    }
+  },
+  "lambda": 0.05,
+  "lambda_rationale": "At equal logits the per-endpoint ranking term is log(1 + reliable_negative_count). lambda=0.05 is fixed as a modest initial auxiliary scale (roughly a few tenths of the 0.693 balanced-BCE-at-zero scale for the observed candidate counts); it is not searched or selected on validation performance.",
+  "loss_source_sha256": "449426f8cc0cfb74209f0d2742f28bb7a465e9032128f720d8bcc7e6b6e93650",
+  "label_semantics": "Only upper-triangular pairs selected by the existing canonical AU/GC/GU, minimum separation, padding and observed-mask candidate set are supervised. Unknown pairs are masked. Competition negatives are only explicitly supervised compatible pairs with label 0; positive-only endpoints without known negatives are skipped.",
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "initialization": "Fresh random initialization for all runs; exact per-seed state hashes above; paired conditions start from identical state.",
+  "optimizer": {
+    "name": "AdamW",
+    "lr": 0.001,
+    "weight_decay": 0.01,
+    "gradient_clip": 1.0,
+    "schedule": "constant",
+    "precision": "float32",
+    "autocast": false
+  },
+  "batch_size": 4,
+  "epochs": 25,
+  "optimizer_updates": 550,
+  "updates_per_epoch": 22,
+  "sampling": "Uniformly sample split_group_id, then uniformly sample an RNA within that group, with replacement; paired conditions share the exact precomputed 550-update schedule for each seed.",
+  "sample_order_sha256": {
+    "42": "0436b53fd3d29851eb43bc13f571a6480f3c42727c4df159dd12f0bab5b189db",
+    "43": "2b12cb70581f6ef836bfc9035d7a3170219f05a937b1723096480b6bd9e31cbb",
+    "44": "c06a3efc718e08a927d4cfba37279a0cc31a8535bdbb6c86fd5a6ed1450a6269"
+  },
+  "checkpoint": "Final optimizer update only; no validation checkpoint selection or early stopping.",
+  "threshold": 0.5,
+  "primary_metric": "validation group-macro F1 (RNA F1 averaged within split_group_id, then equally across groups)",
+  "secondary_metrics": [
+    "validation RNA-macro precision/recall/F1",
+    "per-group F1",
+    "per-RNA F1",
+    "length strata",
+    "predecode legal-candidate multi-partner endpoint rate at threshold 0.5, using all sequence-compatible candidates irrespective of observed-label masks, averaged per RNA then per group",
+    "training time",
+    "peak allocated CUDA memory",
+    "loss component and competition coverage"
+  ],
+  "validation_group_count": 7,
+  "multi_partner_conflict_diagnostic": {
+    "threshold_probability": 0.5,
+    "candidate_rule": "All AU/GC/GU-compatible pairs at sequence separation >=4, independent of observed-label masks and pair truth.",
+    "conflict_rule": "An endpoint is conflicting when at least two legal partners have sigmoid score >= threshold_probability.",
+    "aggregation": "Conflict endpoints divided by all nucleotides per RNA, then arithmetic mean within group, then equal mean across validation groups."
+  },
+  "gate": {
+    "delta_loss": 0.02,
+    "delta_rationale": "Predeclared minimum practical gain of two absolute F1 points for continuation; set as an engineering utility threshold before any formal run, not estimated from the outcomes.",
+    "required_seed_improvements": 3,
+    "required_group_improvements": 4,
+    "severe_group_regression_max": 0.1,
+    "group_rule": "Compare per-group F1 averaged across the three paired seeds; at least 4 of 7 groups must improve and no group may decline by more than 0.10 absolute F1.",
+    "pass_rule": "All three seed-level group-macro deltas are positive, their mean is at least delta_loss, at least 4/7 group-averaged deltas are positive, and no severe group regression occurs.",
+    "failure_rule": "Technical failure is retained and reported; no metric-driven retries, extra seeds, lambda search, threshold changes, or protocol edits. Missing any one of six runs stops the conclusion."
+  },
+  "run_limit": 6,
+  "attempts_per_condition_seed": 1,
+  "device": "cuda:0",
+  "torch_num_threads": 1,
+  "evaluation_batch_size": 4,
+  "reload_tolerance": 1e-09,
+  "independent_test_available": false,
+  "adoption_rules": {
+    "candidate": "partner competition function as implemented and tested",
+    "development_gate_pass": "eligible for optional integration after independent checkpoint verification; no automatic default change",
+    "development_gate_fail": "stop or retain as unadopted candidate; do not retune",
+    "optional_integration": "only after gate pass and reload verification; this experiment itself does not change training CLI",
+    "default_enabled": false
+  },
+  "source_sha256": {
+    "src\\rna2d\\sequence_encoders.py": "2e214d1ea10950c2ef89590fd12360cdc18dbe5a5579065c84f4625319990e9f",
+    "src\\rna2d\\losses.py": "449426f8cc0cfb74209f0d2742f28bb7a465e9032128f720d8bcc7e6b6e93650",
+    "src\\rna2d\\training.py": "7d7a194ce6a6ee74c2d9e6a78cdea56cb1e84c3ae382d461632e3350b16d2d47",
+    "src\\rna2d\\sampling.py": "e7d8feab3d34d5090162e28c64c0270dc0e2e2301767021e586da1f9f2605bd3",
+    "src\\rna2d\\data.py": "9f9c9bd41c0e226e6885fc1069d4617d6b02740f9b464464dc06354aa63cfdd2",
+    "scripts\\freeze_pair_loss_protocol.py": "d27d386db75ecf1c4bb908d25cfd297328e3574eddf6aff98aa7f03e35fdc2f1",
+    "scripts\\run_pair_loss_comparison.py": "949a534df12a144a0364a9a507cd521e5364ab84c60180d89a4798dd2225ffc2",
+    "scripts\\verify_pair_loss_comparison.py": "ba2ada880f4ca9f597263889606aac9a4f43d7e9ea394ab48fffd11b902ce58c",
+    "scripts\\summarize_pair_loss_comparison.py": "42e7453d563abcdf4226010af7982a4ab26b729e928bc7ef27f41b8074949ad2",
+    "scripts\\audit_pair_loss_coverage.py": "13d66edd455eac70c17c7d66a9db90ec806d0bc6a4e7eb64ebb8a330c114f93a"
+  },
+  "environment": {
+    "expected_device": "NVIDIA GeForce RTX 2080 Ti",
+    "torch": "2.7.1+cu128",
+    "cuda_runtime": "12.8"
+  },
+  "limitations": [
+    "Only 88 training RNAs and 10 validation RNAs in 8/7 groups.",
+    "The validation set is development evidence and has been seen previously.",
+    "No new independent test exists; results cannot establish broad cross-family generalization.",
+    "The stage-2 auxiliary source pilot failed admission; this is an isolated loss comparison on approved experimental labels, not an auxiliary-data A/B/C result."
+  ]
+}

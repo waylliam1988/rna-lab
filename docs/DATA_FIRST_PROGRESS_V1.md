@@ -25,7 +25,7 @@
 | S5-1 | 9次正式运行与全种子开发报告 | 未开始 | 无新运行 | S0–S4通过后才启动 |
 | S5-2 | 可用时的新独立测试 | 未开始 | 没有本轮新盲测证据 | 无新独立组时保留未执行及原因，不制造测试集 |
 | S6 | 序列预训练/反应性/架构/3D单项分支 | 未开始 | 仅有进入条件和候选方案 | 不与首轮辅助2D叠加，触发后另立协议 |
-| S6-L | 固定数据：BCE与BCE＋伙伴竞争损失对照 | 候选实现完成，效果对照未开始 | `src/rna2d/losses.py`提供共享BCE和可选竞争项；`tests/test_pair_losses.py`验证8项契约；基线runner调用共享BCE | 状态：BCE共享实现已采用；竞争项仅候选、契约通过、未接入实验配置、未可选合入、未默认启用。无效果证据，待数据主线归档后冻结协议 |
+| S6-L | 固定数据：BCE与BCE＋伙伴竞争损失对照 | 候选实现完成；正式协议已冻结，训练未开始 | `data/manifests/data_first_loss_protocol_v1.json`（SHA256 `9c51778c2f11abbdbcd79df8cfce252f6e8ef94afbe2131af3af91c56c684a56`）；仅使用joint_split_v2 train/validation，6次运行、lambda=0.05、每次550更新、3个配对种子 | BCE共享实现保持默认；伙伴竞争尚无效果证据，不接入、不启用。协议阶段提交推送后，严格按冻结名单运行；技术失败保留且不重试 |
 
 ## 执行日志（只追加）
 
@@ -60,6 +60,7 @@
 | 2026-10-28 | S1-2 clean_release候选审计工具阶段 | 新增`scripts/audit_clean_release_eval_candidates.py`和5项准入/并查集关系测试；复用冻结split构建器的RNA3DB、primary citation、PDB实体和identity/coverage连接规则；仅输出聚合关系和数据指纹 | 定向5项、全套110项测试、Python编译及`git diff --check`通过；尚未运行实际关系图，报告只会标记候选，不会生成或准入新测试 | 提交/推送工具后执行只读审计；再根据聚合连接/缺失证据给出是否存在可独立候选的结论 |
 | 2026-10-28 | S1-2首次clean_release报告口径失败与修正 | 报告复核发现“非精确候选连到current split”汇总字段误计入74条精确别名；纠正为只统计67条非精确候选，并追加74条精确别名按split及mask/pairs结果的分层统计 | 初次生成的聚合报告未提交且已删除重建；关系组判定逻辑和0条准入结论未变；修正后定向5项测试、编译和`git diff --check`通过，完整审计待重新执行 | 完成全套回归后推送统计口径修正并重新运行只读审计 |
 | 2026-10-28 | S1-2 clean_release独立评估候选审计执行 | 运行`scripts/audit_clean_release_eval_candidates.py`；聚合报告`data/manifests/data_first_clean_release_eval_candidate_audit_v1.json`（SHA256 `8f7c4f717d8262117db482e4390efba26b0f223da81d255c3e34ef5690569814`） | 141条候选中74条与joint精确同序列（train/validation/test=59/8/7），其中71条mask/pairs一致、3条冲突；其余67条中14条与当前train关联、1条与当前test关联；clean_release全体中另有2条与历史paired_v0_2 test精确同序列。67条非精确记录并为42组：1组连train、1组连current test、1组历史test暴露、39组缺完整独立性证据。141条直接来源/质量标记通过且无模型预测，但显式construct provenance为0/141，8条缺primary citation；上下文127/141为complex。新独立测试准入0；未读模型预测/旧测试成绩、未训练、未改原始标签/划分 | 不从clean_release 141条直接抽名义测试；后续需逐条补母本/构建体及家族/研究关系和实验背景，再另立版本；没有新独立组时保持无新盲测 |
+| 2026-10-28 | S6-L正式协议冻结 | 运行`scripts/freeze_pair_loss_protocol.py`，生成`data/manifests/data_first_loss_protocol_v1.json`（SHA256 `9c51778c2f11abbdbcd79df8cfce252f6e8ef94afbe2131af3af91c56c684a56`）；复核覆盖审计、数据与源码指纹、每种子初始化和共享采样日程 | 协议状态为`frozen_before_training`；lambda=0.05，seed 42/43/44，BCE与BCE＋竞争项共6次、每次550次更新；固定最终检查点与0.5阈值，预声明开发门槛及失败规则。110项测试通过，Python编译、`git diff --check`通过；CUDA可用（RTX 2080 Ti）；未启动正式训练或访问test | 单独提交并推送冻结协议阶段；之后只运行预声明6次实验，不追加种子、不调lambda/阈值、不按validation选checkpoint |
 
 每次追加：日期/任务ID/实际动作/产物路径与哈希或检查命令/通过或失败/限制/下一步。技术失败不删行。文档检查不能写成模型测试通过。
 
