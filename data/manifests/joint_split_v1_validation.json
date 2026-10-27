@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "counts": {
+    "train": 59,
+    "validation": 8,
+    "test": 7
+  },
+  "files": {
+    "train": "04d8d3b09b8d713533f4f65fc4b37f6a42b4916a7d4460b0cf7d01dbcd06b41f",
+    "validation": "1ff2d6c32c159400561325550853bba9bace3350a6e83b586cd6a5fcf5b12772",
+    "test": "a1c0257c179f33bbe3db160e2ec8ccbd8a5f88a488e0ca898fc32c34c73d45f3"
+  },
+  "checks": [
+    "evidence and canonical label contract",
+    "mask and partner legality",
+    "component/study/construct/sequence isolation",
+    "declared local-alignment edges",
+    "joint 1D exclusion",
+    "previous assignment preservation"
+  ]
+}

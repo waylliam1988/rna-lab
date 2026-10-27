@@ -2,6 +2,8 @@
 
 本项目从 **1D 序列 → 2D 碱基配对图** 开始。旧项目保持独立。Ghost 动力学、RWKV 记忆和分步折叠是后续主线，需要分别验证其收益。
 
+逐项完成、验证与提交的最新进度：[STAGED_VALIDATION.md](docs/STAGED_VALIDATION.md)。扩展配对池和隔离划分使用独立版本，原始清洗发布不覆盖。
+
 **配对监督只用通过审核的直接实验证据。** 扩充获取、官方来源复核及精细清洗见[本轮发布报告](docs/CLEAN_RELEASE_V1_REPORT.md)和[精细清洗协议](docs/FINE_CLEANING_PROTOCOL_V2.md)。实测反应性与精确配对标签分开计数，未知/未核验记录隔离，不用模型预测或补全值充数。
 
 新清洗池位于 `data/experimental/clean_release_v1`，尚未完成联合同源/研究/构建体隔离，不自动用于训练。原61条、49/6/6划分的[链路验证版本](docs/DATASET_V0_2_REPORT.md)保留，默认训练路径不变；此前旧基准烟测不代表严格实验数据下的效果。

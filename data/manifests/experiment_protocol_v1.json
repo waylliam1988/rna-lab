@@ -1,0 +1,23 @@
+{
+  "dataset": "data/experimental/joint_split_v2",
+  "seeds": [42, 43, 44],
+  "epochs": 25,
+  "batch_size": 8,
+  "hidden": 32,
+  "learning_rate": 0.001,
+  "optimizer": "AdamW",
+  "gradient_clip": 1.0,
+  "ordinary_steps": 4,
+  "validation_step_diagnostics": [1, 2, 4, 8],
+  "algorithmic_step_size": 0.5,
+  "ghost_inner_steps": 4,
+  "state_prediction_aux_weight": 0.01,
+  "selection": "Best validation macro F1 within fixed 25 epochs; no hyperparameter search",
+  "decode_threshold": 0.5,
+  "test_policy": "Do not evaluate test until all six stages and variants are frozen; one final fixed-protocol report",
+  "variants": ["static", "iterative", "rwkv", "ghost_only", "full"],
+  "capacity_controls": "Static baseline width chosen solely by nearest parameter count for each recurrent variant, never by scores",
+  "one_d_pretraining": false,
+  "claim_scope": "Exploratory masked canonical-pair prediction on contextual experimental chains; not isolated-RNA generalization or physical cotranscriptional kinetics",
+  "world_model_scope": "Only algorithmic next-state feature prediction, compared to persistence; no physical-world-model claim"
+}

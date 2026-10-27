@@ -8,6 +8,16 @@ from rna2d.probing_qc import sequence_mapping,quality_metadata,measured_profile
 
 
 class FineQCTests(unittest.TestCase):
+    def test_partial_consensus_masks_every_disputed_partner(self):
+        seq='GAAACGAAAC'
+        record=dict(model_id=1,auth_asym_id='A',residue_auth_mapping=[[str(i+1),''] for i in range(10)])
+        contacts=[('X|1|A|G|1','X|1|A|C|5','cWW')]
+        with self.assertRaisesRegex(ValueError,'jaccard'):
+            consensus(seq,[True]*10,[[0,4],[5,9]],[True]*10,contacts,record)
+        pairs,mask,_=consensus(seq,[True]*10,[[0,4],[5,9]],[True]*10,contacts,record,min_pair_jaccard=0)
+        self.assertEqual(pairs,[[0,4]])
+        self.assertFalse(mask[5]);self.assertFalse(mask[9])
+
     def test_plausible_base_and_exploded_bond(self):
         positions={'N1':[1.4,0,0],'C2':[0.7,1.2124,0],'N3':[-0.7,1.2124,0],
                    'C4':[-1.4,0,0],'C5':[-0.7,-1.2124,0],'C6':[0.7,-1.2124,0],

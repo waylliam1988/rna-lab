@@ -105,9 +105,11 @@ def process(entry):
                 if annotation['annotation_reasons']: raise ValueError('Barnaba:'+','.join(annotation['annotation_reasons']))
                 pair_mask=list(mask)
                 for i in interfaces: pair_mask[i]=False
-                pairs,label_mask,check=consensus(record['sequence'],pair_mask,annotation['pairs'],annotation['observed_mask'],contacts,record)
+                pairs,label_mask,check=consensus(record['sequence'],pair_mask,annotation['pairs'],annotation['observed_mask'],contacts,record,
+                                               min_pair_jaccard=entry.get('min_pair_jaccard',0.9))
                 record.update(dict(pairs=pairs,observed_mask=label_mask,context=context,
                                    independent_annotation=check,annotators=['Barnaba','FR3D'],
+                                   annotation_agreement_policy='strict_chain' if entry.get('min_pair_jaccard',0.9)==0.9 else 'partial_labels_only_disagreement_endpoints_masked',
                                    all_pair_annotations=annotation['all_pair_annotations'],
                                    local_quality=dict(residue_exclusions=dict(reasons),coverage=local_coverage),
                                    interface_positions_masked=sorted(interfaces),

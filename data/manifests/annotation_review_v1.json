@@ -1,0 +1,23 @@
+{
+  "entries_reviewed": 150,
+  "source_single_RNA_candidates": 150,
+  "unique_2d": 176,
+  "cohorts": {
+    "strict_chain": 141,
+    "partial_labels_only_disagreement_endpoints_masked": 35
+  },
+  "contexts": {
+    "single_RNA": 49,
+    "complex": 127
+  },
+  "conflicting_sequences": 3,
+  "annotation_outcomes": {
+    "accepted_consensus_pairs": 98,
+    "insufficient_consensus_label_coverage": 25,
+    "independent_annotation_missing_for_chain": 21,
+    "Barnaba:no_unambiguous_canonical_pairs": 6
+  },
+  "errors": [],
+  "paired_sha256": "24422182c3c6b6989bb023909e8df5b2ea72f2bdf317e2089cc6b4479da8a673",
+  "scope": "Strict core plus explicitly masked partial-consensus single-RNA extension; no fabricated pairs or unverified FR3D-missing labels."
+}

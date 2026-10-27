@@ -38,7 +38,7 @@ def unit_key(text):
     return model,fields[2],fields[4],insertion,unusual
 
 
-def consensus(sequence,local_mask,barnaba_pairs,barnaba_mask,fr3d_rows,record):
+def consensus(sequence,local_mask,barnaba_pairs,barnaba_mask,fr3d_rows,record,min_pair_jaccard=0.9):
     mask=[a and b for a,b in zip(local_mask,barnaba_mask)]
     mapping={}
     for i,item in enumerate(record['residue_auth_mapping']):
@@ -68,7 +68,7 @@ def consensus(sequence,local_mask,barnaba_pairs,barnaba_mask,fr3d_rows,record):
     eligible=lambda pair: local_mask[pair[0]] and local_mask[pair[1]]
     a={p for p in bb if eligible(p)};b={p for p in fr_pairs if eligible(p)}
     agreement=len(a&b)/len(a|b) if a|b else 0
-    if agreement<0.9: raise ValueError('independent_canonical_pair_jaccard_below0_9')
+    if agreement<min_pair_jaccard: raise ValueError('independent_canonical_pair_jaccard_below0_9')
     for i,j in a^b: mask[i]=mask[j]=False
     # If an endpoint loses its supported partner, it cannot become a negative.
     all_pairs=bb|fr_pairs
