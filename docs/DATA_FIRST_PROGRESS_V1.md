@@ -25,7 +25,7 @@
 | S5-1 | 9次正式运行与全种子开发报告 | 未开始 | 无新运行 | S0–S4通过后才启动 |
 | S5-2 | 可用时的新独立测试 | 未开始 | 没有本轮新盲测证据 | 无新独立组时保留未执行及原因，不制造测试集 |
 | S6 | 序列预训练/反应性/架构/3D单项分支 | 未开始 | 仅有进入条件和候选方案 | 不与首轮辅助2D叠加，触发后另立协议 |
-| S6-L | 固定数据：BCE与BCE＋伙伴竞争损失对照 | 候选实现完成；正式协议已冻结，训练未开始 | `data/manifests/data_first_loss_protocol_v1.json`（SHA256 `9c51778c2f11abbdbcd79df8cfce252f6e8ef94afbe2131af3af91c56c684a56`）；仅使用joint_split_v2 train/validation，6次运行、lambda=0.05、每次550更新、3个配对种子 | BCE共享实现保持默认；伙伴竞争尚无效果证据，不接入、不启用。协议阶段提交推送后，严格按冻结名单运行；技术失败保留且不重试 |
+| S6-L | 固定数据：BCE与BCE＋伙伴竞争损失对照 | 候选实现完成；正式协议冻结；首次运行完成训练更新但验证技术失败，当前协议停止 | `data/manifests/data_first_loss_protocol_v1.json`；本地忽略目录`runs/data_first_loss_v1/bce/seed42/`保留550更新日志与checkpoint（SHA256 `1c356a7c230e5683ddea35e36341a0fd84f6cd91ca5ca52b5327ab61c8aa7536`），无`result.json` | 验证诊断收到批次补齐矩阵，短序列维度不符。按冻结失败规则不重跑、不修改协议；其余5次未启动，不能形成损失效果结论。BCE仍为默认，竞争项不接入、不启用 |
 
 ## 执行日志（只追加）
 
@@ -62,6 +62,9 @@
 | 2026-10-28 | S1-2 clean_release独立评估候选审计执行 | 运行`scripts/audit_clean_release_eval_candidates.py`；聚合报告`data/manifests/data_first_clean_release_eval_candidate_audit_v1.json`（SHA256 `8f7c4f717d8262117db482e4390efba26b0f223da81d255c3e34ef5690569814`） | 141条候选中74条与joint精确同序列（train/validation/test=59/8/7），其中71条mask/pairs一致、3条冲突；其余67条中14条与当前train关联、1条与当前test关联；clean_release全体中另有2条与历史paired_v0_2 test精确同序列。67条非精确记录并为42组：1组连train、1组连current test、1组历史test暴露、39组缺完整独立性证据。141条直接来源/质量标记通过且无模型预测，但显式construct provenance为0/141，8条缺primary citation；上下文127/141为complex。新独立测试准入0；未读模型预测/旧测试成绩、未训练、未改原始标签/划分 | 不从clean_release 141条直接抽名义测试；后续需逐条补母本/构建体及家族/研究关系和实验背景，再另立版本；没有新独立组时保持无新盲测 |
 | 2026-10-28 | S6-L正式协议冻结 | 运行`scripts/freeze_pair_loss_protocol.py`，生成`data/manifests/data_first_loss_protocol_v1.json`（SHA256 `9c51778c2f11abbdbcd79df8cfce252f6e8ef94afbe2131af3af91c56c684a56`）；复核覆盖审计、数据与源码指纹、每种子初始化和共享采样日程 | 协议状态为`frozen_before_training`；lambda=0.05，seed 42/43/44，BCE与BCE＋竞争项共6次、每次550次更新；固定最终检查点与0.5阈值，预声明开发门槛及失败规则。110项测试通过，Python编译、`git diff --check`通过；CUDA可用（RTX 2080 Ti）；未启动正式训练或访问test | 单独提交并推送冻结协议阶段；之后只运行预声明6次实验，不追加种子、不调lambda/阈值、不按validation选checkpoint |
 
+| 2026-10-28 | S6-L运行启动 | `bce` seed42；protocol `9c51778c2f11abbdbcd79df8cfce252f6e8ef94afbe2131af3af91c56c684a56`；train `4168f00f61d9a3330db33b45308fe247c6ba15fd1c50ce4b868559b78f3ffcb9`；validation `794e1cd6692eccfbad1212fa8e4246c2698eaede8fb686f8a502e52908451a71`；550更新 | 仅加载train/validation；检查点本地保存，test未打开 | 等待运行完成或保留异常 |
+| 2026-10-28 | S6-L运行失败 | `bce` seed42；protocol `9c51778c2f11abbdbcd79df8cfce252f6e8ef94afbe2131af3af91c56c684a56`；异常 `ValueError: Scores must be a non-empty square matrix matching the sequence` | 失败运行目录保留，未触碰test；按冻结规则不自动重试 | 保留失败原因；该条件/种子不重跑 |
+| 2026-10-28 | S6-L停止判定 | seed42已完成550次更新并写出checkpoint（SHA256 `1c356a7c230e5683ddea35e36341a0fd84f6cd91ca5ca52b5327ab61c8aa7536`）；验证阶段短序列与批次补齐分数矩阵尺寸不匹配，未写出`result.json` | 已确认是evaluation诊断输入长度契约问题；冻结协议要求不重试或改阈值/协议，故不启动其余5次（同一评价代码会触发相同技术失败）。未访问test，不能给出效果结论 | 提交并推送失败留痕；后续若修复评价代码，需另立协议版本，不能补跑本版 |
 每次追加：日期/任务ID/实际动作/产物路径与哈希或检查命令/通过或失败/限制/下一步。技术失败不删行。文档检查不能写成模型测试通过。
 
 本次文档核验：PowerShell检查6个变更文档的本地Markdown链接，缺失0项；`git diff --check`通过。首次Python链接检查因当前终端找不到python命令未执行，随后使用PowerShell完成同项检查。未运行模型测试。
