@@ -1,0 +1,32 @@
+{
+  "checks": {
+    "timing_and_action_alignment": true,
+    "input_state_not_mutated": true,
+    "radial_action_sign_and_symmetry": true,
+    "v1_33_states_replayed": true,
+    "future_isolation": true,
+    "source_training_id": "1Y26_A"
+  },
+  "small_fit": {
+    "original_ghost": {
+      "updates": 500,
+      "initial_standardized_mse": 0.9791563749313354,
+      "final_standardized_mse": 3.480327723082155e-05,
+      "pass_threshold": 0.01,
+      "passed": true,
+      "elapsed_seconds": 63.794737100601196
+    },
+    "mlp_positive_control": {
+      "updates": 500,
+      "initial_standardized_mse": 0.8545399904251099,
+      "final_standardized_mse": 0.0016141693340614438,
+      "pass_threshold": 0.01,
+      "passed": true,
+      "elapsed_seconds": 1.0499885082244873
+    }
+  },
+  "all_checks_passed": true,
+  "source_sha256": "8d73bd850ca961cf592f1c654c29cf241e94d45af87ad0b423d78d17ffa14c73",
+  "protocol_sha256": "a5018ad8fcc52c638873cc786b8503dfcc035c156e75a1700681724d80568abb",
+  "experimental_trajectory_labels": false
+}
