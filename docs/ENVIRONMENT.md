@@ -42,6 +42,8 @@ Set-Location 'D:\RNA flod'
 
 不用激活环境。也可直接运行 `& '.\.venv3128\Scripts\python.exe' ...`。
 
+`train_baseline.py`默认使用冻结的150k `SequencePairModel` CNN 和`data/experimental/joint_split_v2`；`--model-kind pair_baseline`保留旧小模型回退。训练/评价入口均要求`joint_split_v2_validation.json`通过且train/validation文件SHA256匹配。默认评价仅开放validation；检查点保存模型配置、组宏F1、数据manifest/划分指纹和阈值，评价重新核验这些指纹；`predict.py`按checkpoint配置加载模型并沿用阈值。旧检查点若缺数据指纹，需显式传入`--allow-legacy-checkpoint`才能在validation上作历史诊断。smoke只验证工程链路，不代表模型精度。
+
 复现安装使用 `scripts/setup_environment.ps1`。该脚本不会修改已有的 stockalarm 或旧 Nezha 环境。
 
 环境检查结果：`data/reports/environment.json`。短训练结果：`runs/smoke_gpu/`。短训练只证明数据→训练→保存→评估→预测链路接通，不能作为模型精度或泛化结论。

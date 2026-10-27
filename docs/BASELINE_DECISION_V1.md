@@ -24,10 +24,10 @@ CNN原比较开发宏F1只有0.4332±0.0419（10条、7组），与训练F1相�
 | `src/rna2d/model.py`的PairBaseline | 早期链路和stage3–6小参数对照 | [早期实验](EXPERIMENT_RESULTS_V1.md) |
 | `src/rna2d/sequence_encoders.py`的SequencePairModel(kind=cnn,width=113) | 本次约150k参数比较与训练拟合参考，hidden64/depth2 | [比较结果](ENCODER_COMPARISON_RESULTS_V1.md)、[拟合扫描](ENCODER_LR_SCAN_RESULTS_V1.md) |
 
-上面的0.97–0.99与资源数字属于第二种实现，不能写到默认train_baseline.py小模型名下。当前保留检查点，不自动重训、换模型或改数据入口。
+训练、评价和推理入口现默认使用第二种`SequencePairModel(kind=cnn,width=113,hidden=64,depth=2)`，并从`joint_split_v2`加载数据；训练checkpoint记录明确模型配置、数据manifest/划分指纹和评价阈值。`PairBaseline`仍可通过`train_baseline.py --model-kind pair_baseline`显式回退，模型工厂继续加载其历史checkpoint。该入口和新smoke链路不构成新性能证据，也不改写上面的旧实验结果。
 
 ## 下一步
 
-固定这版CNN及现有结果作为工程参照。优先扩充经过原研究/同源/构建体审核的独立监督和新冻结评估，报告长度、组别和标签覆盖；已揭盲的8条旧测试不再用于调参。未通过隔离的1D池不进入预训练。本轮编码器调优已结束；暂不重开验证排名或接回J门控。
+固定这版CNN及现有结果作为工程参照。生产训练脚本按validation group-macro F1保存开发checkpoint；一般CLI训练并不替代25epoch/550-update冻结实验runner。评价CLI默认只开放validation且校验checkpoint与数据manifest指纹；独立test仍须另立冻结评估协议。优先扩充经过原研究/同源/构建体审核的独立监督和新冻结评估，报告长度、组别和标签覆盖；已揭盲的8条旧测试不再用于调参。未通过隔离的1D池不进入预训练。本轮编码器调优已结束；暂不重开验证排名或接回J门控。
 
 证据：[EGNN几何审计](EGNN_GEOMETRY_AUDIT_V1.md)、[有限lr扫描](ENCODER_LR_SCAN_RESULTS_V1.md)、[工程性能](ENCODER_COMPARISON_RESULTS_V1.md)。

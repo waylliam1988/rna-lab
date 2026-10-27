@@ -26,6 +26,7 @@
 | S5-2 | 可用时的新独立测试 | 未开始 | 没有本轮新盲测证据 | 无新独立组时保留未执行及原因，不制造测试集 |
 | S6 | 序列预训练/反应性/架构/3D单项分支 | 未开始 | 仅有进入条件和候选方案 | 不与首轮辅助2D叠加，触发后另立协议 |
 | S6-L | 固定数据：BCE与BCE＋伙伴竞争损失对照 | v1因验证维度故障停止；评价修复及111项测试通过；v2六次运行、独立重载和预声明汇总均完成，gate不通过 | 结果报告`docs/DATA_FIRST_LOSS_RESULTS_V2.md`（SHA256 `3b051e6438e0f23cd1269e2fdfc6ce2f25c9c20c900dd6b06c29de17c695e4b3`）；v2协议 SHA256 `46db4520d0bcfc15319f96def77258b4c62ec612837d34caa2a281c098a02659`；verification SHA256 `ca1117899d08c0bad03871688924d6ab9e1c9a51645827b01df55daa67d311ef`；summary SHA256 `53493b48511023ddbb100cef68cb9c871168ba7648edcec0f501063711b53363` | 候选状态：保留但停止；开发通过：否；可选合入：否；默认启用：否。BCE保持默认；无独立test，不作跨家族泛化结论 |
+| P0 | 生产训练/评价/推理入口与检查点契约 | 完成必要门禁与共享加载 | `src/rna2d/experiment_data.py`校验joint split manifest和train/validation指纹；`src/rna2d/model_factory.py`统一CNN与PairBaseline加载；`src/rna2d/reporting.py`统一group-macro F1；默认入口使用joint_split_v2/CNN，PairBaseline保留显式回退 | 仅validation默认评价；旧checkpoint需显式兼容开关；smoke只证明工程链路，不产生科学效果结论 |
 
 ## 执行日志（只追加）
 
@@ -84,6 +85,9 @@
 | 2026-10-28 | S6-L v2独立checkpoint核验 | 运行`scripts/verify_pair_loss_comparison.py --protocol data/manifests/data_first_loss_protocol_v2.json`，生成`data/manifests/data_first_loss_verification_v2.json`（SHA256 `ca1117899d08c0bad03871688924d6ab9e1c9a51645827b01df55daa67d311ef`） | 6/6检查点严格加载成功；validation group-macro、逐RNA多伙伴诊断、逐组多伙伴诊断及解码预测均与run结果重现；全部`test_accessed=false`。仅使用冻结validation，不进行选择或测试评估 | 提交并推送验证产物与台账；之后运行固定summarizer应用冻结gate |
 | 2026-10-28 | S6-L v2预声明gate汇总 | 运行`scripts/summarize_pair_loss_comparison.py --protocol data/manifests/data_first_loss_protocol_v2.json`，生成`data/manifests/data_first_loss_summary_v2.json`（SHA256 `53493b48511023ddbb100cef68cb9c871168ba7648edcec0f501063711b53363`）及[结果报告](DATA_FIRST_LOSS_RESULTS_V2.md) | seed delta `+0.015571/+0.008903/−0.017215`，平均`+0.002420`；2/3 seeds、3/7 groups改善；无严重组退步，但未满足3/3、平均`0.02`、4/7三项门槛。gate=false，`optional_feature_status=stop_or_retain_candidate_without_integration`，`default_status=unchanged_balanced_bce`；未访问test | 提交并推送汇总阶段；停止本候选合入，不追加seed、lambda、threshold或重跑；后续回到数据独立性证据或另立新假设协议 |
 | 2026-10-28 | S6-L结果报告格式核验修正 | 首次提交前`git diff --check`提示结果报告末尾存在多余空行；去除多余空行并重新计算报告SHA256 | 报告SHA256更新为`3b051e6438e0f23cd1269e2fdfc6ce2f25c9c20c900dd6b06c29de17c695e4b3`；`git diff --check`复核通过；摘要manifest和数值未改变，不涉及模型测试或运行 | 推送最终格式与台账修正 |
+| 2026-10-28 | P0生产入口初次回归断言失败与修正 | 新增模型工厂/报告/manifest门禁后，定向模型工厂测试有1条错误文案正则不匹配；修正测试断言并重新执行 | 初次失败只发生在测试断言匹配，模型构建/加载代码未失败；修正后完整回归120项通过，脚本编译和`git diff --check`通过 | 继续执行默认CNN与显式PairBaseline回退smoke |
+| 2026-10-28 | P0默认CNN训练评价推理链路smoke | 使用`train_baseline.py`默认CNN、joint_split_v2、manifest哈希门禁和GPU短训练；随后调用`evaluate.py` validation与`predict.py`，另用旧PairBaseline checkpoint做工厂兼容推理 | 默认CNN smoke成功，150019参数配置、manifest/划分指纹和threshold写入checkpoint；validation重载成功，predict成功；旧checkpoint兼容推理成功。显式`--model-kind pair_baseline`回退smoke也成功；尝试`evaluate --split test`被CLI拒绝。所有smoke未读取test，不作效果结论 | 提交并推送生产入口完善；后续只在独立协议下运行正式科学实验 |
+| 2026-10-28 | P0静态入口检查命令失败与纠正 | 首次用PowerShell正则搜索旧数据默认路径时发生正则转义解析错误；未读取或修改项目文件 | 改用`Select-String -SimpleMatch`重跑通过，`train_baseline.py`、`evaluate.py`、`predict.py`均无`paired_v0_2`默认路径；这是检查命令失败，不是代码失败 | 与生产入口修复一起提交并推送；保留本行失败记录 |
 每次追加：日期/任务ID/实际动作/产物路径与哈希或检查命令/通过或失败/限制/下一步。技术失败不删行。文档检查不能写成模型测试通过。
 
 本次文档核验：PowerShell检查6个变更文档的本地Markdown链接，缺失0项；`git diff --check`通过。首次Python链接检查因当前终端找不到python命令未执行，随后使用PowerShell完成同项检查。未运行模型测试。
