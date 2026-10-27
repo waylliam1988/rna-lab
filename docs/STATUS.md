@@ -1,5 +1,9 @@
 # 当前状态（2026-10-27）
 
+## 逐项验证已完成
+
+联合隔离、注释复核扩展、简单基线、普通分步、RWKV和Ghost/完整组合均已依次验证并逐项提交推送。扩展池176条，隔离后88/10/8；未核验1D库不参与预训练。50项测试通过。固定预算三种子及一次统一揭盲测试未支持复杂模型稳定增益，状态预测未胜过持久性。最新结论以 [EXPERIMENT_RESULTS_V1.md](EXPERIMENT_RESULTS_V1.md) 和 [STAGED_VALIDATION.md](STAGED_VALIDATION.md) 为准，以下为历史记录。
+
 ## 扩充数据精细清洗发布
 
 最新状态与精确计数以 [CLEAN_RELEASE_V1_REPORT.md](CLEAN_RELEASE_V1_REPORT.md) 和 `data/manifests/clean_release_v1.json` 为准。新池分开实验关联1D序列、实测探测profile和双工具共识2D标签；待审核来源隔离。尚未开始新池训练，下一步先做联合泄漏隔离与基线。下方内容保留为旧版本历史，不代表扩充池的当前数量。

@@ -8,15 +8,19 @@ from .core.memory import RWKVCellLite
 class PairDynamics(nn.Module):
     def __init__(self,hidden=32,steps=4,mode='iterative'):
         super().__init__()
-        if mode not in ('iterative','rwkv','rwkv_reset'):raise ValueError('Unvalidated mechanism')
+        if mode not in ('iterative','rwkv','rwkv_reset','ghost_only','full'):raise ValueError('Unvalidated mechanism')
         self.hidden=hidden;self.steps=steps;self.mode=mode
         self.base=PairBaseline(hidden)
         self.feature=nn.Sequential(nn.Linear(2*hidden+1,hidden),nn.GELU(),nn.LayerNorm(hidden))
         self.update_q=nn.Linear(hidden,hidden,bias=False);self.update_k=nn.Linear(hidden,hidden,bias=False)
         self.last_trace=[]
-        if mode.startswith('rwkv'):
+        if mode.startswith('rwkv') or mode=='full':
             self.memory=RWKVCellLite(hidden,hidden,key_mode='softplus_zero',pair_state_cap=1.0,pair_state_cap_mode='soft')
+        if mode!='iterative':
             self.next_head=nn.Linear(hidden,hidden)
+        if mode in ('ghost_only','full'):
+            from .ghost_frontend import GhostFrontEnd
+            self.ghost=GhostFrontEnd(hidden,4)
 
     def candidate_mask(self,tokens):
         table=tokens.new_tensor([[a+b in ('AU','UA','GC','CG','GU','UG') for b in 'ACGUX'] for a in 'ACGUX'],dtype=torch.bool)
@@ -33,18 +37,24 @@ class PairDynamics(nn.Module):
         h=self.base.encode(tokens);base=self.base.score(h);state=base
         allowed=self.candidate_mask(tokens);valid=tokens.ne(4).unsqueeze(-1)
         self.last_trace=[]
-        memory_state=None;prediction_losses=[];persistence_losses=[]
+        memory_state=None;ghost_state=None;prediction_losses=[];persistence_losses=[]
         for _ in range(self.steps):
             features=self.features(h,state,allowed)*valid
             current_features=features
             if self.mode.startswith('rwkv'):
                 rate,memory_state=self.memory(features.reshape(-1,self.hidden),None if self.mode=='rwkv_reset' else memory_state)
                 features=(features+rate.reshape_as(features))*valid
+            elif self.mode in ('ghost_only','full'):
+                encoded,ghost_state=self.ghost(features.reshape(-1,self.hidden),ghost_state)
+                if self.mode=='full':rate,memory_state=self.memory(encoded,memory_state)
+                else:rate=encoded
+                rate=8*torch.tanh(rate/8)
+                features=(features+rate.reshape_as(features))*valid
             proposal=torch.matmul(self.update_q(features),self.update_k(features).transpose(-1,-2))/self.hidden**0.5
             proposal=(proposal+proposal.transpose(-1,-2))*0.5
             target=base+2*proposal.tanh()
             delta=0.5*(target-state);state=state+delta
-            if self.mode.startswith('rwkv'):
+            if self.mode!='iterative':
                 next_features=(self.features(h,state,allowed)*valid).detach()
                 prediction=self.next_head(features)*valid
                 count=(valid.sum()*self.hidden).clamp_min(1)

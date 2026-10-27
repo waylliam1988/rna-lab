@@ -4,6 +4,8 @@
 
 逐项完成、验证与提交的最新进度：[STAGED_VALIDATION.md](docs/STAGED_VALIDATION.md)。扩展配对池和隔离划分使用独立版本，原始清洗发布不覆盖。
 
+六项初步验证已完成，见[固定协议实验结果](docs/EXPERIMENT_RESULTS_V1.md)：176条配对标签中106条进入保守隔离划分，88/10/8；三种子比较与封存测试均未支持复杂机制稳定增益。RWKV状态预测未胜过持久性基线，不称已验证的世界模型。
+
 **配对监督只用通过审核的直接实验证据。** 扩充获取、官方来源复核及精细清洗见[本轮发布报告](docs/CLEAN_RELEASE_V1_REPORT.md)和[精细清洗协议](docs/FINE_CLEANING_PROTOCOL_V2.md)。实测反应性与精确配对标签分开计数，未知/未核验记录隔离，不用模型预测或补全值充数。
 
 新清洗池位于 `data/experimental/clean_release_v1`，尚未完成联合同源/研究/构建体隔离，不自动用于训练。原61条、49/6/6划分的[链路验证版本](docs/DATASET_V0_2_REPORT.md)保留，默认训练路径不变；此前旧基准烟测不代表严格实验数据下的效果。
@@ -18,7 +20,7 @@
 - 保留官方 train/validation/test 划分；逐序列去重，移除跨集合完全相同序列。
 - 小型 CNN 配对基线、独立训练/评估、允许交叉配对的贪心解码和指标。
 - 研究路线、讨论纠错、数据说明及旧 Ghost/RWKV 的只读参考快照。
-- `src/rna2d/core` 已迁入独立 RWKV、连续控制层、显式状态 Ghost 核心；新旧多步数值一致性已建立测试，尚未接入 2D 基线。
+- `src/rna2d/core` 保留独立 RWKV、连续控制层、显式状态 Ghost；已通过 `iterative.py` / `ghost_frontend.py` 接入实验分步2D预测器，静态基线独立保留，结果按消融报告。
 
 ## 快速开始（PowerShell，在本目录运行）
 

@@ -1,5 +1,9 @@
 # 下一次从这里继续
 
+本页原先列出的六项初步验证已完成，结果与逐项提交记录见 [EXPERIMENT_RESULTS_V1.md](EXPERIMENT_RESULTS_V1.md)、[STAGED_VALIDATION.md](STAGED_VALIDATION.md)。下方为原路线，不应重新执行并反复查看已揭盲测试。
+
+当前优先：补母本/接头/文献同源证据，扩充独立家族的可靠2D监督和新评估目标。模型阶段没有稳定增益，先解决覆盖与评估样本量。本轮8条测试已揭盲；新假设在train/validation开发，新增独立冻结测试后再评价。暂不做3D，也不继续堆模块。
+
 先读 [最新发布报告](CLEAN_RELEASE_V1_REPORT.md)、[精细清洗协议](FINE_CLEANING_PROTOCOL_V2.md)、`data/manifests/clean_release_v1.json` 和 `data/experimental/POLICY.json`。
 
 1. **联合冻结1D/2D划分。** 按可核验同源证据、相似序列/片段、原始研究、构建体和突变库合并组。先隔离测试家族/构建体，再从1D预训练池排除其近亲；不能只对2D测试序列精确去重。未知同源记录继续隔离，报告独立组数及家族、长度、来源分布。

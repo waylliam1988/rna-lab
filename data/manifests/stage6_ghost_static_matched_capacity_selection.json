@@ -1,0 +1,7 @@
+{
+  "variant": "ghost_only",
+  "target_parameters": 23361,
+  "static_hidden": 46,
+  "static_parameters": 23631,
+  "selection": "Nearest parameter count over widths8-96, no model scores used"
+}

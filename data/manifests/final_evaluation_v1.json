@@ -1,0 +1,1327 @@
+{
+  "results": {
+    "stage3_static": {
+      "seeds": [
+        {
+          "seed": 42,
+          "selected_epoch": 23,
+          "checkpoint_sha256": "764885256c548a9dfba838bde1c198b077534c30b5195fa90a343f026f2c9013",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.3973126480437801,
+            "macro_precision": 0.4997644512350395,
+            "macro_recall": 0.3337797619047619,
+            "micro_f1": 0.3671875,
+            "crossing_macro_f1_on_positive_samples": 0.21288515406162464,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.5014935064935064
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.2931317895940537
+              }
+            }
+          },
+          "group_macro_f1": 0.41566874948950416,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.3487911459609573
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.47818181818181815
+            }
+          },
+          "inference_seconds_per_RNA": 0.0034559750001790235,
+          "peak_inference_gpu_MiB": 33.3994140625,
+          "parameters": 11521
+        },
+        {
+          "seed": 43,
+          "selected_epoch": 20,
+          "checkpoint_sha256": "5cde5976a4661c94f1282ac4970a00dc1bcfb0f0fe48d377313390bbc8828112",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.37053846134868174,
+            "macro_precision": 0.430160319276452,
+            "macro_recall": 0.326541832010582,
+            "micro_f1": 0.3805970149253731,
+            "crossing_macro_f1_on_positive_samples": 0.23026315789473684,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.3851617132867133
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.35591520941065014
+              }
+            }
+          },
+          "group_macro_f1": 0.33631135518483546,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.3347321675285201
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.4302156177156177
+            }
+          },
+          "inference_seconds_per_RNA": 0.002063462500245805,
+          "peak_inference_gpu_MiB": 33.3994140625,
+          "parameters": 11521
+        },
+        {
+          "seed": 44,
+          "selected_epoch": 19,
+          "checkpoint_sha256": "887fd68e582f04b701fa85bb05cf738aa237c5da9beee761c29c0eb5bb616c70",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.4196665951972556,
+            "macro_precision": 0.5033730158730159,
+            "macro_recall": 0.36137152777777776,
+            "micro_f1": 0.4061302681992337,
+            "crossing_macro_f1_on_positive_samples": 0.38636363636363635,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.463474025974026
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.37585916442048517
+              }
+            }
+          },
+          "group_macro_f1": 0.42660312695690056,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.40068733153638814
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.4512987012987013
+            }
+          },
+          "inference_seconds_per_RNA": 0.0020134999999754655,
+          "peak_inference_gpu_MiB": 33.3994140625,
+          "parameters": 11521
+        }
+      ],
+      "test_macro_f1_mean": 0.39583923486323913,
+      "test_macro_f1_stdev": 0.0245971867021676,
+      "test_group_macro_f1_mean": 0.3928610772104134,
+      "mean_inference_seconds_per_RNA": 0.002510979166800098
+    },
+    "stage4_static_matched37": {
+      "seeds": [
+        {
+          "seed": 42,
+          "selected_epoch": 14,
+          "checkpoint_sha256": "8836718819bfd4c5b6f8c21b489dd1ec155e256259109a207c6ae009f5be831f",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.4501884390119684,
+            "macro_precision": 0.5127375266641571,
+            "macro_recall": 0.40248842592592593,
+            "micro_f1": 0.4264705882352941,
+            "crossing_macro_f1_on_positive_samples": 0.263768115942029,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.48523809523809525
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.4151387827858416
+              }
+            }
+          },
+          "group_macro_f1": 0.47379509379509377,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.4262286732874968
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.4901213818860878
+            }
+          },
+          "inference_seconds_per_RNA": 0.0021040750002612185,
+          "peak_inference_gpu_MiB": 33.44775390625,
+          "parameters": 15351
+        },
+        {
+          "seed": 43,
+          "selected_epoch": 19,
+          "checkpoint_sha256": "34313dd9116fa7e26d0f992c32e2745d8344d5bb3e12ee6ef5bd143361b8461c",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.26959975245761564,
+            "macro_precision": 0.32387820512820514,
+            "macro_recall": 0.23254381613756614,
+            "micro_f1": 0.25190839694656486,
+            "crossing_macro_f1_on_positive_samples": 0.1575757575757576,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.27010785188740805
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.26909165302782323
+              }
+            }
+          },
+          "group_macro_f1": 0.3248312075207634,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.30939096948108213
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.20328105741850483
+            }
+          },
+          "inference_seconds_per_RNA": 0.0020063124998159765,
+          "peak_inference_gpu_MiB": 33.44775390625,
+          "parameters": 15351
+        },
+        {
+          "seed": 44,
+          "selected_epoch": 18,
+          "checkpoint_sha256": "9ee9ac982073ca331aa561f622054eb91ec41cca415a531b1611607cb8f0c8eb",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.3282016699466644,
+            "macro_precision": 0.38915979853479854,
+            "macro_recall": 0.2884672619047619,
+            "micro_f1": 0.31970260223048325,
+            "crossing_macro_f1_on_positive_samples": 0.16310160427807485,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.3543631100082713
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.30204022988505747
+              }
+            }
+          },
+          "group_macro_f1": 0.32991222440888734,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.3082988505747126
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.36137303556658396
+            }
+          },
+          "inference_seconds_per_RNA": 0.002016274999732559,
+          "peak_inference_gpu_MiB": 33.44775390625,
+          "parameters": 15351
+        }
+      ],
+      "test_macro_f1_mean": 0.34932995380541615,
+      "test_macro_f1_stdev": 0.09212964621645175,
+      "test_group_macro_f1_mean": 0.37617950857491483,
+      "mean_inference_seconds_per_RNA": 0.002042220833269918
+    },
+    "stage4_iterative": {
+      "seeds": [
+        {
+          "seed": 42,
+          "selected_epoch": 11,
+          "checkpoint_sha256": "a78ab85621933288d628ae2695a61c61e57cf63dc55a7107b2eb52ba11bbdb93",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.3569254235214913,
+            "macro_precision": 0.4174315998329156,
+            "macro_recall": 0.3141906415343915,
+            "micro_f1": 0.3484848484848485,
+            "crossing_macro_f1_on_positive_samples": 0.16847826086956522,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.3726540004113534
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.34119684663162925
+              }
+            }
+          },
+          "group_macro_f1": 0.36026587525148906,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.343545712599421
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.37922494172494176
+            }
+          },
+          "inference_seconds_per_RNA": 0.0031161250003606256,
+          "peak_inference_gpu_MiB": 35.89111328125,
+          "parameters": 15745
+        },
+        {
+          "seed": 43,
+          "selected_epoch": 25,
+          "checkpoint_sha256": "be49bcbc845f0d16155e81fbdb6d73640997073f6661d1c1e59d9521a0e80fb8",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.2322056707352707,
+            "macro_precision": 0.2863895059618744,
+            "macro_recall": 0.1966352513227513,
+            "micro_f1": 0.2471042471042471,
+            "crossing_macro_f1_on_positive_samples": 0.24475524475524477,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.24129106187929716
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.22312027959124422
+              }
+            }
+          },
+          "group_macro_f1": 0.2115633264138131,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.22555504720240716
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.24329004329004328
+            }
+          },
+          "inference_seconds_per_RNA": 0.002986225000313425,
+          "peak_inference_gpu_MiB": 35.89111328125,
+          "parameters": 15745
+        },
+        {
+          "seed": 44,
+          "selected_epoch": 9,
+          "checkpoint_sha256": "5f8dd4783d63f9c8b41bac3353e4fff14db4842b88308f397918069c4c7fca80",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.3487982438581353,
+            "macro_precision": 0.3952808156755525,
+            "macro_recall": 0.3179646164021164,
+            "micro_f1": 0.3602941176470588,
+            "crossing_macro_f1_on_positive_samples": 0.23809523809523808,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.33374436731214224
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.36385212040412834
+              }
+            }
+          },
+          "group_macro_f1": 0.3460587326203994,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.3577483629899693
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.3338813786384119
+            }
+          },
+          "inference_seconds_per_RNA": 0.0030275499998424493,
+          "peak_inference_gpu_MiB": 35.89111328125,
+          "parameters": 15745
+        }
+      ],
+      "test_macro_f1_mean": 0.31264311270496575,
+      "test_macro_f1_stdev": 0.06977929001710438,
+      "test_group_macro_f1_mean": 0.3059626447619005,
+      "mean_inference_seconds_per_RNA": 0.0030433000001721666
+    },
+    "stage5_static_matched": {
+      "seeds": [
+        {
+          "seed": 42,
+          "selected_epoch": 23,
+          "checkpoint_sha256": "b595e48314b4b48ff4474a25e039cdca336218d3b454da66f6beeb21f286ca4d",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.48147266262964517,
+            "macro_precision": 0.6028590862182194,
+            "macro_recall": 0.4029017857142857,
+            "micro_f1": 0.4765625,
+            "crossing_macro_f1_on_positive_samples": 0.30158730158730157,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.46348214285714284
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.4994631824021475
+              }
+            }
+          },
+          "group_macro_f1": 0.4929115996478336,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.479570545921718
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.48464285714285715
+            }
+          },
+          "inference_seconds_per_RNA": 0.004261687500275002,
+          "peak_inference_gpu_MiB": 33.517578125,
+          "parameters": 21637
+        },
+        {
+          "seed": 43,
+          "selected_epoch": 22,
+          "checkpoint_sha256": "4a099add9645e4387d2c6d751fbaeebb412b4c886588caa3cc99348041214b49",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.40403517500583874,
+            "macro_precision": 0.46068306693306693,
+            "macro_recall": 0.3627686838624339,
+            "micro_f1": 0.4059040590405904,
+            "crossing_macro_f1_on_positive_samples": 0.11212121212121212,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.35439516129032256
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.4536751887213549
+              }
+            }
+          },
+          "group_macro_f1": 0.42276587424631673,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.43794015097708394
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.3475268817204301
+            }
+          },
+          "inference_seconds_per_RNA": 0.0020082625001123233,
+          "peak_inference_gpu_MiB": 33.517578125,
+          "parameters": 21637
+        },
+        {
+          "seed": 44,
+          "selected_epoch": 19,
+          "checkpoint_sha256": "e30057e7e28eba0f5c8ad58edfe9985124cc005b3223866872c225b41fee3300",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.49318972457017995,
+            "macro_precision": 0.5873923178271004,
+            "macro_recall": 0.42803406084656087,
+            "micro_f1": 0.5263157894736842,
+            "crossing_macro_f1_on_positive_samples": 0.2986111111111111,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.4828812316715543
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.5034982174688057
+              }
+            }
+          },
+          "group_macro_f1": 0.42601537193567557,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.4527985739750446
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.5605083088954057
+            }
+          },
+          "inference_seconds_per_RNA": 0.0020327125002950197,
+          "peak_inference_gpu_MiB": 33.517578125,
+          "parameters": 21637
+        }
+      ],
+      "test_macro_f1_mean": 0.4595658540685546,
+      "test_macro_f1_stdev": 0.04844651301181898,
+      "test_group_macro_f1_mean": 0.44723094860994195,
+      "mean_inference_seconds_per_RNA": 0.002767554166894115
+    },
+    "stage5_rwkv_reset": {
+      "seeds": [
+        {
+          "seed": 42,
+          "selected_epoch": 17,
+          "checkpoint_sha256": "967b6e626577890700d798b201dc285d2d4dfe9d443c2918048494e4d466321e",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.38813434085755516,
+            "macro_precision": 0.4261162448662449,
+            "macro_recall": 0.35983382936507935,
+            "micro_f1": 0.36231884057971014,
+            "crossing_macro_f1_on_positive_samples": 0.19221967963386727,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.4068287037037037
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.3694399780114066
+              }
+            }
+          },
+          "group_macro_f1": 0.42373939222153506,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.38444087129801413
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.3942901234567901
+            }
+          },
+          "inference_seconds_per_RNA": 0.004595562500071537,
+          "peak_inference_gpu_MiB": 36.54736328125,
+          "parameters": 22049
+        },
+        {
+          "seed": 43,
+          "selected_epoch": 25,
+          "checkpoint_sha256": "e13ebf358e97365b818a73b115cf0091c4279f98f24eeab8df149ffdf21da9d0",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.2594892736620819,
+            "macro_precision": 0.3194775132275132,
+            "macro_recall": 0.22133349867724866,
+            "micro_f1": 0.30115830115830117,
+            "crossing_macro_f1_on_positive_samples": 0.22981366459627328,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.25
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.26897854732416376
+              }
+            }
+          },
+          "group_macro_f1": 0.2143462325667012,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.2437542664307596
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.2857142857142857
+            }
+          },
+          "inference_seconds_per_RNA": 0.004591387500113342,
+          "peak_inference_gpu_MiB": 36.54736328125,
+          "parameters": 22049
+        },
+        {
+          "seed": 44,
+          "selected_epoch": 23,
+          "checkpoint_sha256": "6754f68f84ee4d0915b38a63faa5fd49934d3b904cb8655245dbfd1ed6db3cbd",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.39472990245049067,
+            "macro_precision": 0.4530006360598466,
+            "macro_recall": 0.3515583664021164,
+            "micro_f1": 0.4132841328413284,
+            "crossing_macro_f1_on_positive_samples": 0.2971014492753623,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.4144674166413297
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.3749923882596517
+              }
+            }
+          },
+          "group_macro_f1": 0.3393437444908033,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.3533272439410547
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.4637343332995507
+            }
+          },
+          "inference_seconds_per_RNA": 0.004542312500234402,
+          "peak_inference_gpu_MiB": 36.54736328125,
+          "parameters": 22049
+        }
+      ],
+      "test_macro_f1_mean": 0.3474511723233759,
+      "test_macro_f1_stdev": 0.0762485873328573,
+      "test_group_macro_f1_mean": 0.32580978975967984,
+      "mean_inference_seconds_per_RNA": 0.004576420833473094
+    },
+    "stage5_rwkv": {
+      "seeds": [
+        {
+          "seed": 42,
+          "selected_epoch": 10,
+          "checkpoint_sha256": "a5fd6f25dc5f43043058b448e5ddeadbe539a5f8b0ddb5fa61df12c2d4fbee46",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.3686422300088664,
+            "macro_precision": 0.41078817016317015,
+            "macro_recall": 0.33599123677248677,
+            "micro_f1": 0.36823104693140796,
+            "crossing_macro_f1_on_positive_samples": 0.10427807486631016,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.3939703667036395
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.3433140933140933
+              }
+            }
+          },
+          "group_macro_f1": 0.36964740467614265,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.3687689217100982
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.36843107717348017
+            }
+          },
+          "inference_seconds_per_RNA": 0.004501299999901676,
+          "peak_inference_gpu_MiB": 36.54736328125,
+          "parameters": 22049
+        },
+        {
+          "seed": 43,
+          "selected_epoch": 25,
+          "checkpoint_sha256": "47f23e07777d5cef30cc5680e40c88c0311c6a202313308664204e8f73e22335",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.29105099325676376,
+            "macro_precision": 0.3371482683982684,
+            "macro_recall": 0.2580109126984127,
+            "micro_f1": 0.291044776119403,
+            "crossing_macro_f1_on_positive_samples": 0.18859649122807015,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.3142244983277592
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.2678774881857683
+              }
+            }
+          },
+          "group_macro_f1": 0.2707883814694214,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.2643019905486146
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.3356326644370123
+            }
+          },
+          "inference_seconds_per_RNA": 0.004462712499844201,
+          "peak_inference_gpu_MiB": 36.54736328125,
+          "parameters": 22049
+        },
+        {
+          "seed": 44,
+          "selected_epoch": 23,
+          "checkpoint_sha256": "4d82d41ee869c8fd1c90467b6fb32daa7ba72165cf4f6d6d1c35618291debf85",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.357985347985348,
+            "macro_precision": 0.4056006493506494,
+            "macro_recall": 0.32573164682539685,
+            "micro_f1": 0.34814814814814815,
+            "crossing_macro_f1_on_positive_samples": 0.25526315789473686,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.37513736263736264
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.3408333333333333
+              }
+            }
+          },
+          "group_macro_f1": 0.3457997557997558,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.30123809523809525
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.45256410256410257
+            }
+          },
+          "inference_seconds_per_RNA": 0.004476412500025617,
+          "peak_inference_gpu_MiB": 36.54736328125,
+          "parameters": 22049
+        }
+      ],
+      "test_macro_f1_mean": 0.3392261904169927,
+      "test_macro_f1_stdev": 0.04205983237824418,
+      "test_group_macro_f1_mean": 0.32874518064843994,
+      "mean_inference_seconds_per_RNA": 0.004480141666590498
+    },
+    "stage6_ghost_only": {
+      "seeds": [
+        {
+          "seed": 42,
+          "selected_epoch": 25,
+          "checkpoint_sha256": "0424915d0658ada896161c67b16ddbd22017631e49402cd4d8afaa362c7ffe89",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.43977894228533615,
+            "macro_precision": 0.5097769435941633,
+            "macro_recall": 0.38784722222222223,
+            "micro_f1": 0.43866171003717475,
+            "crossing_macro_f1_on_positive_samples": 0.31746031746031744,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.46687165775401074
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.4126862268166616
+              }
+            }
+          },
+          "group_macro_f1": 0.41867615760198884,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.40073721674744694
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.5048484848484849
+            }
+          },
+          "inference_seconds_per_RNA": 0.007315174999803276,
+          "peak_inference_gpu_MiB": 38.29345703125,
+          "parameters": 23361
+        },
+        {
+          "seed": 43,
+          "selected_epoch": 15,
+          "checkpoint_sha256": "2417f99ce521473717a2a839b18d65237a3b09154678377cc4e7e3b36051fbe3",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.22254679144385026,
+            "macro_precision": 0.26069762061609886,
+            "macro_recall": 0.1948991402116402,
+            "micro_f1": 0.21641791044776118,
+            "crossing_macro_f1_on_positive_samples": 0.1511111111111111,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.19114336643748409
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.2539502164502164
+              }
+            }
+          },
+          "group_macro_f1": 0.2314644342585519,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.22668958492487903
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.21564213564213564
+            }
+          },
+          "inference_seconds_per_RNA": 0.007291424999948504,
+          "peak_inference_gpu_MiB": 38.29345703125,
+          "parameters": 23361
+        },
+        {
+          "seed": 44,
+          "selected_epoch": 22,
+          "checkpoint_sha256": "697bc54622c3335f9b6dca4ce00f19d478899523bbf4af7b5abea23696ef8eb2",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.4356588761480066,
+            "macro_precision": 0.5322420634920635,
+            "macro_recall": 0.36958498677248675,
+            "micro_f1": 0.4263565891472868,
+            "crossing_macro_f1_on_positive_samples": 0.24013157894736842,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.421195652173913
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.45012210012210013
+              }
+            }
+          },
+          "group_macro_f1": 0.4273440126700996,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.4100976800976801
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.47826086956521735
+            }
+          },
+          "inference_seconds_per_RNA": 0.007117387500329642,
+          "peak_inference_gpu_MiB": 38.29345703125,
+          "parameters": 23361
+        }
+      ],
+      "test_macro_f1_mean": 0.36599486995906433,
+      "test_macro_f1_stdev": 0.12424675914696631,
+      "test_group_macro_f1_mean": 0.3591615348435468,
+      "mean_inference_seconds_per_RNA": 0.007241329166693807
+    },
+    "stage6_full": {
+      "seeds": [
+        {
+          "seed": 42,
+          "selected_epoch": 11,
+          "checkpoint_sha256": "387524ff0ac2b5f070352aeb3f09a3617b12c311880fc823f62df0e715822a03",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.37141955715219166,
+            "macro_precision": 0.43026702829334407,
+            "macro_recall": 0.33130373677248676,
+            "micro_f1": 0.373134328358209,
+            "crossing_macro_f1_on_positive_samples": 0.16764705882352943,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.3874344189912212
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.3554046953131621
+              }
+            }
+          },
+          "group_macro_f1": 0.3743186911229036,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.3732126451394186
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.36843107717348017
+            }
+          },
+          "inference_seconds_per_RNA": 0.007876149999901827,
+          "peak_inference_gpu_MiB": 38.52392578125,
+          "parameters": 28609
+        },
+        {
+          "seed": 43,
+          "selected_epoch": 24,
+          "checkpoint_sha256": "c185e091f4527bcdac2f23304db5cf514f27290998599843b22935405f90268a",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.31396450036260065,
+            "macro_precision": 0.3766424666739312,
+            "macro_recall": 0.27015128968253965,
+            "micro_f1": 0.2988505747126437,
+            "crossing_macro_f1_on_positive_samples": 0.23202614379084968,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.41900451559934315
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.20892448512585812
+              }
+            }
+          },
+          "group_macro_f1": 0.2893535265575232,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.2421395881006865
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.4336726874657909
+            }
+          },
+          "inference_seconds_per_RNA": 0.007972887499818171,
+          "peak_inference_gpu_MiB": 38.52392578125,
+          "parameters": 28609
+        },
+        {
+          "seed": 44,
+          "selected_epoch": 25,
+          "checkpoint_sha256": "821fa3fad4a5dcae3603d734115ef17c61b6505276ec1dfac3718b39950b6429",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.4065908239189177,
+            "macro_precision": 0.5030670718170718,
+            "macro_recall": 0.34462632275132277,
+            "micro_f1": 0.41245136186770426,
+            "crossing_macro_f1_on_positive_samples": 0.2967032967032967,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.40136476426799006
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.41181688356984536
+              }
+            }
+          },
+          "group_macro_f1": 0.3760666542853835,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.3602227376251071
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.4838709677419355
+            }
+          },
+          "inference_seconds_per_RNA": 0.00788867500023116,
+          "peak_inference_gpu_MiB": 38.52392578125,
+          "parameters": 28609
+        }
+      ],
+      "test_macro_f1_mean": 0.36399162714457,
+      "test_macro_f1_stdev": 0.04675777541798239,
+      "test_group_macro_f1_mean": 0.3465796239886034,
+      "mean_inference_seconds_per_RNA": 0.007912570833317053
+    },
+    "stage6_ghost_static_matched": {
+      "seeds": [
+        {
+          "seed": 42,
+          "selected_epoch": 22,
+          "checkpoint_sha256": "5d5874b05c74109140a3f15edd6133c73aeccf371cfa8dbe318d6257a71d6d87",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.45602625786634976,
+            "macro_precision": 0.5584467615717615,
+            "macro_recall": 0.38657407407407407,
+            "micro_f1": 0.46564885496183206,
+            "crossing_macro_f1_on_positive_samples": 0.32539682539682535,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.4279032258064516
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.48414928992624795
+              }
+            }
+          },
+          "group_macro_f1": 0.4584034701565139,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.46731943194099834
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.4372043010752688
+            }
+          },
+          "inference_seconds_per_RNA": 0.0021188249997976527,
+          "peak_inference_gpu_MiB": 33.53759765625,
+          "parameters": 23631
+        },
+        {
+          "seed": 43,
+          "selected_epoch": 24,
+          "checkpoint_sha256": "a15cebf6ae7926abc6dd1bd3f2f2e970b0e45976f875ee230af057ed03cc7d20",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.4346309204599677,
+            "macro_precision": 0.5052716727716727,
+            "macro_recall": 0.38405257936507936,
+            "micro_f1": 0.43283582089552236,
+            "crossing_macro_f1_on_positive_samples": 0.23809523809523808,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.4484156076898012
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.42084623323013415
+              }
+            }
+          },
+          "group_macro_f1": 0.4304946877140525,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.42556587547299624
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.44973932877158684
+            }
+          },
+          "inference_seconds_per_RNA": 0.0020287375000407337,
+          "peak_inference_gpu_MiB": 33.53759765625,
+          "parameters": 23631
+        },
+        {
+          "seed": 44,
+          "selected_epoch": 12,
+          "checkpoint_sha256": "b47d327785cd2f6e0fbf4e6c48a3511ffc6b7f88ce27791af16419f416d80280",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.46419737768065483,
+            "macro_precision": 0.5583387007729113,
+            "macro_recall": 0.4046709656084656,
+            "micro_f1": 0.4830188679245283,
+            "crossing_macro_f1_on_positive_samples": 0.27840909090909094,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.4276441102756892
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.5007506450856205
+              }
+            }
+          },
+          "group_macro_f1": 0.4537144311243352,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.48481104238428585
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.4298412698412698
+            }
+          },
+          "inference_seconds_per_RNA": 0.0020176250000076834,
+          "peak_inference_gpu_MiB": 33.53759765625,
+          "parameters": 23631
+        }
+      ],
+      "test_macro_f1_mean": 0.45161818533565745,
+      "test_macro_f1_stdev": 0.01526817525844407,
+      "test_group_macro_f1_mean": 0.4475375296649672,
+      "mean_inference_seconds_per_RNA": 0.00205506249994869
+    },
+    "stage6_full_static_matched": {
+      "seeds": [
+        {
+          "seed": 42,
+          "selected_epoch": 22,
+          "checkpoint_sha256": "72b7920535147fafc507ae2a3434b51ba547d96f2b18c0dc93a24f7f56705874",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.43253514577527735,
+            "macro_precision": 0.4949621212121212,
+            "macro_recall": 0.3855117394179894,
+            "micro_f1": 0.48175182481751827,
+            "crossing_macro_f1_on_positive_samples": 0.3007518796992481,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.3925480769230769
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.4725222146274778
+              }
+            }
+          },
+          "group_macro_f1": 0.40677781648176387,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.47801777170198223
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.35673076923076924
+            }
+          },
+          "inference_seconds_per_RNA": 0.0021318375002010725,
+          "peak_inference_gpu_MiB": 33.59130859375,
+          "parameters": 29001
+        },
+        {
+          "seed": 43,
+          "selected_epoch": 24,
+          "checkpoint_sha256": "099d446df3ba83468c19d9de4b15fee627a1e2f045da6149d81f1f279defe308",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.43642035681896363,
+            "macro_precision": 0.5010276483781919,
+            "macro_recall": 0.39108382936507935,
+            "micro_f1": 0.4044943820224719,
+            "crossing_macro_f1_on_positive_samples": 0.2676470588235294,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.557226678550208
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.3156140350877193
+              }
+            }
+          },
+          "group_macro_f1": 0.43617107608593675,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.36360233918128654
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.5577837195484254
+            }
+          },
+          "inference_seconds_per_RNA": 0.0020745750002788554,
+          "peak_inference_gpu_MiB": 33.59130859375,
+          "parameters": 29001
+        },
+        {
+          "seed": 44,
+          "selected_epoch": 23,
+          "checkpoint_sha256": "20fc420bb59994cc79448c8bc5e473b48358bc0f3f59cf109f1c9e821b07b17f",
+          "test": {
+            "samples": 8,
+            "threshold": 0.5,
+            "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+            "mean_evaluated_position_fraction": 0.6859378682931092,
+            "macro_f1": 0.49260815129740965,
+            "macro_precision": 0.5653589466089466,
+            "macro_recall": 0.4386326058201058,
+            "micro_f1": 0.483271375464684,
+            "crossing_macro_f1_on_positive_samples": 0.4381270903010034,
+            "crossing_positive_samples": 2,
+            "length_bins": {
+              "0-64": {
+                "samples": 4,
+                "macro_f1": 0.5968642951251647
+              },
+              "65-128": {
+                "samples": 4,
+                "macro_f1": 0.38835200746965454
+              }
+            }
+          },
+          "group_macro_f1": 0.4426911484839874,
+          "contexts": {
+            "complex": {
+              "samples": 5,
+              "macro_f1": 0.39068160597572366
+            },
+            "single_RNA": {
+              "samples": 3,
+              "macro_f1": 0.6624857268335529
+            }
+          },
+          "inference_seconds_per_RNA": 0.0020483375001276727,
+          "peak_inference_gpu_MiB": 33.59130859375,
+          "parameters": 29001
+        }
+      ],
+      "test_macro_f1_mean": 0.45385455129721686,
+      "test_macro_f1_stdev": 0.033617775817931524,
+      "test_group_macro_f1_mean": 0.42854668035056265,
+      "mean_inference_seconds_per_RNA": 0.0020849166668692
+    }
+  },
+  "test_samples": 8,
+  "test_groups": 4,
+  "protocol_sha256": "0b8c36be7998b74df67f9b27eeea87c09384bd71f47a3812e13d2799a6743b6f",
+  "declared_runs_sha256": "6560f0f4e72d51395115cd71b2dfc8f113c42bf636171d089cd8a60b8b23facf",
+  "test_data_sha256": "a2d58d8fd899799703cc82e38db755bbeb58f327bd7d2ed3289cbcf6d5cf6b9e",
+  "test_evaluated_once": true,
+  "selection_policy": "All predeclared models/seeds reported; no best-test-model or best-test-step selection",
+  "limitations": [
+    "8 samples / 4 declared groups, masks and complex contexts: exploratory only.",
+    "Validation selected epochs; no hyperparameters changed after this test evaluation.",
+    "Epoch/sample budgets match; static capacity controls approximate parameter count, not exact training FLOPs.",
+    "Seed standard deviation is not a confidence interval over RNA families."
+  ]
+}

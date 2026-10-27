@@ -1,0 +1,9 @@
+{
+  "declared_before_stage6_training_and_test": true,
+  "runs": ["stage3_static", "stage4_static_matched37", "stage4_iterative", "stage5_static_matched", "stage5_rwkv_reset", "stage5_rwkv", "stage6_ghost_only", "stage6_full", "stage6_ghost_static_matched", "stage6_full_static_matched"],
+  "primary_variants": ["stage3_static", "stage4_iterative", "stage5_rwkv", "stage6_ghost_only", "stage6_full"],
+  "final_steps": 4,
+  "threshold": 0.5,
+  "test_samples": 8,
+  "policy": "One fixed final evaluation of all predeclared runs after training completes. No test-based model, seed, epoch, threshold or step selection. No significance claim on four small test groups."
+}

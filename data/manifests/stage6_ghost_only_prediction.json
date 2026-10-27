@@ -1,0 +1,26 @@
+{
+  "results": [
+    {
+      "seed": 42,
+      "prediction_mse": 0.3220091834450861,
+      "persistence_mse": 0.0026054393412027624,
+      "beats_persistence": false
+    },
+    {
+      "seed": 43,
+      "prediction_mse": 0.2563260109684187,
+      "persistence_mse": 0.0029348498417123255,
+      "beats_persistence": false
+    },
+    {
+      "seed": 44,
+      "prediction_mse": 0.30597621740447756,
+      "persistence_mse": 0.002629381575805794,
+      "beats_persistence": false
+    }
+  ],
+  "test_evaluated": false,
+  "physical_world_model_validated": false,
+  "target": "Next algorithmic pair-update input feature under the fixed model; stop-gradient target, not experimental folding intermediates",
+  "note": "Persistence is a mandatory reference; outperforming it would still not prove physical RNA dynamics."
+}

@@ -1,0 +1,16 @@
+{
+  "python": "3.12.8",
+  "tests_passed": 50,
+  "files": {
+    "src/rna2d/model.py": "2c9b067e8fdc785e2b7e1be97dee966888d6c98248248acde9292ed031813bcb",
+    "src/rna2d/iterative.py": "ae1b5c50b7938dde4f2c543c50586c35c11b4052d62eb170576febbad4d38530",
+    "src/rna2d/ghost_frontend.py": "fc1174b0db763d64a57f1b156d8abd394be77e5a3f4a5ae33dbeadc9594acf76",
+    "src/rna2d/core/memory.py": "7a5c8487e68729676ba82630d52808360db6ccf8994334901d5897cf8bb21859",
+    "src/rna2d/core/ghost.py": "af72d22bbd9fc0e5ee7d37caaaa53a507a5b74d5fa3c07c2e13ca384f88e90ed",
+    "src/rna2d/core/control.py": "c4b864e6cf45ade010d11915a463c5f5535802a6df47207f5645ff7a4a6959fc",
+    "src/rna2d/training.py": "4081b5765d38634e7dc5a7f88060c5720314dd0b347b8718468008c3361ffa9e",
+    "scripts/run_controlled_experiment.py": "12283ece17cf4f463d5e7fc4cb7cd74db115b0365e101669ead2724f7bd7a51a",
+    "scripts/final_fixed_evaluation.py": "30c4675058fdeb2ea6f0658bb41b1be784681b0b6995c74f6b7d995a92311161"
+  },
+  "note": "Implementation fingerprints for the fixed evaluation; no model changes or tuning after test disclosure."
+}

@@ -1,0 +1,7 @@
+{
+  "variant": "full",
+  "target_parameters": 28609,
+  "static_hidden": 51,
+  "static_parameters": 29001,
+  "selection": "Nearest parameter count over widths8-96, no model scores used"
+}
