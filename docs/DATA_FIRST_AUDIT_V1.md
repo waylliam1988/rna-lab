@@ -19,7 +19,7 @@
 
 ## 当前结论
 
-S0 已完成，S1机器关系首版已生成并完成跨版本回连更正；S2-1的70条直接实验隔离记录均保留隔离，S2-2比较来源试点不可准入。工程 CNN 参照保留为可选基线；joint_split_v2 只支持冻结探索，不能支持广泛跨家族泛化。A/B/C 尚未冻结或运行，伙伴竞争损失只完成通用损失函数和契约测试，尚无模型效果证据。下一步补齐profile/历史关系以及独立评估来源；在A/B/C资格建立前，不开始正式辅助数据实验。
+本节为首轮报告形成时的状态；后续profile/历史、比较候选和clean_release候选关系审计已补入下文。当前`joint_split_v2`只支持冻结探索，不能支持广泛跨家族泛化；A/B/C因辅助监督无准入数据继续不启动。伙伴竞争损失对照已按v2协议完成，预声明gate不通过，候选不合入、默认仍为BCE，详见[阶段6D结果](DATA_FIRST_LOSS_RESULTS_V2.md)。生产训练/评价/推理入口现默认使用joint manifest约束的150k CNN；PairBaseline保留显式回退，smoke不构成新效果证据。后续从S1-1未完成的生物学来源关系审核继续；数据来源、构建体、同源或研究独立性无法核实时继续隔离。
 
 产物：`data/manifests/data_first_baseline_v1.json`、`data/manifests/data_first_relations_v1.jsonl`、`data/manifests/data_first_admission_v1.jsonl`、`docs/DATA_FIRST_AUDIT_V1.json`。
 

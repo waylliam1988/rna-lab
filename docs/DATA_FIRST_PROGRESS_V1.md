@@ -4,7 +4,7 @@
 
 ## 当前停在哪里
 
-**S0基线冻结已完成；S2-1直接实验隔离原因审计完成；S2-2比较来源试点结论为不可准入；profile、历史及本地比较候选精确关系已审计。** clean_release候选关系审计未发现可直接准入的新独立测试；仍需补辅助源逐条来源/映射/隔离审核。旧test已揭盲，不据其调参；A/B/C不启动，直到辅助监督通过门禁且训练/验证链路验收。
+**S0基线冻结、joint数据版本核对、S2-1隔离原因审计、S2-2辅助来源试点、profile/历史/比较候选关系审计和S6-L损失对照均已形成可复核结果；生产训练/评价/推理入口也已完成manifest门禁和checkpoint兼容验证。** 没有辅助监督或新独立测试通过准入；clean_release的构建体/同源及部分文献关系仍缺证据。旧test已揭盲，不据其调参；A/B/C不启动。S6-L v2的伙伴竞争gate不通过，默认保持BCE。当前从S1-1未完成的生物学来源关系审核继续；无法核实的记录保持隔离。
 
 旧CNN拟合/比较等完成情况见[基线决策](BASELINE_DECISION_V1.md)与[STATUS](STATUS.md)，不能将旧结果算为本轮阶段验收。
 
@@ -14,7 +14,7 @@
 | --- | --- | --- | --- | --- |
 | D0 | 总路线与数据/损失/记录细则 | 完成 | [路线图](DATA_FIRST_ROADMAP_V1.md)、[执行细则](DATA_FIRST_EXECUTION_V1.md)；本次已核对模型、损失、mask与旧runner源码 | 文档方案，不表示实现完成 |
 | S0-1 | 冻结CNN源码、构造参数、原权重指纹 | 完成 | `data/manifests/data_first_baseline_v1.json`，含源码/协议/数据/三种子检查点SHA256及重载证据 | 不重训；后续实验沿用该参照 |
-| S0-2 | 数据版本与政策对应、实验登记模板 | 完成 | 冻结清单的历史边界、joint_split_v2计数和`docs/DATA_FIRST_AUDIT_V1.md` | 旧61条仅历史；clean_release_v1仍待联合审计 |
+| S0-2 | 数据版本与政策对应、实验登记模板 | 完成 | 冻结清单的历史边界、joint_split_v2计数和`docs/DATA_FIRST_AUDIT_V1.md` | 旧61条仅历史；clean_release关系审计已完成但biology-level construct/homology/source-independence证据未齐，不获训练或新测试准入 |
 | S1-1 | 1D/2D/辅助/历史评估联合关系表 | 部分完成（profile/历史/比较候选精确序列关系已补；生物学来源关系待补） | 本地`data/manifests/data_first_relations_v1.jsonl`，214002条；profile/历史聚合结果见`data/manifests/data_first_profile_history_audit_v1.json`，比较候选聚合结果见`data/manifests/data_first_comparative_candidate_relations_v1.json`；逐记录审计表在本地ignored文件；106条split源记录与annotation_review逐条标签匹配 | 辅助池的原研究、比对、同源/构建体/研究关系仍待逐条补齐；精确序列哈希不替代这些审核 |
 | S1-2 | 隔离决定与新开发/测试候选 | 候选审核完成，无新独立测试准入 | 本地`data/manifests/data_first_admission_v1.jsonl`；clean_release关系摘要见`data/manifests/data_first_clean_release_eval_candidate_audit_v1.json`；74条与joint精确同序列，71条标签精确匹配、3条冲突；67条非精确候选含当前split/历史test关系及未解决隔离信息；候选准入为0 | 旧test已揭盲，不重用；继续寻找完整来源、研究、构建体与同源证据的新独立评估组；不足时维持没有新盲测的结论 |
 | S2-1 | 待审直接实验2D分层复核 | 完成（不可自动准入） | `data/manifests/joint_quarantine_audit_v1.json`、[审计说明](JOINT_QUARANTINE_AUDIT_V1.md)；70条全部保留隔离 | 新版本需补同源/母本/构建体/primary-study证据；不改当前冻结划分 |
@@ -88,6 +88,7 @@
 | 2026-10-28 | P0生产入口初次回归断言失败与修正 | 新增模型工厂/报告/manifest门禁后，定向模型工厂测试有1条错误文案正则不匹配；修正测试断言并重新执行 | 初次失败只发生在测试断言匹配，模型构建/加载代码未失败；修正后完整回归120项通过，脚本编译和`git diff --check`通过 | 继续执行默认CNN与显式PairBaseline回退smoke |
 | 2026-10-28 | P0默认CNN训练评价推理链路smoke | 使用`train_baseline.py`默认CNN、joint_split_v2、manifest哈希门禁和GPU短训练；随后调用`evaluate.py` validation与`predict.py`，另用旧PairBaseline checkpoint做工厂兼容推理 | 默认CNN smoke成功，150019参数配置、manifest/划分指纹和threshold写入checkpoint；validation重载成功，predict成功；旧checkpoint兼容推理成功。显式`--model-kind pair_baseline`回退smoke也成功；尝试`evaluate --split test`被CLI拒绝。所有smoke未读取test，不作效果结论 | 提交并推送生产入口完善；后续只在独立协议下运行正式科学实验 |
 | 2026-10-28 | P0静态入口检查命令失败与纠正 | 首次用PowerShell正则搜索旧数据默认路径时发生正则转义解析错误；未读取或修改项目文件 | 改用`Select-String -SimpleMatch`重跑通过，`train_baseline.py`、`evaluate.py`、`predict.py`均无`paired_v0_2`默认路径；这是检查命令失败，不是代码失败 | 与生产入口修复一起提交并推送；保留本行失败记录 |
+| 2026-10-28 | 数据主线与续接文档同步 | 核对后发现`NEXT_STEPS.md`仍称S6-L未冻结/未训练，数据审计报告仍称损失无效果证据；同步更正为v2 gate不通过、BCE默认不变、生产入口P0完成，并把下一步回到S1-1来源独立性证据缺口 | 保留原v1技术失败；补充v2可复核结果和限制，不修改数据准入、分割或实验结论；7个相关Markdown文件本地链接目标均存在，`git diff --check`通过 | 提交并推送总览同步；仍无新测试、辅助标签准入或A/B/C资格 |
 每次追加：日期/任务ID/实际动作/产物路径与哈希或检查命令/通过或失败/限制/下一步。技术失败不删行。文档检查不能写成模型测试通过。
 
 本次文档核验：PowerShell检查6个变更文档的本地Markdown链接，缺失0项；`git diff --check`通过。首次Python链接检查因当前终端找不到python命令未执行，随后使用PowerShell完成同项检查。未运行模型测试。
