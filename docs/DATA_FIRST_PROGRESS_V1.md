@@ -48,6 +48,8 @@
 | 2026-10-28 | S6-L评价诊断修复 | 将不受观测真值mask影响的合法候选多伙伴端点率接入共享`evaluate`，加入逐RNA/逐组统计、独立重载核验和4项契约测试；运行器日志改用本地日期 | 98项测试、Python编译和`git diff --check`通过；未知位置仍可进入诊断，F1评价范围未改变；尚未冻结protocol或训练 | 提交并推送诊断修复；随后重新生成并审阅冻结protocol |
 | 2026-10-28 | S6-L验证命令失败与纠正 | `python -m unittest tests.test_training_metrics`因`tests`不是可导入包而失败；改用`python -m unittest discover -s tests -v`复跑 | 首次失败仅为测试发现器调用错误，没有执行训练或读取数据；修正调用后98项全部通过 | 保留本次修复并推送；返回S1未完成的profile/历史关系审计，再决定损失协议的冻结时点 |
 | 2026-10-28 | S1 profile/历史关系审计工具 | 新增只读精确关系审计`scripts/audit_profile_and_history_relations.py`；要求profile数组/mask、SQLite、1D隔离表、RMDB来源收据与本地原文件哈希一致；历史split只按精确序列回连，test/test_external标成既往暴露；新增3项关系分类契约测试 | 定向测试3项及全套101项测试通过，脚本编译、忽略规则和`git diff --check`通过；尚未运行全量数据审计；明细明确留本地且training_allowed恒false | 提交/推送工具阶段后运行实际profile与历史关系核验；不访问模型预测或启动训练 |
+| 2026-10-28 | S1 profile/历史关系审计准备 | 核对运行输入为`probing_clean_v2/profiles.sqlite3`、167个含profile的RMDB原文件、`joint_split_v2/joint_1d_assignments.jsonl`及当前/历史JSONL；扩展脚本验证clean-release与joint 1D赋值完整哈希集合相同，并仅输出聚合关系数 | 细化后的审计尚未启动；只读校验原始字节SHA256/profile数组/mask/精确序列关系；预计核验约12.2GB；不读取模型预测或改数据 | 完成脚本检查并推送后，另记实际审计启动状态 |
+| 2026-10-28 | S1 profile/历史关系审计术语与指纹校正 | 全量测试审查发现profile与joint 1D赋值关系被误称为paired-record别名；改为明确的1D赋值关系，并补充clean-release序列自身SHA256复核；移除易被误读的“未成对profile可继承paired eligibility”措辞 | 尚待本次回归验证；未运行全量数据审计、训练或模型评价；原始数据和准入状态未变 | 回归通过后提交/推送审计工具，再执行只读数据核验 |
 
 每次追加：日期/任务ID/实际动作/产物路径与哈希或检查命令/通过或失败/限制/下一步。技术失败不删行。文档检查不能写成模型测试通过。
 

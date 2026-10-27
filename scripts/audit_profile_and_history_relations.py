@@ -1,7 +1,7 @@
 """Audit exact profile/history links without changing data admission or splits."""
 from __future__ import annotations
 
-from collections import Counter
+from collections import Counter, defaultdict
 from datetime import datetime, timezone
 import hashlib
 import json
@@ -34,7 +34,7 @@ def read_jsonl(path: Path):
 def classify_profile_relation(assigned_split: str | None) -> tuple[str, bool]:
     """Never admit a probing-only record as pair supervision."""
     if assigned_split in {"train", "validation", "test"}:
-        return f"exact_sequence_alias_to_joint_{assigned_split}_paired_record", False
+        return f"exact_sequence_alias_to_joint_1d_{assigned_split}_assignment", False
     if assigned_split == "quarantine":
         return "quarantined_unresolved_1d_parent_study_or_homology", False
     return "unmapped_sequence_quarantined", False
@@ -76,7 +76,7 @@ def audit_history_file(path: Path, pool: str, assignments, joint_pairs, output):
     count = 0
     hash_matches = Counter()
     paired_aliases = Counter()
-    group_matches = Counter()
+    group_matches = set()
     seen = set()
     with output.open("w", encoding="utf-8", newline="\n") as ledger:
         for row in read_jsonl(path):
@@ -105,7 +105,8 @@ def audit_history_file(path: Path, pool: str, assignments, joint_pairs, output):
                 paired_aliases["same_sequence"] += 1
                 paired_aliases["exact_mask_pair_match" if label_match else "label_conflict"] += 1
             hash_matches[current_split or "no_exact_joint_assignment"] += 1
-            group_matches[current_group or "no_exact_joint_2d_group"] += 1
+            if current_group:
+                group_matches.add(current_group)
             ledger.write(json.dumps({
                 "record_id": row["id"],
                 "sequence_sha256": sequence_hash,
@@ -124,7 +125,7 @@ def audit_history_file(path: Path, pool: str, assignments, joint_pairs, output):
         "distinct_sequences": len(seen),
         "exact_joint_assignment_counts": dict(sorted(hash_matches.items())),
         "exact_joint_pair_aliases": dict(sorted(paired_aliases.items())),
-        "exact_joint_pair_groups": dict(sorted(group_matches.items())),
+        "exact_joint_pair_group_count": len(group_matches),
         "ledger_sha256": sha256(output),
         "ledger_rows_local_only": True,
         "training_allowed": False,
@@ -206,6 +207,7 @@ def audit_profiles():
     profile_counts_by_file = Counter()
     profile_relation_counts = Counter()
     assignment_counts = Counter()
+    assignment_sequence_counts = defaultdict(set)
     position_counts = []
     position_coverages = []
     observed_position_counts = []
@@ -252,6 +254,7 @@ def audit_profiles():
                 profile_relation_counts[decision] += 1
                 profile_counts_by_file[source_id] += 1
                 matched_sequences.add(sequence_hash)
+                assignment_sequence_counts[assigned_split or "unmapped"].add(sequence_hash)
                 position_counts.append(len(positions))
                 position_coverages.append(coverage)
                 observed_position_counts.append(observed)
@@ -287,6 +290,19 @@ def audit_profiles():
 
         clean_db = sqlite3.connect(f"file:{clean_db_path.resolve().as_posix()}?mode=ro", uri=True)
         try:
+            clean_sequences = {
+                sequence_hash: sequence for sequence_hash, sequence in clean_db.execute(
+                    "SELECT sha256,sequence FROM sequences"
+                )
+            }
+            if any(hashlib.sha256(sequence.encode("utf-8")).hexdigest() != sequence_hash
+                   for sequence_hash, sequence in clean_sequences.items()):
+                raise ValueError("Clean-release sequence content does not match its recorded SHA256")
+            clean_hashes = set(clean_sequences)
+            if clean_hashes != set(assignments):
+                raise ValueError("joint 1D assignments do not exactly cover clean-release sequence hashes")
+            if any(clean_sequences[sequence_hash] != sequence for sequence_hash, sequence in sequence_rows.items()):
+                raise ValueError("Probing and clean-release sequence content differs under identical SHA256")
             coordinate_hashes = {
                 sequence_hash for (sequence_hash,) in clean_db.execute(
                     "SELECT sha256 FROM sequences WHERE coordinate_evidence=1"
@@ -307,6 +323,8 @@ def audit_profiles():
         "source_header_review_sha256": sha256(header_review_path),
         "profile_sequence_records": len(sequence_rows),
         "profile_records": profile_count,
+        "clean_release_sequence_records": len(clean_sequences),
+        "joint_1d_assignment_records": len(assignments),
         "sqlite_file_records": len(file_rows),
         "profile_bearing_source_files": len(source_files_with_profiles),
         "raw_source_receipts_matched": verified_sources,
@@ -314,6 +332,9 @@ def audit_profiles():
         "raw_source_total_bytes_verified": raw_source_bytes,
         "upstream_sha256_verified_file_counts": dict(source_upstream_verified),
         "profile_count_by_joint_assignment": dict(sorted(assignment_counts.items())),
+        "profile_unique_sequence_count_by_joint_assignment": {
+            key: len(values) for key, values in sorted(assignment_sequence_counts.items())
+        },
         "profile_count_by_relation_status": dict(sorted(profile_relation_counts.items())),
         "unique_profile_sequences_mapped": len(matched_sequences),
         "profile_sequence_coordinate_evidence_overlap": coordinate_overlap,
@@ -380,7 +401,7 @@ def _run_audit() -> None:
                 "distinct_sequences": result["distinct_sequences"],
                 "exact_joint_assignment_counts": result["exact_joint_assignment_counts"],
                 "exact_joint_pair_aliases": result["exact_joint_pair_aliases"],
-                "exact_joint_pair_groups": result["exact_joint_pair_groups"],
+                "exact_joint_pair_group_count": result["exact_joint_pair_group_count"],
                 "source_jsonl_sha256": sha256(path),
                 "ledger_rows_local_only": True,
                 "training_allowed": False,
@@ -406,7 +427,7 @@ def _run_audit() -> None:
         "historical_sequence_crosswalk": history_summary,
         "decisions": {
             "measured_reactivity": "retain as measured-position evidence only; never promote to pair truth",
-            "profile_only_records": "remain quarantined unless exact sequence is already represented by a frozen paired record; duplicate profiles are not extra pair-training rows",
+            "profile_only_records": "profile rows never add pair-training rows; pair supervision and eligibility come only from frozen paired records",
             "historical_test_aliases": "mark exposed and exclude from new training/selection; exact alias audit is not a re-evaluation",
             "homology_construct_study": "no inference beyond the existing frozen joint split; unresolved relationships remain quarantine",
             "new_independent_test": "not established by this exact-alias audit",

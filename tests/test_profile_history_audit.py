@@ -15,6 +15,8 @@ class ProfileHistoryRelationTests(unittest.TestCase):
             status, allowed = classify_profile_relation(split)
             self.assertFalse(allowed)
             self.assertTrue(status)
+            if split in {"train", "validation", "test"}:
+                self.assertIn(f"joint_1d_{split}_assignment", status)
 
     def test_prior_test_is_always_marked_exposed(self):
         for current in (None, "quarantine", "train", "validation", "test"):
