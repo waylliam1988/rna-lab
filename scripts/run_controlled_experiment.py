@@ -18,6 +18,9 @@ from rna2d.evidence import pairing_evidence_issues
 
 def make_model(mode,hidden,steps):
     if mode=='static':return PairBaseline(hidden)
+    if mode=='iterative':
+        from rna2d.iterative import PairDynamics
+        return PairDynamics(hidden,steps,mode)
     raise ValueError('Variant not implemented/validated yet: '+mode)
 
 
@@ -69,7 +72,7 @@ def main():
                 loss=balanced_loss(logits,labels,mask)
                 if 'prediction_mse' in aux:loss=loss+protocol['state_prediction_aux_weight']*aux['prediction_mse']
                 if not torch.isfinite(loss):raise FloatingPointError('Nonfinite loss')
-                loss.backward();torch.nn.utils.clip_grad_norm_(model.parameters(),protocol['gradient_clip'],error_if_nonfinite=True);optimizer.step();losses.append(float(loss))
+                loss.backward();torch.nn.utils.clip_grad_norm_(model.parameters(),protocol['gradient_clip'],error_if_nonfinite=True);optimizer.step();losses.append(float(loss.detach()))
             metrics,_=evaluate(model,loaders['validation'],device)
             with (output/'history.jsonl').open('a',encoding='utf-8',newline='\n') as f:f.write(json.dumps(dict(epoch=epoch,loss=statistics.mean(losses),**metrics))+'\n')
             if metrics['macro_f1']>best:

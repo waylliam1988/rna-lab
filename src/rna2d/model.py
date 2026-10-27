@@ -15,17 +15,22 @@ class PairBaseline(nn.Module):
         self.distance = nn.Embedding(32, 1)
         nn.init.zeros_(self.distance.weight)
 
-    def forward(self, tokens):
+    def encode(self, tokens):
         valid = tokens.ne(4).unsqueeze(-1)
         h = self.embedding(tokens) * valid
         # Mask after each convolution so padding cannot leak through a second layer.
         x = h.transpose(1, 2)
         for layer in self.encoder:
             x = layer(x) * valid.transpose(1, 2)
-        h = x.transpose(1, 2)
+        return x.transpose(1, 2)
+
+    def score(self, h):
         q = self.query(h)
         logits = torch.matmul(q, h.transpose(-1, -2)) / h.shape[-1] ** 0.5
         logits = (logits + logits.transpose(-1, -2)) * 0.5
-        pos = torch.arange(tokens.shape[1], device=tokens.device)
+        pos = torch.arange(h.shape[1], device=h.device)
         bins = torch.floor(torch.log2((pos[:, None] - pos[None, :]).abs().float() + 1) * 4).long().clamp_max(31)
         return logits + self.distance(bins).squeeze(-1) + self.pair_bias
+
+    def forward(self,tokens):
+        return self.score(self.encode(tokens))
