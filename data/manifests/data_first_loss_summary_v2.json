@@ -1,0 +1,81 @@
+{
+  "summary": "data-first-loss-results-v2",
+  "created_at_utc": "2026-10-27T21:16:57.642717+00:00",
+  "protocol_sha256": "46db4520d0bcfc15319f96def77258b4c62ec612837d34caa2a281c098a02659",
+  "data_sha256": {
+    "train": "4168f00f61d9a3330db33b45308fe247c6ba15fd1c50ce4b868559b78f3ffcb9",
+    "validation": "794e1cd6692eccfbad1212fa8e4246c2698eaede8fb686f8a502e52908451a71"
+  },
+  "conditions": {
+    "bce": {
+      "validation_group_macro_f1_mean": 0.522387403928631,
+      "validation_group_macro_f1_stdev": 0.020499391935436203,
+      "validation_macro_f1_mean": 0.47101951175162143,
+      "validation_group_macro_multi_partner_conflict_endpoint_rate_mean": 0.4015566395853843,
+      "validation_group_macro_multi_partner_conflict_endpoint_rate_stdev": 0.044541287960919114,
+      "validation_macro_multi_partner_conflict_endpoint_rate_mean": 0.3655364007914821,
+      "parameters": 150019,
+      "total_updates_per_seed": [
+        550
+      ],
+      "sample_order_hashes": {
+        "42": "0436b53fd3d29851eb43bc13f571a6480f3c42727c4df159dd12f0bab5b189db",
+        "43": "2b12cb70581f6ef836bfc9035d7a3170219f05a937b1723096480b6bd9e31cbb",
+        "44": "c06a3efc718e08a927d4cfba37279a0cc31a8535bdbb6c86fd5a6ed1450a6269"
+      }
+    },
+    "bce_competition": {
+      "validation_group_macro_f1_mean": 0.5248071055825586,
+      "validation_group_macro_f1_stdev": 0.03156453636547569,
+      "validation_macro_f1_mean": 0.4593613802791974,
+      "validation_group_macro_multi_partner_conflict_endpoint_rate_mean": 0.36505106785876057,
+      "validation_group_macro_multi_partner_conflict_endpoint_rate_stdev": 0.047193330494813626,
+      "validation_macro_multi_partner_conflict_endpoint_rate_mean": 0.31879740717834676,
+      "parameters": 150019,
+      "total_updates_per_seed": [
+        550
+      ],
+      "sample_order_hashes": {
+        "42": "0436b53fd3d29851eb43bc13f571a6480f3c42727c4df159dd12f0bab5b189db",
+        "43": "2b12cb70581f6ef836bfc9035d7a3170219f05a937b1723096480b6bd9e31cbb",
+        "44": "c06a3efc718e08a927d4cfba37279a0cc31a8535bdbb6c86fd5a6ed1450a6269"
+      }
+    }
+  },
+  "seed_deltas_group_macro_f1": {
+    "42": 0.015571139147498081,
+    "43": 0.008903347988374444,
+    "44": -0.0172153821740898
+  },
+  "mean_seed_delta": 0.002419701653927575,
+  "per_group_delta_competition_minus_bce": {
+    "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d": -0.06307066916823012,
+    "1a2be04f5c63905624809ef877a994038f751d6011e8b1119f9aa6d9d88b302b": 0.05367521367521377,
+    "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334": 0.07479074134322483,
+    "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f": 0.008832785987958336,
+    "ce0467d78f7c2846c66ead5e9547b9196d6f811caddbb3100bf812c41223c408": -0.044506408767244654,
+    "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6": -0.012783751493428919,
+    "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504": 0.0
+  },
+  "per_group_multi_partner_conflict_endpoint_rate_delta_competition_minus_bce": {
+    "00445898d7e6cab2944788450885d498b70345147822e336e2fd6ae4f165ac0d": -0.05050505050505055,
+    "1a2be04f5c63905624809ef877a994038f751d6011e8b1119f9aa6d9d88b302b": -0.02816901408450706,
+    "1bc94e5ec9e81255c3e99a429461f5c0bca26629074930bfaa5f8e3afecd2334": 0.010351966873705987,
+    "64e803d4e999be9c91001fe615adf3a33f363aaededa717ba96acbddeda3916f": -0.04225352112676062,
+    "ce0467d78f7c2846c66ead5e9547b9196d6f811caddbb3100bf812c41223c408": -0.07061697801499556,
+    "e8066d2e546300165740eb74e0d1135b757aa3d9b1e980a9f595d8aebc8757b6": -0.041666666666666685,
+    "fe65ab48546732e4d4e30c562d56604dd816202a12fd21253285256df171e504": -0.032679738562091526
+  },
+  "improved_seeds": 2,
+  "improved_groups": 3,
+  "severe_group_regressions": {},
+  "predeclared_development_gate_passed": false,
+  "optional_feature_status": "stop_or_retain_candidate_without_integration",
+  "default_status": "unchanged_balanced_bce",
+  "independent_test_available": false,
+  "test_accessed": false,
+  "limits": [
+    "Only 10 validation RNAs in seven groups; no independent test was available.",
+    "A passed development gate is an engineering continuation rule, not statistical evidence of broad generalization."
+  ]
+}
