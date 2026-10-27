@@ -1,0 +1,161 @@
+{
+  "stage": "2_isolation_review",
+  "families": [
+    {
+      "family": "RF00001",
+      "clan": {
+        "acc": "CL00113",
+        "id": "5S_rRNA"
+      },
+      "canonical_seed_sequences": 690,
+      "exact_sequence_overlap_counts": {
+        "joint_split_v2:train": 0,
+        "joint_split_v2:validation": 0,
+        "joint_split_v2:test": 0,
+        "paired_v0_2:train": 0,
+        "paired_v0_2:validation": 0,
+        "paired_v0_2:test": 0,
+        "legacy_processed:train": 34,
+        "legacy_processed:validation": 4,
+        "legacy_processed:test": 13,
+        "legacy_processed:test_external": 0,
+        "legacy_processed:archiveII": 172
+      },
+      "declared_component_overlap_counts": {
+        "joint_split_v2:train": 63,
+        "joint_split_v2:validation": 0,
+        "joint_split_v2:test": 0,
+        "paired_v0_2:train": 24,
+        "paired_v0_2:validation": 0,
+        "paired_v0_2:test": 0,
+        "legacy_processed:train": 0,
+        "legacy_processed:validation": 0,
+        "legacy_processed:test": 0,
+        "legacy_processed:test_external": 0,
+        "legacy_processed:archiveII": 0
+      },
+      "positive_evaluation_relation_found": true,
+      "complete_isolation_certified": false,
+      "decision": "blocked_by_current_or_historical_evaluation_family_relation",
+      "representative_selection_allowed": false,
+      "auxiliary_training_approved": false
+    },
+    {
+      "family": "RF00005",
+      "clan": {
+        "acc": "CL00001",
+        "id": "tRNA"
+      },
+      "canonical_seed_sequences": 952,
+      "exact_sequence_overlap_counts": {
+        "joint_split_v2:train": 0,
+        "joint_split_v2:validation": 0,
+        "joint_split_v2:test": 0,
+        "paired_v0_2:train": 0,
+        "paired_v0_2:validation": 0,
+        "paired_v0_2:test": 0,
+        "legacy_processed:train": 208,
+        "legacy_processed:validation": 26,
+        "legacy_processed:test": 34,
+        "legacy_processed:test_external": 0,
+        "legacy_processed:archiveII": 1
+      },
+      "declared_component_overlap_counts": {
+        "joint_split_v2:train": 63,
+        "joint_split_v2:validation": 0,
+        "joint_split_v2:test": 0,
+        "paired_v0_2:train": 24,
+        "paired_v0_2:validation": 0,
+        "paired_v0_2:test": 0,
+        "legacy_processed:train": 0,
+        "legacy_processed:validation": 0,
+        "legacy_processed:test": 0,
+        "legacy_processed:test_external": 0,
+        "legacy_processed:archiveII": 0
+      },
+      "positive_evaluation_relation_found": true,
+      "complete_isolation_certified": false,
+      "decision": "blocked_by_current_or_historical_evaluation_family_relation",
+      "representative_selection_allowed": false,
+      "auxiliary_training_approved": false
+    },
+    {
+      "family": "RF00010",
+      "clan": {
+        "acc": "CL00002",
+        "id": "RNaseP"
+      },
+      "canonical_seed_sequences": 450,
+      "exact_sequence_overlap_counts": {
+        "joint_split_v2:train": 0,
+        "joint_split_v2:validation": 0,
+        "joint_split_v2:test": 0,
+        "paired_v0_2:train": 0,
+        "paired_v0_2:validation": 0,
+        "paired_v0_2:test": 0,
+        "legacy_processed:train": 0,
+        "legacy_processed:validation": 0,
+        "legacy_processed:test": 0,
+        "legacy_processed:test_external": 0,
+        "legacy_processed:archiveII": 0
+      },
+      "declared_component_overlap_counts": {
+        "joint_split_v2:train": 63,
+        "joint_split_v2:validation": 0,
+        "joint_split_v2:test": 0,
+        "paired_v0_2:train": 24,
+        "paired_v0_2:validation": 0,
+        "paired_v0_2:test": 0,
+        "legacy_processed:train": 0,
+        "legacy_processed:validation": 0,
+        "legacy_processed:test": 0,
+        "legacy_processed:test_external": 0,
+        "legacy_processed:archiveII": 0
+      },
+      "positive_evaluation_relation_found": false,
+      "complete_isolation_certified": false,
+      "decision": "no_positive_holdout_witness_but_isolation_unresolved",
+      "representative_selection_allowed": false,
+      "auxiliary_training_approved": false
+    }
+  ],
+  "eligible_families_for_representatives": 0,
+  "local_witness_rows": 883,
+  "local_witness_file_sha256": "4bb5c271341269686e4bc9224efafe476648153b2c6df4ba15dd1e0b81d2e930",
+  "source_review_sha256": "70cd295395505fecdd7bce97e243004a64c5526a518a5681322343bedb77f9c1",
+  "metadata_sha256": "e4b6841f33635b366a46333239f8453e865f1a65b64d001365dc259faa8a38cb",
+  "dataset_files_sha256": {
+    "joint_split_v2:train": "4168f00f61d9a3330db33b45308fe247c6ba15fd1c50ce4b868559b78f3ffcb9",
+    "joint_split_v2:validation": "794e1cd6692eccfbad1212fa8e4246c2698eaede8fb686f8a502e52908451a71",
+    "joint_split_v2:test": "a2d58d8fd899799703cc82e38db755bbeb58f327bd7d2ed3289cbcf6d5cf6b9e",
+    "paired_v0_2:train": "819d27282923b28118ab0d8f08d128048f2ff2838fb9e82b240d2d7cd023ba2b",
+    "paired_v0_2:validation": "aba3ef41bf0b711b5c969b57ca38769a3b3318b181c9341892e48dbdf09467aa",
+    "paired_v0_2:test": "665567893d1633f614016dec614f77bb7d5e012cb656869541c75fd9eff19fd0",
+    "legacy_processed:train": "49af159356f952490e09acce66aa6c9d5f155528aea21d74c92521815fbf2cba",
+    "legacy_processed:validation": "ae4fed8fd77f4e8ed70055660edccc63e957e3c9acf0b4f237d4f2aa23d357be",
+    "legacy_processed:test": "65d92c392f9daacafab71bdfef0819cdb1882f1932b14ebebee7197377994fbe",
+    "legacy_processed:test_external": "15026a0fd60f4b827cfc2f4bb6c95a26dd5a5c3632b49afcb7a88a22f0cc3c0e",
+    "legacy_processed:archiveII": "05fa6e6c72d5f4c2682b24ad0d294e446aaa30227175bb6e679f40e2a6329c95"
+  },
+  "dataset_record_counts": {
+    "joint_split_v2:train": 88,
+    "joint_split_v2:validation": 10,
+    "joint_split_v2:test": 8,
+    "paired_v0_2:train": 49,
+    "paired_v0_2:validation": 6,
+    "paired_v0_2:test": 6,
+    "legacy_processed:train": 9172,
+    "legacy_processed:validation": 1148,
+    "legacy_processed:test": 1137,
+    "legacy_processed:test_external": 5137,
+    "legacy_processed:archiveII": 1981
+  },
+  "scope": "Only existing sequences and declared homology metadata; no label comparison, model predictions, or test performance.",
+  "limitations": [
+    "An exact seed member in an evaluation dataset proves a family-level connection; absent exact matches do not prove independence.",
+    "Existing RNA3DB components are inherited relation screens, not proof of all remote homology or construct relationships.",
+    "Historical evaluation exposure is a conservative exclusion under this pilot; it is not a permanent claim that these families can never be used in a differently designed future study.",
+    "No representatives selected before isolation; missing or unresolved evidence cannot be promoted to independent."
+  ],
+  "source_script_sha256": "02979911f1d7ae137a648e27a8e31e508e5defe56ba56c30f286e65c742653e8"
+}
