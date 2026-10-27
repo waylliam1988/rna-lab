@@ -78,6 +78,8 @@
 | 2026-10-28 | S6-L运行完成 | `bce_competition` seed42；550更新；schedule `0436b53fd3d29851eb43bc13f571a6480f3c42727c4df159dd12f0bab5b189db`；checkpoint `f63e3b101c4e7c8f3d59622e4eb03ee30e869ef2fcc43b8adbfd5803accce021` | validation group-macro F1=0.527559；test未访问；独立重载待统一执行 | 继续冻结名单中的其他条件/种子，不改协议 |
 | 2026-10-28 | S6-L运行启动 | `bce_competition` seed43；protocol `46db4520d0bcfc15319f96def77258b4c62ec612837d34caa2a281c098a02659`；train `4168f00f61d9a3330db33b45308fe247c6ba15fd1c50ce4b868559b78f3ffcb9`；validation `794e1cd6692eccfbad1212fa8e4246c2698eaede8fb686f8a502e52908451a71`；550更新 | 仅加载train/validation；检查点本地保存，test未打开 | 等待运行完成或保留异常 |
 | 2026-10-28 | S6-L运行完成 | `bce_competition` seed43；550更新；schedule `2b12cb70581f6ef836bfc9035d7a3170219f05a937b1723096480b6bd9e31cbb`；checkpoint `6515470321d9ba35264238d9e47452ef505d534f50a84810b7d81ec33090d096` | validation group-macro F1=0.554906；test未访问；独立重载待统一执行 | 继续冻结名单中的其他条件/种子，不改协议 |
+| 2026-10-28 | S6-L运行启动 | `bce_competition` seed44；protocol `46db4520d0bcfc15319f96def77258b4c62ec612837d34caa2a281c098a02659`；train `4168f00f61d9a3330db33b45308fe247c6ba15fd1c50ce4b868559b78f3ffcb9`；validation `794e1cd6692eccfbad1212fa8e4246c2698eaede8fb686f8a502e52908451a71`；550更新 | 仅加载train/validation；检查点本地保存，test未打开 | 等待运行完成或保留异常 |
+| 2026-10-28 | S6-L运行完成 | `bce_competition` seed44；550更新；schedule `c06a3efc718e08a927d4cfba37279a0cc31a8535bdbb6c86fd5a6ed1450a6269`；checkpoint `1422417c0209418da57fb3935481ca25679258a583886ae9cf0107742c595d7a` | validation group-macro F1=0.491957；test未访问；独立重载待统一执行 | 继续冻结名单中的其他条件/种子，不改协议 |
 每次追加：日期/任务ID/实际动作/产物路径与哈希或检查命令/通过或失败/限制/下一步。技术失败不删行。文档检查不能写成模型测试通过。
 
 本次文档核验：PowerShell检查6个变更文档的本地Markdown链接，缺失0项；`git diff --check`通过。首次Python链接检查因当前终端找不到python命令未执行，随后使用PowerShell完成同项检查。未运行模型测试。
