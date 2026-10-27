@@ -41,10 +41,11 @@ def collate(rows):
     for b, r in enumerate(rows):
         seq = r['sequence']
         tokens[b, :len(seq)] = torch.tensor(['ACGU'.index(c) for c in seq])
-        for i in range(len(seq)):
-            for j in range(i + 4, len(seq)):
-                mask[b, i, j] = (seq[i] + seq[j] in CANONICAL and
-                                 r['observed_mask'][i] and r['observed_mask'][j])
+        ids=tokens[b,:len(seq)]
+        compatibility=torch.tensor([[a+c in CANONICAL for c in 'ACGU'] for a in 'ACGU'])
+        observed=torch.tensor(r['observed_mask'],dtype=torch.bool)
+        mask[b,:len(seq),:len(seq)]=torch.triu(compatibility[ids[:,None],ids[None,:]] &
+                                                       observed[:,None] & observed[None,:],diagonal=4)
         for i, j in r['pairs']:
             labels[b, i, j] = labels[b, j, i] = 1
     return tokens, labels, mask, rows
