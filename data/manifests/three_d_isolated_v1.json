@@ -1,0 +1,41 @@
+{
+  "source_sha256": "0c1272bad39c8e42b829fef87c7de42a8629d6142533239cf2efd61c85c5776c",
+  "splits": {
+    "train": {
+      "structures": 54,
+      "sequences": 35,
+      "groups": 7
+    },
+    "validation": {
+      "structures": 10,
+      "sequences": 5,
+      "groups": 5
+    },
+    "test": {
+      "structures": 0,
+      "sequences": 0,
+      "groups": 0
+    }
+  },
+  "excluded": {
+    "quarantine_incomplete_anchor_chain": 34,
+    "quarantine_unverified_homology_or_study": 34,
+    "incomplete_base_plane": 3,
+    "quarantine_previously_exposed_test_group": 12
+  },
+  "output_sha256": {
+    "train": "ee353dd0c6b3860ba6c4dfa335b1105e060a272137c53473e24d70e582396a92",
+    "validation": "3e28f123e9b6fd0752eb7f9408af108a5a37c9a4e43156b5a42ee83497faab18",
+    "test": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "validation_passed": true,
+  "one_d_pretraining_enabled": false,
+  "folding_trajectory_labels": false,
+  "new_group_count": 52,
+  "limits": [
+    "Known homology/study and local alignment controls are conservative, not a proof against undiscovered remote homology.",
+    "Old test-related groups are quarantined; old validation remains development-only.",
+    "Static structures supervise geometry only; any simulated transitions must be labeled synthetic.",
+    "C4 position/base-plane coarse graining differs from undocumented old CSV atom conventions; no atom-equivalence claim."
+  ]
+}
