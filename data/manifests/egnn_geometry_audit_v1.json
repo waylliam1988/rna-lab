@@ -1,0 +1,146 @@
+{
+  "all_checks_passed": true,
+  "records": [
+    {
+      "id": "2DR8_A",
+      "length": 33
+    },
+    {
+      "id": "2B57_A",
+      "length": 65
+    },
+    {
+      "id": "8IDY_A",
+      "length": 120
+    }
+  ],
+  "layers": [
+    {
+      "layer": 0,
+      "node_features": [
+        3,
+        120,
+        64
+      ],
+      "coordinates": [
+        3,
+        120,
+        3
+      ],
+      "squared_distances": [
+        3,
+        120,
+        120,
+        1
+      ],
+      "edge_input": [
+        3,
+        120,
+        120,
+        130
+      ],
+      "edge_mask": [
+        3,
+        120,
+        120
+      ],
+      "coordinate_coefficients": [
+        3,
+        120,
+        120,
+        1
+      ],
+      "valid_lengths": [
+        33,
+        65,
+        120
+      ],
+      "valid_edges": [
+        1056,
+        4160,
+        14280
+      ],
+      "expected_valid_edges": [
+        1056,
+        4160,
+        14280
+      ],
+      "padding_coordinates_zero": true,
+      "padding_outputs_zero": true,
+      "distance_present_in_edge_input": true,
+      "max_coordinate_update": 0.029716849327087402
+    },
+    {
+      "layer": 1,
+      "node_features": [
+        3,
+        120,
+        64
+      ],
+      "coordinates": [
+        3,
+        120,
+        3
+      ],
+      "squared_distances": [
+        3,
+        120,
+        120,
+        1
+      ],
+      "edge_input": [
+        3,
+        120,
+        120,
+        130
+      ],
+      "edge_mask": [
+        3,
+        120,
+        120
+      ],
+      "coordinate_coefficients": [
+        3,
+        120,
+        120,
+        1
+      ],
+      "valid_lengths": [
+        33,
+        65,
+        120
+      ],
+      "valid_edges": [
+        1056,
+        4160,
+        14280
+      ],
+      "expected_valid_edges": [
+        1056,
+        4160,
+        14280
+      ],
+      "padding_coordinates_zero": true,
+      "padding_outputs_zero": true,
+      "distance_present_in_edge_input": true,
+      "max_coordinate_update": 0.02836364507675171
+    }
+  ],
+  "padding_vs_individual_max_logit_error": 9.5367431640625e-07,
+  "coordinate_gradients": {
+    "layers.0.coordinate.0.weight": 0.008346927352249622,
+    "layers.0.coordinate.0.bias": 0.006210526917129755,
+    "layers.0.coordinate.2.weight": 0.012354920618236065,
+    "layers.0.coordinate.2.bias": 0.01585616171360016,
+    "layers.1.coordinate.0.weight": 0.0012519805459305644,
+    "layers.1.coordinate.0.bias": 0.00023319950560107827,
+    "layers.1.coordinate.2.weight": 0.000988622079603374,
+    "layers.1.coordinate.2.bias": 0.0007629900937899947
+  },
+  "zero_coordinate_update_max_logit_difference": 0.07372093200683594,
+  "input_type": "synthetic sequence-position coordinates(cos i,sin i,i/128), not RNA experimental geometry",
+  "physical_RNA_coordinates_used": false,
+  "model_source_sha256": "2e214d1ea10950c2ef89590fd12360cdc18dbe5a5579065c84f4625319990e9f",
+  "checkpoint_sha256": "2324fa0f9b30d7795dc28e10b148c4d9628eea993cbe706561d0f5cd97557bae",
+  "repair_required": false
+}
