@@ -1,0 +1,8 @@
+{
+  "declared_before_stage5_training": true,
+  "rwkv_reset": "Same parameters, auxiliary next-feature loss and compute path as RWKV; recurrence state reset every update step",
+  "ghost_only": "Continuous two-stage Ghost frontend with explicit local state; no RWKV memory",
+  "full": "Same Ghost frontend with RWKV carried over algorithmic update steps",
+  "physical_world_model_claim": false,
+  "test_policy": "Test labels remain sealed until all variants and controls are trained; no score-based configuration changes"
+}

@@ -18,7 +18,7 @@ from rna2d.evidence import pairing_evidence_issues
 
 def make_model(mode,hidden,steps):
     if mode=='static':return PairBaseline(hidden)
-    if mode=='iterative':
+    if mode in ('iterative','rwkv','rwkv_reset'):
         from rna2d.iterative import PairDynamics
         return PairDynamics(hidden,steps,mode)
     raise ValueError('Variant not implemented/validated yet: '+mode)

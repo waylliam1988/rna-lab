@@ -1,0 +1,7 @@
+{
+  "variant": "rwkv",
+  "target_parameters": 22049,
+  "static_hidden": 44,
+  "static_parameters": 21637,
+  "selection": "Nearest parameter count over widths8-96, no model scores used"
+}

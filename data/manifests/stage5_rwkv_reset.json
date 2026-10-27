@@ -1,0 +1,142 @@
+{
+  "variant": "rwkv_reset",
+  "hidden": 32,
+  "dataset": "data/experimental/joint_split_v2",
+  "seeds": [
+    {
+      "seed": 42,
+      "epoch": 17,
+      "validation": {
+        "samples": 10,
+        "threshold": 0.5,
+        "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+        "mean_evaluated_position_fraction": 0.7144190250695659,
+        "macro_f1": 0.41728210754721895,
+        "macro_precision": 0.44633535546579023,
+        "macro_recall": 0.4804305661658603,
+        "micro_f1": 0.4444444444444444,
+        "crossing_macro_f1_on_positive_samples": 0.3528371560825922,
+        "crossing_positive_samples": 3,
+        "length_bins": {
+          "0-64": {
+            "samples": 6,
+            "macro_f1": 0.28218782023129846
+          },
+          "65-128": {
+            "samples": 3,
+            "macro_f1": 0.7101626016260162
+          },
+          "129-256": {
+            "samples": 1,
+            "macro_f1": 0.3492063492063492
+          }
+        },
+        "contexts": {
+          "complex": {
+            "samples": 5,
+            "macro_f1": 0.34106280193236715
+          },
+          "single_RNA": {
+            "samples": 5,
+            "macro_f1": 0.49350141316207063
+          }
+        }
+      },
+      "training_seconds": 20.7810673999993,
+      "parameters": 22049,
+      "peak_gpu_MiB": 235.861328125
+    },
+    {
+      "seed": 43,
+      "epoch": 25,
+      "validation": {
+        "samples": 10,
+        "threshold": 0.5,
+        "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+        "mean_evaluated_position_fraction": 0.7144190250695659,
+        "macro_f1": 0.36899417896281944,
+        "macro_precision": 0.39506778309409885,
+        "macro_recall": 0.41006366182836773,
+        "micro_f1": 0.35333333333333333,
+        "crossing_macro_f1_on_positive_samples": 0.2661988304093567,
+        "crossing_positive_samples": 3,
+        "length_bins": {
+          "0-64": {
+            "samples": 6,
+            "macro_f1": 0.33842197720916256
+          },
+          "65-128": {
+            "samples": 3,
+            "macro_f1": 0.5101258894362343
+          },
+          "129-256": {
+            "samples": 1,
+            "macro_f1": 0.12903225806451613
+          }
+        },
+        "contexts": {
+          "complex": {
+            "samples": 5,
+            "macro_f1": 0.33909338563800806
+          },
+          "single_RNA": {
+            "samples": 5,
+            "macro_f1": 0.3988949722876308
+          }
+        }
+      },
+      "training_seconds": 19.640358100001322,
+      "parameters": 22049,
+      "peak_gpu_MiB": 235.95068359375
+    },
+    {
+      "seed": 44,
+      "epoch": 23,
+      "validation": {
+        "samples": 10,
+        "threshold": 0.5,
+        "evaluation_scope": "observable label positions only; decode first, then mask unknown endpoints",
+        "mean_evaluated_position_fraction": 0.7144190250695659,
+        "macro_f1": 0.40327978430730277,
+        "macro_precision": 0.4577045177045177,
+        "macro_recall": 0.44965304303539594,
+        "micro_f1": 0.40540540540540543,
+        "crossing_macro_f1_on_positive_samples": 0.3134920634920635,
+        "crossing_positive_samples": 3,
+        "length_bins": {
+          "0-64": {
+            "samples": 6,
+            "macro_f1": 0.36312914242788014
+          },
+          "65-128": {
+            "samples": 3,
+            "macro_f1": 0.4735632183908047
+          },
+          "129-256": {
+            "samples": 1,
+            "macro_f1": 0.43333333333333335
+          }
+        },
+        "contexts": {
+          "complex": {
+            "samples": 5,
+            "macro_f1": 0.37812572102227276
+          },
+          "single_RNA": {
+            "samples": 5,
+            "macro_f1": 0.4284338475923329
+          }
+        }
+      },
+      "training_seconds": 19.65845089999857,
+      "parameters": 22049,
+      "peak_gpu_MiB": 235.95068359375
+    }
+  ],
+  "validation_macro_f1_mean": 0.39651869027244707,
+  "validation_macro_f1_stdev": 0.024843818268417153,
+  "test_evaluated": false,
+  "model_code_sha256": "2c9b067e8fdc785e2b7e1be97dee966888d6c98248248acde9292ed031813bcb",
+  "protocol_sha256": "0b8c36be7998b74df67f9b27eeea87c09384bd71f47a3812e13d2799a6743b6f",
+  "scope": "Exploratory; small grouped data; validation used for checkpoint selection, no significance or generalization claim"
+}
