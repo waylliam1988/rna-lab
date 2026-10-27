@@ -1,0 +1,32 @@
+{
+  "phase": "physical-interface-and-forecast-v1",
+  "unit_tests_passed": 63,
+  "reloaded_checkpoints_passed": 18,
+  "original_ghost_dimensions": [
+    256,
+    512,
+    8
+  ],
+  "train_sequences": 35,
+  "validation_sequences": 5,
+  "new_independent_test_sequences": 0,
+  "experimental_trajectory_labels": false,
+  "full_original_biosystem_reproduced": false,
+  "one_d_pretraining_performed": false,
+  "source_sha256": {
+    "scripts/isolate_3d_data.py": "55923d795738c51551498fc4d5cb0f20bb5bca27e1af651bc13ab000d6ef4700",
+    "scripts/prepare_physical_forecast.py": "9a69d160c22de226cb3a91508e323087de3f3ac395d956fadccd4ff685a03a60",
+    "scripts/report_physical_forecast.py": "c460b59990ac7740ae7fdc3ac0531cdd49eacf679991ee848720be00c4d1b428",
+    "scripts/restore_nezha_physics.py": "f5fcece924d03aab99de69ee424f132599ef233a56dafb855190550950824b25",
+    "scripts/run_physical_forecast.py": "7a5964ef45054fd73bab78da938374c762e3fd498006688c443a574e275a88e9",
+    "scripts/validate_3d_isolation.py": "9b4ed4ac495eccc4696b135f2b2ba4ba511569e6fb57d076fe9612bf2c11cb63",
+    "scripts/verify_physical_forecast.py": "05d1867c0cd8fd9ced973cf636be6070001627d387a052a80995ee26ac140983",
+    "src/rna2d/physics/__init__.py": "fa58edb53c85a6a1f2bb486acb790dda353de59e4f96794138909d509196dd1a",
+    "src/rna2d/physics/config.py": "ec35f7e1e23c02279f2a713b12ac17e8a51594041c384a892ab43245af3cbb8c",
+    "src/rna2d/physics/forecast.py": "abebb197a02245df7427064d11a8436ea63ce135ef4fa0c8a6151dc005376e6f",
+    "src/rna2d/physics/ghost.py": "9b1311fa5cf822849181989c9425363ba435361e8d12a1cf219af0ab6030b600",
+    "src/rna2d/physics/interface.py": "6ef7a6d5cda3b44bcb86371a5e1250e4ae113b08e6923369fdf45d67641ff0f2",
+    "src/rna2d/physics/kernels.py": "62551634b309bdb226242e4eb19674068bd8348247b0380ea4519ab75cb8c2b8",
+    "src/rna2d/physics/reference.py": "1566452e92fe93d0dce4fbc9c28a61adb66e50a9b1e6522c41fd7eaa33884b47"
+  }
+}
