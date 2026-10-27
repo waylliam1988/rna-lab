@@ -1,0 +1,210 @@
+{
+  "audit": "profile-and-history-exact-relations-v1",
+  "created_at_utc": "2026-10-27T20:00:39.372770+00:00",
+  "scope": "Read-only exact sequence/provenance crosswalk. It does not infer homology or construct ancestry from names and does not evaluate model predictions.",
+  "current_joint_split": {
+    "manifest_sha256": "9e2ae4fd32bab3a288997c0d761ede1a423864d2fd0974c5745239f1dfbad92c",
+    "validation_sha256": "30784a93d06c60ad968448fc82a0e6836a13ecea9e9d93c46442e1fad68c5da9",
+    "assignments_sha256": "10f0a5fa4ca89171be2dc1b6d545654464d229d4f69408420923de777991bf78",
+    "assignment_records": 213579,
+    "paired_records": 106,
+    "paired_sequence_sha256": {
+      "train": "4168f00f61d9a3330db33b45308fe247c6ba15fd1c50ce4b868559b78f3ffcb9",
+      "validation": "794e1cd6692eccfbad1212fa8e4246c2698eaede8fb686f8a502e52908451a71",
+      "test": "a2d58d8fd899799703cc82e38db755bbeb58f327bd7d2ed3289cbcf6d5cf6b9e"
+    }
+  },
+  "profile_pool": {
+    "profile_db_sha256": "15e76d1cf0b3518c652bbd3ff2901040478bc9b82697af321446c1a4ed2a735e",
+    "profile_config_sha256": "5be23a3b403fb3d7e9c36d571bff06b72f5ae2fd0ea453c2aa744c495aac4269",
+    "profile_screen_summary_sha256": "d70dd4b6ec0579577da57b2cfdede0692478127a569b10c9f39280a50cd0c5a2",
+    "source_header_review_sha256": "4031e6e8bcaf5b1d0b31ebf827160ed5b4d8a32966dc84531699d90063e7c751",
+    "profile_sequence_records": 212652,
+    "profile_records": 344495,
+    "clean_release_sequence_records": 213579,
+    "joint_1d_assignment_records": 213579,
+    "sqlite_file_records": 1024,
+    "profile_bearing_source_files": 167,
+    "raw_source_receipts_matched": 167,
+    "raw_source_local_sha256_verified": 167,
+    "raw_source_total_bytes_verified": 12194330801,
+    "upstream_sha256_verified_file_counts": {
+      "True": 167
+    },
+    "profile_count_by_joint_assignment": {
+      "quarantine": 344495
+    },
+    "profile_unique_sequence_count_by_joint_assignment": {
+      "quarantine": 212652
+    },
+    "profile_count_by_relation_status": {
+      "quarantined_unresolved_1d_parent_study_or_homology": 344495
+    },
+    "unique_profile_sequences_mapped": 212652,
+    "profile_sequence_coordinate_evidence_overlap": 0,
+    "position_count": {
+      "min": 68,
+      "median": 100.0,
+      "max": 240
+    },
+    "observed_position_count": {
+      "min": 68,
+      "median": 100.0,
+      "max": 240
+    },
+    "observed_fraction": {
+      "min": 0.9,
+      "median": 1.0,
+      "max": 1.0
+    },
+    "local_relation_ledger_sha256": "a04ca6cdad8cfee9a30a6ded8e4367d5fc18509e6a51d03760c393a8fed051f1",
+    "local_relation_ledger_rows": 344495,
+    "training_allowed": false,
+    "pair_label_count": 0
+  },
+  "historical_sequence_crosswalk": {
+    "legacy_processed:train": {
+      "records": 9172,
+      "distinct_sequences": 9172,
+      "exact_joint_assignment_counts": {
+        "no_exact_joint_assignment": 9171,
+        "quarantine": 1
+      },
+      "exact_joint_pair_aliases": {},
+      "exact_joint_pair_group_count": 0,
+      "source_jsonl_sha256": "49af159356f952490e09acce66aa6c9d5f155528aea21d74c92521815fbf2cba",
+      "ledger_rows_local_only": true,
+      "training_allowed": false
+    },
+    "legacy_processed:validation": {
+      "records": 1148,
+      "distinct_sequences": 1148,
+      "exact_joint_assignment_counts": {
+        "no_exact_joint_assignment": 1148
+      },
+      "exact_joint_pair_aliases": {},
+      "exact_joint_pair_group_count": 0,
+      "source_jsonl_sha256": "ae4fed8fd77f4e8ed70055660edccc63e957e3c9acf0b4f237d4f2aa23d357be",
+      "ledger_rows_local_only": true,
+      "training_allowed": false
+    },
+    "legacy_processed:test": {
+      "records": 1137,
+      "distinct_sequences": 1137,
+      "exact_joint_assignment_counts": {
+        "no_exact_joint_assignment": 1136,
+        "quarantine": 1
+      },
+      "exact_joint_pair_aliases": {},
+      "exact_joint_pair_group_count": 0,
+      "source_jsonl_sha256": "65d92c392f9daacafab71bdfef0819cdb1882f1932b14ebebee7197377994fbe",
+      "ledger_rows_local_only": true,
+      "training_allowed": false
+    },
+    "legacy_processed:test_external": {
+      "records": 5137,
+      "distinct_sequences": 5137,
+      "exact_joint_assignment_counts": {
+        "no_exact_joint_assignment": 5137
+      },
+      "exact_joint_pair_aliases": {},
+      "exact_joint_pair_group_count": 0,
+      "source_jsonl_sha256": "15026a0fd60f4b827cfc2f4bb6c95a26dd5a5c3632b49afcb7a88a22f0cc3c0e",
+      "ledger_rows_local_only": true,
+      "training_allowed": false
+    },
+    "legacy_processed:archiveII": {
+      "records": 1981,
+      "distinct_sequences": 1981,
+      "exact_joint_assignment_counts": {
+        "no_exact_joint_assignment": 1929,
+        "quarantine": 45,
+        "train": 7
+      },
+      "exact_joint_pair_aliases": {
+        "label_conflict": 7,
+        "same_sequence": 7
+      },
+      "exact_joint_pair_group_count": 1,
+      "source_jsonl_sha256": "05fa6e6c72d5f4c2682b24ad0d294e446aaa30227175bb6e679f40e2a6329c95",
+      "ledger_rows_local_only": true,
+      "training_allowed": false
+    },
+    "paired_v0_2:train": {
+      "records": 49,
+      "distinct_sequences": 49,
+      "exact_joint_assignment_counts": {
+        "no_exact_joint_assignment": 14,
+        "quarantine": 11,
+        "train": 22,
+        "validation": 2
+      },
+      "exact_joint_pair_aliases": {
+        "label_conflict": 24,
+        "same_sequence": 24
+      },
+      "exact_joint_pair_group_count": 5,
+      "source_jsonl_sha256": "819d27282923b28118ab0d8f08d128048f2ff2838fb9e82b240d2d7cd023ba2b",
+      "ledger_rows_local_only": true,
+      "training_allowed": false
+    },
+    "paired_v0_2:validation": {
+      "records": 6,
+      "distinct_sequences": 6,
+      "exact_joint_assignment_counts": {
+        "quarantine": 1,
+        "test": 2,
+        "train": 1,
+        "validation": 2
+      },
+      "exact_joint_pair_aliases": {
+        "label_conflict": 5,
+        "same_sequence": 5
+      },
+      "exact_joint_pair_group_count": 4,
+      "source_jsonl_sha256": "aba3ef41bf0b711b5c969b57ca38769a3b3318b181c9341892e48dbdf09467aa",
+      "ledger_rows_local_only": true,
+      "training_allowed": false
+    },
+    "paired_v0_2:test": {
+      "records": 6,
+      "distinct_sequences": 6,
+      "exact_joint_assignment_counts": {
+        "no_exact_joint_assignment": 1,
+        "quarantine": 2,
+        "train": 2,
+        "validation": 1
+      },
+      "exact_joint_pair_aliases": {
+        "exact_mask_pair_match": 1,
+        "label_conflict": 2,
+        "same_sequence": 3
+      },
+      "exact_joint_pair_group_count": 3,
+      "source_jsonl_sha256": "665567893d1633f614016dec614f77bb7d5e012cb656869541c75fd9eff19fd0",
+      "ledger_rows_local_only": true,
+      "training_allowed": false
+    }
+  },
+  "decisions": {
+    "measured_reactivity": "retain as measured-position evidence only; never promote to pair truth",
+    "profile_only_records": "profile rows never add pair-training rows; pair supervision and eligibility come only from frozen paired records",
+    "historical_test_aliases": "mark exposed and exclude from new training/selection; exact alias audit is not a re-evaluation",
+    "homology_construct_study": "no inference beyond the existing frozen joint split; unresolved relationships remain quarantine",
+    "new_independent_test": "not established by this exact-alias audit",
+    "auxiliary_source": "the fixed comparison-source pilot remains not admitted; no source eligibility change"
+  },
+  "limitations": [
+    "A verified local source checksum and measured array do not substitute for original-paper, biological-replicate, construct-parent or remote-homology review.",
+    "Profile-bearing RMDB files have header metadata screening only; source header review is not a complete per-publication assay audit.",
+    "Exact sequence hashes detect aliases only; this audit performs no alignment-based homology or construct ancestry analysis.",
+    "Historical split membership is recorded as prior exposure context, not used for model selection or performance analysis.",
+    "All row-level relation ledgers remain local and ignored by Git; only aggregate counts and fingerprints are publishable."
+  ],
+  "row_level_ledgers_local_only": {
+    "profile_relations": "data/manifests/data_first_profile_relations_v1.jsonl",
+    "history_relations": "data/manifests/data_first_history_relations_v1.jsonl"
+  },
+  "test_predictions_read": false,
+  "training_started": false
+}

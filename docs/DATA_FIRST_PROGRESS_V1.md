@@ -1,10 +1,10 @@
 # 数据优先工作包：当前进度与续接记录
 
-更新日期：2026-10-27。范围：总路线图阶段0–6。这里区分旧实验、本次文档设计和未来执行，不设置人员字段。
+更新日期：2026-10-28。范围：总路线图阶段0–6。这里区分旧实验、本次文档设计和未来执行，不设置人员字段。
 
 ## 当前停在哪里
 
-**S0基线冻结已完成；S2-1直接实验隔离原因审计完成；S2-2比较来源试点结论为不可准入。** 当前从S1未覆盖的profile/历史关系与新增独立评估候选继续；不启动A/B/C，直到辅助监督具备逐条来源、映射和隔离证据并通过链路门禁。
+**S0基线冻结已完成；S2-1直接实验隔离原因审计完成；S2-2比较来源试点结论为不可准入；S1 profile/历史精确序列关系审计已完成。** 当前仍需补S1-1辅助源关系与S1-2新增独立评估候选审核；不启动A/B/C，直到辅助监督具备逐条来源、映射和隔离证据并通过链路门禁。
 
 旧CNN拟合/比较等完成情况见[基线决策](BASELINE_DECISION_V1.md)与[STATUS](STATUS.md)，不能将旧结果算为本轮阶段验收。
 
@@ -15,7 +15,7 @@
 | D0 | 总路线与数据/损失/记录细则 | 完成 | [路线图](DATA_FIRST_ROADMAP_V1.md)、[执行细则](DATA_FIRST_EXECUTION_V1.md)；本次已核对模型、损失、mask与旧runner源码 | 文档方案，不表示实现完成 |
 | S0-1 | 冻结CNN源码、构造参数、原权重指纹 | 完成 | `data/manifests/data_first_baseline_v1.json`，含源码/协议/数据/三种子检查点SHA256及重载证据 | 不重训；后续实验沿用该参照 |
 | S0-2 | 数据版本与政策对应、实验登记模板 | 完成 | 冻结清单的历史边界、joint_split_v2计数和`docs/DATA_FIRST_AUDIT_V1.md` | 旧61条仅历史；clean_release_v1仍待联合审计 |
-| S1-1 | 1D/2D/辅助/历史评估联合关系表 | 部分完成（版本回连已修正） | 本地`data/manifests/data_first_relations_v1.jsonl`，214002条；106条split源记录与annotation_review逐条标签匹配；profile/历史别名未完全连接 | profile显式映射、历史测试关系、辅助池关系仍待补 |
+| S1-1 | 1D/2D/辅助/历史评估联合关系表 | 部分完成（profile/历史精确序列关系已补；辅助源关系待补） | 本地`data/manifests/data_first_relations_v1.jsonl`，214002条；profile/历史聚合结果见`data/manifests/data_first_profile_history_audit_v1.json`；逐记录审计表在本地ignored文件；106条split源记录与annotation_review逐条标签匹配 | 辅助池关系、同源/构建体/研究关系仍待补；精确序列哈希不替代这些审核 |
 | S1-2 | 隔离决定与新开发/测试候选 | 部分完成 | 本地`data/manifests/data_first_admission_v1.jsonl`及`docs/DATA_FIRST_AUDIT_V1.md`；clean_release 74条同序列仅71条标签完全相同，3条标签不一致隔离；全体clean_release不作训练输入 | 需补clean_release母本/构建体和新独立评估候选审核 |
 | S2-1 | 待审直接实验2D分层复核 | 完成（不可自动准入） | `data/manifests/joint_quarantine_audit_v1.json`、[审计说明](JOINT_QUARANTINE_AUDIT_V1.md)；70条全部保留隔离 | 新版本需补同源/母本/构建体/primary-study证据；不改当前冻结划分 |
 | S2-2 | 一个比较辅助来源的有限试点 | 完成（不可准入） | `data/manifests/data_first_comparative_pilot_v1.json`；固定前20条候选，20/20缺来源与质量核验 | 停止扩大该来源；补齐原始PDB/链、方法/覆盖、映射和隔离证据后另立版本 |
@@ -50,6 +50,7 @@
 | 2026-10-28 | S1 profile/历史关系审计工具 | 新增只读精确关系审计`scripts/audit_profile_and_history_relations.py`；要求profile数组/mask、SQLite、1D隔离表、RMDB来源收据与本地原文件哈希一致；历史split只按精确序列回连，test/test_external标成既往暴露；新增3项关系分类契约测试 | 定向测试3项及全套101项测试通过，脚本编译、忽略规则和`git diff --check`通过；尚未运行全量数据审计；明细明确留本地且training_allowed恒false | 提交/推送工具阶段后运行实际profile与历史关系核验；不访问模型预测或启动训练 |
 | 2026-10-28 | S1 profile/历史关系审计准备 | 核对运行输入为`probing_clean_v2/profiles.sqlite3`、167个含profile的RMDB原文件、`joint_split_v2/joint_1d_assignments.jsonl`及当前/历史JSONL；扩展脚本验证clean-release与joint 1D赋值完整哈希集合相同，并仅输出聚合关系数 | 细化后的审计尚未启动；只读校验原始字节SHA256/profile数组/mask/精确序列关系；预计核验约12.2GB；不读取模型预测或改数据 | 完成脚本检查并推送后，另记实际审计启动状态 |
 | 2026-10-28 | S1 profile/历史关系审计术语与指纹校正 | 全量测试审查发现profile与joint 1D赋值关系被误称为paired-record别名；改为明确的1D赋值关系，并补充clean-release序列自身SHA256复核；移除易被误读的“未成对profile可继承paired eligibility”措辞 | 尚待本次回归验证；未运行全量数据审计、训练或模型评价；原始数据和准入状态未变 | 回归通过后提交/推送审计工具，再执行只读数据核验 |
+| 2026-10-28 | S1 profile/历史关系审计执行 | 只读运行`scripts/audit_profile_and_history_relations.py`；提交聚合报告`data/manifests/data_first_profile_history_audit_v1.json`（SHA256 `ac3f0c88678912aeff21255752e2362b74cd78cf5c918e7b1a402f3541fc8c32`）；本地profile/history明细SHA256分别为`a04ca6cdad8cfee9a30a6ded8e4367d5fc18509e6a51d03760c393a8fed051f1`和`e58f39073edef5f5c1d05159f753f67317f35740de0a8e0e62066a802aff91a5` | 验证344495个实测profile/212652条唯一序列；167/167来源文件、共12194330801字节本地SHA256与收据一致，且167条上游SHA也已核验；213579条clean-release序列与1D赋值集合和内容哈希一致。所有profile序列均属quarantine，pair label为0、training_allowed=false。历史JSONL共18636行；旧archiveII有7条精确序列对应当前train但pair标签冲突；paired_v0_2 train/validation/test分别有24/5/3条当前配对别名，其中24/5条标签冲突、test别名中1条mask/pairs相同而2条冲突。所有逐记录表被Git忽略；历史test/test_external仅记暴露，不用于新训练/选择。未读模型预测、未训练、未改标签/划分；精确哈希审计不能替代同源/构建体/研究审核，也未建立新独立测试 | 提交并推送聚合结果与台账；辅助源关系和生物学隔离仍按原准入门禁审核 |
 
 每次追加：日期/任务ID/实际动作/产物路径与哈希或检查命令/通过或失败/限制/下一步。技术失败不删行。文档检查不能写成模型测试通过。
 
