@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-28",
+  "source_review_commit": "f0bd619",
+  "isolation_review_commit": "08c6e25",
+  "stage_status": {
+    "1_family_source_review": "completed_with_limits",
+    "2_isolation_review": "completed_no_eligible_families",
+    "3_select_up_to_five_and_validate_mapping": "not_executed_no_eligible_families",
+    "4_expansion_decision": "completed_stop_this_frozen_pilot",
+    "5_mask_smoke_and_abc": "not_started_prerequisites_unmet"
+  },
+  "families_reviewed": 3,
+  "source_provenance_supported_families": 2,
+  "isolation_passed_families": 0,
+  "representatives_selected": 0,
+  "mapping_validation_performed": false,
+  "positive_negative_unknown_labels_generated": false,
+  "mapped_pair_counts": null,
+  "auxiliary_training_admitted_records": 0,
+  "new_evaluation_admitted_groups": 0,
+  "expansion_performed": false,
+  "training_performed": false,
+  "test_performance_read": false,
+  "original_dataset_fingerprints_rechecked_unchanged": true,
+  "latest_unit_tests_passed": 139,
+  "stage_manifests_sha256": {
+    "rfam_family_pilot_selection_v1.json": "e477f4cca783d2f91bd58199b8605784710f12fac523570eeab49860052a2e67",
+    "rfam_family_pilot_sources_v1.json": "70cd295395505fecdd7bce97e243004a64c5526a518a5681322343bedb77f9c1",
+    "rfam_family_pilot_isolation_v1.json": "4f6f1720d755a6a0ba773c008e465938c17146f1e6bc3c59def863fe7476c0ab",
+    "rfam_family_pilot_isolation_v2.json": "c9740918b51c0de63d81ac251e41d62fb0713fb5c27008db1c9d006c7d797f6c"
+  },
+  "conclusion": "A local outcome for these three fixed classical families under existing historical-evaluation isolation policy, not proof comparative supervision is dirty or unavailable globally."
+}

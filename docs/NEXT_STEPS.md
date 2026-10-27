@@ -1,5 +1,7 @@
 # 下一次从这里继续
 
+**最新Rfam三族试点已按门槛收尾：来源审核f0bd619、隔离审核08c6e25已推送；三个家族均有历史评估关联，合格代表资格0。第3项真实映射未执行，第4项决定停止扩量，第5项mask/冒烟/A/B/C未启动。139项代码契约测试通过，未改数据或旧成绩。** 见[试点结果](RFAM_PILOT_RESULTS_V1.md)。此结论只针对本批3族，不代表比较监督整体不可用。
+
 当前具体试点顺序见[COMPARATIVE_PILOT_PLAN_V1.md](COMPARATIVE_PILOT_PLAN_V1.md)：已盘点101649条非PDB索引，验证元数据全部尚未填充，不代表已审为不合格。接下来按家族做有限来源/映射审核；尚未准入或训练。
 
 有限可行性核查新增两条待审路径：Archive-NoFam实验评估候选、经原文核实的Rfam SEED辅助子集，见[DATA_FEASIBILITY_REVIEW_V1.md](DATA_FEASIBILITY_REVIEW_V1.md)。尚未下载数据或逐条审核，不改变准入；既有bpRNA-PDB试点不能代表真正比较分析辅助池的可行性。
