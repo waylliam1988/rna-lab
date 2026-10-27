@@ -96,6 +96,7 @@ def audit() -> dict:
 
     current_records = []
     current_hashes = {}
+    current_rows_by_hash = {}
     for split in ("train", "validation", "test"):
         path = joint_directory / f"{split}.jsonl"
         if sha256(path) != joint_validation["files"][split]:
@@ -109,6 +110,7 @@ def audit() -> dict:
             if row["sequence_sha256"] in current_hashes:
                 raise ValueError("Duplicate sequence across current joint splits")
             current_hashes[row["sequence_sha256"]] = split
+            current_rows_by_hash[row["sequence_sha256"]] = row
             current_records.append({**row, "_graph_id": f"joint:{split}:{row['id']}", "_kind": "current", "_split": split})
 
     # Use the same RNA3DB exact-sequence component map and primary-CIF citation
@@ -193,6 +195,22 @@ def audit() -> dict:
             clean_rows_by_group[root].append(row)
 
     exact_current_count = sum(row["sequence_sha256"] in current_hashes for row in clean_records)
+    exact_current_split_counts = Counter()
+    exact_pair_label_relation_counts = Counter()
+    for row in clean_records:
+        current_split = current_hashes.get(row["sequence_sha256"])
+        if current_split is None:
+            continue
+        exact_current_split_counts[current_split] += 1
+        current = current_rows_by_hash[row["sequence_sha256"]]
+        relation = (
+            "exact_mask_and_pair_match"
+            if row.get("observed_mask") == current.get("observed_mask") and row.get("pairs") == current.get("pairs")
+            else "same_sequence_label_conflict"
+        )
+        exact_pair_label_relation_counts[relation] += 1
+    nonexact = [row for row in clean_records if row["sequence_sha256"] not in current_hashes]
+    nonexact_hashes = {row["sequence_sha256"] for row in nonexact}
     exact_history_counts = {
         pool: sum(row["sequence_sha256"] in hashes for row in clean_records)
         for pool, hashes in historical_test_hashes.items()
@@ -219,27 +237,22 @@ def audit() -> dict:
         metadata_counts["primary_study_complete" if row["_study_metadata_complete"] else "primary_study_incomplete"] += 1
         metadata_counts["construct_provenance_present" if has_construct else "construct_provenance_missing"] += 1
         metadata_counts["single_RNA_context" if row.get("context") == "single_RNA" else "complex_or_other_context"] += 1
-        for split in split_links:
-            connected_record_counts[split] += 1
-            connected_unique_sequences[split].add(row["sequence_sha256"])
+        if row["sequence_sha256"] in nonexact_hashes:
+            for split in split_links:
+                connected_record_counts[split] += 1
+                connected_unique_sequences[split].add(row["sequence_sha256"])
 
-    nonexact = [row for row in clean_records if row["sequence_sha256"] not in current_hashes]
     nonexact_group_roots = {groups.find(by_id[row["_graph_id"]]) for row in nonexact}
     group_status_counts = Counter()
     for root in nonexact_group_roots:
         split_links = current_splits_by_group[root]
         rows = clean_rows_by_group[root]
         historical_exposed = any(row["sequence_sha256"] in hashes for row in rows for hashes in historical_test_hashes.values())
-        representative = rows[0]
         has_component = all(bool(row["_components"]) for row in rows)
         has_study = all(bool(row["_study_metadata_complete"]) for row in rows)
         has_construct = all(bool(row.get("construct_provenance") or row.get("construct_id")) for row in rows)
         group_status_counts[classify_candidate_group(split_links, historical_exposed, has_component, has_study, has_construct)] += 1
 
-    exact_test_hashes = {
-        pool: hashes for pool, hashes in historical_test_hashes.items()
-    }
-    exact_old_test_exposed = set().union(*exact_test_hashes.values())
     clean_summary_counts = {
         "provenance_verified": Counter(str(row.get("provenance_verified")).lower() for row in clean_records),
         "quality_verified": Counter(str(row.get("quality_verified")).lower() for row in clean_records),
@@ -254,6 +267,8 @@ def audit() -> dict:
             "paired_file_sha256": sha256(clean_pairs_path),
             "paired_records": len(clean_records),
             "exact_sequence_aliases_to_current_joint": exact_current_count,
+            "exact_aliases_by_current_split": dict(sorted(exact_current_split_counts.items())),
+            "exact_alias_mask_pair_comparison": dict(sorted(exact_pair_label_relation_counts.items())),
             "nonexact_sequence_records_to_current_joint": len(nonexact),
             "evidence_flags": {key: dict(sorted(value.items())) for key, value in clean_summary_counts.items()},
             "rna3db_records_reviewed": rna3db_rows,
@@ -265,7 +280,7 @@ def audit() -> dict:
         "candidate_relation_graph_to_frozen_joint": {
             "sequence_edge_rule": "same as build_joint_splits.py: local alignment, identity>=0.8 and shorter-sequence coverage>=0.8",
             "alignment_edge_count": len(alignment_edges),
-            "nonexact_records_connected_to_current_split": dict(sorted(connected_record_counts.items())),
+            "nonexact_record_group_connections_to_current_split": dict(sorted(connected_record_counts.items())),
             "nonexact_unique_sequences_connected_to_current_split": {
                 split: len(values) for split, values in sorted(connected_unique_sequences.items())
             },
