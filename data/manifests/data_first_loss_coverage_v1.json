@@ -1,0 +1,65 @@
+{
+  "audit": "pair-loss-coverage-v1",
+  "created_at_utc": "2026-10-27T15:44:07.627174+00:00",
+  "dataset": "joint_split_v2",
+  "files": {
+    "train_sha256": "4168f00f61d9a3330db33b45308fe247c6ba15fd1c50ce4b868559b78f3ffcb9",
+    "validation_sha256": "794e1cd6692eccfbad1212fa8e4246c2698eaede8fb686f8a502e52908451a71"
+  },
+  "splits": {
+    "train": {
+      "records": 88,
+      "groups": 8,
+      "groups_with_competition_applicable_record": 8,
+      "records_with_positive_and_negative_bce": 88,
+      "records_without_positive": 0,
+      "records_without_reliable_negative_endpoint": 0,
+      "positive_edges": 1565,
+      "positive_endpoints": 3130,
+      "competition_applicable_endpoints": 3130,
+      "competition_endpoint_coverage": 1.0,
+      "reliable_negative_candidates_per_applicable_endpoint": {
+        "min": 1,
+        "median": 16.0,
+        "mean": 22.224281150159744,
+        "max": 128
+      },
+      "mean_log1p_reliable_negative_candidates": 2.901821946503309,
+      "lambda_candidate_aux_to_bce_at_zero_logit_ratio": 0.20932220658815415,
+      "length": {
+        "min": 33,
+        "median": 68.5,
+        "max": 418
+      }
+    },
+    "validation": {
+      "records": 10,
+      "groups": 7,
+      "groups_with_competition_applicable_record": 7,
+      "records_with_positive_and_negative_bce": 10,
+      "records_without_positive": 0,
+      "records_without_reliable_negative_endpoint": 0,
+      "positive_edges": 153,
+      "positive_endpoints": 306,
+      "competition_applicable_endpoints": 306,
+      "competition_endpoint_coverage": 1.0,
+      "reliable_negative_candidates_per_applicable_endpoint": {
+        "min": 2,
+        "median": 16.0,
+        "mean": 20.12091503267974,
+        "max": 45
+      },
+      "mean_log1p_reliable_negative_candidates": 2.8928538038907115,
+      "lambda_candidate_aux_to_bce_at_zero_logit_ratio": 0.20867529184449518,
+      "length": {
+        "min": 43,
+        "median": 62.5,
+        "max": 161
+      }
+    }
+  },
+  "test_accessed": false,
+  "lambda_candidate": 0.05,
+  "lambda_rationale": "At equal logits the per-endpoint ranking term is log(1 + reliable_negative_count). lambda=0.05 is fixed as a modest initial auxiliary scale (roughly a few tenths of the 0.693 balanced-BCE-at-zero scale for the observed candidate counts); it is not searched or selected on validation performance.",
+  "status": "coverage_audit_only_no_training"
+}

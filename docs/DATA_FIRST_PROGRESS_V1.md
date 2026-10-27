@@ -40,8 +40,11 @@
 | 2026-10-27 | S1版本回连修正 | 根据 `joint_split_v2.json` 的 `paired_source_sha256=244221...` 定位真实来源为`annotation_review_v1/paired.jsonl`；按序列哈希、mask和pairs逐条核对，不再把clean_release的同ID记录直接继承split资格 | 106条源记录精确匹配；clean_release 141条中74条同序列、71条mask/pairs完全匹配、3条标签冲突、67条无同序列对应；训练准入仍只限joint_split_v2 train文件。修正了先前错误地按跨版本ID继承split的关系脚本，并在清单中保留冲突状态 | 重跑审计生成器及契约断言；阶段审计更正需单独commit/push |
 | 2026-10-27 | S1版本回连更正 | 按 `joint_split_v2.json` 的源指纹核实真实来源为`annotation_review_v1/paired.jsonl`；生成器改为sequence SHA256关联并逐条比对mask/pairs；补充 clean_release alias/conflict 统计 | 106条source记录精确标签匹配；clean_release 71条精确标签别名不获训练资格，3条同序列异标签 quarantine，67条无split对应；新结构断言通过。更正了前一版错误按跨版本ID继承split的映射 | 全量测试与Git差异检查后，单独commit/push该更正 |
 | 2026-10-27 | S1版本更正提交 | Git提交`6de1d82`，推送`origin/main` | 只提交聚合审计、版本映射修正和生成工具；逐样本清单继续被`.gitignore`排除 | 继续S6-L候选实现验证 |
+| 2026-10-27 | S6-L协议准备启动 | 确认比较辅助来源试点不可准入，转向路线允许的joint_split_v2固定直接实验数据损失对照；GPU环境为RTX 2080 Ti / torch2.7.1+cu128 / CUDA12.8 | 尚未冻结loss协议、尚未启动训练、不访问test；先只核实train/validation竞争监督适用覆盖 | 生成coverage审计；若监督语义/覆盖足够，再冻结唯一lambda、更新预算、种子及停止门槛 |
+| 2026-10-27 | S6-L数据与运行覆盖 | `scripts/audit_pair_loss_coverage.py` 仅读train/validation；创建固定6-run运行器、组均匀采样和checkpoint独立重载工具 | train 88/8组，3130/3130正边端点适用；validation 10/7组，306/306适用；候选负数中位数两边皆16。λ=0.05对应零logit竞争/BCE尺度约0.21。仍未训练或读test；主运行工具未冻结 | 完成契约与格式检查；提交/推送运行工具阶段，再写入正式protocol并提交/推送后才启动六次运行 |
 | 2026-10-27 | S6-L候选代码 | 新增 `src/rna2d/losses.py`，把既有正负类平衡BCE抽为共享函数，并实现未启用的可选伙伴竞争loss；`train_baseline.py`和旧比较runner改用同一BCE | 专项契约8项、全套90项测试通过；baseline与controlled-runner `--help` 导入、Python compile、`git diff --check`通过。尚未跑任何效果实验。BCE共享实现是采用的默认实现路径；伙伴竞争仅候选，契约通过但无开发收益证据，未作为可选训练配置、未默认启用 | 保持BCE默认；数据主线/协议通过后再决定是否冻结6次效果对照 |
 | 2026-10-27 | D0审阅补充（历史） | 补齐新评价准入待实现状态、无监督RNA/空组分母检查、B/C两阶段短冒烟及试点训练可行性验收 | 文档修改；未实现评价逻辑、未训练或访问测试；该行原先“下一步S0-1”已由后续S0/S1/S2记录完成，不再代表当前续接位置 | 见任务表的S1-2、S2-1、S2-2状态 |
+| 2026-10-27 | S6-L工具阶段验证 | `.venv3128/Scripts/python.exe -m unittest discover -s tests -v`、新增脚本`py_compile`、`git diff --check`；修正运行器预检失败日志边界 | 94项测试通过；coverage仅使用joint_split_v2 train/validation，工具静态检查未发现test数据入口；未启动训练、未读取test | 提交并推送覆盖审计与六次运行工具阶段；之后单独冻结并推送正式protocol，再依照明确授权决定是否运行 |
 
 每次追加：日期/任务ID/实际动作/产物路径与哈希或检查命令/通过或失败/限制/下一步。技术失败不删行。文档检查不能写成模型测试通过。
 
