@@ -4,7 +4,7 @@
 
 当前可执行细则见[数据/损失/运行说明](DATA_FIRST_EXECUTION_V1.md)，实际做到哪里见[进度台账](DATA_FIRST_PROGRESS_V1.md)。CNN参照和`joint_split_v2`已冻结；profile、历史划分、bpRNA-PDB候选及clean_release与当前/历史数据的精确关系已有聚合报告。
 
-当前没有新独立测试候选通过门禁：比较候选的来源/质量标记全部未核验；clean_release的67条非精确序列候选存在当前split连接或缺少构建体/同源证据，且有2条精确重叠历史`paired_v0_2:test`。数据审计聚合证据见[首轮数据审计](DATA_FIRST_AUDIT_V1.md)。下一步从S1-1生物学来源关系审核继续：在现有本地材料内优先补PDB条目/链、primary citation、映射、构建体和同源关系；对无法解决的来源缺口保持隔离，不增加下载量或降低门槛。旧test已揭盲，不能调参；没有足够新独立组时保持无新盲测。A/B/C继续不启动，直到辅助监督通过准入且链路门禁完成。
+当前没有新独立测试候选通过门禁：比较候选的来源/质量标记全部未核验；clean_release的67条非精确序列候选存在当前split连接或缺少构建体/同源证据，且有2条精确重叠历史`paired_v0_2:test`。新增的[CIF元数据审计](../data/manifests/data_first_clean_release_cif_metadata_audit_v1.json)已确认141条来源文件、180个关联结构条目均能从本地收据回连且哈希匹配；链/实体/规范序列映射完整，133/141条记录的全部关联条目有主研究键，8条仍缺至少一个。实体描述和来源方法不能证明母本构建体或独立性，训练/测试准入仍为0。数据审计聚合证据见[首轮数据审计](DATA_FIRST_AUDIT_V1.md)。下一步只在现有材料内逐条人工审核剩余主研究键、构建体祖先与家族/同源关系；对无法解决的记录保持隔离，不增加下载量或降低门槛。旧test已揭盲，不能调参；没有足够新独立组时保持无新盲测。A/B/C继续不启动，直到辅助监督通过准入且链路门禁完成。
 
 生产入口已默认使用150k `SequencePairModel` CNN、`joint_split_v2`及manifest指纹门禁；旧`PairBaseline`保留显式回退和checkpoint兼容。训练checkpoint按validation group-macro F1选择；通用评价仅开放validation并核对训练/验证数据指纹。
 
