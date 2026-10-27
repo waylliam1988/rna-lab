@@ -14,6 +14,8 @@ runs/
 # Per-record data audit ledgers stay local; publish only aggregate counts and hashes.
 data/manifests/data_first_relations_v1.jsonl
 data/manifests/data_first_admission_v1.jsonl
+data/manifests/data_first_profile_relations_v1.jsonl
+data/manifests/data_first_history_relations_v1.jsonl
 .pytest_cache/
 .env
 .env.*

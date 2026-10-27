@@ -47,6 +47,7 @@
 | 2026-10-27 | S6-L工具阶段验证 | `.venv3128/Scripts/python.exe -m unittest discover -s tests -v`、新增脚本`py_compile`、`git diff --check`；修正运行器预检失败日志边界 | 94项测试通过；coverage仅使用joint_split_v2 train/validation，工具静态检查未发现test数据入口；未启动训练、未读取test | 提交并推送覆盖审计与六次运行工具阶段；之后单独冻结并推送正式protocol，再依照明确授权决定是否运行 |
 | 2026-10-28 | S6-L评价诊断修复 | 将不受观测真值mask影响的合法候选多伙伴端点率接入共享`evaluate`，加入逐RNA/逐组统计、独立重载核验和4项契约测试；运行器日志改用本地日期 | 98项测试、Python编译和`git diff --check`通过；未知位置仍可进入诊断，F1评价范围未改变；尚未冻结protocol或训练 | 提交并推送诊断修复；随后重新生成并审阅冻结protocol |
 | 2026-10-28 | S6-L验证命令失败与纠正 | `python -m unittest tests.test_training_metrics`因`tests`不是可导入包而失败；改用`python -m unittest discover -s tests -v`复跑 | 首次失败仅为测试发现器调用错误，没有执行训练或读取数据；修正调用后98项全部通过 | 保留本次修复并推送；返回S1未完成的profile/历史关系审计，再决定损失协议的冻结时点 |
+| 2026-10-28 | S1 profile/历史关系审计工具 | 新增只读精确关系审计`scripts/audit_profile_and_history_relations.py`；要求profile数组/mask、SQLite、1D隔离表、RMDB来源收据与本地原文件哈希一致；历史split只按精确序列回连，test/test_external标成既往暴露；新增3项关系分类契约测试 | 定向测试3项及全套101项测试通过，脚本编译、忽略规则和`git diff --check`通过；尚未运行全量数据审计；明细明确留本地且training_allowed恒false | 提交/推送工具阶段后运行实际profile与历史关系核验；不访问模型预测或启动训练 |
 
 每次追加：日期/任务ID/实际动作/产物路径与哈希或检查命令/通过或失败/限制/下一步。技术失败不删行。文档检查不能写成模型测试通过。
 
