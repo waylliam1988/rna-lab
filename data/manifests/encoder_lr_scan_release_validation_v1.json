@@ -1,0 +1,16 @@
+{
+  "unit_tests_passed": 82,
+  "independent_checkpoint_reloads": 36,
+  "validation_loaded": false,
+  "test_loaded": false,
+  "model_source_unchanged": true,
+  "strict_stop_triggered": true,
+  "additional_tuning_performed": false,
+  "files_sha256": {
+    "scripts/report_encoder_lr_scan.py": "7f8dfe66d49f2ef27c8cbe18286d33ffa59af257440d602c7645e154aad014ee",
+    "scripts/verify_encoder_lr_scan.py": "c676f0147ce8f8b579516a88750984506a56bd7f7e66bdfd92411d3c755fa5f2",
+    "docs/ENCODER_LR_SCAN_RESULTS_V1.md": "0be97cc2b4f5785f57a1fcd6f667f14fce067829978a87b16184df78aa84aaf3",
+    "data/manifests/encoder_lr_scan_summary_v1.json": "d2aba98a715f1ba8c3200f5abb2d2be544c4bf434fe9e4dd0dcd63a59e290fe1",
+    "data/manifests/encoder_lr_scan_verification_v1.json": "fd840af4dc1c36c43a3bbd6d50cfbea83b3bb4891a796a01aee59d7cb22134b7"
+  }
+}

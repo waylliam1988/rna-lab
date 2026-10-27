@@ -1,6 +1,12 @@
 # 下一次从这里继续
 
-最新四编码器受控比较已完成，先读[ENCODER_COMPARISON_FINDINGS_V1.md](ENCODER_COMPARISON_FINDINGS_V1.md)。当前CNN适合作2D主基线；后续若要比较最佳架构能力，给候选相同调优搜索预算、补新独立冻结测试。RWKV-Lite结果不替代完整RWKV；EGNN真实几何精修另设同初始状态的3D任务。不要用已揭盲旧测试调参，J门控仍关闭。
+## 训练拟合验收（本轮最终结论）
+
+EGNN几何审计与有限lr扫描已完成：坐标/距离进入网络，padding对齐、坐标更新与梯度通过；输入是序列位置种子，不是实验几何。按冻结协议完成3编码器×4变体×3种子、25epoch，仅评估88条训练RNA。Transformer/EGNN-seed/RWKV-Lite最终训练F1最高为0.7434/0.6438/0.7650，原CNN三个种子为0.9723–0.9902。全部低于0.8的止损条件触发，停止调优；0.9拟合验收门槛未通过，不进行新的验证集比较，不宣称CNN泛化更好或架构优劣。
+
+见[几何审计](EGNN_GEOMETRY_AUDIT_V1.md)、[冻结协议](ENCODER_LR_SCAN_PROTOCOL_V1.md)与[完整扫描](ENCODER_LR_SCAN_RESULTS_V1.md)。36个扫描检查点独立重载复算、82项测试通过。审计完成后先提交推送，再冻结扫描协议并运行；完整预测留在本地，公开指标及指纹。J门控仍关闭，原Nezha项目未修改。后续可继续用CNN作工程基线，但下一项应先补独立隔离数据和冻结评估任务；本轮不追加调参。下方旧比较表只作历史记录。
+
+最新四编码器受控比较已完成，先读[ENCODER_COMPARISON_FINDINGS_V1.md](ENCODER_COMPARISON_FINDINGS_V1.md)。CNN可作已充分拟合的工程基线；后续架构泛化比较暂缓，先补新独立冻结测试。RWKV-Lite结果不替代完整RWKV；EGNN真实几何精修另设同初始状态的3D任务。不要用已揭盲旧测试调参，J门控仍关闭。
 
 最新输入v2方法与2×2消融已完成，先读[INPUT_REPRESENTATION_V2_RESULTS.md](INPUT_REPRESENTATION_V2_RESULTS.md)。J门控按用户要求继续关闭。下一项优先是新增独立研究/家族与新冻结测试，复核几何接触收益的组间差异；当前有条件开发增益，不能继续按这5个验证组挑配置并声称普遍泛化。下方是既有历史与待办，不应重复已完成实验。
 
