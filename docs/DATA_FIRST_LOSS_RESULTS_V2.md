@@ -14,4 +14,3 @@
 竞争项减 BCE 的 seed-level group-macro F1 差值为 `+0.015571`、`+0.008903`、`−0.017215`，平均 `+0.002420`。7 个 validation groups 中有 3 个改善；没有 group 下降超过预声明的 0.10，但三 seed 全部改善、平均提升至少 0.02 和至少 4/7 groups 改善这三个条件均未同时满足。预声明 development gate **不通过**。
 
 摘要 manifest：`data/manifests/data_first_loss_summary_v2.json`，SHA256 `53493b48511023ddbb100cef68cb9c871168ba7648edcec0f501063711b53363`。结论按冻结规则为：伙伴竞争损失保留为已实现候选，但停止可选合入；不改变训练 CLI，不启用为默认；默认继续使用 balanced BCE。该结论只适用于这 88 条训练 RNA、10 条 validation RNA 和 7 个 validation groups，不能作为跨家族泛化证据。
-

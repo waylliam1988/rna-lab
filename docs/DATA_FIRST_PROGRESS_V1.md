@@ -25,7 +25,7 @@
 | S5-1 | 9次正式运行与全种子开发报告 | 未开始 | 无新运行 | S0–S4通过后才启动 |
 | S5-2 | 可用时的新独立测试 | 未开始 | 没有本轮新盲测证据 | 无新独立组时保留未执行及原因，不制造测试集 |
 | S6 | 序列预训练/反应性/架构/3D单项分支 | 未开始 | 仅有进入条件和候选方案 | 不与首轮辅助2D叠加，触发后另立协议 |
-| S6-L | 固定数据：BCE与BCE＋伙伴竞争损失对照 | v1因验证维度故障停止；评价修复及111项测试通过；v2六次运行、独立重载和预声明汇总均完成，gate不通过 | 结果报告`docs/DATA_FIRST_LOSS_RESULTS_V2.md`（SHA256 `6cadf535297a501abe71f3cdae522e761ac24ea857c22947330eba1ce1815d49`）；v2协议 SHA256 `46db4520d0bcfc15319f96def77258b4c62ec612837d34caa2a281c098a02659`；verification SHA256 `ca1117899d08c0bad03871688924d6ab9e1c9a51645827b01df55daa67d311ef`；summary SHA256 `53493b48511023ddbb100cef68cb9c871168ba7648edcec0f501063711b53363` | 候选状态：保留但停止；开发通过：否；可选合入：否；默认启用：否。BCE保持默认；无独立test，不作跨家族泛化结论 |
+| S6-L | 固定数据：BCE与BCE＋伙伴竞争损失对照 | v1因验证维度故障停止；评价修复及111项测试通过；v2六次运行、独立重载和预声明汇总均完成，gate不通过 | 结果报告`docs/DATA_FIRST_LOSS_RESULTS_V2.md`（SHA256 `3b051e6438e0f23cd1269e2fdfc6ce2f25c9c20c900dd6b06c29de17c695e4b3`）；v2协议 SHA256 `46db4520d0bcfc15319f96def77258b4c62ec612837d34caa2a281c098a02659`；verification SHA256 `ca1117899d08c0bad03871688924d6ab9e1c9a51645827b01df55daa67d311ef`；summary SHA256 `53493b48511023ddbb100cef68cb9c871168ba7648edcec0f501063711b53363` | 候选状态：保留但停止；开发通过：否；可选合入：否；默认启用：否。BCE保持默认；无独立test，不作跨家族泛化结论 |
 
 ## 执行日志（只追加）
 
@@ -83,6 +83,7 @@
 | 2026-10-28 | S6-L v2六次正式运行完成 | 严格按顺序完成`bce`及`bce_competition`的seed 42/43/44；每次550更新，从协议初始化状态开始，使用共同采样日程，validation在最终checkpoint评价 | 6/6运行成功，结果/step日志/checkpoint保留在本地ignored `runs/data_first_loss_v2/`；各结果checkpoint SHA256与文件一致。validation group-macro F1：BCE 0.511988/0.546002/0.509172；competition 0.527559/0.554906/0.491957。未访问test；当前只列运行结果，不据单次结果停止或改门槛 | 独立核验全部六个checkpoint的验证预测后，再单独执行预声明门槛汇总 |
 | 2026-10-28 | S6-L v2独立checkpoint核验 | 运行`scripts/verify_pair_loss_comparison.py --protocol data/manifests/data_first_loss_protocol_v2.json`，生成`data/manifests/data_first_loss_verification_v2.json`（SHA256 `ca1117899d08c0bad03871688924d6ab9e1c9a51645827b01df55daa67d311ef`） | 6/6检查点严格加载成功；validation group-macro、逐RNA多伙伴诊断、逐组多伙伴诊断及解码预测均与run结果重现；全部`test_accessed=false`。仅使用冻结validation，不进行选择或测试评估 | 提交并推送验证产物与台账；之后运行固定summarizer应用冻结gate |
 | 2026-10-28 | S6-L v2预声明gate汇总 | 运行`scripts/summarize_pair_loss_comparison.py --protocol data/manifests/data_first_loss_protocol_v2.json`，生成`data/manifests/data_first_loss_summary_v2.json`（SHA256 `53493b48511023ddbb100cef68cb9c871168ba7648edcec0f501063711b53363`）及[结果报告](DATA_FIRST_LOSS_RESULTS_V2.md) | seed delta `+0.015571/+0.008903/−0.017215`，平均`+0.002420`；2/3 seeds、3/7 groups改善；无严重组退步，但未满足3/3、平均`0.02`、4/7三项门槛。gate=false，`optional_feature_status=stop_or_retain_candidate_without_integration`，`default_status=unchanged_balanced_bce`；未访问test | 提交并推送汇总阶段；停止本候选合入，不追加seed、lambda、threshold或重跑；后续回到数据独立性证据或另立新假设协议 |
+| 2026-10-28 | S6-L结果报告格式核验修正 | 首次提交前`git diff --check`提示结果报告末尾存在多余空行；去除多余空行并重新计算报告SHA256 | 报告SHA256更新为`3b051e6438e0f23cd1269e2fdfc6ce2f25c9c20c900dd6b06c29de17c695e4b3`；`git diff --check`复核通过；摘要manifest和数值未改变，不涉及模型测试或运行 | 推送最终格式与台账修正 |
 每次追加：日期/任务ID/实际动作/产物路径与哈希或检查命令/通过或失败/限制/下一步。技术失败不删行。文档检查不能写成模型测试通过。
 
 本次文档核验：PowerShell检查6个变更文档的本地Markdown链接，缺失0项；`git diff --check`通过。首次Python链接检查因当前终端找不到python命令未执行，随后使用PowerShell完成同项检查。未运行模型测试。
