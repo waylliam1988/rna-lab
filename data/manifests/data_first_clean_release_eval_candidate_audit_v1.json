@@ -1,0 +1,117 @@
+{
+  "audit": "clean-release-independent-evaluation-candidate-audit-v1",
+  "created_at_utc": "2026-10-27T20:44:03.905635+00:00",
+  "scope": "Read-only exact, RNA3DB component, primary-study, PDB-entry, and project-threshold sequence relation audit. No test set is created or admitted.",
+  "clean_release_pool": {
+    "paired_file_sha256": "ab4617d4b0f2e025cc2a8cfda38b1a7c1d3610121f4e95005ecc7ac23262d99f",
+    "paired_records": 141,
+    "exact_sequence_aliases_to_current_joint": 74,
+    "exact_aliases_by_current_split": {
+      "test": 7,
+      "train": 59,
+      "validation": 8
+    },
+    "exact_alias_mask_pair_comparison": {
+      "exact_mask_and_pair_match": 71,
+      "same_sequence_label_conflict": 3
+    },
+    "nonexact_sequence_records_to_current_joint": 67,
+    "evidence_flags": {
+      "provenance_verified": {
+        "true": 141
+      },
+      "quality_verified": {
+        "true": 141
+      },
+      "contains_model_predictions": {
+        "false": 141
+      },
+      "pair_labels_available": {
+        "true": 141
+      }
+    },
+    "rna3db_records_reviewed": 26532,
+    "primary_citation_missing_clean_records": 8,
+    "clean_records_with_nonzero_rna3db_component": 79,
+    "clean_records_with_explicit_construct_provenance": 0,
+    "clean_records_by_context": {
+      "complex": 127,
+      "single_RNA": 14
+    }
+  },
+  "candidate_relation_graph_to_frozen_joint": {
+    "sequence_edge_rule": "same as build_joint_splits.py: local alignment, identity>=0.8 and shorter-sequence coverage>=0.8",
+    "alignment_edge_count": 640,
+    "nonexact_record_group_connections_to_current_split": {
+      "test": 1,
+      "train": 14
+    },
+    "nonexact_unique_sequences_connected_to_current_split": {
+      "test": 1,
+      "train": 14
+    },
+    "nonexact_group_count": 42,
+    "nonexact_group_relation_counts": {
+      "connected_to_current_test": 1,
+      "connected_to_current_train": 1,
+      "historically_test_exposed": 1,
+      "no_known_current_link_but_independence_evidence_incomplete": 39
+    },
+    "all_clean_record_relation_counts": {
+      "connected_to_current_test": 8,
+      "connected_to_current_train": 71,
+      "connected_to_current_validation": 8,
+      "historically_test_exposed": 2,
+      "no_known_current_link_but_independence_evidence_incomplete": 52
+    },
+    "candidate_test_eligible_records": 0,
+    "new_independent_test_established": false
+  },
+  "historical_test_exact_aliases": {
+    "legacy_processed:test": {
+      "historical_test_records": 1137,
+      "clean_release_exact_aliases": 0
+    },
+    "legacy_processed:test_external": {
+      "historical_test_records": 5137,
+      "clean_release_exact_aliases": 0
+    },
+    "paired_v0_2:test": {
+      "historical_test_records": 6,
+      "clean_release_exact_aliases": 2
+    }
+  },
+  "decisions": {
+    "exact_current_aliases": "retain their frozen train/validation/test role; do not duplicate into a new test",
+    "current_group_connections": "exclude from new independent-test candidates, including nonexact study/PDB/homology/alignment connections",
+    "unconnected_groups": "remain quarantine from evaluation until family, primary-study, construct, and assessment-blindness evidence is complete",
+    "training": "no clean_release records are made training-ready by this candidate audit"
+  },
+  "limitations": [
+    "RNA3DB components are matched only by exact sequence; absent component metadata is unknown, not evidence of no homology.",
+    "PDB primary citations do not establish construct ancestry, assay independence, or that the structure is independent of a prior evaluation.",
+    "The sequence alignment rule is a relation screen, not proof of remote-homology independence.",
+    "Only exact aliases to historical test/test_external records are counted here; historical similarity relationships require separate evidence.",
+    "Complex-context records cannot automatically be interpreted as isolated-RNA folding labels.",
+    "No model predictions or historical model scores were opened; no test was selected from performance."
+  ],
+  "input_fingerprints": {
+    "clean_release_summary_sha256": "d8b19a1b5ab3717f696cc7e28a35300f73a598d48bce1208806b7f741d1dc080",
+    "clean_release_validation_sha256": "ab3695532547237b2b337bcee18f6251f0e32df3c3f012adc697aa07b2b37951",
+    "rna3db_all_chain_metadata_sha256": "e4b6841f33635b366a46333239f8453e865f1a65b64d001365dc259faa8a38cb",
+    "joint_manifest_sha256": "9e2ae4fd32bab3a288997c0d761ede1a423864d2fd0974c5745239f1dfbad92c",
+    "joint_validation_sha256": "30784a93d06c60ad968448fc82a0e6836a13ecea9e9d93c46442e1fad68c5da9",
+    "joint_1d_assignments_sha256": "10f0a5fa4ca89171be2dc1b6d545654464d229d4f69408420923de777991bf78",
+    "primary_study_sources": {
+      "experimental_acquisition_sha256": "5f952cf063f8c6b0ac310327dafe33f47cf0d4ec823aaa3ff9d592fd40097bcf",
+      "coordinate_source_verification_sha256": "4ff2a18602a783420298f154e3a929723134f55a6724bfb138993f15df232d42"
+    },
+    "historical_test_source_sha256": {
+      "legacy_processed:test": "65d92c392f9daacafab71bdfef0819cdb1882f1932b14ebebee7197377994fbe",
+      "legacy_processed:test_external": "15026a0fd60f4b827cfc2f4bb6c95a26dd5a5c3632b49afcb7a88a22f0cc3c0e",
+      "paired_v0_2:test": "665567893d1633f614016dec614f77bb7d5e012cb656869541c75fd9eff19fd0"
+    }
+  },
+  "test_predictions_read": false,
+  "training_started": false
+}

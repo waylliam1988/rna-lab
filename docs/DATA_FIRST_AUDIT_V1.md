@@ -22,3 +22,13 @@
 S0 已完成，S1机器关系首版已生成并完成跨版本回连更正；S2-1的70条直接实验隔离记录均保留隔离，S2-2比较来源试点不可准入。工程 CNN 参照保留为可选基线；joint_split_v2 只支持冻结探索，不能支持广泛跨家族泛化。A/B/C 尚未冻结或运行，伙伴竞争损失只完成通用损失函数和契约测试，尚无模型效果证据。下一步补齐profile/历史关系以及独立评估来源；在A/B/C资格建立前，不开始正式辅助数据实验。
 
 产物：`data/manifests/data_first_baseline_v1.json`、`data/manifests/data_first_relations_v1.jsonl`、`data/manifests/data_first_admission_v1.jsonl`、`docs/DATA_FIRST_AUDIT_V1.json`。
+
+## 后续精确关系审计（2026-10-28）
+
+S1后续审计分别见[profile与历史关系报告](../data/manifests/data_first_profile_history_audit_v1.json)及[比较候选关系报告](../data/manifests/data_first_comparative_candidate_relations_v1.json)。344,495个profile全部落在quarantine，仍无配对标签；167个RMDB来源文件字节哈希均与本地收据一致。历史逐记录明细留在本地并由Git忽略。
+
+本地bpRNA-PDB候选669条、477条唯一序列全部可从本地压缩包重建，但URL/下载时间收据、原始PDB/链、方法/覆盖和提取映射未核验；所有来源/质量/准入标记均为false。与当前joint train/validation精确序列重合的候选边集都不同于当前pair labels，这只是未审核BPSEQ与当前标签的关系，不构成标签裁决。候选训练和新测试准入均为0。
+
+clean_release的141条已有直接坐标来源、质量与掩码标签；74条与joint精确同序列，其中71条mask/pairs相同，3条有冲突。其余67条按RNA3DB非占位组件、主要文献、PDB条目和冻结分割使用的局部相似性规则与joint关联后，仍有当前split连接、历史test暴露和缺母本/构建体/同源信息的组；现有审计没有准入新测试。聚合结果见[clean_release评估候选报告](../data/manifests/data_first_clean_release_eval_candidate_audit_v1.json)。
+
+这些审计没有读模型预测或旧测试表现，没有训练，也没有更改标签/划分。精确哈希及有限关系图不能证明远程同源、构建体独立或新研究独立；旧test已揭盲，继续维持无新盲测结论。逐记录关系表保留本地，不推送第三方记录ID和序列哈希。

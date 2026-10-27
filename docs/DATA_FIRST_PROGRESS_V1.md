@@ -4,7 +4,7 @@
 
 ## 当前停在哪里
 
-**S0基线冻结已完成；S2-1直接实验隔离原因审计完成；S2-2比较来源试点结论为不可准入；S1 profile/历史精确序列关系审计已完成。** 当前仍需补S1-1辅助源关系与S1-2新增独立评估候选审核；不启动A/B/C，直到辅助监督具备逐条来源、映射和隔离证据并通过链路门禁。
+**S0基线冻结已完成；S2-1直接实验隔离原因审计完成；S2-2比较来源试点结论为不可准入；profile、历史及本地比较候选精确关系已审计。** clean_release候选关系审计未发现可直接准入的新独立测试；仍需补辅助源逐条来源/映射/隔离审核。旧test已揭盲，不据其调参；A/B/C不启动，直到辅助监督通过门禁且训练/验证链路验收。
 
 旧CNN拟合/比较等完成情况见[基线决策](BASELINE_DECISION_V1.md)与[STATUS](STATUS.md)，不能将旧结果算为本轮阶段验收。
 
@@ -16,7 +16,7 @@
 | S0-1 | 冻结CNN源码、构造参数、原权重指纹 | 完成 | `data/manifests/data_first_baseline_v1.json`，含源码/协议/数据/三种子检查点SHA256及重载证据 | 不重训；后续实验沿用该参照 |
 | S0-2 | 数据版本与政策对应、实验登记模板 | 完成 | 冻结清单的历史边界、joint_split_v2计数和`docs/DATA_FIRST_AUDIT_V1.md` | 旧61条仅历史；clean_release_v1仍待联合审计 |
 | S1-1 | 1D/2D/辅助/历史评估联合关系表 | 部分完成（profile/历史/比较候选精确序列关系已补；生物学来源关系待补） | 本地`data/manifests/data_first_relations_v1.jsonl`，214002条；profile/历史聚合结果见`data/manifests/data_first_profile_history_audit_v1.json`，比较候选聚合结果见`data/manifests/data_first_comparative_candidate_relations_v1.json`；逐记录审计表在本地ignored文件；106条split源记录与annotation_review逐条标签匹配 | 辅助池的原研究、比对、同源/构建体/研究关系仍待逐条补齐；精确序列哈希不替代这些审核 |
-| S1-2 | 隔离决定与新开发/测试候选 | 部分完成 | 本地`data/manifests/data_first_admission_v1.jsonl`及`docs/DATA_FIRST_AUDIT_V1.md`；clean_release 74条同序列仅71条标签完全相同，3条标签不一致隔离；全体clean_release不作训练输入；比较候选669条仍0条可用于新测试 | 需补clean_release母本/构建体和新独立评估候选审核；候选精确别名不计为新独立组 |
+| S1-2 | 隔离决定与新开发/测试候选 | 候选审核完成，无新独立测试准入 | 本地`data/manifests/data_first_admission_v1.jsonl`；clean_release关系摘要见`data/manifests/data_first_clean_release_eval_candidate_audit_v1.json`；74条与joint精确同序列，71条标签精确匹配、3条冲突；67条非精确候选含当前split/历史test关系及未解决隔离信息；候选准入为0 | 旧test已揭盲，不重用；继续寻找完整来源、研究、构建体与同源证据的新独立评估组；不足时维持没有新盲测的结论 |
 | S2-1 | 待审直接实验2D分层复核 | 完成（不可自动准入） | `data/manifests/joint_quarantine_audit_v1.json`、[审计说明](JOINT_QUARANTINE_AUDIT_V1.md)；70条全部保留隔离 | 新版本需补同源/母本/构建体/primary-study证据；不改当前冻结划分 |
 | S2-2 | 一个比较辅助来源的有限试点 | 完成（不可准入） | `data/manifests/data_first_comparative_pilot_v1.json`；固定前20条候选，20/20缺来源与质量核验 | 停止扩大该来源；补齐原始PDB/链、方法/覆盖、映射和隔离证据后另立版本 |
 | S3-1 | 辅助配对级mask入口与评价准入 | 未开始 | 待实现与契约检查 | 旧collate不能直接承载positive_only/部分标签；旧evaluate尚未排除无候选监督RNA，须新增准入清单与组级分母检查 |
@@ -59,6 +59,7 @@
 | 2026-10-28 | S1-2 clean_release新独立评估候选准备 | clean_release 141条中74条与当前joint数据精确同序列，67条非精确别名；本地RNA3DB精确序列对照仅5条可提供非占位同源component，67条均无显式construct provenance，6条缺主要文献引用；用joint构建器同一study/组件/PDB/相似性规则做的初步关系图显示67条中14条连接当前train、1条连接当前test | 初步审阅未开旧测试预测或模型分数；67条不能仅凭非精确别名称为独立组，候选仍未准入。现新增可复现聚合审计工具，以冻结源指纹复核关系图并核对旧test精确别名 | 验证并推送工具阶段，再执行只读关系审计；独立组不足则保持无新盲测 |
 | 2026-10-28 | S1-2 clean_release候选审计工具阶段 | 新增`scripts/audit_clean_release_eval_candidates.py`和5项准入/并查集关系测试；复用冻结split构建器的RNA3DB、primary citation、PDB实体和identity/coverage连接规则；仅输出聚合关系和数据指纹 | 定向5项、全套110项测试、Python编译及`git diff --check`通过；尚未运行实际关系图，报告只会标记候选，不会生成或准入新测试 | 提交/推送工具后执行只读审计；再根据聚合连接/缺失证据给出是否存在可独立候选的结论 |
 | 2026-10-28 | S1-2首次clean_release报告口径失败与修正 | 报告复核发现“非精确候选连到current split”汇总字段误计入74条精确别名；纠正为只统计67条非精确候选，并追加74条精确别名按split及mask/pairs结果的分层统计 | 初次生成的聚合报告未提交且已删除重建；关系组判定逻辑和0条准入结论未变；修正后定向5项测试、编译和`git diff --check`通过，完整审计待重新执行 | 完成全套回归后推送统计口径修正并重新运行只读审计 |
+| 2026-10-28 | S1-2 clean_release独立评估候选审计执行 | 运行`scripts/audit_clean_release_eval_candidates.py`；聚合报告`data/manifests/data_first_clean_release_eval_candidate_audit_v1.json`（SHA256 `8f7c4f717d8262117db482e4390efba26b0f223da81d255c3e34ef5690569814`） | 141条候选中74条与joint精确同序列（train/validation/test=59/8/7），其中71条mask/pairs一致、3条冲突；其余67条中14条与当前train关联、1条与当前test关联；clean_release全体中另有2条与历史paired_v0_2 test精确同序列。67条非精确记录并为42组：1组连train、1组连current test、1组历史test暴露、39组缺完整独立性证据。141条直接来源/质量标记通过且无模型预测，但显式construct provenance为0/141，8条缺primary citation；上下文127/141为complex。新独立测试准入0；未读模型预测/旧测试成绩、未训练、未改原始标签/划分 | 不从clean_release 141条直接抽名义测试；后续需逐条补母本/构建体及家族/研究关系和实验背景，再另立版本；没有新独立组时保持无新盲测 |
 
 每次追加：日期/任务ID/实际动作/产物路径与哈希或检查命令/通过或失败/限制/下一步。技术失败不删行。文档检查不能写成模型测试通过。
 
