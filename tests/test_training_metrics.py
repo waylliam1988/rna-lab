@@ -48,6 +48,35 @@ class MultiPartnerConflictDiagnosticTests(unittest.TestCase):
         self.assertAlmostEqual(summary["macro_multi_partner_conflict_endpoint_rate"], 1 / 7)
         self.assertEqual(details[0]["evaluated_predicted_pairs"], [])
 
+    def test_evaluation_crops_batch_padding_per_sequence(self):
+        short = {
+            "id": "short",
+            "sequence": "ACGAUUG",
+            "observed_mask": [False] * 7,
+            "pairs": [],
+        }
+        long = {
+            "id": "long",
+            "sequence": "ACGAUUGCA",
+            "observed_mask": [False] * 9,
+            "pairs": [],
+        }
+        tokens, labels, mask, rows = collate([short, long])
+        logits = torch.full((2, 9, 9), -10.0)
+        logits[0, 0, 4] = logits[0, 4, 0] = 10.0
+        logits[0, 0, 5] = logits[0, 5, 0] = 10.0
+
+        class FixedModel(torch.nn.Module):
+            def forward(self, _tokens):
+                return logits
+
+        summary, details = evaluate(FixedModel(), [(tokens, labels, mask, rows)], "cpu")
+        self.assertEqual([detail["id"] for detail in details], ["short", "long"])
+        self.assertEqual(details[0]["multi_partner_conflict_endpoints"], 1)
+        self.assertAlmostEqual(details[0]["multi_partner_conflict_endpoint_rate"], 1 / 7)
+        self.assertEqual(details[1]["multi_partner_conflict_endpoints"], 0)
+        self.assertAlmostEqual(summary["macro_multi_partner_conflict_endpoint_rate"], 1 / 7 / 2)
+
     def test_rejects_mismatched_matrices_and_thresholds(self):
         with self.assertRaisesRegex(ValueError, "matching the sequence"):
             multi_partner_conflict_diagnostic([[0.5]], "ACGU")

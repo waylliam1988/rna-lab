@@ -25,7 +25,7 @@
 | S5-1 | 9次正式运行与全种子开发报告 | 未开始 | 无新运行 | S0–S4通过后才启动 |
 | S5-2 | 可用时的新独立测试 | 未开始 | 没有本轮新盲测证据 | 无新独立组时保留未执行及原因，不制造测试集 |
 | S6 | 序列预训练/反应性/架构/3D单项分支 | 未开始 | 仅有进入条件和候选方案 | 不与首轮辅助2D叠加，触发后另立协议 |
-| S6-L | 固定数据：BCE与BCE＋伙伴竞争损失对照 | 候选实现完成；正式协议冻结；首次运行完成训练更新但验证技术失败，当前协议停止 | `data/manifests/data_first_loss_protocol_v1.json`；本地忽略目录`runs/data_first_loss_v1/bce/seed42/`保留550更新日志与checkpoint（SHA256 `1c356a7c230e5683ddea35e36341a0fd84f6cd91ca5ca52b5327ab61c8aa7536`），无`result.json` | 验证诊断收到批次补齐矩阵，短序列维度不符。按冻结失败规则不重跑、不修改协议；其余5次未启动，不能形成损失效果结论。BCE仍为默认，竞争项不接入、不启用 |
+| S6-L | 固定数据：BCE与BCE＋伙伴竞争损失对照 | v1因验证维度故障停止；共享评价修复及111项测试已通过；v2协议待版本化冻结 | v1失败产物保留在`runs/data_first_loss_v1/bce/seed42/`，checkpoint SHA256 `1c356a7c230e5683ddea35e36341a0fd84f6cd91ca5ca52b5327ab61c8aa7536`；变长批次修复覆盖共享`evaluate` | 候选状态保留；开发门槛未评估；未可选合入；默认仍为BCE。v1不重跑；修复代码提交后，另立v2协议并从头运行配对实验 |
 
 ## 执行日志（只追加）
 
@@ -65,6 +65,7 @@
 | 2026-10-28 | S6-L运行启动 | `bce` seed42；protocol `9c51778c2f11abbdbcd79df8cfce252f6e8ef94afbe2131af3af91c56c684a56`；train `4168f00f61d9a3330db33b45308fe247c6ba15fd1c50ce4b868559b78f3ffcb9`；validation `794e1cd6692eccfbad1212fa8e4246c2698eaede8fb686f8a502e52908451a71`；550更新 | 仅加载train/validation；检查点本地保存，test未打开 | 等待运行完成或保留异常 |
 | 2026-10-28 | S6-L运行失败 | `bce` seed42；protocol `9c51778c2f11abbdbcd79df8cfce252f6e8ef94afbe2131af3af91c56c684a56`；异常 `ValueError: Scores must be a non-empty square matrix matching the sequence` | 失败运行目录保留，未触碰test；按冻结规则不自动重试 | 保留失败原因；该条件/种子不重跑 |
 | 2026-10-28 | S6-L停止判定 | seed42已完成550次更新并写出checkpoint（SHA256 `1c356a7c230e5683ddea35e36341a0fd84f6cd91ca5ca52b5327ab61c8aa7536`）；验证阶段短序列与批次补齐分数矩阵尺寸不匹配，未写出`result.json` | 已确认是evaluation诊断输入长度契约问题；冻结协议要求不重试或改阈值/协议，故不启动其余5次（同一评价代码会触发相同技术失败）。未访问test，不能给出效果结论 | 提交并推送失败留痕；后续若修复评价代码，需另立协议版本，不能补跑本版 |
+| 2026-10-28 | S6-L共享评价变长批次修复 | `evaluate`对模型输出逐条裁剪到真实序列长度，再执行解码和多伙伴诊断；新增`test_evaluation_crops_batch_padding_per_sequence` | 定向评价测试5项通过，全套111项测试通过；`py_compile`及`git diff --check`通过。仅测试合成短/长序列，未读取test、未重跑v1、未触碰失败checkpoint；v1仍停止，历史错误留痕保留 | 提交并推送正确性修复；再为相同预声明单因素比较建立全新协议版本，六次运行均从头开始 |
 每次追加：日期/任务ID/实际动作/产物路径与哈希或检查命令/通过或失败/限制/下一步。技术失败不删行。文档检查不能写成模型测试通过。
 
 本次文档核验：PowerShell检查6个变更文档的本地Markdown链接，缺失0项；`git diff --check`通过。首次Python链接检查因当前终端找不到python命令未执行，随后使用PowerShell完成同项检查。未运行模型测试。

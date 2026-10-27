@@ -85,6 +85,11 @@ def evaluate(model, loader, device, threshold=0.5):
     for tokens, labels, mask, rows in loader:
         scores = model(tokens.to(device)).sigmoid().cpu().tolist()
         for matrix, r in zip(scores, rows):
+            # `collate` pads a batch to its longest sequence.  Crop each
+            # matrix before sequence-length-sensitive decoding and diagnostics;
+            # padded rows/columns are not part of this RNA.
+            n = len(r['sequence'])
+            matrix = [row[:n] for row in matrix[:n]]
             pred = greedy_decode(matrix, r['sequence'], threshold)
             assessed_pred = observable_pairs(pred, r['observed_mask'])
             truth = observable_pairs(r['pairs'], r['observed_mask'])
