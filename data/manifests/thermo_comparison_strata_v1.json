@@ -1,0 +1,221 @@
+{
+  "protocol_sha256": "e524420917a7855ed75c00d06230e3843933eae33d8eac168adfe1c7d160e066",
+  "summary_sha256": "4c8a375e4fd8523a3d5e3d912d9ac9a7e6d216c7bae5f04fa554a4dfc59899a2",
+  "role": "predeclared descriptive strata; no new model/threshold/alpha selection",
+  "source_sha256": "33e05ada38a6841da4ac9f45c6e7c6971f62e0fd8321a9446fda910ac9f6a5ce",
+  "thermo_pair_type": {
+    "AU": {
+      "tp": 29,
+      "fp": 2,
+      "fn": 5
+    },
+    "GC": {
+      "tp": 88,
+      "fp": 9,
+      "fn": 17
+    },
+    "GU": {
+      "tp": 12,
+      "fp": 1,
+      "fn": 2
+    }
+  },
+  "conditions": {
+    "cnn": [
+      {
+        "seed": 42,
+        "result_sha256": "8970cb40563a212c9bf6a6bb172b6b04e120fece563bed724ab8f86ef413f7ea",
+        "pair_type_counts": {
+          "AU": {
+            "tp": 11,
+            "fp": 19,
+            "fn": 23
+          },
+          "GC": {
+            "tp": 47,
+            "fp": 24,
+            "fn": 58
+          },
+          "GU": {
+            "tp": 2,
+            "fp": 0,
+            "fn": 12
+          }
+        }
+      },
+      {
+        "seed": 43,
+        "result_sha256": "93118336ed9a9b16c9a7569ed14750e494135b4e8e3a1e153e3bfcc69af726eb",
+        "pair_type_counts": {
+          "AU": {
+            "tp": 18,
+            "fp": 27,
+            "fn": 16
+          },
+          "GC": {
+            "tp": 52,
+            "fp": 24,
+            "fn": 53
+          },
+          "GU": {
+            "tp": 1,
+            "fp": 1,
+            "fn": 13
+          }
+        }
+      },
+      {
+        "seed": 44,
+        "result_sha256": "1585330bce97bef536bb051fec1fc7a5193e6446b1d12db06d3d45f76caf79ac",
+        "pair_type_counts": {
+          "AU": {
+            "tp": 18,
+            "fp": 23,
+            "fn": 16
+          },
+          "GC": {
+            "tp": 47,
+            "fp": 24,
+            "fn": 58
+          },
+          "GU": {
+            "tp": 0,
+            "fp": 2,
+            "fn": 14
+          }
+        }
+      }
+    ],
+    "hybrid_a025": [
+      {
+        "seed": 42,
+        "result_sha256": "15819775f609a42d7200ea48bcf08972cd40fd769c138189af29de929aa86662",
+        "pair_type_counts": {
+          "AU": {
+            "tp": 19,
+            "fp": 15,
+            "fn": 15
+          },
+          "GC": {
+            "tp": 71,
+            "fp": 8,
+            "fn": 34
+          },
+          "GU": {
+            "tp": 5,
+            "fp": 2,
+            "fn": 9
+          }
+        }
+      },
+      {
+        "seed": 43,
+        "result_sha256": "43b510a1a0b004fc0c102681dd34ba90e3e73cd80c81ddf87f4ac2795a6b5e98",
+        "pair_type_counts": {
+          "AU": {
+            "tp": 22,
+            "fp": 9,
+            "fn": 12
+          },
+          "GC": {
+            "tp": 65,
+            "fp": 10,
+            "fn": 40
+          },
+          "GU": {
+            "tp": 1,
+            "fp": 0,
+            "fn": 13
+          }
+        }
+      },
+      {
+        "seed": 44,
+        "result_sha256": "bb336a29f3a53908577ec116534ec92db0b406188a2e4a7538e4d87856364815",
+        "pair_type_counts": {
+          "AU": {
+            "tp": 20,
+            "fp": 13,
+            "fn": 14
+          },
+          "GC": {
+            "tp": 71,
+            "fp": 9,
+            "fn": 34
+          },
+          "GU": {
+            "tp": 5,
+            "fp": 2,
+            "fn": 9
+          }
+        }
+      }
+    ],
+    "hybrid_a1": [
+      {
+        "seed": 42,
+        "result_sha256": "b607cd1a59e802aaf594194e496b4d1e79fe9350e98f3c488491d2ee71b4c4f3",
+        "pair_type_counts": {
+          "AU": {
+            "tp": 28,
+            "fp": 16,
+            "fn": 6
+          },
+          "GC": {
+            "tp": 89,
+            "fp": 14,
+            "fn": 16
+          },
+          "GU": {
+            "tp": 11,
+            "fp": 4,
+            "fn": 3
+          }
+        }
+      },
+      {
+        "seed": 43,
+        "result_sha256": "c480eef06581de8d6960a35434262e2b871470230aefe57e8bda84971ea5f117",
+        "pair_type_counts": {
+          "AU": {
+            "tp": 28,
+            "fp": 16,
+            "fn": 6
+          },
+          "GC": {
+            "tp": 90,
+            "fp": 11,
+            "fn": 15
+          },
+          "GU": {
+            "tp": 10,
+            "fp": 5,
+            "fn": 4
+          }
+        }
+      },
+      {
+        "seed": 44,
+        "result_sha256": "20ae833c9bf4b133642a30c662f5c8e7233ec0e30269ea4116b3e3d722ed47ac",
+        "pair_type_counts": {
+          "AU": {
+            "tp": 29,
+            "fp": 16,
+            "fn": 5
+          },
+          "GC": {
+            "tp": 89,
+            "fp": 15,
+            "fn": 16
+          },
+          "GU": {
+            "tp": 9,
+            "fp": 3,
+            "fn": 5
+          }
+        }
+      }
+    ]
+  },
+  "test_accessed": false
+}

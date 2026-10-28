@@ -1,0 +1,136 @@
+{
+  "protocol": "thermo-residual-comparison-v1",
+  "status": "frozen_before_training",
+  "created_at_utc": "2026-10-28T04:28:27.139857+00:00",
+  "data_sha256": {
+    "train": "4168f00f61d9a3330db33b45308fe247c6ba15fd1c50ce4b868559b78f3ffcb9",
+    "validation": "794e1cd6692eccfbad1212fa8e4246c2698eaede8fb686f8a502e52908451a71"
+  },
+  "split_manifest_sha256": "30784a93d06c60ad968448fc82a0e6836a13ecea9e9d93c46442e1fad68c5da9",
+  "split_counts": {
+    "train": 88,
+    "validation": 10
+  },
+  "split_groups": {
+    "train": 8,
+    "validation": 7
+  },
+  "settings": {
+    "engine": "ViennaRNA",
+    "version": "2.7.2",
+    "parameters": "RNA_Turner2004",
+    "temperature_C": 37.0,
+    "salt_M": 1.021,
+    "dangles": 2,
+    "min_loop_size": 3,
+    "noLP": 0,
+    "noGU": 0,
+    "noGUclosure": 0,
+    "circular": 0,
+    "gquad": 0,
+    "compute_bpp": 1,
+    "model": "single isolated linear RNA; no experimental constraints or ligand/Mg binding model",
+    "condition_status": "assumed fixed conditions, not recovered experimental buffer"
+  },
+  "epsilon": 0.0001,
+  "conditions": {
+    "cnn": 0.0,
+    "hybrid_a025": 0.25,
+    "hybrid_a1": 1.0
+  },
+  "primary_hybrid": "hybrid_a025",
+  "sensitivity_only": "hybrid_a1",
+  "initial_state_sha256": {
+    "42": "f48391e1fc29b69fc84042f3e0943d0469ea26839b774fb76f08fcbd85d5cc49",
+    "43": "c7d227aeada9d774c3566399a419575be8877c81b0f4b864d3dfb41038a666e5",
+    "44": "4b2d59c997e2f048562f542330aab839ed57b2b078c20a9c2f591bf6d5e0bd38"
+  },
+  "sample_order_sha256": {
+    "42": "0436b53fd3d29851eb43bc13f571a6480f3c42727c4df159dd12f0bab5b189db",
+    "43": "2b12cb70581f6ef836bfc9035d7a3170219f05a937b1723096480b6bd9e31cbb",
+    "44": "c06a3efc718e08a927d4cfba37279a0cc31a8535bdbb6c86fd5a6ed1450a6269"
+  },
+  "model": {
+    "class": "rna2d.sequence_encoders.SequencePairModel",
+    "kind": "cnn",
+    "width": 113,
+    "hidden": 64,
+    "depth": 2,
+    "parameters": 150019,
+    "precision": "float32"
+  },
+  "optimizer": {
+    "name": "AdamW",
+    "lr": 0.001,
+    "weight_decay": 0.01,
+    "gradient_clip": 1.0,
+    "schedule": "constant",
+    "precision": "float32",
+    "autocast": false
+  },
+  "batch_size": 4,
+  "optimizer_updates": 550,
+  "epochs": 25,
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "run_limit": 9,
+  "attempts_per_condition_seed": 1,
+  "threshold": 0.5,
+  "evaluation_batch_size": 4,
+  "torch_num_threads": 1,
+  "checkpoint": "final update only; no early stopping or validation checkpoint selection",
+  "supervision": "unchanged balanced BCE over existing canonical separation>=4 observed pair mask only",
+  "test_access": "prohibited; only train.jsonl and validation.jsonl opened",
+  "independent_test_available": false,
+  "source_sha256": {
+    "scripts/run_thermo_comparison.py": "3ce685f23049da012e2e67c30b606e664e5b9d043ed0267537f765a174150c9a",
+    "scripts/verify_thermo_comparison.py": "f49a40db1285a7d43cda00bdd3e0224b4ab4e949387be39766dffb75d0fcaad4",
+    "src/rna2d/thermo_fusion.py": "cec6e0cf2d374d4f7c1e5319eaedfd92775cf2bd60b3c006021a5de60839ec51",
+    "src/rna2d/thermodynamics.py": "206bead17fa4d10fa5bc38e84ce86b190e6d624ec6ea5ffeb53e2de612aa5b30",
+    "src/rna2d/sequence_encoders.py": "2e214d1ea10950c2ef89590fd12360cdc18dbe5a5579065c84f4625319990e9f",
+    "src/rna2d/training.py": "58d1f20f4d1e82b4292194d76a9a0fa6bd26781ed9dcc3773303a3fbdf9bf04e",
+    "src/rna2d/data.py": "9f9c9bd41c0e226e6885fc1069d4617d6b02740f9b464464dc06354aa63cfdd2",
+    "src/rna2d/losses.py": "449426f8cc0cfb74209f0d2742f28bb7a465e9032128f720d8bcc7e6b6e93650",
+    "src/rna2d/sampling.py": "e7d8feab3d34d5090162e28c64c0270dc0e2e2301767021e586da1f9f2605bd3",
+    "src/rna2d/evidence.py": "a02d3490168bc23bccbab55c8b60ceafe4d8ae6aa1759ddaad97ffc43faeef75",
+    "src/rna2d/reporting.py": "0f52e400d8b1792e3dc6fee5c10df268b6ddb2da4b2cf759c9f96caa4ffcb332",
+    "requirements-shared-common.txt": "b12f3d1d3cf4507e9064c964f11a4324fddf7926da2518ca9e9046b6cb4c9328"
+  },
+  "environment": {
+    "python": "3.12.8",
+    "packages": {
+      "torch": "2.7.1+cu128",
+      "numpy": "2.2.6",
+      "scipy": "1.16.0",
+      "scikit-learn": "1.7.0",
+      "ViennaRNA": "2.7.2"
+    },
+    "cuda_runtime": "12.8",
+    "cudnn": 90701
+  },
+  "prior_role": "computed detached input, not labels or auxiliary supervision",
+  "cache_index_sha256": "5cb2d4f93fe7c3848c1b830c17740f28de2a752081f08db7c99aa9ca9cdcb925",
+  "baseline_summary_sha256": "9ef115e18e206abc31d56d60425aad8c37bd448f9cab1cdf7d45162707d0450a",
+  "historical_protocol_sha256": "46db4520d0bcfc15319f96def77258b4c62ec612837d34caa2a281c098a02659",
+  "thermo_validation_group_macro_f1": 0.8558403283708161,
+  "gate": {
+    "comparator": "thermo alone AND paired fresh CNN",
+    "primary_mean_gain_over_thermo_min": 0.02,
+    "all_three_seeds_beat_both": true,
+    "minimum_groups_improved_over_thermo": 4,
+    "maximum_group_regression": 0.1,
+    "meaning": "engineering continuation threshold, not statistical significance",
+    "sensitivity_cannot_rescue_primary_failure": true,
+    "default_change": false,
+    "no_metric_driven_retries_or_extra_search": true
+  },
+  "timing": "training includes cached feature lookup; prior generation reported separately; inference includes cached lookup, excludes generation",
+  "limitations": [
+    "10 development RNAs/7 groups, already inspected; no independent generalization claim.",
+    "Same isolated-sequence prior settings despite heterogeneous experimental complex environments.",
+    "Fixed offset experiment, not a learned energy model or cotranscriptional dynamics."
+  ]
+}
