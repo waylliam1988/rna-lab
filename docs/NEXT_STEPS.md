@@ -1,5 +1,7 @@
 # 下一次从这里继续
 
+热力学第2步完成：[可关闭修正接口](THERMO_FUSION_INTERFACE_V1.md)已通过alpha=0精确消融、梯度/掩码/重载、CUDA合成一步与157项测试；尚无融合预测收益。下一步固定550更新和3种子比较。
+
 热力学研究第1步完成：同口径validation组宏F1为热力学0.855840、历史CNN均值0.522387，额外CNN真边仅4–5条/seed；先实现可关闭修正，再固定预算比较是否超过热力学本身。旧test未访问，详见[审计报告](THERMODYNAMIC_BASELINE_AUDIT_V1.md)。
 
 环境更新（2026-10-28）：系统Python3.12.8＋全局torch2.7.1+cu128/CUDA12.8；公共依赖统一全局安装，冲突按StockAlarm固定版本。RNA共享venv仅留4个专用包；当前清单/验证见[公共依赖迁移](SHARED_COMMON_ENVIRONMENT_V1.md)。历史科学实验不重跑，原环境记录保留。

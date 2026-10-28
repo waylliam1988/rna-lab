@@ -24,7 +24,7 @@ from rna2d.training import Records, collate, evaluate
 
 def write(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(value, ensure_ascii=True, indent=2) + '\n', encoding='utf-8')
+    path.write_text(json.dumps(value, ensure_ascii=True, indent=2) + '\n', encoding='utf-8', newline='\n')
 
 
 def stratum(rows, details, field):

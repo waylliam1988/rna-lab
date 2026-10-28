@@ -1,0 +1,38 @@
+{
+  "stage": "thermo-fusion-interface-v1",
+  "passed": true,
+  "checks": [
+    {
+      "alpha": 0,
+      "parameters": 150019,
+      "synthetic_one_update_loss": 1.2669545412063599,
+      "finite_gradient": true,
+      "exact_reload": true
+    },
+    {
+      "alpha": 0.25,
+      "parameters": 150019,
+      "synthetic_one_update_loss": 1.2579922676086426,
+      "finite_gradient": true,
+      "exact_reload": true
+    },
+    {
+      "alpha": 1.0,
+      "parameters": 150019,
+      "synthetic_one_update_loss": 1.231606364250183,
+      "finite_gradient": true,
+      "exact_reload": true
+    }
+  ],
+  "data_scope": "two synthetic sequences, one optimizer update per alpha; no experimental training or validation",
+  "test_accessed": false,
+  "source_sha256": {
+    "src/rna2d/thermo_fusion.py": "cec6e0cf2d374d4f7c1e5319eaedfd92775cf2bd60b3c006021a5de60839ec51",
+    "scripts/smoke_thermo_fusion.py": "8c6739dede88bc038a05147f3dd07e4ec52274c3731253f7444d28276ef65f4c"
+  },
+  "prior_role": "fixed input offset, detached; unknown labels masked by existing BCE",
+  "formula": "CNN_logits + alpha * logit(clamp(P_thermo,1e-4,1-1e-4))",
+  "alpha_zero": "exact CNN output and gradients; does not access prior store",
+  "production_cli_changed": false,
+  "J_gate_enabled": false
+}

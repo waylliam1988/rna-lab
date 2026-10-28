@@ -1,0 +1,14 @@
+{
+  "reason": "Normalize Windows CRLF to Git-stable LF; preserve executed raw snapshots. Metrics/settings/experimental data unchanged.",
+  "executed_source_commit": "86cb56d",
+  "artifacts": {
+    "thermodynamic_baseline_protocol_v1.json": {
+      "executed_raw_sha256": "d82cec752df8d644e994b4b3fbd82de20054ef014c4d4152ddae04a198c62b66",
+      "git_lf_sha256": "8ddcd8b258c344f482d4b0d7ae4ac95d8b4acb72bab300e9188dae83ec9e149f"
+    },
+    "thermodynamic_baseline_summary_v1.json": {
+      "executed_raw_sha256": "ec208c1b2e9e4e4bb04504fc2798b1b0903ed12d6735218a9fb857415e16e150",
+      "git_lf_sha256": "9ef115e18e206abc31d56d60425aad8c37bd448f9cab1cdf7d45162707d0450a"
+    }
+  }
+}
