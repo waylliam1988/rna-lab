@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-28",
+  "unit_tests_passed": 148,
+  "new_role_contract_tests": 9,
+  "markdown_files_checked": 12,
+  "local_links_checked": 121,
+  "missing_links": 0,
+  "all_inventory_inputs_unchanged": true,
+  "record_sequence_hashes_recomputed": true,
+  "raw_and_old_policy_files_not_modified": true,
+  "legacy_cli_not_modified": true,
+  "old_pilot_results_preserved": true,
+  "new_train_admissions": 0,
+  "new_auxiliary_admissions": 0,
+  "new_test_groups": 0,
+  "training_performed": false,
+  "test_performance_read": false,
+  "network_requests": false,
+  "validation_scope": "Role policy and reference inventory only; no biological clearance or model validation",
+  "files_sha256": {
+    "data/manifests/study_v2_role_policy_v1.json": "d9c6f164de07756e5600da934b348c4fe6702fc5a5d3a42f8100578c025e883a",
+    "data/manifests/study_v2_role_inventory_v1.json": "dba92ae1d3c4a0d86d017dc7051c47d6260ea07fed2510235bf9029d2da72aed",
+    "src/rna2d/study_roles.py": "c06698ef594fd32d48645ff9f5c059d7bd0bdb5f4138daea2281d54b71a4d98f",
+    "scripts/build_study_v2_role_inventory.py": "54ff06575313a80f34100ba3b66bb8c8cba9f47dd0af5bf01a2ce5acd8a4791d",
+    "tests/test_study_roles.py": "c8f17fb3cf3b37fbdbcda3272700064b5fa21a98987375ae1a39086cf9efe8d6",
+    "docs/STUDY_V2_DATA_ROLES_V1.md": "bd42bc79694fd1a7ec5736dbda6dd88d0d73eb4377cdb6f11ede18a207736758"
+  }
+}

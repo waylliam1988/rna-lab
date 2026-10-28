@@ -1,0 +1,64 @@
+{
+  "study_id": "rna2d_auxiliary_study_v2",
+  "policy_version": 1,
+  "date": "2026-10-28",
+  "status": "role_definition_and_inventory_only",
+  "legacy_files_and_results_immutable": true,
+  "automatic_training_admission": false,
+  "legacy_cli_policy_changed": false,
+  "model": "SequencePairModel(cnn,width=113,hidden=64,depth=2)",
+  "default_loss": "balanced_pair_bce",
+  "data_roles": {
+    "core_train_reference": {
+      "source": "joint_split_v2:train",
+      "records": 88,
+      "meaning": "Existing approved experimental reference, not an expanded or newly trained dataset"
+    },
+    "protected_development": {
+      "source": "joint_split_v2:validation",
+      "records": 10,
+      "groups": 7,
+      "meaning": "Repeatedly used development data; protected from training/pretraining, never a new blind test"
+    },
+    "retired_evaluation_reference": {
+      "sources": ["joint_split_v2:test", "paired_v0_2:validation", "paired_v0_2:test", "legacy_processed:validation", "legacy_processed:test", "legacy_processed:test_external", "legacy_processed:archiveII"],
+      "meaning": "Old evaluation-role history retained, not next-study independent evaluation. May be reviewed as training candidates only after quality/mapping/active-isolation gates. No automatic promotion."
+    },
+    "historical_source_candidate": {
+      "sources": ["paired_v0_2:train", "legacy_processed:train"],
+      "meaning": "Historical source, not automatically approved training evidence"
+    },
+    "auxiliary_source_candidate": {
+      "sources": ["Rfam reviewed families", "data/comparative/source_index_NOT_APPROVED.jsonl"],
+      "meaning": "Comparative evidence needs provenance, mapping, supervision scope and active-holdout isolation; separate from experimental gold"
+    },
+    "future_independent_test": {
+      "records": 0,
+      "groups": 0,
+      "status": "not_established",
+      "meaning": "Reserve reviewed whole groups before use; keep separate from training/pretraining and development"
+    }
+  },
+  "active_protection": {
+    "sources": ["joint_split_v2:validation", "future_independent_test when established"],
+    "relations": ["exact sequence and duplicate aliases", "parent/mutant/fragment/construct", "known family/clan/homology under declared review scope", "primary study and repeated structure under declared grouping"],
+    "unknown_relation": "retain_quarantine",
+    "retired_pool_alias_of_active_development": "active protection takes precedence"
+  },
+  "invariant_quality_rules": [
+    "Exclude model-predicted or model-imputed labels",
+    "Unknown pair is not negative",
+    "Probing profile is not pair-partner truth",
+    "Comparative labels are separate auxiliary evidence",
+    "Source/quality/mapping/context review remains required",
+    "Historical scores never become new independent validation"
+  ],
+  "claims": {
+    "development_track": "Controlled development evidence on protected groups only; no unbiased generalization claim",
+    "confirmatory_track": "Requires separately reviewed and frozen independent experimental groups not used for selection",
+    "new_test_not_required_for_bounded_development": "Development experiments may be designed after data/runtime gates, explicitly without new independent validation",
+    "old_test_score_reuse": "Prohibited as evidence for models whose training or design used those targets or relatives"
+  },
+  "next_action": "Re-review the same three family candidates against active development and future test roles. Preserve their old pilot exclusions as correct under the old policy. Source, mapping and active isolation must pass before representatives are selected.",
+  "not_performed": ["new label approval", "new split generation", "Rfam active-holdout clearance", "new test selection", "new model training"]
+}
