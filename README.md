@@ -47,7 +47,7 @@ Set-Location 'D:\RNA flod'
 ./run.ps1 scripts/predict.py --help
 ```
 
-以上仅查看入口，不训练、不下载、不评价模型。`run.ps1`使用基于系统Python3.12.8的项目虚拟环境，共享全局PyTorch2.7.1+cu128/CUDA12.8，RNA专用依赖仍留在项目；单次实验按单卡约22GB显存安排。详细环境见[ENVIRONMENT](docs/ENVIRONMENT.md)。
+以上仅查看入口，不训练、不下载、不评价模型。`run.ps1`使用基于系统Python3.12.8的项目虚拟环境，共享全局PyTorch2.7.1+cu128/CUDA12.8，公共依赖全局共享，版本冲突按StockAlarm清单，项目仅保留4个RNA专用包（见[迁移记录](docs/SHARED_COMMON_ENVIRONMENT_V1.md)）；单次实验按单卡约22GB显存安排。详细环境见[ENVIRONMENT](docs/ENVIRONMENT.md)。
 
 训练入口默认CNN、joint_split_v2和balanced BCE，按validation组宏F1保存开发检查点。一般CLI训练不等于冻结实验复现；评价CLI只开放validation，核验数据指纹，旧检查点缺指纹须显式兼容选项。新独立test需另立冻结协议。不要重跑早期下载/prepare脚本来“刷新”数据，也不要覆盖既有运行目录。
 

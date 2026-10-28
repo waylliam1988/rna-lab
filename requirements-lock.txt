@@ -1,3 +1,5 @@
+# HISTORICAL: pre-global-common migration snapshot; do not install over current shared environment.
+# Current: requirements-shared-gpu.txt + requirements-shared-common.txt + requirements-data.txt.
 --extra-index-url https://download.pytorch.org/whl/cu128
 barnaba==0.1.9
 biopython==1.88
