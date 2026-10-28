@@ -2,6 +2,8 @@
 
 ## 公共依赖共享（2026-10-28，当前配置）
 
+热力学基线新增全局ViennaRNA==2.7.2（共享清单现91项）；不修改既有Torch/NumPy/StockAlarm版本。此前90项迁移manifest是安装当时快照。
+
 用户要求公共依赖全局安装，版本冲突按 StockAlarm 的 `D:/stockalarm/requirements.txt` 处理。公共清单为 `requirements-shared-common.txt`；SciPy 1.16.0、scikit-learn 1.7.0、Pandas 2.3.1、Matplotlib 3.10.3 等采用 StockAlarm 版本。Python 3.12.8、PyTorch 2.7.1+cu128、CUDA runtime 12.8、NumPy 2.2.6 不变。
 
 RNA 的 `.venv3128` 共享系统公共包，仅保留 barnaba、biopython、gemmi、mdtraj 四个 RNA 专用包。全局包来源与版本由 `scripts/check_shared_common.py` 检查，安装使用 `scripts/setup_shared_common.ps1`。`requirements-lock.txt` 是迁移前历史快照，不代表当前公共环境。完整版本决策、安装与验证见 [公共依赖迁移记录](SHARED_COMMON_ENVIRONMENT_V1.md)。以下共享 GPU 记录描述前一阶段，47 个本地包已不再是当前状态。

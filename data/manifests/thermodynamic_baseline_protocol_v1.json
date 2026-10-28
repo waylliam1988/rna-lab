@@ -1,0 +1,60 @@
+{
+  "stage": "thermodynamic-baseline-v1",
+  "status": "frozen_before_prior_generation_and_evaluation",
+  "created_at_utc": "2026-10-28T04:22:33.237944+00:00",
+  "settings": {
+    "engine": "ViennaRNA",
+    "version": "2.7.2",
+    "parameters": "RNA_Turner2004",
+    "temperature_C": 37.0,
+    "salt_M": 1.021,
+    "dangles": 2,
+    "min_loop_size": 3,
+    "noLP": 0,
+    "noGU": 0,
+    "noGUclosure": 0,
+    "circular": 0,
+    "gquad": 0,
+    "compute_bpp": 1,
+    "model": "single isolated linear RNA; no experimental constraints or ligand/Mg binding model",
+    "condition_status": "assumed fixed conditions, not recovered experimental buffer"
+  },
+  "source": "ViennaRNA Python API fold_compound, same RNAfold partition-function engine",
+  "source_urls": [
+    "https://www.tbi.univie.ac.at/RNA/ViennaRNA/doc/html/usage/man/RNAfold.html",
+    "https://www.tbi.univie.ac.at/RNA/ViennaRNA/doc/html/api/python.html"
+  ],
+  "data_sha256": {
+    "train": "4168f00f61d9a3330db33b45308fe247c6ba15fd1c50ce4b868559b78f3ffcb9",
+    "validation": "794e1cd6692eccfbad1212fa8e4246c2698eaede8fb686f8a502e52908451a71"
+  },
+  "split_manifest_sha256": "30784a93d06c60ad968448fc82a0e6836a13ecea9e9d93c46442e1fad68c5da9",
+  "historical_protocol_sha256": "46db4520d0bcfc15319f96def77258b4c62ec612837d34caa2a281c098a02659",
+  "checkpoints": {
+    "42": {
+      "path": "runs/data_first_loss_v2/bce/seed42/checkpoint.pt",
+      "sha256": "4f7ebc61c361dcd30859918f3ed13f64ba6aa5dcbe2e4fec6027be09c8c00037"
+    },
+    "43": {
+      "path": "runs/data_first_loss_v2/bce/seed43/checkpoint.pt",
+      "sha256": "527f3f291f8854f954a0ab3909c9a91dcaf1c91c85c4866a7124f423d7444fff"
+    },
+    "44": {
+      "path": "runs/data_first_loss_v2/bce/seed44/checkpoint.pt",
+      "sha256": "1b03b2a5d8e8458fa336de57ef0d606ba0f6204717f83793609c1080e1257a16"
+    }
+  },
+  "threshold": 0.5,
+  "batch_size": 4,
+  "test_accessed": false,
+  "decode": "existing canonical AU/GC/GU greedy, min separation 4; crossing edges allowed; decode before observed-mask",
+  "family_scope": "No verified Rfam family field: use isolation/homology groups, not invented family labels",
+  "analysis": "per-split, per-seed positive recovery overlap and FP overlap; group/length/pair-type strata; no tuning",
+  "source_sha256": {
+    "scripts/audit_thermodynamic_baseline.py": "3f0f2b25d23bc33cf5a92d939e1bcc6701a2cf26157318203bf0eadbe92e6848",
+    "src/rna2d/thermodynamics.py": "206bead17fa4d10fa5bc38e84ce86b190e6d624ec6ea5ffeb53e2de612aa5b30",
+    "src/rna2d/training.py": "58d1f20f4d1e82b4292194d76a9a0fa6bd26781ed9dcc3773303a3fbdf9bf04e",
+    "src/rna2d/data.py": "9f9c9bd41c0e226e6885fc1069d4617d6b02740f9b464464dc06354aa63cfdd2",
+    "src/rna2d/sequence_encoders.py": "2e214d1ea10950c2ef89590fd12360cdc18dbe5a5579065c84f4625319990e9f"
+  }
+}
