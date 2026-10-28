@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-28",
+  "system_python": "C:\\Program Files\\Python312\\python.exe",
+  "python": "3.12.8",
+  "rna_python": "D:\\RNA flod\\.venv3128\\Scripts\\python.exe",
+  "rna_base_python": "C:\\Program Files\\Python312",
+  "rna_system_site_packages": true,
+  "torch": "2.7.1+cu128",
+  "cuda_runtime": "12.8",
+  "cudnn": 90701,
+  "numpy": "2.2.6",
+  "global_torch_path": "C:\\Program Files\\Python312\\Lib\\site-packages\\torch\\__init__.py",
+  "rna_torch_path": "C:\\Program Files\\Python312\\Lib\\site-packages\\torch\\__init__.py",
+  "rna_uses_global_torch": true,
+  "package_versions": {
+    "torch": "2.7.1+cu128",
+    "numpy": "2.2.6",
+    "filelock": "4.2.4",
+    "typing_extensions": "4.16.0",
+    "sympy": "1.14.0",
+    "networkx": "3.7",
+    "jinja2": "3.1.6",
+    "fsspec": "2026.9.0",
+    "mpmath": "1.3.0",
+    "MarkupSafe": "3.0.4",
+    "setuptools": "84.2.1"
+  },
+  "gpus": [
+    {
+      "index": 0,
+      "name": "NVIDIA GeForce RTX 2080 Ti",
+      "loss": 0.43023309111595154,
+      "forward_backward_optimizer_passed": true
+    },
+    {
+      "index": 1,
+      "name": "NVIDIA GeForce RTX 2080 Ti",
+      "loss": 0.38686639070510864,
+      "forward_backward_optimizer_passed": true
+    },
+    {
+      "index": 2,
+      "name": "NVIDIA GeForce RTX 2080 Ti",
+      "loss": 0.38412487506866455,
+      "forward_backward_optimizer_passed": true
+    }
+  ],
+  "global_and_rna_gpu_checks_passed": true,
+  "unit_tests_passed": 148,
+  "global_pip_check": "passed",
+  "project_pip_check": "passed",
+  "project_package_transition": {
+    "local_packages_before": 48,
+    "local_packages_after": 47,
+    "removed_local_dist_info": [
+      "torch-2.7.1+cu128.dist-info"
+    ],
+    "other_local_package_metadata_unchanged": true,
+    "backup_path": ".runtime/python_base_migration_v1"
+  },
+  "verified_wheel_sha256": "2bb8c05d48ba815b316879a18195d53a6472a03e297d971e916753f8e1053d30",
+  "large_wheel_bytes": 3273024349,
+  "large_wheel_reused_without_redownload": true,
+  "python_base_before": "D:/RNA flod/.runtime/python3128 (python.exe absent at initial inspection)",
+  "initial_project_startup_failed": true,
+  "initial_system_nonisolated_probe_failed": true,
+  "system_python_final_normal_startup_passed": true,
+  "project_local_torch_removed_after_global_gpu_verification": true,
+  "other_projects_modified": false,
+  "system_cuda_driver_modified": false,
+  "cuda_toolkit_installer_run": false,
+  "checkpoints_or_data_modified": false,
+  "model_training_performed": false,
+  "synthetic_gpu_optimizer_checks_only": true,
+  "machine_path_contains_system_python_and_scripts": true,
+  "old_process_path_refresh_requires_new_terminal": true,
+  "backup_location": ".runtime/python_base_migration_v1",
+  "local_report_directory": "C:\\ProgramData\\RNA-Lab\\shared-python3128",
+  "source_report_sha256": {
+    "global_gpu_check_v1.json": "07bf5fa07ea68718a1fecba14fb46ef47ffc1caa8206680cc952ab7fae5d70ca",
+    "rna_shared_gpu_check_v1.json": "81c174f5f8e80243b2d1867e440708a66fc8d7a524f5da0718aecd9ffbe761b1",
+    "pip_install_report_v1.json": "1e65489045a180ddcc1aa25bab578c17167eb6f7d573bed755bc0df2c719d550",
+    "wheel_provenance_v1.json": "bd2ea58716cb76a805fb37d5747c5b5054a3a647a7c4b7129f7a0368dd669365"
+  }
+}

@@ -1,5 +1,29 @@
 # 本地环境
 
+## 系统Python与共享GPU环境（2026-10-28）
+
+本机已安装系统级Python3.12.8：`C:/Program Files/Python312/python.exe`。RNA虚拟环境原先依赖的`.runtime/python3128/python.exe`已经不存在；本次已备份pyvenv.cfg及venv启动器，并以系统3.12.8重绑定`.venv3128`，无需重建项目依赖。
+
+按用户要求，全局GPU基础版本固定与RNA相同：torch2.7.1+cu128、CUDA runtime12.8、cuDNN9.7.1、NumPy2.2.6。共享依赖清单为requirements-shared-gpu.txt；原requirements-lock.txt保留历史完整项目锁定。CUDA驱动为系统级，PyTorch运行时来自官方wheel；本次不运行CUDA/驱动安装包、不安装下载目录中不同版本的cuDNN压缩包。
+
+复用本地3273024349字节torch wheel，SHA256与官方cu128索引核对一致（2bb8c05d48ba815b316879a18195d53a6472a03e297d971e916753f8e1053d30）；包缓存与安装/GPU检查记录位于`C:/ProgramData/RNA-Lab/shared-python3128/`。全局和RNA共享入口均通过三张GPU前向/反向/AdamW实测，版本及来源一致，148项项目测试和两边pip check通过。结果见data/manifests/shared_python_gpu_environment_v1.json。全局验证后已卸载项目torch重复副本，其余47个项目包的METADATA哈希不变。
+
+项目`.venv3128`保留RNA专用依赖。当前已启用system-site-packages，torch实际从全局`C:/Program Files/Python312/Lib/site-packages/torch`导入，不再使用项目副本。`run.ps1`和VS Code仍使用项目venv，不依赖旧终端PATH。全局升级共享GPU包会影响使用它的项目，因此本机基础包版本固定在共享清单。
+
+其他项目可以直接选择系统解释器；需要保留项目专用依赖时，在该项目目录用下面命令创建新的共享venv（已有环境先核对，不批量覆盖）：
+
+```powershell
+$rnaSystemPython = 'C:\Program Files\Python312\python.exe'
+& $rnaSystemPython -m venv --system-site-packages .venv
+& '.\.venv\Scripts\python.exe' -c "import torch; print(torch.__version__, torch.version.cuda, torch.cuda.is_available())"
+```
+
+独立venv默认不会自动看到全局包，只有系统解释器或启用system-site-packages的venv才共享。没有擅自修改其他项目的环境。机器PATH已有Python312与Scripts，安装前已打开的终端/应用需重新打开；旧会话可先使用解释器完整路径。
+
+复现顺序：系统安装3.12.8 → scripts/setup_shared_gpu.ps1（全局基础包与GPU实测）→ scripts/setup_environment.ps1（RNA专用依赖）。setup_environment不再在.runtime重复安装Python，也不会自动把其他项目迁移到共享环境。
+
+下方为历史环境搭建记录；其中项目本地Python基础安装路径只表示首次搭建状态。
+
 数据清洗阶段新增Gemmi/Barnaba/MDTraj等依赖，见requirements-data.txt；NumPy现固定为2.2.6以兼容Barnaba API。完整Python包版本以requirements-lock.txt为准。早期使用的已验证微软签名项目本地DLL（.runtime/vc）保留作兼容回退。
 
 ## 系统VC++运行库已补齐（2026-10-27）
@@ -12,7 +36,7 @@
 
 ## 目标与位置
 
-- Python 3.12.8：`.runtime/python3128/python.exe`
+- 当前系统Python 3.12.8：`C:/Program Files/Python312/python.exe`（原`.runtime/python3128`为历史基础安装）
 - 正式虚拟环境：`.venv3128/Scripts/python.exe`
 - PyTorch 2.7.1+cu128，CUDA runtime 12.8，适配当前 RTX 2080 Ti（Turing / sm_75）。最终是否正常以 GPU 前向、反向和优化器实测为准。
 - 本机发现三张 RTX 2080 Ti，每张 22528 MiB，驱动 576.80。初版模型单卡运行。

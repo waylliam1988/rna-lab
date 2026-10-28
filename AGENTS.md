@@ -14,3 +14,5 @@
 - 金标准池仅用直接实验证据，排除模型预测/补全标签与低质量数据。允许对可靠比较序列分析建立独立辅助池，但须逐条核验文献、比对映射和验证方式，不能将其当作实验真值。遵循 data/experimental/POLICY.json；旧 data/processed 基准不能自动视为已批准训练数据。
 
 - 用户已授权定义下一轮study_v2数据角色，见docs/STUDY_V2_DATA_ROLES_V1.md与data/manifests/study_v2_role_policy_v1.json。仅在此新研究中，退役历史评估关联不再单独永久否决训练候选；旧成绩不再承担独立验证。当前10条开发及未来新测试的精确/构建体/family-clan/同源/原研究关系仍受保护，未知不当无关联，来源/质量/映射/标签门禁不放宽。角色清单不是训练准入，原数据/旧协议/生产CLI不变；新数据与A/B/C须另立准入及冻结协议，不能复用已揭盲旧测试证明新模型效果。
+
+- 本机基础环境现为系统Python3.12.8（C:/Program Files/Python312/python.exe）与全局torch2.7.1+cu128/CUDA runtime12.8/cuDNN9.7.1。RNA的.venv3128启用system-site-packages并共享全局torch，保留47个项目专用包；run.ps1仍调用venv。不要重装.runtime/python3128、在venv重复安装torch、擅自升级全局GPU版本或修改其他项目venv；共享配置与复现见docs/ENVIRONMENT.md、requirements-shared-gpu.txt。
