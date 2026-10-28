@@ -1,0 +1,15 @@
+{
+  "destination": "D:\\E backup\\下载\\torch-2.7.1+cu128-cp312-cp312-win_amd64.whl",
+  "bytes": 3273024349,
+  "sha256": "2bb8c05d48ba815b316879a18195d53a6472a03e297d971e916753f8e1053d30",
+  "previous_wheelhouse_path": "C:\\ProgramData\\RNA-Lab\\shared-python3128\\wheelhouse\\torch-2.7.1+cu128-cp312-cp312-win_amd64.whl",
+  "previous_cache_path": "C:\\Users\\Administrator\\AppData\\Local\\pip\\cache\\http-v2\\f\\2\\8\\8\\8\\f2888a41306f71a2ab488fcf8670dae17360809dc45964e5b37e6d9a.body",
+  "old_wheelhouse_removed": true,
+  "old_cache_link_removed": true,
+  "installed_torch_modified": false,
+  "verified_before_source_removal": true,
+  "date": "2026-10-28",
+  "source_links_were_same_hardlinked_file": true,
+  "source_removed_only_after_size_and_official_sha_verification": true,
+  "historical_environment_manifest_preserved": true
+}

@@ -169,3 +169,8 @@ failure_reason / next_action:
 ## 系统Python与共享GPU迁移（2026-10-28）
 
 用户已在整机安装3.12.8，原项目基础python.exe已不存在，旧venv启动失败；备份配置/启动器后重绑定系统解释器。初次全局非隔离探针也曾失败，后续隔离和普通进程均验证通过，不推断安装过渡失败的具体根因。按用户明确要求将全局PyTorch/CUDA与RNA保持一致；复用已与官方SHA核对的3.27GB wheel及缓存依赖，安装torch2.7.1+cu128/CUDA12.8/cuDNN9.7.1/NumPy2.2.6。全局三卡验证通过后仅卸载项目torch重复包，启用system-site-packages，其余47个项目包元数据不变。RNA入口三卡实测、148测试、全局与项目pip check均通过；其他项目未修改，系统驱动/Toolkit未重装，数据和模型权重不变。环境及复现脚本已同步，见data/manifests/shared_python_gpu_environment_v1.json及[ENVIRONMENT](ENVIRONMENT.md)。
+
+
+## 共享PyTorch安装包迁移（2026-10-28）
+
+按用户要求，将3273024349字节官方wheel放入D:/E backup/下载；大小与官方SHA256核验后移除C盘原wheelhouse和pip缓存的两个硬链接。已安装全局Torch/CUDA未改，导入版本2.7.1+cu128、runtime12.8、CUDA可用性通过。共享安装脚本改为优先使用新目录并校验SHA，PowerShell语法及git差异检查通过。原安装收据保留历史，新位置见data/manifests/shared_pytorch_wheel_relocation_v1.json；不重跑科学训练或模型评价。

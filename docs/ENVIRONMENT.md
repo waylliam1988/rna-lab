@@ -6,6 +6,8 @@
 
 按用户要求，全局GPU基础版本固定与RNA相同：torch2.7.1+cu128、CUDA runtime12.8、cuDNN9.7.1、NumPy2.2.6。共享依赖清单为requirements-shared-gpu.txt；原requirements-lock.txt保留历史完整项目锁定。CUDA驱动为系统级，PyTorch运行时来自官方wheel；本次不运行CUDA/驱动安装包、不安装下载目录中不同版本的cuDNN压缩包。
 
+安装包现位于`D:/E backup/下载/torch-2.7.1+cu128-cp312-cp312-win_amd64.whl`，经大小与官方SHA256核验后，原C盘wheelhouse和pip缓存两个硬链接均已移除。全局已安装的PyTorch未修改。setup_shared_gpu.ps1优先使用该本地文件并核对SHA，可用-WheelDirectory指定其他目录；安装/GPU日志仍在C:/ProgramData/RNA-Lab/shared-python3128/。位置变更见data/manifests/shared_pytorch_wheel_relocation_v1.json；原wheel_provenance_v1.json保留为安装当时的历史记录。
+
 复用本地3273024349字节torch wheel，SHA256与官方cu128索引核对一致（2bb8c05d48ba815b316879a18195d53a6472a03e297d971e916753f8e1053d30）；包缓存与安装/GPU检查记录位于`C:/ProgramData/RNA-Lab/shared-python3128/`。全局和RNA共享入口均通过三张GPU前向/反向/AdamW实测，版本及来源一致，148项项目测试和两边pip check通过。结果见data/manifests/shared_python_gpu_environment_v1.json。全局验证后已卸载项目torch重复副本，其余47个项目包的METADATA哈希不变。
 
 项目`.venv3128`保留RNA专用依赖。当前已启用system-site-packages，torch实际从全局`C:/Program Files/Python312/Lib/site-packages/torch`导入，不再使用项目副本。`run.ps1`和VS Code仍使用项目venv，不依赖旧终端PATH。全局升级共享GPU包会影响使用它的项目，因此本机基础包版本固定在共享清单。
